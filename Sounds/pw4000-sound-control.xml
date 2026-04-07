@@ -2047,7 +2047,7 @@
 			</condition>
 			<expression>
 				<table>
-					<property>/sim/sound/fake-n2[0]</property>
+					<property>/sim/sound/fake-n2[1]</property>
 					<entry><ind> 50</ind><dep>0.00</dep></entry>
 					<entry><ind>100</ind><dep>1.00</dep></entry>
 				</table>
@@ -2065,7 +2065,7 @@
 			</condition>
 			<expression>
 				<table>
-					<property>/sim/sound/fake-n2[0]</property>
+					<property>/sim/sound/fake-n2[2]</property>
 					<entry><ind> 50</ind><dep>0.00</dep></entry>
 					<entry><ind>100</ind><dep>1.00</dep></entry>
 				</table>
