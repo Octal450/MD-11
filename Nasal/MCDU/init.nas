@@ -77,6 +77,7 @@ var Init = {
 		};
 		
 		m.Value = {
+			coRteInsertStatus: 0,
 			cruiseFlText: ["", "", "", "", "", ""],
 			cruiseInput: 0,
 			cruiseInputVals: [0, 0, 0, 0, 0, 0],
@@ -114,7 +115,9 @@ var Init = {
 			me.Display.R3L = "LONG";
 		}
 		
-		if (fms.flightData.airportTo != "") {
+		if (fms.flightData.coRte != "") {
+			me.Display.L1 = fms.flightData.coRte;
+		} else if (fms.flightData.airportTo != "") {
 			me.Display.L1 = "";
 		} else {
 			me.Display.L1 = "__________";
@@ -205,7 +208,26 @@ var Init = {
 		me.scratchpad = unit[me.id].scratchpad;
 		me.scratchpadState = unit[me.id].scratchpadState();
 		
-		if (k == "l3") {
+		if (k == "l1") {
+			if (me.scratchpadState == 2) {
+				if (unit[me.id].stringLengthInRange(1, 10)) {
+					me.Value.coRteInsertStatus = fms.EditFlightData.insertCoRte(me.scratchpad);
+					
+					if (me.Value.coRteInsertStatus == 0) {
+						unit[me.id].scratchpadClear();
+						unit[me.id].setPage("compRte");
+					} else if (me.Value.coRteInsertStatus == 2) {
+						unit[me.id].setMessage("LOAD ERROR");
+					} else {
+						unit[me.id].setMessage("NOT IN DATA BASE");
+					}
+				} else {
+					unit[me.id].setMessage("FORMAT ERROR");
+				}
+			} else {
+				unit[me.id].setMessage("NOT ALLOWED");
+			}
+		} else if (k == "l3") {
 			if (me.scratchpadState == 1) {
 				me.Value.gnsPosSide = 0;
 			} else {

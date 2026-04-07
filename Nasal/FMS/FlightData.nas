@@ -24,6 +24,7 @@ var FlightData = {
 		m.climbThrustAlt = -2000;
 		m.climbThrustAltSet = 0;
 		m.climbTransAlt = 18000;
+		m.coRte = "";
 		m.costIndex = -1;
 		m.cruiseAlt = 0;
 		m.cruiseAltAll = [0, 0, 0, 0, 0, 0];
@@ -255,9 +256,9 @@ var EditFlightData = {
 			flightData.vapp = math.round(fms.Speeds.vapp.getValue());
 		}
 	},
-	insertAlternate: func(arpt) { # Assumes validation is already done
-		flightData.airportAltn = arpt;
-		RouteManager.alternateAirport.setValue(arpt);
+	insertAlternate: func(aprt) { # Assumes validation is already done
+		flightData.airportAltn = aprt;
+		RouteManager.alternateAirport.setValue(aprt);
 		if (RouteManager.currentWp.getValue() == -1) { # This fixes a weird issue where the Route Manager sets it to -1
 			RouteManager.currentWp.setValue(0);
 		}
@@ -278,6 +279,24 @@ var EditFlightData = {
 			flightData.blockFuelLbs = block + 0;
 			return 1;
 		}
+	},
+	insertCoRte: func(file) { # This behavior isn't 100% right, needs the confirmation page before inserting, but it will do for now
+		flightplan().cleanPlan(); # Clear List function in Route Manager
+		
+		if (fgcommand("load-flightplan", props.Node.new({"path": getprop("/sim/fg-home/") ~ "/Export/" ~ file ~ ".gpx"}))) { # Try GPX
+			flightData.coRte = file;
+		} else if (fgcommand("load-flightplan", props.Node.new({"path": getprop("/sim/fg-home/") ~ "/Export/" ~ file ~ ".fgfp"}))) { # Try FGFP
+			flightData.coRte = file;
+		} else {
+			return 1;
+		}
+		
+		if (size(RouteManager.departureAirport.getValue()) < 3 or size(RouteManager.destinationAirport.getValue()) < 3) {
+			return 2;
+		}
+		
+		me.newFlightplan(RouteManager.departureAirport.getValue(), RouteManager.destinationAirport.getValue(), 1);
+		return 0;
 	},
 	insertCruiseFl: func(s1, s2 = 0, s3 = 0, s4 = 0, s5 = 0, s6 = 0) {
 		flightData.cruiseAlt = s1 * 100;
@@ -383,21 +402,27 @@ var EditFlightData = {
 			return 1;
 		}
 	},
-	newFlightplan: func(from, to) { # Assumes validation is already done
+	newFlightplan: func(from, to, skipRM = 0) { # Assumes validation is already done
 		if (pts.Position.wow.getBoolValue()) {
 			CORE.resetPhase();
 		}
 		
-		flightplan().cleanPlan(); # Clear List function in Route Manager
+		if (!skipRM) {
+			flightplan().cleanPlan(); # Clear List function in Route Manager
+		}
+		
 		flightData.airportFrom = from;
 		flightData.airportTo = to;
 		
-		RouteManager.departureAirport.setValue(from);
-		RouteManager.destinationAirport.setValue(to);
-		
-		if (!RouteManager.active.getBoolValue()) {
-			fgcommand("activate-flightplan", props.Node.new({"activate": 1}));
+		if (!skipRM) {
+			RouteManager.departureAirport.setValue(from);
+			RouteManager.destinationAirport.setValue(to);
+			
+			if (!RouteManager.active.getBoolValue()) {
+				fgcommand("activate-flightplan", props.Node.new({"activate": 1}));
+			}
 		}
+		
 		if (RouteManager.currentWp.getValue() == -1) { # This fixes a weird issue where the Route Manager sets it to -1
 			RouteManager.currentWp.setValue(1);
 		}
