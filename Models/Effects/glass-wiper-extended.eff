@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0"?>
 
 <PropertyList>
   <name>Effects/glass-wiper-extrended</name>
@@ -51,9 +51,9 @@
     <frost-level><use>/environment/aircraft-effects/frost-level</use></frost-level>
     <surface-mapping-scheme type="int">0</surface-mapping-scheme>
     <fog-level><use>/environment/aircraft-effects/fog-level</use></fog-level>
-    <use-wipers><use>/environment/aircraft-effects/use-wipers</use></use-wipers>
-    <wiper-l-out><use>/systems/cockpit/wipers/wiper-l-out</use></wiper-l-out>
-    <wiper-r-out><use>/systems/cockpit/wipers/wiper-r-out</use></wiper-r-out>
+    <use-wipers><use>/systems/cockpit/wipers/use-wipers</use></use-wipers>
+    <wiper-l-out><use>/systems/cockpit/wipers/wiper-shader-l</use></wiper-l-out>
+    <wiper-r-out><use>/systems/cockpit/wipers/wiper-shader-r</use></wiper-r-out>
     <use-overlay><use>/environment/aircraft-effects/use-overlay</use></use-overlay>
     <overlay-alpha><use>/environment/aircraft-effects/overlay-alpha</use></overlay-alpha>
     <overlay-glare type="float">0.5</overlay-glare>
@@ -160,7 +160,7 @@
       </vertex-program-two-side>
       <program>
         <vertex-shader>Shaders/glass-ALS.vert</vertex-shader>
-        <fragment-shader>Aircraft/MD-11/Shaders/glass-ALS-wiper-extended.frag</fragment-shader>
+        <fragment-shader>Aircraft/MD-11/Models/Effects/glass-ALS-wiper-extended.frag</fragment-shader>
         <fragment-shader>Shaders/noise.frag</fragment-shader>
         <fragment-shader>Shaders/filters-ALS.frag</fragment-shader>
       </program>
@@ -366,7 +366,6 @@
         <type>int</type>
         <value><use>display_ysize</use></value>
       </uniform>
-
       <uniform>
         <name>texture</name>
         <type>sampler-2d</type>
@@ -407,19 +406,16 @@
         <type>int</type>
         <value><use>use-wipers</use></value>
       </uniform>
-
-    <uniform>
-      <name>wiper_pos_left</name>
-      <type>float</type>
-      <value><use>wiper-l-out</use></value>
-    </uniform>
-
-    <uniform>
-      <name>wiper_pos_right</name>
-      <type>float</type>
-      <value><use>wiper-r-out</use></value>
-    </uniform>
-
+      <uniform>
+        <name>wiper_pos_left</name>
+        <type>float</type>
+        <value><use>wiper-l-out</use></value>
+      </uniform>
+      <uniform>
+        <name>wiper_pos_right</name>
+        <type>float</type>
+        <value><use>wiper-r-out</use></value>
+      </uniform>
       <uniform>
         <name>use_overlay</name>
         <type>int</type>
@@ -448,5 +444,3 @@
     </pass>
   </technique>
 </PropertyList>
-
-

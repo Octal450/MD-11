@@ -77,7 +77,7 @@ frost_texel = texture2D(frost_texture, frost_coords);
 func_texel = texture2D(func_texture, gl_TexCoord[0].st);
 float baseMask = func_texel.g;
 
-bool dualWipers = (use_wipers == 1) && (wiper_pos_left > 0.0 || wiper_pos_right > 0.0);
+bool dualWipers = use_wipers == 1;
 
 float wipe = 0.0;
 

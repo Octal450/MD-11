@@ -25,14 +25,15 @@
 	</effect>
 	
 	<effect>
-        <inherits-from>Aircraft/MD-11/Models/Cockpit/interior-front-glass-reflection</inherits-from>
+        <inherits-from>Aircraft/MD-11/Models/Effects/interior-front-glass-reflection</inherits-from>
 		<object-name>windshield_glass.inner</object-name>
 	</effect>
+	
     <effect>
-        <inherits-from>Aircraft/MD-11/Models/Cockpit/interior-side-glass-reflection</inherits-from>
+        <inherits-from>Aircraft/MD-11/Models/Effects/interior-side-glass-reflection</inherits-from>
         <object-name>cockpit_glass.inner</object-name>
 	</effect>
-
+	
 	<effect>
 		<inherits-from>Effects/model-transparent</inherits-from>
 		<object-name>dashboard.text</object-name>

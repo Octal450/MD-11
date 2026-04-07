@@ -753,153 +753,135 @@
 			<rate_limit>/systems/cockpit/wipers/wiper-r-rate</rate_limit>
 			<output>/systems/cockpit/wipers/wiper-r-out</output>
 		</actuator>
-
-        <switch name="/environment/aircraft-effects/use-wipers">
+		
+		<!-- Wiper Shader Logic -->
+		<switch name="/systems/cockpit/wipers/use-wiper-l">
+			<default value="1"/>
+			<test logic="OR" value="0"> <!-- Off and parked or frozen in place due to loss of power -->
+				<test logic="AND">
+					/controls/switches/wiper-l eq 0
+					/systems/cockpit/wipers/wiper-l-cmd eq /systems/cockpit/wipers/wiper-l
+				</test>
+				/systems/cockpit/wipers/wiper-l-rate eq 0
+			</test>
+		</switch>
+		
+		<pure_gain name="/systems/cockpit/wipers/wiper-shader-l"> <!-- Zero position if it's frozen in place -->
+			<input>/systems/cockpit/wipers/wiper-l</input>
+			<gain>/systems/cockpit/wipers/use-wiper-l</gain>
+		</pure_gain>
+		
+		<switch name="/systems/cockpit/wipers/use-wiper-r">
+			<default value="1"/>
+			<test logic="OR" value="0"> <!-- Off and parked or frozen in place due to loss of power -->
+				<test logic="AND">
+					/controls/switches/wiper-r eq 0
+					/systems/cockpit/wipers/wiper-r-cmd eq /systems/cockpit/wipers/wiper-r
+				</test>
+				/systems/cockpit/wipers/wiper-r-rate eq 0
+			</test>
+		</switch>
+		
+		<pure_gain name="/systems/cockpit/wipers/wiper-shader-r"> <!-- Zero position if it's frozen in place -->
+			<input>/systems/cockpit/wipers/wiper-r</input>
+			<gain>/systems/cockpit/wipers/use-wiper-r</gain>
+		</pure_gain>
+		
+		<switch name="/systems/cockpit/wipers/use-wipers">
 			<default value="0"/>
-            <test logic="OR" value="1">
-                /systems/cockpit/wipers/wiper-r-out gt 0
-                /systems/cockpit/wipers/wiper-l-out gt 0
-            </test>
-        </switch>
-
+			<test logic="OR" value="1">
+				/systems/cockpit/wipers/use-wiper-l eq 1
+				/systems/cockpit/wipers/use-wiper-r eq 1
+			</test>
+		</switch>
+	
 	</channel>
 	
 	<channel name="Glass Effects">
-
+		
 		<!--
-        at full speed x=1.6 y=0.0 z=0.4
-        runway speed x=1.2 y=0.0 z=0.4
-        stopped x=0.4 y=0.0 z=1.1
-        banking y = from 0 to +- 0.2 max
-        -->
-        <fcs_function name="/environment/aircraft-effects/splash-vector-x">
+		At full speed x = 1.6, y = 0.0, z = 0.4
+		Runway speed x = 1.2, y = 0.0, z = 0.4
+		Stopped x = 0.4, y = 0.0, z = 1.1
+		Banking y = from 0 to +/- 0.2 max
+		-->
+		
+		<fcs_function name="/environment/aircraft-effects/splash-vector-x">
 			<function>
 				<table>
-					<independentVar lookup="row">/velocities/airspeed-kt</independentVar>
+					<independentVar lookup="row">velocities/vc-kts</independentVar>
 					<tableData>
-						  0     0.4
-                          0.99  0.4
-						  1     1.2
-                         20     1.2
-                        100     1.6
-                        900     1.6
+						  0.9  0.4
+						  1.5  1.2
+						 20.0  1.2
+						100.0  1.6
 					</tableData>
 				</table>
 			</function>
 		</fcs_function>
-        <fcs_function name="/environment/aircraft-effects/splash-vector-z">
-			<function>
-				<table>
-					<independentVar lookup="row">/velocities/airspeed-kt</independentVar>
-					<tableData>
-						  0     1.1
-                          0.99  1.1
-						  1     0.4
-                        100     0.4
-                        900     0.4
-					</tableData>
-				</table>
-			</function>
-		</fcs_function>
-        <fcs_function name="/environment/aircraft-effects/splash-vector-y">
+		
+		<fcs_function name="/environment/aircraft-effects/splash-vector-y">
 			<function>
 				<table>
 					<independentVar lookup="row">/orientation/yaw-rate-degps</independentVar>
 					<tableData>
-						  -1  -0.2
-						   1   0.2
+						-1 -0.2
+						 1  0.2
 					</tableData>
 				</table>
 			</function>
 		</fcs_function>
-
-        <fcs_function name="/environment/aircraft-effects/splash-vector-sides-x">
+		
+		<fcs_function name="/environment/aircraft-effects/splash-vector-z">
 			<function>
 				<table>
-					<independentVar lookup="row">/velocities/airspeed-kt</independentVar>
+					<independentVar lookup="row">velocities/vc-kts</independentVar>
 					<tableData>
-						  0     0.4
-                          0.99  0.4
-						  1     1.2
-                         20     1.2
-                        100     1.6
-                        900     1.6
+						0.9  1.1
+						1.2  0.4
 					</tableData>
 				</table>
 			</function>
 		</fcs_function>
-        <fcs_function name="/environment/aircraft-effects/splash-vector-sides-z">
+		
+		<fcs_function name="/environment/aircraft-effects/splash-vector-sides-x">
 			<function>
 				<table>
-					<independentVar lookup="row">/velocities/airspeed-kt</independentVar>
+					<independentVar lookup="row">velocities/vc-kts</independentVar>
 					<tableData>
-						  0     1.1
-                          0.99  1.1
-						  1     0.4
-                        100     0.4
-                        900     0.4
+						  0.9  0.4
+						  1.2  1.2
+						 20.0  1.2
+						100.0  1.6
 					</tableData>
 				</table>
 			</function>
 		</fcs_function>
-        <fcs_function name="/environment/aircraft-effects/splash-vector-sides-y">
+		
+		<fcs_function name="/environment/aircraft-effects/splash-vector-sides-y">
 			<function>
-				<table>
+				<!--table>
 					<independentVar lookup="row">/orientation/yaw-rate-degps</independentVar>
 					<tableData>
-						  -1  0.0
-						   1  0.0
+						-1  0
+						 1  0
 					</tableData>
-				</table>
-			</function>
-		</fcs_function>
-        
-		<!--fcs_function name="glass-effects/airspeed-clamped-sqrt">
-			<function>
-				<sqrt>
-					<quotient>
-						<min>
-							<property>velocities/vc-kts</property>
-							<value>40</value>
-						</min>
-						<value>40</value>
-					</quotient>
-				</sqrt>
-			</function>
-		</fcs_function>
-		
-		<fcs_function name="glass-effects/splash-x">
-			<function>
-				<difference>
-					<value>-0.1</value>
-					<product>
-						<value>2</value>
-						<property>glass-effects/airspeed-clamped-sqrt</property>
-					</product>
-				</difference>
-			</function>
-			<output>/environment/aircraft-effects/splash-vector-x</output>
-		</fcs_function>
-		
-		<fcs_function name="glass-effects/splash-y">
-			<function>
+				</table-->
 				<value>0</value>
 			</function>
-			<output>/environment/aircraft-effects/splash-vector-y</output>
 		</fcs_function>
 		
-		<fcs_function name="glass-effects/splash-z">
+		<fcs_function name="/environment/aircraft-effects/splash-vector-sides-z">
 			<function>
-				<difference>
-					<value>1</value>
-					<product>
-						<value>1.35</value>
-						<property>glass-effects/airspeed-clamped-sqrt</property>
-					</product>
-				</difference>
+				<table>
+					<independentVar lookup="row">velocities/vc-kts</independentVar>
+					<tableData>
+						0.9  1.1
+						1.2  0.4
+					</tableData>
+				</table>
 			</function>
-			<output>/environment/aircraft-effects/splash-vector-z</output>
-		</fcs_function-->
+		</fcs_function>
 	
 	</channel>
 
