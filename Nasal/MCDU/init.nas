@@ -215,7 +215,7 @@ var Init = {
 					
 					if (me.Value.coRteInsertStatus == 0) {
 						unit[me.id].scratchpadClear();
-						unit[me.id].setPage("compRte");
+						#unit[me.id].setPage("compRte"); # Should allow you to review and insert, doesn't yet.
 					} else if (me.Value.coRteInsertStatus == 2) {
 						unit[me.id].setMessage("LOAD ERROR");
 					} else {
