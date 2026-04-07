@@ -799,24 +799,29 @@
 	
 	<channel name="Glass Effects">
 		
-		<!--
-		At full speed x = 1.6, y = 0.0, z = 0.4
-		Runway speed x = 1.2, y = 0.0, z = 0.4
-		Stopped x = 0.4, y = 0.0, z = 1.1
-		Banking y = from 0 to +/- 0.2 max
-		-->
+		<fcs_function name="/environment/aircraft-effects/airspeed-clamped-sqrt">
+			<function>
+				<sqrt>
+					<quotient>
+						<min>
+							<property>velocities/vc-kts</property>
+							<value>40</value>
+						</min>
+						<value>40</value>
+					</quotient>
+				</sqrt>
+			</function>
+		</fcs_function>
 		
 		<fcs_function name="/environment/aircraft-effects/splash-vector-x">
 			<function>
-				<table>
-					<independentVar lookup="row">velocities/vc-kts</independentVar>
-					<tableData>
-						  0.9  0.4
-						  1.5  1.2
-						 20.0  1.2
-						100.0  1.6
-					</tableData>
-				</table>
+				<difference>
+					<value>-0.1</value>
+					<product>
+						<value>2</value>
+						<property>/environment/aircraft-effects/airspeed-clamped-sqrt</property>
+					</product>
+				</difference>
 			</function>
 		</fcs_function>
 		
@@ -834,27 +839,25 @@
 		
 		<fcs_function name="/environment/aircraft-effects/splash-vector-z">
 			<function>
-				<table>
-					<independentVar lookup="row">velocities/vc-kts</independentVar>
-					<tableData>
-						0.9  1.1
-						1.2  0.4
-					</tableData>
-				</table>
+				<difference>
+					<value>1</value>
+					<product>
+						<value>1.35</value>
+						<property>/environment/aircraft-effects/airspeed-clamped-sqrt</property>
+					</product>
+				</difference>
 			</function>
 		</fcs_function>
 		
 		<fcs_function name="/environment/aircraft-effects/splash-vector-sides-x">
 			<function>
-				<table>
-					<independentVar lookup="row">velocities/vc-kts</independentVar>
-					<tableData>
-						  0.9  0.4
-						  1.2  1.2
-						 20.0  1.2
-						100.0  1.6
-					</tableData>
-				</table>
+				<difference>
+					<value>-0.1</value>
+					<product>
+						<value>2</value>
+						<property>/environment/aircraft-effects/airspeed-clamped-sqrt</property>
+					</product>
+				</difference>
 			</function>
 		</fcs_function>
 		
@@ -873,13 +876,13 @@
 		
 		<fcs_function name="/environment/aircraft-effects/splash-vector-sides-z">
 			<function>
-				<table>
-					<independentVar lookup="row">velocities/vc-kts</independentVar>
-					<tableData>
-						0.9  1.1
-						1.2  0.4
-					</tableData>
-				</table>
+				<difference>
+					<value>1</value>
+					<product>
+						<value>1.35</value>
+						<property>/environment/aircraft-effects/airspeed-clamped-sqrt</property>
+					</product>
+				</difference>
 			</function>
 		</fcs_function>
 	
