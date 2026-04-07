@@ -417,12 +417,11 @@ var EditFlightData = {
 		if (!skipRM) {
 			RouteManager.departureAirport.setValue(from);
 			RouteManager.destinationAirport.setValue(to);
-			
-			if (!RouteManager.active.getBoolValue()) {
-				fgcommand("activate-flightplan", props.Node.new({"activate": 1}));
-			}
 		}
 		
+		if (!RouteManager.active.getBoolValue()) {
+			fgcommand("activate-flightplan", props.Node.new({"activate": 1}));
+		}
 		if (RouteManager.currentWp.getValue() == -1) { # This fixes a weird issue where the Route Manager sets it to -1
 			RouteManager.currentWp.setValue(1);
 		}
