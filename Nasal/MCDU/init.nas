@@ -177,7 +177,7 @@ var Init = {
 		}
 		
 		if (fms.flightData.airportTo != "") {
-			me.Display.R1 = fms.flightData.airportFrom ~ "/" ~ fms.flightData.airportTo;
+			me.Display.R1 = fms.flightData.airportFrom ~ "/" ~ fms.flightData.airportTo ~ " ";
 		} else {
 			me.Display.R1 = "_____/_____";
 		}
