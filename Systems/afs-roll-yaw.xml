@@ -308,7 +308,7 @@
 	</pid-controller>
 	
 	<filter>
-		<name>System Command: Aileron Ground</name>
+		<name>System Command: Aileron Rollout</name>
 		<type>gain</type>
 		<gain>1.0</gain>
 		<input>
