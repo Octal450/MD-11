@@ -6,7 +6,7 @@
 	<inherits-from>Aircraft/MD-11/Models/Effects/glass-wiper-extended</inherits-from>
 	<parameters>
 		<texture n="2">
-			<image>Aircraft/MD-11/Models/Cockpit/windshield-mask.png</image>
+			<image>Aircraft/MD-11/Models/Effects/windshield-mask.png</image>
 			<type>2d</type>
 			<filter>linear-mipmap-linear</filter>
 			<wrap-s>clamp</wrap-s>
