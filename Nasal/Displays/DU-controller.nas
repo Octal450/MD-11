@@ -204,8 +204,8 @@ var DUController = {
 			canvas_sd.fuel.page.hide();
 			canvas_sd.hyd.page.hide();
 			canvas_sd.misc.page.hide();
-			canvas_sd.noNd.page.show();
 			canvas_sd.status.page.hide();
+			canvas_sd.noNd.page.show();
 		} else if (p == "STATUS") {
 			canvas_sd.config.page.hide();
 			canvas_sd.conseq.page.hide();
