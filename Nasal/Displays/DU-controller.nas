@@ -124,8 +124,6 @@ var DUController = {
 		} else if (p == "ELEC") {
 			canvas_sd.config.page.hide();
 			canvas_sd.conseq.page.hide();
-			canvas_sd.elec.update();
-			canvas_sd.elec.page.show();
 			canvas_sd.engDials.page.hide();
 			canvas_sd.engTapes.page.hide();
 			canvas_sd.fuel.page.hide();
@@ -133,6 +131,8 @@ var DUController = {
 			canvas_sd.misc.page.hide();
 			canvas_sd.noNd.page.hide();
 			canvas_sd.status.page.hide();
+			canvas_sd.elec.update();
+			canvas_sd.elec.page.show();
 		} else if (p == "ENG") {
 			if (me.eadType == "GE-Tapes" or me.eadType == "PW-Tapes") { # Tape style EAD means tape style SD
 				canvas_sd.config.page.hide();
@@ -165,12 +165,12 @@ var DUController = {
 			canvas_sd.elec.page.hide();
 			canvas_sd.engDials.page.hide();
 			canvas_sd.engTapes.page.hide();
-			canvas_sd.fuel.update();
-			canvas_sd.fuel.page.show();
 			canvas_sd.hyd.page.hide();
 			canvas_sd.misc.page.hide();
 			canvas_sd.noNd.page.hide();
 			canvas_sd.status.page.hide();
+			canvas_sd.fuel.update();
+			canvas_sd.fuel.page.show();
 		} else if (p == "HYD") {
 			canvas_sd.config.page.hide();
 			canvas_sd.conseq.page.hide();
@@ -178,11 +178,11 @@ var DUController = {
 			canvas_sd.engDials.page.hide();
 			canvas_sd.engTapes.page.hide();
 			canvas_sd.fuel.page.hide();
-			canvas_sd.hyd.update();
-			canvas_sd.hyd.page.show();
 			canvas_sd.misc.page.hide();
 			canvas_sd.noNd.page.hide();
 			canvas_sd.status.page.hide();
+			canvas_sd.hyd.update();
+			canvas_sd.hyd.page.show();
 		} else if (p == "MISC") {
 			canvas_sd.config.page.hide();
 			canvas_sd.conseq.page.hide();
@@ -191,10 +191,10 @@ var DUController = {
 			canvas_sd.engTapes.page.hide();
 			canvas_sd.fuel.page.hide();
 			canvas_sd.hyd.page.hide();
-			canvas_sd.misc.update();
-			canvas_sd.misc.page.show();
 			canvas_sd.noNd.page.hide();
 			canvas_sd.status.page.hide();
+			canvas_sd.misc.update();
+			canvas_sd.misc.page.show();
 		} else if (p == "ND") {
 			canvas_sd.config.page.hide();
 			canvas_sd.conseq.page.hide();
