@@ -105,6 +105,7 @@ var DUController = {
 			canvas_sd.fuel.page.hide();
 			canvas_sd.hyd.page.hide();
 			canvas_sd.misc.page.hide();
+			canvas_sd.noNd.page.hide();
 			canvas_sd.status.page.hide();
 			canvas_sd.config.update();
 			canvas_sd.config.page.show();
@@ -116,6 +117,7 @@ var DUController = {
 			canvas_sd.fuel.page.hide();
 			canvas_sd.hyd.page.hide();
 			canvas_sd.misc.page.hide();
+			canvas_sd.noNd.page.hide();
 			canvas_sd.status.page.hide();
 			canvas_sd.conseq.update();
 			canvas_sd.conseq.page.show();
@@ -129,6 +131,7 @@ var DUController = {
 			canvas_sd.fuel.page.hide();
 			canvas_sd.hyd.page.hide();
 			canvas_sd.misc.page.hide();
+			canvas_sd.noNd.page.hide();
 			canvas_sd.status.page.hide();
 		} else if (p == "ENG") {
 			if (me.eadType == "GE-Tapes" or me.eadType == "PW-Tapes") { # Tape style EAD means tape style SD
@@ -139,6 +142,7 @@ var DUController = {
 				canvas_sd.fuel.page.hide();
 				canvas_sd.hyd.page.hide();
 				canvas_sd.misc.page.hide();
+				canvas_sd.noNd.page.hide();
 				canvas_sd.status.page.hide();
 				canvas_sd.engTapes.update();
 				canvas_sd.engTapes.page.show();
@@ -148,8 +152,9 @@ var DUController = {
 				canvas_sd.elec.page.hide();
 				canvas_sd.engTapes.page.hide();
 				canvas_sd.fuel.page.hide();
-				canvas_sd.misc.page.hide();
 				canvas_sd.hyd.page.hide();
+				canvas_sd.misc.page.hide();
+				canvas_sd.noNd.page.hide();
 				canvas_sd.status.page.hide();
 				canvas_sd.engDials.update();
 				canvas_sd.engDials.page.show();
@@ -164,6 +169,7 @@ var DUController = {
 			canvas_sd.fuel.page.show();
 			canvas_sd.hyd.page.hide();
 			canvas_sd.misc.page.hide();
+			canvas_sd.noNd.page.hide();
 			canvas_sd.status.page.hide();
 		} else if (p == "HYD") {
 			canvas_sd.config.page.hide();
@@ -175,6 +181,7 @@ var DUController = {
 			canvas_sd.hyd.update();
 			canvas_sd.hyd.page.show();
 			canvas_sd.misc.page.hide();
+			canvas_sd.noNd.page.hide();
 			canvas_sd.status.page.hide();
 		} else if (p == "MISC") {
 			canvas_sd.config.page.hide();
@@ -186,6 +193,18 @@ var DUController = {
 			canvas_sd.hyd.page.hide();
 			canvas_sd.misc.update();
 			canvas_sd.misc.page.show();
+			canvas_sd.noNd.page.hide();
+			canvas_sd.status.page.hide();
+		} else if (p == "ND") {
+			canvas_sd.config.page.hide();
+			canvas_sd.conseq.page.hide();
+			canvas_sd.elec.page.hide();
+			canvas_sd.engDials.page.hide();
+			canvas_sd.engTapes.page.hide();
+			canvas_sd.fuel.page.hide();
+			canvas_sd.hyd.page.hide();
+			canvas_sd.misc.page.hide();
+			canvas_sd.noNd.page.show();
 			canvas_sd.status.page.hide();
 		} else if (p == "STATUS") {
 			canvas_sd.config.page.hide();
@@ -196,6 +215,7 @@ var DUController = {
 			canvas_sd.fuel.page.hide();
 			canvas_sd.hyd.page.hide();
 			canvas_sd.misc.page.hide();
+			canvas_sd.noNd.page.hide();
 			canvas_sd.status.update();
 			canvas_sd.status.page.show();
 		} else {
