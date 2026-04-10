@@ -604,19 +604,13 @@
 				<table>
 					<independentVar lookup="row">velocities/mach</independentVar>
 					<independentVar lookup="column">/systems/fadec/limit/approach-idle</independentVar>
-					<independentVar lookup="table">/position/altitude-ft</independentVar>
-					<tableData breakPoint="0">
+					<tableData>
 						      0     1
 						0.08  23.7  23.7
-						0.21  30.3  37.3
-						0.70  39.4  44.6
-					</tableData>
-					<tableData breakPoint="45000">
-						      0     1
-						0.08  23.7  23.7
-						0.21  30.3  37.3
-						0.55  50.1  57.1
-						0.90  56.7  59.2
+						0.21  30.3  34.3
+						0.50  37.1  42.4
+						0.70  39.8  44.8
+						0.90  41.2  45.9
 					</tableData>
 				</table>
 			</function>
