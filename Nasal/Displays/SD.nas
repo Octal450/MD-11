@@ -1,4 +1,5 @@
 # McDonnell Douglas MD-11 SD
+# McDonnell Douglas MD-11 SD
 # Copyright (c) 2026 Josh Davidson (Octal450)
 
 var display = nil;
@@ -227,6 +228,7 @@ var CanvasBase = {
 		# Hide the pages by default
 		me.hidePages();
 		
+		air.setup();
 		elec.setup();
 		engDials.setup();
 		engTapes.setup();
