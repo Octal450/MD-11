@@ -9,10 +9,13 @@ var CanvasAir = {
 		return m;
 	},
 	getKeys: func() {
-		return ["Alert_error"];
+		return ["AI_tail_group", "AI_wing_L_group", "AI_wing_R_group", "Alert_error"];
 	},
 	setup: func() {
 		# Hide unimplemented objects
+		me["AI_tail_group"].hide();
+		me["AI_wing_L_group"].hide();
+		me["AI_wing_R_group"].hide();
 	},
 	update: func() {
 		Value.Misc.wow = pts.Position.wow.getBoolValue();
