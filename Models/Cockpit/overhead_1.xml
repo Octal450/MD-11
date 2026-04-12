@@ -4752,6 +4752,72 @@
 	
 	<animation>
 		<type>pick</type>
+		<object-name>Bleed-1B</object-name>
+		<object-name>Bleed-1B.manf</object-name>
+		<object-name>Bleed-1B.temphi</object-name>
+		<action>
+			<button>0</button>
+			<repeatable>false</repeatable>
+			<binding>
+				<condition>
+					<and>
+						<not><property>systems/pneumatics/system</property></not>
+						<greater-than-equals>
+							<property>systems/electrical/bus/dc-bat</property>
+							<value>24</value>
+						</greater-than-equals>
+					</and>
+				</condition>
+				<command>property-toggle</command>
+				<property>controls/pneumatics/bleed-1</property>
+			</binding>
+			<binding>
+				<condition>
+					<and>
+						<property>systems/pneumatics/system</property>
+						<greater-than-equals>
+							<property>systems/electrical/bus/dc-bat</property>
+							<value>24</value>
+						</greater-than-equals>
+					</and>
+				</condition>
+				<command>nasal</command>
+				<script>systems.manualPneuLightt.start();</script>
+			</binding>
+			<binding>
+				<command>property-assign</command>
+				<property>controls/cockpit/overhead/bleed-1b</property>
+				<value>1</value>
+			</binding>
+			<binding>
+				<command>nasal</command>
+				<script>core.Sound.btn2();</script>
+			</binding>
+			<mod-up>
+				<binding>
+					<command>property-assign</command>
+					<property>controls/cockpit/overhead/bleed-1b</property>
+					<value>0</value>
+				</binding>
+			</mod-up>
+		</action>
+	</animation>
+	<animation>
+		<type>translate</type>
+		<object-name>Bleed-1B</object-name>
+		<object-name>Bleed-1B.manf</object-name>
+		<object-name>Bleed-1B.temphi</object-name>
+		<property>controls/cockpit/overhead/bleed-1b</property>
+		<factor>-0.001</factor>
+		<axis>
+			<x>1</x>
+			<y>0</y>
+			<z>0</z>
+		</axis>
+	</animation>
+	
+	<animation>
+		<type>pick</type>
 		<object-name>Bleed-2</object-name>
 		<object-name>Bleed-2.off</object-name>
 		<object-name>Bleed-2.press</object-name>
@@ -4846,6 +4912,72 @@
 				</equals>
 			</or>
 		</condition>
+	</animation>
+	
+	<animation>
+		<type>pick</type>
+		<object-name>Bleed-2B</object-name>
+		<object-name>Bleed-2B.manf</object-name>
+		<object-name>Bleed-2B.temphi</object-name>
+		<action>
+			<button>0</button>
+			<repeatable>false</repeatable>
+			<binding>
+				<condition>
+					<and>
+						<not><property>systems/pneumatics/system</property></not>
+						<greater-than-equals>
+							<property>systems/electrical/bus/dc-bat</property>
+							<value>24</value>
+						</greater-than-equals>
+					</and>
+				</condition>
+				<command>property-toggle</command>
+				<property>controls/pneumatics/bleed-2</property>
+			</binding>
+			<binding>
+				<condition>
+					<and>
+						<property>systems/pneumatics/system</property>
+						<greater-than-equals>
+							<property>systems/electrical/bus/dc-bat</property>
+							<value>24</value>
+						</greater-than-equals>
+					</and>
+				</condition>
+				<command>nasal</command>
+				<script>systems.manualPneuLightt.start();</script>
+			</binding>
+			<binding>
+				<command>property-assign</command>
+				<property>controls/cockpit/overhead/bleed-2b</property>
+				<value>1</value>
+			</binding>
+			<binding>
+				<command>nasal</command>
+				<script>core.Sound.btn2();</script>
+			</binding>
+			<mod-up>
+				<binding>
+					<command>property-assign</command>
+					<property>controls/cockpit/overhead/bleed-2b</property>
+					<value>0</value>
+				</binding>
+			</mod-up>
+		</action>
+	</animation>
+	<animation>
+		<type>translate</type>
+		<object-name>Bleed-2B</object-name>
+		<object-name>Bleed-2B.manf</object-name>
+		<object-name>Bleed-2B.temphi</object-name>
+		<property>controls/cockpit/overhead/bleed-2b</property>
+		<factor>-0.001</factor>
+		<axis>
+			<x>1</x>
+			<y>0</y>
+			<z>0</z>
+		</axis>
 	</animation>
 	
 	<animation>
@@ -5008,6 +5140,72 @@
 				</equals>
 			</or>
 		</condition>
+	</animation>
+	
+	<animation>
+		<type>pick</type>
+		<object-name>Bleed-3B</object-name>
+		<object-name>Bleed-3B.manf</object-name>
+		<object-name>Bleed-3B.temphi</object-name>
+		<action>
+			<button>0</button>
+			<repeatable>false</repeatable>
+			<binding>
+				<condition>
+					<and>
+						<not><property>systems/pneumatics/system</property></not>
+						<greater-than-equals>
+							<property>systems/electrical/bus/dc-bat</property>
+							<value>24</value>
+						</greater-than-equals>
+					</and>
+				</condition>
+				<command>property-toggle</command>
+				<property>controls/pneumatics/bleed-3</property>
+			</binding>
+			<binding>
+				<condition>
+					<and>
+						<property>systems/pneumatics/system</property>
+						<greater-than-equals>
+							<property>systems/electrical/bus/dc-bat</property>
+							<value>24</value>
+						</greater-than-equals>
+					</and>
+				</condition>
+				<command>nasal</command>
+				<script>systems.manualPneuLightt.start();</script>
+			</binding>
+			<binding>
+				<command>property-assign</command>
+				<property>controls/cockpit/overhead/bleed-3b</property>
+				<value>1</value>
+			</binding>
+			<binding>
+				<command>nasal</command>
+				<script>core.Sound.btn2();</script>
+			</binding>
+			<mod-up>
+				<binding>
+					<command>property-assign</command>
+					<property>controls/cockpit/overhead/bleed-3b</property>
+					<value>0</value>
+				</binding>
+			</mod-up>
+		</action>
+	</animation>
+	<animation>
+		<type>translate</type>
+		<object-name>Bleed-3B</object-name>
+		<object-name>Bleed-3B.manf</object-name>
+		<object-name>Bleed-3B.temphi</object-name>
+		<property>controls/cockpit/overhead/bleed-3b</property>
+		<factor>-0.001</factor>
+		<axis>
+			<x>1</x>
+			<y>0</y>
+			<z>0</z>
+		</axis>
 	</animation>
 	
 	<animation>
