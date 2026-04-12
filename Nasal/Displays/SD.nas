@@ -2,6 +2,7 @@
 # Copyright (c) 2026 Josh Davidson (Octal450)
 
 var display = nil;
+var air = nil;
 var config = nil;
 var conseq = nil;
 var elec = nil;
@@ -15,6 +16,8 @@ var status = nil;
 var xx = nil;
 
 var Value = {
+	Air: {
+	},
 	Apu: {
 		n2: 0,
 	},
@@ -230,6 +233,7 @@ var CanvasBase = {
 		fuel.setup();
 	},
 	hidePages: func() {
+		air.page.hide();
 		config.page.hide();
 		conseq.page.hide();
 		elec.page.hide();
@@ -244,7 +248,9 @@ var CanvasBase = {
 	},
 	update: func() {
 		if (systems.DUController.updateSd) {
-			if (systems.DUController.sdPage == "CONFIG") {
+			if (systems.DUController.sdPage == "AIR") {
+				air.update();
+			} else if (systems.DUController.sdPage == "CONFIG") {
 				config.update();
 			} else if (systems.DUController.sdPage == "CONSEQ") {
 				conseq.update();
@@ -369,6 +375,7 @@ var setup = func() {
 	
 	display.addPlacement({"node": "sd.screen"});
 	
+	var airGroup = display.createGroup();
 	var configGroup = display.createGroup();
 	var conseqGroup = display.createGroup();
 	var elecGroup = display.createGroup();
@@ -381,6 +388,7 @@ var setup = func() {
 	var statusGroup = display.createGroup();
 	var xxGroup = display.createGroup();
 	
+	air = CanvasAir.new(airGroup, "Aircraft/MD-11/Nasal/Displays/res/SD-AIR.svg");
 	config = CanvasConfig.new(configGroup, "Aircraft/MD-11/Nasal/Displays/res/SD-CONFIG.svg");
 	conseq = CanvasConseq.new(conseqGroup, "Aircraft/MD-11/Nasal/Displays/res/SD-CONSEQ.svg");
 	elec = CanvasElec.new(elecGroup, "Aircraft/MD-11/Nasal/Displays/res/SD-ELEC.svg");
