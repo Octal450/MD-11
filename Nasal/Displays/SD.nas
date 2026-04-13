@@ -18,6 +18,18 @@ var xx = nil;
 
 var Value = {
 	Air: {
+		apuPsi: 0,
+		bleed1: 0,
+		bleed1Psi: 0,
+		bleed2: 0,
+		bleed2Psi: 0,
+		bleed3: 0,
+		bleed3Psi: 0,
+		bleedApu: 0,
+		cabinTempF: 0,
+		eng1Psi: 0,
+		eng2Psi: 0,
+		eng3Psi: 0,
 		freighter: 0,
 	},
 	Apu: {

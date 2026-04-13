@@ -442,6 +442,20 @@
 			</checkbox>
 			
 			<checkbox>
+				<label>Cabin Temps In Fahrenheit</label>
+				<halign>left</halign>
+				<property>/systems/acconfig/options/cabin-temp-f</property>
+				<binding>
+					<command>dialog-apply</command>
+				</binding>
+				<binding>
+					<command>nasal</command>
+					<script>acconfig.OPTIONS.write();</script>
+				</binding>
+				<live>true</live>
+			</checkbox>
+			
+			<checkbox>
 				<label>Deflected Ailerons Equipped (PIP)</label>
 				<halign>left</halign>
 				<property>/systems/acconfig/options/deflected-aileron</property>

@@ -326,6 +326,7 @@ var Sim = {
 var Systems = {
 	Acconfig: {
 		Options: {
+			cabinTempF: props.globals.getNode("/systems/acconfig/options/cabin-temp-f"),
 			deflectedAileron: props.globals.getNode("/systems/acconfig/options/deflected-aileron"),
 			Du: {
 				eadFps: props.globals.getNode("/systems/acconfig/options/du/ead-fps"),

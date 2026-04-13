@@ -297,13 +297,19 @@
 			</test>
 		</switch>
 		
+		<actuator name="/systems/pneumatics/eng-1-valve">
+			<input>/controls/pneumatics/bleed-1</input>
+			<rate_limit>0.333</rate_limit> <!-- 3 seconds -->
+		</actuator>
+		
 		<fcs_function name="/systems/pneumatics/eng-1-psi-cmd">
 			<function>
 				<table>
 					<independentVar lookup="row">/engines/engine[0]/n2-actual</independentVar>
 					<tableData>
-						23   0
-						25  31
+						 23   0
+						 62  31
+						110  46
 					</tableData>
 				</table>
 			</function>
@@ -312,20 +318,26 @@
 		<switch name="/systems/pneumatics/eng-1-psi">
 			<default value="0"/>
 			<test logic="AND" value="/systems/pneumatics/eng-1-psi-cmd">
-				/controls/pneumatics/bleed-1 eq 1
+				/systems/pneumatics/eng-1-valve eq 1
 				/controls/electrical/smoke-elec-air ne 1
 				/engines/engine[0]/state ge 2
 				/systems/failures/pneumatics/bleed-1 ne 1
 			</test>
 		</switch>
 		
+		<actuator name="/systems/pneumatics/eng-2-valve">
+			<input>/controls/pneumatics/bleed-2</input>
+			<rate_limit>0.333</rate_limit> <!-- 3 seconds -->
+		</actuator>
+		
 		<fcs_function name="/systems/pneumatics/eng-2-psi-cmd">
 			<function>
 				<table>
 					<independentVar lookup="row">/engines/engine[1]/n2-actual</independentVar>
 					<tableData>
-						23   0
-						25  33
+						 23   0
+						 62  33
+						110  48
 					</tableData>
 				</table>
 			</function>
@@ -334,20 +346,26 @@
 		<switch name="/systems/pneumatics/eng-2-psi">
 			<default value="0"/>
 			<test logic="AND" value="/systems/pneumatics/eng-2-psi-cmd">
-				/controls/pneumatics/bleed-2 eq 1
+				/systems/pneumatics/eng-2-valve eq 1
 				/controls/electrical/smoke-elec-air ne 3
 				/engines/engine[1]/state ge 2
 				/systems/failures/pneumatics/bleed-2 ne 1
 			</test>
 		</switch>
 		
+		<actuator name="/systems/pneumatics/eng-3-valve">
+			<input>/controls/pneumatics/bleed-3</input>
+			<rate_limit>0.333</rate_limit> <!-- 3 seconds -->
+		</actuator>
+		
 		<fcs_function name="/systems/pneumatics/eng-3-psi-cmd">
 			<function>
 				<table>
 					<independentVar lookup="row">/engines/engine[2]/n2-actual</independentVar>
 					<tableData>
-						23   0
-						25  32
+						 23   0
+						 62  32
+						110  47
 					</tableData>
 				</table>
 			</function>
@@ -356,7 +374,7 @@
 		<switch name="/systems/pneumatics/eng-3-psi">
 			<default value="0"/>
 			<test logic="AND" value="/systems/pneumatics/eng-3-psi-cmd">
-				/controls/pneumatics/bleed-3 eq 1
+				/systems/pneumatics/eng-3-valve eq 1
 				/controls/electrical/smoke-elec-air ne 2
 				/engines/engine[2]/state ge 2
 				/systems/failures/pneumatics/bleed-3 ne 1
@@ -614,9 +632,9 @@
 						<independentVar lookup="row">/systems/pneumatics/bleed-2-psi-pre-cmd</independentVar>
 						<tableData>
 							10   0
-							16  -6
-							29  -6
-							35 -12
+							16  -5
+							29  -5
+							35 -11
 						</tableData>
 					</table>
 					<value>0</value>
@@ -687,9 +705,9 @@
 						<independentVar lookup="row">/systems/pneumatics/bleed-3-psi-pre-cmd</independentVar>
 						<tableData>
 							10   0
-							16  -6
-							29  -6
-							35 -12
+							16  -7
+							29  -7
+							35 -13
 						</tableData>
 					</table>
 					<value>0</value>
@@ -857,7 +875,7 @@
 	
 	</channel>
 	
-	<channel name="Overhead Lights">
+	<channel name="Overhead/Synoptic Lights">
 		
 		<switch name="/systems/pneumatics/lights/select-manual">
 			<default value="0"/>
@@ -915,6 +933,14 @@
 			<test logic="OR" value="1">
 				/controls/pneumatics/bleed-3 eq 0
 				/controls/electrical/smoke-elec-air eq 2
+			</test>
+		</switch>
+		
+		<switch name="/systems/pneumatics/lights/apu-disag">
+			<default value="0"/>
+			<test logic="AND" value="1">
+				/systems/pneumatics/apu-valve ne 0
+				/systems/pneumatics/apu-valve ne 1
 			</test>
 		</switch>
 		

@@ -51,6 +51,7 @@ var PNEUMATICS = {
 		system: props.globals.getNode("/systems/failures/pneumatics/system"),
 	},
 	Lights: {
+		apuDisag: props.globals.getNode("/systems/pneumatics/lights/apu-disag"),
 		manualFlash: props.globals.initNode("/systems/pneumatics/lights/manual-flash", 0, "INT"),
 		manualFlashTemp: 0,
 	},
