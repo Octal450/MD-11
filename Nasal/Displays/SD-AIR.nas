@@ -13,8 +13,8 @@ var CanvasAir = {
 		"Bleed2_psi_box", "Bleed2_temp_error", "Bleed3", "Bleed3_psi", "Bleed3_psi_error", "Bleed3_psi_box", "Bleed3_temp_error", "CabinAft_duct", "CabinAft_dtemp", "CabinAft_dtemp_error", "CabinAft_line", "CabinAft_set", "CabinAft_set_error", "CabinAft_temp",
 		"CabinAft_temp_error", "CabinAlt", "CabinAlt_box", "CabinAlt_box", "CabinAlt_error", "CabinDP", "CabinDP_error", "CabinFwd_dtemp_error", "CabinFwd_set", "CabinFwd_set_error", "CabinFwd_temp_error", "CabinLand", "CabinLand_error", "CabinMid_dtemp_error",
 		"CabinMid_set", "CabinMid_set_error", "CabinMid_temp_error", "CabinRate", "CabinRate_box", "CabinRate_error", "CabinRateDn", "CabinRateUp", "CargoAft_set", "CargoAft_set_error", "CargoAft_temp_error", "CargoFwd_set", "CargoFwd_set", "CargoFwd_set_error",
-		"CargoFwd_temp_error", "CargoMid_temp_error", "Cockpit_dtemp_error", "Cockpit_set", "Cockpit_set_error", "Cockpit_temp_error", "Pack1_circle", "Pack1_imp", "Pack1_temp_error", "Pack2_circle", "Pack2_imp", "Pack2_temp_error", "Pack3_circle", "Pack3_imp",
-		"Pack3_temp_error", "ZoneUnit"];
+		"CargoFwd_temp_error", "CargoMid_temp_error", "Cockpit_dtemp_error", "Cockpit_set", "Cockpit_set_error", "Cockpit_temp_error", "Isol12", "Isol12_disag", "Isol13", "Isol13_disag", "Pack1_circle", "Pack1_imp", "Pack1_temp_error", "Pack2_circle",
+		"Pack2_imp", "Pack2_temp_error", "Pack3_circle", "Pack3_imp", "Pack3_temp_error", "ZoneUnit"];
 	},
 	setup: func() {
 		Value.Air.freighter = pts.Options.freighter.getBoolValue();
@@ -212,6 +212,51 @@ var CanvasAir = {
 		} else {
 			me["Pack3_circle"].setColor(1, 1, 1);
 			me["Pack3_imp"].hide();
+		}
+		
+		# ISOL Valves
+		if (systems.PNEUMATICS.Controls.isol12.getBoolValue()) {
+			me["Isol12"].setRotation(90 * D2R);
+			
+			if (systems.PNEUMATICS.Lights.isol12Disag.getBoolValue()) {
+				me["Isol12"].setColor(0.9412, 0.7255, 0);
+				me["Isol12_disag"].show();
+			} else {
+				me["Isol12"].setColor(0, 1, 0);
+				me["Isol12_disag"].hide();
+			}
+		} else {
+			me["Isol12"].setRotation(0);
+			
+			if (systems.PNEUMATICS.Lights.isol12Disag.getBoolValue()) {
+				me["Isol12"].setColor(0.9412, 0.7255, 0);
+				me["Isol12_disag"].show();
+			} else {
+				me["Isol12"].setColor(1, 1, 1);
+				me["Isol12_disag"].hide();
+			}
+		}
+		
+		if (systems.PNEUMATICS.Controls.isol13.getBoolValue()) {
+			me["Isol13"].setRotation(90 * D2R);
+			
+			if (systems.PNEUMATICS.Lights.isol13Disag.getBoolValue()) {
+				me["Isol13"].setColor(0.9412, 0.7255, 0);
+				me["Isol13_disag"].show();
+			} else {
+				me["Isol13"].setColor(0, 1, 0);
+				me["Isol13_disag"].hide();
+			}
+		} else {
+			me["Isol13"].setRotation(0);
+			
+			if (systems.PNEUMATICS.Lights.isol13Disag.getBoolValue()) {
+				me["Isol13"].setColor(0.9412, 0.7255, 0);
+				me["Isol13_disag"].show();
+			} else {
+				me["Isol13"].setColor(1, 1, 1);
+				me["Isol13_disag"].hide();
+			}
 		}
 		
 		# Bleed Valves

@@ -65,6 +65,8 @@ var PNEUMATICS = {
 	},
 	Lights: {
 		apuDisag: props.globals.getNode("/systems/pneumatics/lights/apu-disag"),
+		isol12Disag: props.globals.getNode("/systems/pneumatics/lights/isol-1-2-disag"),
+		isol13Disag: props.globals.getNode("/systems/pneumatics/lights/isol-1-3-disag"),
 		manualFlash: props.globals.initNode("/systems/pneumatics/lights/manual-flash", 0, "INT"),
 		manualFlashTemp: 0,
 		pack1Flow: props.globals.getNode("/systems/pneumatics/lights/pack-1-flow"),
