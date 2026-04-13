@@ -1,5 +1,4 @@
 # McDonnell Douglas MD-11 SD
-# McDonnell Douglas MD-11 SD
 # Copyright (c) 2026 Josh Davidson (Octal450)
 
 var display = nil;
