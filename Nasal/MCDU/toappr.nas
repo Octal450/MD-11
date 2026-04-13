@@ -748,7 +748,7 @@ var Approach = {
 		}
 		
 		if (fms.flightData.airportToAlt > -2000) {
-			me.Display.R3 = sprintf("%d", math.round(fms.flightData.airportToAlt));
+			me.Display.R3 = sprintf("%d", fms.flightData.airportToAlt);
 		} else {
 			me.Display.R3 = "----";
 		}
