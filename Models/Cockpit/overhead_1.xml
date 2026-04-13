@@ -13,6 +13,28 @@
 	</effect>
 	
 	<animation>
+		<type>select</type>
+		<object-name>AirPanel.freighter</object-name>
+		<object-name>CabinAir</object-name>
+		<object-name>CabinAirCover</object-name>
+		<object-name>CabinAirHinge</object-name>
+		<object-name>overhead.freighter.text</object-name>
+		<condition>
+			<property>options/freighter</property>
+		</condition>
+	</animation>
+	<animation>
+		<type>select</type>
+		<object-name>AirPanel.pax</object-name>
+		<object-name>AftTemp</object-name>
+		<object-name>AftTemp.light</object-name>
+		<object-name>overhead.pax.text</object-name>
+		<condition>
+			<not><property>options/freighter</property></not>
+		</condition>
+	</animation>
+	
+	<animation>
 		<type>material</type>
 		<object-name>AftTemp.light</object-name>
 		<object-name>CargoAftTemp.light</object-name>
@@ -32,6 +54,8 @@
 		<object-name>maininteg.indicator</object-name>
 		<object-name>MidTemp.light</object-name>
 		<object-name>overhead.text</object-name>
+		<object-name>overhead.freighter.text</object-name>
+		<object-name>overhead.pax.text</object-name>
 		<object-name>ovhdflood.indicator</object-name>
 		<object-name>ovhdinteg.indicator</object-name>
 		<object-name>Plane.022</object-name>
