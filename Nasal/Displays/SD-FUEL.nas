@@ -192,11 +192,11 @@ var CanvasFuel = {
 			me["XFeed1"].setRotation(0);
 			
 			if (systems.FUEL.Lights.xFeed1Disag.getBoolValue()) {
-				me["XFeed1_disag"].show();
 				me["XFeed1"].setColor(0.9412, 0.7255, 0);
+				me["XFeed1_disag"].show();
 			} else {
-				me["XFeed1_disag"].hide();
 				me["XFeed1"].setColor(1, 1, 1);
+				me["XFeed1_disag"].hide();
 			}
 		}
 		
@@ -291,21 +291,21 @@ var CanvasFuel = {
 			me["XFeed2"].setRotation(90 * D2R);
 			
 			if (systems.FUEL.Lights.xFeed2Disag.getBoolValue()) {
-				me["XFeed2_disag"].show();
 				me["XFeed2"].setColor(0.9412, 0.7255, 0);
+				me["XFeed2_disag"].show();
 			} else {
-				me["XFeed2_disag"].hide();
 				me["XFeed2"].setColor(0, 1, 0);
+				me["XFeed2_disag"].hide();
 			}
 		} else {
 			me["XFeed2"].setRotation(0);
 			
 			if (systems.FUEL.Lights.xFeed2Disag.getBoolValue()) {
-				me["XFeed2_disag"].show();
 				me["XFeed2"].setColor(0.9412, 0.7255, 0);
+				me["XFeed2_disag"].show();
 			} else {
-				me["XFeed2_disag"].hide();
 				me["XFeed2"].setColor(1, 1, 1);
+				me["XFeed2_disag"].hide();
 			}
 		}
 		
@@ -382,21 +382,21 @@ var CanvasFuel = {
 			me["XFeed3"].setRotation(90 * D2R);
 			
 			if (systems.FUEL.Lights.xFeed3Disag.getBoolValue()) {
-				me["XFeed3_disag"].show();
 				me["XFeed3"].setColor(0.9412, 0.7255, 0);
+				me["XFeed3_disag"].show();
 			} else {
-				me["XFeed3_disag"].hide();
 				me["XFeed3"].setColor(0, 1, 0);
+				me["XFeed3_disag"].hide();
 			}
 		} else {
 			me["XFeed3"].setRotation(0);
 			
 			if (systems.FUEL.Lights.xFeed3Disag.getBoolValue()) {
-				me["XFeed3_disag"].show();
 				me["XFeed3"].setColor(0.9412, 0.7255, 0);
+				me["XFeed3_disag"].show();
 			} else {
-				me["XFeed3_disag"].hide();
 				me["XFeed3"].setColor(1, 1, 1);
+				me["XFeed3_disag"].hide();
 			}
 		}
 		
@@ -518,21 +518,21 @@ var CanvasFuel = {
 			me["AFIValve"].setRotation(90 * D2R);
 			
 			if (systems.FUEL.Lights.afiDisag.getBoolValue()) {
-				me["AFIValve_disag"].show();
 				me["AFIValve"].setColor(0.9412, 0.7255, 0);
+				me["AFIValve_disag"].show();
 			} else {
-				me["AFIValve_disag"].hide();
 				me["AFIValve"].setColor(0, 1, 0);
+				me["AFIValve_disag"].hide();
 			}
 		} else {
 			me["AFIValve"].setRotation(0);
 			
 			if (systems.FUEL.Lights.afiDisag.getBoolValue()) {
-				me["AFIValve_disag"].show();
 				me["AFIValve"].setColor(0.9412, 0.7255, 0);
+				me["AFIValve_disag"].show();
 			} else {
-				me["AFIValve_disag"].hide();
 				me["AFIValve"].setColor(1, 1, 1);
+				me["AFIValve_disag"].hide();
 			}
 		}
 		
