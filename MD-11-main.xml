@@ -791,21 +791,21 @@
 			<turnoff-light-r type="bool">0</turnoff-light-r>
 		</lighting>
 		<pneumatics n="0">
-			<aft-temp type="double">0.45</aft-temp>
 			<avionics-fan type="bool">1</avionics-fan>
 			<bleed-apu type="bool">0</bleed-apu>
 			<bleed-1 type="bool">1</bleed-1>
 			<bleed-2 type="bool">1</bleed-2>
 			<bleed-3 type="bool">1</bleed-3>
+			<cabin-aft-temp type="double">0.45</cabin-aft-temp>
+			<cabin-mid-temp type="double">0.45</cabin-mid-temp>
+			<cabin-fwd-temp type="double">0.45</cabin-fwd-temp>
 			<cargo-aft-temp type="double">0.4</cargo-aft-temp>
 			<cargo-fwd-temp type="double">0.5</cargo-fwd-temp>
 			<cockpit-temp type="double">0.45</cockpit-temp>
 			<econ type="bool">1</econ>
-			<fwd-temp type="double">0.5</fwd-temp>
 			<ground-air type="bool">0</ground-air>
 			<isol-1-2 type="bool">0</isol-1-2>
 			<isol-1-3 type="bool">0</isol-1-3>
-			<mid-temp type="double">0.45</mid-temp>
 			<pack-1 type="bool">1</pack-1>
 			<pack-2 type="bool">1</pack-2>
 			<pack-3 type="bool">1</pack-3>

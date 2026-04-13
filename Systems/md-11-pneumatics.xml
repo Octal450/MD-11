@@ -875,6 +875,88 @@
 	
 	</channel>
 	
+	<channel name="Cabin Temperature"> <!-- The airplane is calibrated in Fahrenheit since it's American designed, so that's what I'll use here -->
+		
+		<fcs_function name="/systems/pneumatics/hvac/cockpit-target">
+			<function>
+				<table>
+					<independentVar lookup="row">/controls/pneumatics/cockpit-temp</independentVar> <!-- 0 to 0.85 -->
+					<tableData>
+						0.00   0
+						0.05  65
+						0.85  85
+					</tableData>
+				</table>
+			</function>
+		</fcs_function>
+		
+		<fcs_function name="/systems/pneumatics/hvac/cabin-fwd-target">
+			<function>
+				<table>
+					<independentVar lookup="row">/controls/pneumatics/cabin-fwd-temp</independentVar> <!-- 0 to 0.85 -->
+					<tableData>
+						0.00   0
+						0.05  65
+						0.85  85
+					</tableData>
+				</table>
+			</function>
+		</fcs_function>
+		
+		<fcs_function name="/systems/pneumatics/hvac/cabin-mid-target">
+			<function>
+				<table>
+					<independentVar lookup="row">/controls/pneumatics/cabin-mid-temp</independentVar> <!-- 0 to 0.85 -->
+					<tableData>
+						0.00   0
+						0.05  65
+						0.85  85
+					</tableData>
+				</table>
+			</function>
+		</fcs_function>
+		
+		<fcs_function name="/systems/pneumatics/hvac/cabin-aft-target">
+			<function>
+				<table>
+					<independentVar lookup="row">/controls/pneumatics/cabin-aft-temp</independentVar> <!-- 0 to 0.85 -->
+					<tableData>
+						0.00   0
+						0.05  65
+						0.85  85
+					</tableData>
+				</table>
+			</function>
+		</fcs_function>
+		
+		<fcs_function name="/systems/pneumatics/hvac/cargo-fwd-target">
+			<function>
+				<table>
+					<independentVar lookup="row">/controls/pneumatics/cargo-fwd-temp</independentVar> <!-- 0 to 1 -->
+					<tableData>
+						0.0   0
+						0.5  40
+						1.0  70
+					</tableData>
+				</table>
+			</function>
+		</fcs_function>
+		
+		<fcs_function name="/systems/pneumatics/hvac/cargo-aft-target">
+			<function>
+				<table>
+					<independentVar lookup="row">/controls/pneumatics/cargo-aft-temp</independentVar> <!-- 0 to 0.75 -->
+					<tableData>
+						0.00   0
+						0.05  40
+						0.75  95
+					</tableData>
+				</table>
+			</function>
+		</fcs_function>
+	
+	</channel>
+	
 	<channel name="Overhead/Synoptic Lights">
 		
 		<switch name="/systems/pneumatics/lights/select-manual">

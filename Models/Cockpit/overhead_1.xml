@@ -4094,7 +4094,7 @@
 		<type>knob</type>
 		<object-name>FwdTemp</object-name>
 		<object-name>FwdTemp.light</object-name>
-		<property>controls/cockpit/overhead/fwd-temp</property>
+		<property>controls/cockpit/overhead/cabin-fwd-temp</property>
 		<interpolation>
 			<entry><ind>0.00</ind><dep> 180</dep></entry>
 			<entry><ind>0.05</ind><dep> 113</dep></entry>
@@ -4113,7 +4113,7 @@
 		<action>
 			<binding>
 				<command>property-adjust</command>
-				<property>controls/pneumatics/fwd-temp</property>
+				<property>controls/pneumatics/cabin-fwd-temp</property>
 				<factor>0.05</factor>
 				<min>0</min>
 				<max>0.85</max>
@@ -4125,7 +4125,7 @@
 		<type>knob</type>
 		<object-name>MidTemp</object-name>
 		<object-name>MidTemp.light</object-name>
-		<property>controls/cockpit/overhead/mid-temp</property>
+		<property>controls/cockpit/overhead/cabin-mid-temp</property>
 		<interpolation>
 			<entry><ind>0.00</ind><dep> 180</dep></entry>
 			<entry><ind>0.05</ind><dep> 113</dep></entry>
@@ -4144,7 +4144,7 @@
 		<action>
 			<binding>
 				<command>property-adjust</command>
-				<property>controls/pneumatics/mid-temp</property>
+				<property>controls/pneumatics/cabin-mid-temp</property>
 				<factor>0.05</factor>
 				<min>0</min>
 				<max>0.85</max>
@@ -4156,7 +4156,7 @@
 		<type>knob</type>
 		<object-name>AftTemp</object-name>
 		<object-name>AftTemp.light</object-name>
-		<property>controls/cockpit/overhead/aft-temp</property>
+		<property>controls/cockpit/overhead/cabin-aft-temp</property>
 		<interpolation>
 			<entry><ind>0.00</ind><dep> 180</dep></entry>
 			<entry><ind>0.05</ind><dep> 113</dep></entry>
@@ -4175,7 +4175,7 @@
 		<action>
 			<binding>
 				<command>property-adjust</command>
-				<property>controls/pneumatics/aft-temp</property>
+				<property>controls/pneumatics/cabin-aft-temp</property>
 				<factor>0.05</factor>
 				<min>0</min>
 				<max>0.85</max>

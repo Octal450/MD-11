@@ -11,9 +11,9 @@ var CanvasAir = {
 	getKeys: func() {
 		return ["AI_tail_group", "AI_wing_L_group", "AI_wing_R_group", "Alert_error", "APU", "APU_disag", "APU_group", "Bleed1", "Bleed1_psi", "Bleed1_psi_error", "Bleed1_psi_box", "Bleed1_temp_error", "Bleed2", "Bleed2_psi", "Bleed2_psi_error",
 		"Bleed2_psi_box", "Bleed2_temp_error", "Bleed3", "Bleed3_psi", "Bleed3_psi_error", "Bleed3_psi_box", "Bleed3_temp_error", "CabinAft_duct", "CabinAft_dtemp", "CabinAft_dtemp_error", "CabinAft_line", "CabinAft_set", "CabinAft_set_error", "CabinAft_temp",
-		"CabinAft_temp_error", "CabinAlt", "CabinAlt_box", "CabinAlt_box", "CabinAlt_error", "CabinDP", "CabinDP_error", "CabinFwd_dtemp_error", "CabinFwd_set_error", "CabinFwd_temp_error", "CabinLand", "CabinLand_error", "CabinMid_dtemp_error",
-		"CabinMid_set_error", "CabinMid_temp_error", "CabinRate", "CabinRate_box", "CabinRate_error", "CabinRateDn", "CabinRateUp", "CargoAft_set_error", "CargoAft_temp_error", "CargoFwd_set_error", "CargoFwd_temp_error", "CargoMid_temp_error",
-		"Cockpit_dtemp_error", "Cockpit_set_error", "Cockpit_temp_error", "Pack1_temp_error", "Pack2_temp_error", "Pack3_temp_error", "ZoneUnit"];
+		"CabinAft_temp_error", "CabinAlt", "CabinAlt_box", "CabinAlt_box", "CabinAlt_error", "CabinDP", "CabinDP_error", "CabinFwd_dtemp_error", "CabinFwd_set", "CabinFwd_set_error", "CabinFwd_temp_error", "CabinLand", "CabinLand_error", "CabinMid_dtemp_error",
+		"CabinMid_set", "CabinMid_set_error", "CabinMid_temp_error", "CabinRate", "CabinRate_box", "CabinRate_error", "CabinRateDn", "CabinRateUp", "CargoAft_set", "CargoAft_set_error", "CargoAft_temp_error", "CargoFwd_set", "CargoFwd_set", "CargoFwd_set_error",
+		"CargoFwd_temp_error", "CargoMid_temp_error", "Cockpit_dtemp_error", "Cockpit_set", "Cockpit_set_error", "Cockpit_temp_error", "Pack1_temp_error", "Pack2_temp_error", "Pack3_temp_error", "ZoneUnit"];
 	},
 	setup: func() {
 		Value.Air.freighter = pts.Options.freighter.getBoolValue();
@@ -114,6 +114,7 @@ var CanvasAir = {
 			me["Pack3_temp_error"].hide();
 		}
 		
+		# Zone Temperatures
 		Value.Air.cabinTempF = pts.Systems.Acconfig.Options.cabinTempF.getBoolValue();
 		if (Value.Air.cabinTempF) {
 			me["ZoneUnit"].setText("gF");
@@ -121,9 +122,60 @@ var CanvasAir = {
 			me["ZoneUnit"].setText("gC");
 		}
 		
+		Value.Air.cockpitTarget = systems.PNEUMATICS.Hvac.cockpitTarget.getValue();
+		Value.Air.cabinAftTarget = systems.PNEUMATICS.Hvac.cabinAftTarget.getValue();
+		Value.Air.cabinFwdTarget = systems.PNEUMATICS.Hvac.cabinFwdTarget.getValue();
+		Value.Air.cabinMidTarget = systems.PNEUMATICS.Hvac.cabinMidTarget.getValue();
+		Value.Air.cargoAftTarget = systems.PNEUMATICS.Hvac.cargoAftTarget.getValue();
+		Value.Air.cargoFwdTarget = systems.PNEUMATICS.Hvac.cargoFwdTarget.getValue();
+		
+		if (Value.Air.cockpitTarget >= 60) {
+			me["Cockpit_set"].setText(sprintf("%d", math.round(condF2C(Value.Air.cockpitTarget))) ~ "g");
+		} else {
+			me["Cockpit_set"].setText("OFF");
+		}
+		
+		if (Value.Air.cabinFwdTarget >= 60) {
+			me["CabinFwd_set"].setText(sprintf("%d", math.round(condF2C(Value.Air.cabinFwdTarget))) ~ "g");
+		} else {
+			me["CabinFwd_set"].setText("OFF");
+		}
+		
+		if (Value.Air.cabinMidTarget >= 60) {
+			me["CabinMid_set"].setText(sprintf("%d", math.round(condF2C(Value.Air.cabinMidTarget))) ~ "g");
+		} else {
+			me["CabinMid_set"].setText("OFF");
+		}
+		
+		if (!Value.Air.freighter) {
+			if (Value.Air.cabinAftTarget >= 60) {
+				me["CabinAft_set"].setText(sprintf("%d", math.round(condF2C(Value.Air.cabinAftTarget))) ~ "g");
+			} else {
+				me["CabinAft_set"].setText("OFF");
+			}
+		}
+		
+		if (Value.Air.cargoFwdTarget >= 35) {
+			me["CargoFwd_set"].setText(sprintf("%d", math.round(condF2C(Value.Air.cargoFwdTarget))) ~ "g");
+		} else {
+			me["CargoFwd_set"].setText("OFF");
+		}
+		
+		if (Value.Air.cargoAftTarget >= 35) {
+			me["CargoAft_set"].setText(sprintf("%d", math.round(condF2C(Value.Air.cargoAftTarget))) ~ "g");
+		} else {
+			me["CargoAft_set"].setText("OFF");
+		}
+		
 		# Bleed Valves
+		Value.Air.apuPsi = math.round(systems.PNEUMATICS.Psi.apu.getValue());
 		Value.Air.bleed1 = systems.PNEUMATICS.Controls.bleed1.getBoolValue();
+		Value.Air.bleed2 = systems.PNEUMATICS.Controls.bleed2.getBoolValue();
+		Value.Air.bleed3 = systems.PNEUMATICS.Controls.bleed3.getBoolValue();
+		Value.Air.bleedApu = systems.PNEUMATICS.Controls.bleedApu.getBoolValue();
 		Value.Air.eng1Psi = math.round(systems.PNEUMATICS.Psi.eng1.getValue());
+		Value.Air.eng2Psi = math.round(systems.PNEUMATICS.Psi.eng2.getValue());
+		Value.Air.eng3Psi = math.round(systems.PNEUMATICS.Psi.eng3.getValue());
 		
 		me["Bleed1"].setRotation(Value.Air.bleed1 * 90 * D2R);
 		if (Value.Air.eng1Psi > 10) {
@@ -132,9 +184,6 @@ var CanvasAir = {
 			me["Bleed1"].setColor(1, 1, 1);
 		}
 		
-		Value.Air.bleed2 = systems.PNEUMATICS.Controls.bleed2.getBoolValue();
-		Value.Air.eng2Psi = math.round(systems.PNEUMATICS.Psi.eng2.getValue());
-		
 		me["Bleed2"].setRotation(Value.Air.bleed2 * 90 * D2R);
 		if (Value.Air.eng2Psi > 10) {
 			me["Bleed2"].setColor(0, 1, 0);
@@ -142,8 +191,6 @@ var CanvasAir = {
 			me["Bleed2"].setColor(1, 1, 1);
 		}
 		
-		Value.Air.bleed3 = systems.PNEUMATICS.Controls.bleed3.getBoolValue();
-		Value.Air.eng3Psi = math.round(systems.PNEUMATICS.Psi.eng3.getValue());
 		
 		me["Bleed3"].setRotation(Value.Air.bleed3 * 90 * D2R);
 		if (Value.Air.eng3Psi > 10) {
@@ -151,9 +198,6 @@ var CanvasAir = {
 		} else {
 			me["Bleed3"].setColor(1, 1, 1);
 		}
-		
-		Value.Air.bleedApu = systems.PNEUMATICS.Controls.bleedApu.getBoolValue();
-		Value.Air.apuPsi = math.round(systems.PNEUMATICS.Psi.apu.getValue());
 		
 		if (systems.APU.n2.getValue() >= 95) {
 			me["APU"].setRotation(Value.Air.bleedApu * 90 * D2R);
@@ -216,3 +260,8 @@ var CanvasAir = {
 		}
 	},
 };
+
+var condF2C = func(tempF) { # Converts F to C only if C is selected for zone units, round AFTER this
+	if (Value.Air.cabinTempF) return tempF;
+	return (tempF - 32) * (5/9);
+}
