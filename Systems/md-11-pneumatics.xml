@@ -538,23 +538,49 @@
 		</actuator>
 		
 		<!-- Pack 1 -->
+		<switch name="/systems/pneumatics/pack-1-cmd">
+			<default value="0"/>
+			<test value="1">
+				/controls/pneumatics/pack-1 eq 1
+			</test>
+		</switch>
+		
+		<switch name="/systems/pneumatics/pack-1-valve-cmd">
+			<default value="0"/>
+			<test logic="AND" value="1">
+				/systems/pneumatics/bleed-1-psi-cmd ge 10.5
+				/systems/pneumatics/pack-1-cmd eq 1
+				/controls/electrical/smoke-elec-air ne 1
+				/systems/failures/pneumatics/pack-1 ne 1
+			</test>
+		</switch>
+		
+		<actuator name="/systems/pneumatics/pack-1-valve">
+			<input>/systems/pneumatics/pack-1-valve-cmd</input>
+			<rate_limit>0.333</rate_limit> <!-- 3 seconds -->
+		</actuator>
+		
+		<switch name="/systems/pneumatics/pack-1-flow-cmd">
+			<default value="0"/>
+			<test logic="AND" value="12">
+				/systems/pneumatics/pack-1-valve-cmd gt 0
+				/systems/electrical/bus/ac-1 ge 112
+			</test>
+		</switch>
+		
+		<actuator name="/systems/pneumatics/pack-1-flow">
+			<input>/systems/pneumatics/pack-1-flow-cmd</input>
+			<rate_limit sense="incr">4.1</rate_limit>
+			<rate_limit sense="decr">4.3</rate_limit>
+		</actuator>
+		
 		<fcs_function name="/systems/pneumatics/pack-1-delta-psi">
 			<function>
 				<ifthen>
-					<and>
-						<eq>
-							<property>/controls/pneumatics/pack-1</property>
-							<value>1</value>
-						</eq>
-						<nq>
-							<property>/controls/electrical/smoke-elec-air</property>
-							<value>1</value>
-						</nq>
-						<nq>
-							<property>/systems/failures/pneumatics/pack-1</property>
-							<value>1</value>
-						</nq>
-					</and>
+					<gt>
+						<property>/systems/pneumatics/pack-1-flow-cmd</property>
+						<value>0</value>
+					</gt>
 					<table>
 						<independentVar lookup="row">/systems/pneumatics/bleed-1-psi-pre-cmd</independentVar>
 						<tableData>
@@ -568,34 +594,6 @@
 				</ifthen>
 			</function>
 		</fcs_function>
-		
-		<switch name="/systems/pneumatics/pack-1-valve-cmd">
-			<default value="0"/>
-			<test logic="AND" value="1">
-				/systems/pneumatics/bleed-1-psi-cmd ge 10.5
-				/controls/pneumatics/pack-1 eq 1
-				/controls/electrical/smoke-elec-air ne 1
-				/systems/failures/pneumatics/pack-1 ne 1
-			</test>
-		</switch>
-		
-		<actuator name="/systems/pneumatics/pack-1-valve">
-			<input>/systems/pneumatics/pack-1-valve-cmd</input>
-			<rate_limit>0.333</rate_limit> <!-- 3 seconds -->
-		</actuator>
-		
-		<switch name="/systems/pneumatics/pack-1-flow-cmd">
-			<default value="0"/>
-			<test value="12">
-				/systems/pneumatics/pack-1-valve-cmd gt 0
-			</test>
-		</switch>
-		
-		<actuator name="/systems/pneumatics/pack-1-flow">
-			<input>/systems/pneumatics/pack-1-flow-cmd</input>
-			<rate_limit sense="incr">4.1</rate_limit>
-			<rate_limit sense="decr">4.3</rate_limit>
-		</actuator>
 		
 		<fcs_function name="/systems/pneumatics/jsbsim-bleed-factor-1">
 			<function>
@@ -611,23 +609,49 @@
 		</fcs_function>
 		
 		<!-- Pack 2 -->
+		<switch name="/systems/pneumatics/pack-2-cmd">
+			<default value="0"/>
+			<test value="1">
+				/controls/pneumatics/pack-2 eq 1
+			</test>
+		</switch>
+		
+		<switch name="/systems/pneumatics/pack-2-valve-cmd">
+			<default value="0"/>
+			<test logic="AND" value="1">
+				/systems/pneumatics/bleed-2-psi-cmd ge 10.5
+				/systems/pneumatics/pack-2-cmd eq 1
+				/controls/electrical/smoke-elec-air ne 3
+				/systems/failures/pneumatics/pack-2 ne 1
+			</test>
+		</switch>
+		
+		<actuator name="/systems/pneumatics/pack-2-valve">
+			<input>/systems/pneumatics/pack-2-valve-cmd</input>
+			<rate_limit>0.333</rate_limit> <!-- 3 seconds -->
+		</actuator>
+		
+		<switch name="/systems/pneumatics/pack-2-flow-cmd">
+			<default value="0"/>
+			<test logic="AND" value="11">
+				/systems/pneumatics/pack-2-valve-cmd gt 0
+				/systems/electrical/bus/ac-1 ge 112
+			</test>
+		</switch>
+		
+		<actuator name="/systems/pneumatics/pack-2-flow">
+			<input>/systems/pneumatics/pack-2-flow-cmd</input>
+			<rate_limit sense="incr">4.1</rate_limit>
+			<rate_limit sense="decr">4.3</rate_limit>
+		</actuator>
+		
 		<fcs_function name="/systems/pneumatics/pack-2-delta-psi">
 			<function>
 				<ifthen>
-					<and>
-						<eq>
-							<property>/controls/pneumatics/pack-2</property>
-							<value>1</value>
-						</eq>
-						<nq>
-							<property>/controls/electrical/smoke-elec-air</property>
-							<value>3</value>
-						</nq>
-						<nq>
-							<property>/systems/failures/pneumatics/pack-2</property>
-							<value>1</value>
-						</nq>
-					</and>
+					<gt>
+						<property>/systems/pneumatics/pack-2-flow-cmd</property>
+						<value>0</value>
+					</gt>
 					<table>
 						<independentVar lookup="row">/systems/pneumatics/bleed-2-psi-pre-cmd</independentVar>
 						<tableData>
@@ -641,34 +665,6 @@
 				</ifthen>
 			</function>
 		</fcs_function>
-		
-		<switch name="/systems/pneumatics/pack-2-valve-cmd">
-			<default value="0"/>
-			<test logic="AND" value="1">
-				/systems/pneumatics/bleed-2-psi-cmd ge 10.5
-				/controls/pneumatics/pack-2 eq 1
-				/controls/electrical/smoke-elec-air ne 3
-				/systems/failures/pneumatics/pack-2 ne 1
-			</test>
-		</switch>
-		
-		<actuator name="/systems/pneumatics/pack-2-valve">
-			<input>/systems/pneumatics/pack-2-valve-cmd</input>
-			<rate_limit>0.333</rate_limit> <!-- 3 seconds -->
-		</actuator>
-		
-		<switch name="/systems/pneumatics/pack-2-flow-cmd">
-			<default value="0"/>
-			<test value="12">
-				/systems/pneumatics/pack-2-valve-cmd gt 0
-			</test>
-		</switch>
-		
-		<actuator name="/systems/pneumatics/pack-2-flow">
-			<input>/systems/pneumatics/pack-2-flow-cmd</input>
-			<rate_limit sense="incr">4.1</rate_limit>
-			<rate_limit sense="decr">4.3</rate_limit>
-		</actuator>
 		
 		<fcs_function name="/systems/pneumatics/jsbsim-bleed-factor-2">
 			<function>
@@ -684,23 +680,49 @@
 		</fcs_function>
 		
 		<!-- Pack 3 -->
+		<switch name="/systems/pneumatics/pack-3-cmd">
+			<default value="0"/>
+			<test value="1">
+				/controls/pneumatics/pack-3 eq 1
+			</test>
+		</switch>
+		
+		<switch name="/systems/pneumatics/pack-3-valve-cmd">
+			<default value="0"/>
+			<test logic="AND" value="1">
+				/systems/pneumatics/bleed-3-psi-cmd ge 10.5
+				/systems/pneumatics/pack-3-cmd eq 1
+				/controls/electrical/smoke-elec-air ne 2
+				/systems/failures/pneumatics/pack-3 ne 1
+			</test>
+		</switch>
+		
+		<actuator name="/systems/pneumatics/pack-3-valve">
+			<input>/systems/pneumatics/pack-3-valve-cmd</input>
+			<rate_limit>0.333</rate_limit> <!-- 3 seconds -->
+		</actuator>
+		
+		<switch name="/systems/pneumatics/pack-3-flow-cmd">
+			<default value="0"/>
+			<test logic="AND" value="13">
+				/systems/pneumatics/pack-3-valve-cmd gt 0
+				/systems/electrical/bus/ac-1 ge 112
+			</test>
+		</switch>
+		
+		<actuator name="/systems/pneumatics/pack-3-flow">
+			<input>/systems/pneumatics/pack-3-flow-cmd</input>
+			<rate_limit sense="incr">4.1</rate_limit>
+			<rate_limit sense="decr">4.3</rate_limit>
+		</actuator>
+		
 		<fcs_function name="/systems/pneumatics/pack-3-delta-psi">
 			<function>
 				<ifthen>
-					<and>
-						<eq>
-							<property>/controls/pneumatics/pack-3</property>
-							<value>1</value>
-						</eq>
-						<nq>
-							<property>/controls/electrical/smoke-elec-air</property>
-							<value>2</value>
-						</nq>
-						<nq>
-							<property>/systems/failures/pneumatics/pack-3</property>
-							<value>1</value>
-						</nq>
-					</and>
+					<gt>
+						<property>/systems/pneumatics/pack-3-flow-cmd</property>
+						<value>0</value>
+					</gt>
 					<table>
 						<independentVar lookup="row">/systems/pneumatics/bleed-3-psi-pre-cmd</independentVar>
 						<tableData>
@@ -714,34 +736,6 @@
 				</ifthen>
 			</function>
 		</fcs_function>
-		
-		<switch name="/systems/pneumatics/pack-3-valve-cmd">
-			<default value="0"/>
-			<test logic="AND" value="1">
-				/systems/pneumatics/bleed-3-psi-cmd ge 10.5
-				/controls/pneumatics/pack-3 eq 1
-				/controls/electrical/smoke-elec-air ne 2
-				/systems/failures/pneumatics/pack-3 ne 1
-			</test>
-		</switch>
-		
-		<actuator name="/systems/pneumatics/pack-3-valve">
-			<input>/systems/pneumatics/pack-3-valve-cmd</input>
-			<rate_limit>0.333</rate_limit> <!-- 3 seconds -->
-		</actuator>
-		
-		<switch name="/systems/pneumatics/pack-3-flow-cmd">
-			<default value="0"/>
-			<test value="12">
-				/systems/pneumatics/pack-3-valve-cmd gt 0
-			</test>
-		</switch>
-		
-		<actuator name="/systems/pneumatics/pack-3-flow">
-			<input>/systems/pneumatics/pack-3-flow-cmd</input>
-			<rate_limit sense="incr">4.1</rate_limit>
-			<rate_limit sense="decr">4.3</rate_limit>
-		</actuator>
 		
 		<fcs_function name="/systems/pneumatics/jsbsim-bleed-factor-3">
 			<function>
@@ -1052,7 +1046,7 @@
 			</test>
 			<test logic="AND" value="1">
 				/systems/pneumatics/pack-1-flow lt 10
-				/controls/pneumatics/pack-1 eq 1
+				/systems/pneumatics/pack-1-cmd eq 1
 			</test>
 		</switch>
 		
@@ -1064,7 +1058,7 @@
 			</test>
 			<test logic="AND" value="1">
 				/systems/pneumatics/pack-2-flow lt 10
-				/controls/pneumatics/pack-2 eq 1
+				/systems/pneumatics/pack-2-cmd eq 1
 			</test>
 		</switch>
 		
@@ -1076,14 +1070,14 @@
 			</test>
 			<test logic="AND" value="1">
 				/systems/pneumatics/pack-3-flow lt 10
-				/controls/pneumatics/pack-3 eq 1
+				/systems/pneumatics/pack-3-cmd eq 1
 			</test>
 		</switch>
 		
 		<switch name="/systems/pneumatics/lights/pack-1-off">
 			<default value="0"/>
 			<test logic="OR" value="1">
-				/controls/pneumatics/pack-1 eq 0
+				/systems/pneumatics/pack-1-cmd eq 0
 				/controls/electrical/smoke-elec-air eq 1
 			</test>
 		</switch>
@@ -1091,7 +1085,7 @@
 		<switch name="/systems/pneumatics/lights/pack-2-off">
 			<default value="0"/>
 			<test logic="OR" value="1">
-				/controls/pneumatics/pack-2 eq 0
+				/systems/pneumatics/pack-2-cmd eq 0
 				/controls/electrical/smoke-elec-air eq 3
 			</test>
 		</switch>
@@ -1099,7 +1093,7 @@
 		<switch name="/systems/pneumatics/lights/pack-3-off">
 			<default value="0"/>
 			<test logic="OR" value="1">
-				/controls/pneumatics/pack-3 eq 0
+				/systems/pneumatics/pack-3-cmd eq 0
 				/controls/electrical/smoke-elec-air eq 2
 			</test>
 		</switch>

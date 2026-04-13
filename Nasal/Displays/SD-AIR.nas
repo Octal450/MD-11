@@ -13,11 +13,12 @@ var CanvasAir = {
 		"Bleed2_psi_box", "Bleed2_temp_error", "Bleed3", "Bleed3_psi", "Bleed3_psi_error", "Bleed3_psi_box", "Bleed3_temp_error", "CabinAft_duct", "CabinAft_dtemp", "CabinAft_dtemp_error", "CabinAft_line", "CabinAft_set", "CabinAft_set_error", "CabinAft_temp",
 		"CabinAft_temp_error", "CabinAlt", "CabinAlt_box", "CabinAlt_box", "CabinAlt_error", "CabinDP", "CabinDP_error", "CabinFwd_dtemp_error", "CabinFwd_set", "CabinFwd_set_error", "CabinFwd_temp_error", "CabinLand", "CabinLand_error", "CabinMid_dtemp_error",
 		"CabinMid_set", "CabinMid_set_error", "CabinMid_temp_error", "CabinRate", "CabinRate_box", "CabinRate_error", "CabinRateDn", "CabinRateUp", "CargoAft_set", "CargoAft_set_error", "CargoAft_temp_error", "CargoFwd_set", "CargoFwd_set", "CargoFwd_set_error",
-		"CargoFwd_temp_error", "CargoMid_temp_error", "Cockpit_dtemp_error", "Cockpit_set", "Cockpit_set_error", "Cockpit_temp_error", "Pack1_temp_error", "Pack2_temp_error", "Pack3_temp_error", "ZoneUnit"];
+		"CargoFwd_temp_error", "CargoMid_temp_error", "Cockpit_dtemp_error", "Cockpit_set", "Cockpit_set_error", "Cockpit_temp_error", "Pack1_circle", "Pack1_imp", "Pack1_temp_error", "Pack2_circle", "Pack2_imp", "Pack2_temp_error", "Pack3_circle", "Pack3_imp",
+		"Pack3_temp_error", "ZoneUnit"];
 	},
 	setup: func() {
 		Value.Air.freighter = pts.Options.freighter.getBoolValue();
-		if (Value.Air.freighter) {
+		if (Value.Air.freighter) { # Not shown on freighter
 			me["CabinAft_duct"].hide();
 			me["CabinAft_dtemp"].hide();
 			me["CabinAft_line"].hide();
@@ -165,6 +166,52 @@ var CanvasAir = {
 			me["CargoAft_set"].setText(sprintf("%d", math.round(condF2C(Value.Air.cargoAftTarget))) ~ "g");
 		} else {
 			me["CargoAft_set"].setText("OFF");
+		}
+		
+		# Packs
+		if (systems.PNEUMATICS.PackCmd.pack1.getBoolValue()) {
+			if (systems.PNEUMATICS.Lights.pack1Flow.getBoolValue()) {
+				me["Pack1_circle"].setColor(0.9412, 0.7255, 0);
+				me["Pack1_imp"].setColor(0.9412, 0.7255, 0);
+			} else {
+				me["Pack1_circle"].setColor(0, 1, 0);
+				me["Pack1_imp"].setColor(0, 1, 0);
+			}
+			
+			me["Pack1_imp"].show();
+		} else {
+			me["Pack1_circle"].setColor(1, 1, 1);
+			me["Pack1_imp"].hide();
+		}
+		
+		if (systems.PNEUMATICS.PackCmd.pack2.getBoolValue()) {
+			if (systems.PNEUMATICS.Lights.pack2Flow.getBoolValue()) {
+				me["Pack2_circle"].setColor(0.9412, 0.7255, 0);
+				me["Pack2_imp"].setColor(0.9412, 0.7255, 0);
+			} else {
+				me["Pack2_circle"].setColor(0, 1, 0);
+				me["Pack2_imp"].setColor(0, 1, 0);
+			}
+			
+			me["Pack2_imp"].show();
+		} else {
+			me["Pack2_circle"].setColor(1, 1, 1);
+			me["Pack2_imp"].hide();
+		}
+		
+		if (systems.PNEUMATICS.PackCmd.pack3.getBoolValue()) {
+			if (systems.PNEUMATICS.Lights.pack3Flow.getBoolValue()) {
+				me["Pack3_circle"].setColor(0.9412, 0.7255, 0);
+				me["Pack3_imp"].setColor(0.9412, 0.7255, 0);
+			} else {
+				me["Pack3_circle"].setColor(0, 1, 0);
+				me["Pack3_imp"].setColor(0, 1, 0);
+			}
+			
+			me["Pack3_imp"].show();
+		} else {
+			me["Pack3_circle"].setColor(1, 1, 1);
+			me["Pack3_imp"].hide();
 		}
 		
 		# Bleed Valves

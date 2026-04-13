@@ -15,6 +15,11 @@ var PNEUMATICS = {
 		cargoFwdTarget: props.globals.getNode("/systems/pneumatics/hvac/cargo-fwd-target"),
 		cockpitTarget: props.globals.getNode("/systems/pneumatics/hvac/cockpit-target"),
 	},
+	PackCmd: {
+		pack1: props.globals.getNode("/systems/pneumatics/pack-1-cmd"),
+		pack2: props.globals.getNode("/systems/pneumatics/pack-2-cmd"),
+		pack3: props.globals.getNode("/systems/pneumatics/pack-3-cmd"),
+	},
 	Psi: {
 		apu: props.globals.getNode("/systems/pneumatics/apu-psi"),
 		bleed1: props.globals.getNode("/systems/pneumatics/bleed-1-psi"),
@@ -62,6 +67,9 @@ var PNEUMATICS = {
 		apuDisag: props.globals.getNode("/systems/pneumatics/lights/apu-disag"),
 		manualFlash: props.globals.initNode("/systems/pneumatics/lights/manual-flash", 0, "INT"),
 		manualFlashTemp: 0,
+		pack1Flow: props.globals.getNode("/systems/pneumatics/lights/pack-1-flow"),
+		pack2Flow: props.globals.getNode("/systems/pneumatics/lights/pack-2-flow"),
+		pack3Flow: props.globals.getNode("/systems/pneumatics/lights/pack-3-flow"),
 	},
 	init: func() {
 		me.resetFailures();
