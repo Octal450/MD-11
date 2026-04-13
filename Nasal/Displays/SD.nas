@@ -18,6 +18,7 @@ var xx = nil;
 
 var Value = {
 	Air: {
+		freighter: 0,
 	},
 	Apu: {
 		n2: 0,

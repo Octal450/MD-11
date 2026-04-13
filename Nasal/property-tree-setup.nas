@@ -241,6 +241,7 @@ var Instrumentation = {
 
 var Options = {
 	eng: props.globals.getNode("/options/eng"),
+	freighter: props.globals.getNode("/options/freighter"),
 	type: props.globals.getNode("/options/type"),
 };
 
