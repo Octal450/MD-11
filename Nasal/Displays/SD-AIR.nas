@@ -9,12 +9,13 @@ var CanvasAir = {
 		return m;
 	},
 	getKeys: func() {
-		return ["AI_tail_group", "AI_wing_L_group", "AI_wing_R_group", "Alert_error", "APU", "APU_disag", "APU_group", "Bleed1", "Bleed1_psi", "Bleed1_psi_error", "Bleed1_psi_box", "Bleed1_temp_error", "Bleed2", "Bleed2_psi", "Bleed2_psi_error",
-		"Bleed2_psi_box", "Bleed2_temp_error", "Bleed3", "Bleed3_psi", "Bleed3_psi_error", "Bleed3_psi_box", "Bleed3_temp_error", "CabinAft_duct", "CabinAft_dtemp", "CabinAft_dtemp_error", "CabinAft_line", "CabinAft_set", "CabinAft_set_error", "CabinAft_temp",
-		"CabinAft_temp_error", "CabinAlt", "CabinAlt_box", "CabinAlt_box", "CabinAlt_error", "CabinDP", "CabinDP_error", "CabinFwd_dtemp_error", "CabinFwd_set", "CabinFwd_set_error", "CabinFwd_temp_error", "CabinLand", "CabinLand_error", "CabinMid_dtemp_error",
-		"CabinMid_set", "CabinMid_set_error", "CabinMid_temp_error", "CabinRate", "CabinRate_box", "CabinRate_error", "CabinRateDn", "CabinRateUp", "CargoAft_set", "CargoAft_set_error", "CargoAft_temp_error", "CargoFwd_set", "CargoFwd_set", "CargoFwd_set_error",
-		"CargoFwd_temp_error", "CargoMid_temp_error", "Cockpit_dtemp_error", "Cockpit_set", "Cockpit_set_error", "Cockpit_temp_error", "Isol12", "Isol12_disag", "Isol13", "Isol13_disag", "Pack1_circle", "Pack1_imp", "Pack1_temp_error", "Pack2_circle",
-		"Pack2_imp", "Pack2_temp_error", "Pack3_circle", "Pack3_imp", "Pack3_temp_error", "ZoneUnit"];
+		return ["AI_tail_group", "AI_wing_L_group", "AI_wing_R_group", "Alert_error", "APU", "APU_disag", "APU_group", "APU_line", "Bleed1", "Bleed1_conn", "Bleed1_conn2", "Bleed1_line", "Bleed1_line2", "Bleed1_line3", "Bleed1_psi", "Bleed1_psi_error",
+		"Bleed1_psi_box", "Bleed1_temp_error", "Bleed2", "Bleed2_conn", "Bleed2_line", "Bleed2_line2", "Bleed2_psi", "Bleed2_psi_error", "Bleed2_psi_box", "Bleed2_temp_error", "Bleed3", "Bleed3_conn", "Bleed3_line", "Bleed3_line2", "Bleed3_psi",
+		"Bleed3_psi_error", "Bleed3_psi_box", "Bleed3_temp_error", "Cabin_line", "CabinAft_dtemp", "CabinAft_duct", "CabinAft_dtemp_error", "CabinAft_line", "CabinAft_set", "CabinAft_set_error", "CabinAft_temp", "CabinAft_temp_error", "CabinAlt", "CabinAlt_box",
+		"CabinAlt_box", "CabinAlt_error", "CabinDP", "CabinDP_error", "CabinFwd_dtemp_error", "CabinFwd_duct", "CabinFwd_set", "CabinFwd_set_error", "CabinFwd_temp_error", "CabinLand", "CabinLand_error", "CabinMid_dtemp_error", "CabinMid_duct", "CabinMid_set",
+		"CabinMid_set_error", "CabinMid_temp_error", "CabinRate", "CabinRate_box", "CabinRate_error", "CabinRateDn", "CabinRateUp", "CargoAft_set", "CargoAft_set_error", "CargoAft_temp_error", "CargoFwd_set", "CargoFwd_set", "CargoFwd_set_error",
+		"CargoFwd_temp_error", "CargoMid_temp_error", "Cockpit_dtemp_error", "Cockpit_duct", "Cockpit_set", "Cockpit_set_error", "Cockpit_temp_error", "Isol12", "Isol12_disag", "Isol12_line", "Isol13", "Isol13_disag", "Isol13_line", "Pack_line", "Pack1_circle",
+		"Pack1_imp", "Pack1_line", "Pack1_temp_error", "Pack2_circle", "Pack2_imp", "Pack2_line", "Pack2_temp_error", "Pack3_circle", "Pack3_imp", "Pack3_line", "Pack3_temp_error", "ZoneUnit"];
 	},
 	setup: func() {
 		Value.Air.freighter = pts.Options.freighter.getBoolValue();
@@ -260,24 +261,20 @@ var CanvasAir = {
 		}
 		
 		# Bleed Valves
-		Value.Air.apuPsi = math.round(systems.PNEUMATICS.Psi.apu.getValue());
 		Value.Air.bleed1 = systems.PNEUMATICS.Controls.bleed1.getBoolValue();
 		Value.Air.bleed2 = systems.PNEUMATICS.Controls.bleed2.getBoolValue();
 		Value.Air.bleed3 = systems.PNEUMATICS.Controls.bleed3.getBoolValue();
 		Value.Air.bleedApu = systems.PNEUMATICS.Controls.bleedApu.getBoolValue();
-		Value.Air.eng1Psi = math.round(systems.PNEUMATICS.Psi.eng1.getValue());
-		Value.Air.eng2Psi = math.round(systems.PNEUMATICS.Psi.eng2.getValue());
-		Value.Air.eng3Psi = math.round(systems.PNEUMATICS.Psi.eng3.getValue());
 		
 		me["Bleed1"].setRotation(Value.Air.bleed1 * 90 * D2R);
-		if (Value.Air.eng1Psi > 10) {
+		if (Value.Air.bleed1 and systems.ENGINES.state[0].getValue() >= 2) {
 			me["Bleed1"].setColor(0, 1, 0);
 		} else {
 			me["Bleed1"].setColor(1, 1, 1);
 		}
 		
 		me["Bleed2"].setRotation(Value.Air.bleed2 * 90 * D2R);
-		if (Value.Air.eng2Psi > 10) {
+		if (Value.Air.bleed2 and systems.ENGINES.state[1].getValue() >= 2) {
 			me["Bleed2"].setColor(0, 1, 0);
 		} else {
 			me["Bleed2"].setColor(1, 1, 1);
@@ -285,7 +282,7 @@ var CanvasAir = {
 		
 		
 		me["Bleed3"].setRotation(Value.Air.bleed3 * 90 * D2R);
-		if (Value.Air.eng3Psi > 10) {
+		if (Value.Air.bleed3 and systems.ENGINES.state[2].getValue() >= 2) {
 			me["Bleed3"].setColor(0, 1, 0);
 		} else {
 			me["Bleed3"].setColor(1, 1, 1);
@@ -297,7 +294,7 @@ var CanvasAir = {
 			if (systems.PNEUMATICS.Lights.apuDisag.getBoolValue()) {
 				me["APU"].setColor(0.9412, 0.7255, 0);
 				me["APU_disag"].show();
-			} else if (Value.Air.apuPsi > 10) {
+			} else if (Value.Air.bleedApu) {
 				me["APU"].setColor(0, 1, 0);
 				me["APU_disag"].hide();
 			} else {
@@ -340,6 +337,184 @@ var CanvasAir = {
 		} else {
 			me["Bleed3_psi"].setColor(1, 1, 1);
 			me["Bleed3_psi_box"].hide();
+		}
+		
+		# Schematic Lines Phase 1
+		Value.Air.apuPsi = math.round(systems.PNEUMATICS.Psi.apu.getValue());
+		Value.Air.eng1Psi = math.round(systems.PNEUMATICS.Psi.eng1.getValue());
+		Value.Air.eng2Psi = math.round(systems.PNEUMATICS.Psi.eng2.getValue());
+		Value.Air.eng3Psi = math.round(systems.PNEUMATICS.Psi.eng3.getValue());
+		
+		Value.Air.Schematic.apu = Value.Air.apuPsi > 10;
+		Value.Air.Schematic.eng1 = Value.Air.eng1Psi > 10;
+		Value.Air.Schematic.eng2 = Value.Air.eng2Psi > 10;
+		Value.Air.Schematic.eng3 = Value.Air.eng3Psi > 10;
+		Value.Air.Schematic.isol12 = systems.PNEUMATICS.Valve.isol12.getValue() == 1;
+		Value.Air.Schematic.isol13 = systems.PNEUMATICS.Valve.isol13.getValue() == 1;
+		Value.Air.Schematic.pack1 = systems.PNEUMATICS.Flow.pack1.getValue() >= 6;
+		Value.Air.Schematic.pack2 = systems.PNEUMATICS.Flow.pack2.getValue() >= 6;
+		Value.Air.Schematic.pack3 = systems.PNEUMATICS.Flow.pack3.getValue() >= 6;
+		
+		Value.Air.Schematic.bleed1Line = Value.Air.Schematic.eng1 and (Value.Air.Schematic.pack1 or (Value.Air.Schematic.isol12 and Value.Air.Schematic.pack2) or (Value.Air.Schematic.isol13 and Value.Air.Schematic.pack3));
+		
+		Value.Air.Schematic.bleed1Line2 = (Value.Air.Schematic.eng1 and (Value.Air.Schematic.pack1 or (Value.Air.Schematic.isol13 and Value.Air.Schematic.pack3))) or
+			((Value.Air.Schematic.eng2 or Value.Air.Schematic.apu) and Value.Air.Schematic.isol12 and (Value.Air.Schematic.pack1 or (Value.Air.Schematic.isol13 and Value.Air.Schematic.pack3))) or
+			(Value.Air.Schematic.eng3 and Value.Air.Schematic.isol13 and Value.Air.Schematic.isol12 and Value.Air.Schematic.pack2);
+		
+		Value.Air.Schematic.bleed1Line3 = Value.Air.Schematic.pack1 and (Value.Air.Schematic.eng1 or (Value.Air.Schematic.isol12 and Value.Air.Schematic.eng2) or (Value.Air.Schematic.isol12 and Value.Air.Schematic.apu) or
+			(Value.Air.Schematic.isol13 and Value.Air.Schematic.eng3));
+		
+		Value.Air.Schematic.bleed2Line = Value.Air.Schematic.eng2 and (Value.Air.Schematic.pack2 or (Value.Air.Schematic.isol12 and Value.Air.Schematic.pack1) or (Value.Air.Schematic.isol12 and Value.Air.Schematic.isol13 and Value.Air.Schematic.pack3));
+		
+		Value.Air.Schematic.bleed2Line2 = Value.Air.Schematic.pack2 and (Value.Air.Schematic.eng2 or Value.Air.Schematic.apu or (Value.Air.Schematic.isol12 and Value.Air.Schematic.eng1) or
+			(Value.Air.Schematic.isol12 and Value.Air.Schematic.isol13 and Value.Air.Schematic.eng3));
+		
+		Value.Air.Schematic.bleed3Line = Value.Air.Schematic.eng3 and (Value.Air.Schematic.pack3 or (Value.Air.Schematic.isol13 and Value.Air.Schematic.pack1) or (Value.Air.Schematic.isol13 and Value.Air.Schematic.isol12 and Value.Air.Schematic.pack2));
+		
+		Value.Air.Schematic.bleed3Line2 = Value.Air.Schematic.pack3 and (Value.Air.Schematic.eng3 or (Value.Air.Schematic.isol13 and Value.Air.Schematic.eng1) or (Value.Air.Schematic.isol13 and Value.Air.Schematic.isol12 and Value.Air.Schematic.eng2) or
+			(Value.Air.Schematic.isol13 and Value.Air.Schematic.isol12 and Value.Air.Schematic.apu));
+		
+		Value.Air.Schematic.isol12Line = Value.Air.Schematic.isol12 and ((Value.Air.Schematic.eng1 and Value.Air.Schematic.pack2) or ((Value.Air.Schematic.eng2 or Value.Air.Schematic.apu) and
+			(Value.Air.Schematic.pack1 or (Value.Air.Schematic.isol13 and Value.Air.Schematic.pack3))) or (Value.Air.Schematic.eng3 and Value.Air.Schematic.isol13 and Value.Air.Schematic.pack2));
+		
+		Value.Air.Schematic.isol13Line = Value.Air.Schematic.isol13 and ((Value.Air.Schematic.eng1 and Value.Air.Schematic.pack3) or (Value.Air.Schematic.eng3 and (Value.Air.Schematic.pack1 or (Value.Air.Schematic.isol12 and Value.Air.Schematic.pack2))) or
+			((Value.Air.Schematic.eng2 or Value.Air.Schematic.apu) and Value.Air.Schematic.isol12 and Value.Air.Schematic.pack3));
+		
+		Value.Air.Schematic.apuLine = Value.Air.Schematic.apu and (Value.Air.Schematic.pack2 or (Value.Air.Schematic.isol12 and Value.Air.Schematic.pack1) or (Value.Air.Schematic.isol12 and Value.Air.Schematic.isol13 and Value.Air.Schematic.pack3));
+		
+		Value.Air.Schematic.bleed1Conn = (Value.Air.Schematic.bleed1Line + Value.Air.Schematic.bleed1Line2 + Value.Air.Schematic.isol12Line) > 1;
+		Value.Air.Schematic.bleed1Conn2 = (Value.Air.Schematic.bleed1Line2 + Value.Air.Schematic.bleed1Line3 + Value.Air.Schematic.isol13Line) > 1;
+		Value.Air.Schematic.bleed2Conn = (Value.Air.Schematic.bleed2Line + Value.Air.Schematic.bleed2Line2 + Value.Air.Schematic.isol12Line) > 1;
+		Value.Air.Schematic.bleed3Conn = (Value.Air.Schematic.bleed3Line + Value.Air.Schematic.bleed3Line2 + Value.Air.Schematic.isol13Line) > 1;
+		
+		Value.Air.Schematic.pack1Line = Value.Air.Schematic.pack1 and (Value.Air.Schematic.eng1 or (Value.Air.Schematic.isol12 and Value.Air.Schematic.eng2) or (Value.Air.Schematic.isol12 and Value.Air.Schematic.apu) or
+			(Value.Air.Schematic.isol13 and Value.Air.Schematic.eng3));
+		
+		Value.Air.Schematic.pack2Line = Value.Air.Schematic.pack2 and (Value.Air.Schematic.eng2 or Value.Air.Schematic.apu or (Value.Air.Schematic.isol12 and Value.Air.Schematic.eng1) or
+			(Value.Air.Schematic.isol12 and Value.Air.Schematic.isol13 and Value.Air.Schematic.eng3));
+		
+		Value.Air.Schematic.pack3Line = Value.Air.Schematic.pack3 and (Value.Air.Schematic.eng3 or (Value.Air.Schematic.isol13 and Value.Air.Schematic.eng1) or (Value.Air.Schematic.isol13 and Value.Air.Schematic.isol12 and Value.Air.Schematic.eng2) or
+			(Value.Air.Schematic.isol13 and Value.Air.Schematic.isol12 and Value.Air.Schematic.apu));
+		
+		Value.Air.Schematic.packLine = Value.Air.Schematic.pack2Line or Value.Air.Schematic.pack3Line;
+		Value.Air.Schematic.cabinLine = Value.Air.Schematic.pack1Line or Value.Air.Schematic.packLine;
+		
+		# Schematic Lines Phase 2
+		if (Value.Air.Schematic.cabinLine) {
+			me["Cabin_line"].setColor(0, 1, 0);
+			me["CabinFwd_duct"].setColor(0, 1, 0);
+			me["CabinMid_duct"].setColor(0, 1, 0);
+			me["Cockpit_duct"].setColor(0, 1, 0);
+		} else {
+			me["Cabin_line"].setColor(1, 1, 1);
+			me["CabinFwd_duct"].setColor(1, 1, 1);
+			me["CabinMid_duct"].setColor(1, 1, 1);
+			me["Cockpit_duct"].setColor(1, 1, 1);
+		}
+		if (!Value.Air.freighter) {
+			if (Value.Air.Schematic.cabinLine) {
+				me["CabinAft_line"].setColor(0, 1, 0);
+				me["CabinAft_duct"].setColor(0, 1, 0);
+			} else {
+				me["CabinAft_line"].setColor(1, 1, 1);
+				me["CabinAft_duct"].setColor(1, 1, 1);
+			}
+		}
+		
+		if (Value.Air.Schematic.pack1Line) {
+			me["Pack1_line"].setColor(0, 1, 0);
+		} else {
+			me["Pack1_line"].setColor(1, 1, 1);
+		}
+		if (Value.Air.Schematic.packLine) {
+			me["Pack_line"].setColor(0, 1, 0);
+		} else {
+			me["Pack_line"].setColor(1, 1, 1);
+		}
+		if (Value.Air.Schematic.pack2Line) {
+			me["Pack2_line"].setColor(0, 1, 0);
+		} else {
+			me["Pack2_line"].setColor(1, 1, 1);
+		}
+		if (Value.Air.Schematic.pack3Line) {
+			me["Pack3_line"].setColor(0, 1, 0);
+		} else {
+			me["Pack3_line"].setColor(1, 1, 1);
+		}
+		
+		if (Value.Air.Schematic.bleed1Line) {
+			me["Bleed1_line"].setColor(0, 1, 0);
+		} else {
+			me["Bleed1_line"].setColor(1, 1, 1);
+		}
+		if (Value.Air.Schematic.bleed1Line2) {
+			me["Bleed1_line2"].setColor(0, 1, 0);
+		} else {
+			me["Bleed1_line2"].setColor(1, 1, 1);
+		}
+		if (Value.Air.Schematic.bleed1Line3) {
+			me["Bleed1_line3"].setColor(0, 1, 0);
+		} else {
+			me["Bleed1_line3"].setColor(1, 1, 1);
+		}
+		if (Value.Air.Schematic.bleed1Conn) {
+			me["Bleed1_conn"].setColor(0, 1, 0);
+		} else {
+			me["Bleed1_conn"].setColor(1, 1, 1);
+		}
+		if (Value.Air.Schematic.bleed1Conn2) {
+			me["Bleed1_conn2"].setColor(0, 1, 0);
+		} else {
+			me["Bleed1_conn2"].setColor(1, 1, 1);
+		}
+		
+		if (Value.Air.Schematic.bleed2Line) {
+			me["Bleed2_line"].setColor(0, 1, 0);
+		} else {
+			me["Bleed2_line"].setColor(1, 1, 1);
+		}
+		if (Value.Air.Schematic.bleed2Line2) {
+			me["Bleed2_line2"].setColor(0, 1, 0);
+		} else {
+			me["Bleed2_line2"].setColor(1, 1, 1);
+		}
+		if (Value.Air.Schematic.bleed2Conn) {
+			me["Bleed2_conn"].setColor(0, 1, 0);
+		} else {
+			me["Bleed2_conn"].setColor(1, 1, 1);
+		}
+		
+		if (Value.Air.Schematic.bleed3Line) {
+			me["Bleed3_line"].setColor(0, 1, 0);
+		} else {
+			me["Bleed3_line"].setColor(1, 1, 1);
+		}
+		if (Value.Air.Schematic.bleed3Line2) {
+			me["Bleed3_line2"].setColor(0, 1, 0);
+		} else {
+			me["Bleed3_line2"].setColor(1, 1, 1);
+		}
+		if (Value.Air.Schematic.bleed3Conn) {
+			me["Bleed3_conn"].setColor(0, 1, 0);
+		} else {
+			me["Bleed3_conn"].setColor(1, 1, 1);
+		}
+		
+		if (Value.Air.Schematic.apuLine) {
+			me["APU_line"].setColor(0, 1, 0);
+		} else {
+			me["APU_line"].setColor(1, 1, 1);
+		}
+		
+		if (Value.Air.Schematic.isol12Line) {
+			me["Isol12_line"].setColor(0, 1, 0);
+		} else {
+			me["Isol12_line"].setColor(1, 1, 1);
+		}
+		if (Value.Air.Schematic.isol13Line) {
+			me["Isol13_line"].setColor(0, 1, 0);
+		} else {
+			me["Isol13_line"].setColor(1, 1, 1);
 		}
 		
 		# Cabin Pressurization

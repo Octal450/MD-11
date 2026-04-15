@@ -30,6 +30,10 @@ var PNEUMATICS = {
 		eng3: props.globals.getNode("/systems/pneumatics/eng-3-psi"),
 		ground: props.globals.getNode("/systems/pneumatics/ground-psi"),
 	},
+	Valve: {
+		isol12: props.globals.getNode("/systems/pneumatics/isol/isol-1-2-valve"),
+		isol13: props.globals.getNode("/systems/pneumatics/isol/isol-1-3-valve"),
+	},
 	system: props.globals.getNode("/systems/pneumatics/system"),
 	Controls: {
 		avionicsFan: props.globals.getNode("/controls/pneumatics/avionics-fan"),

@@ -622,7 +622,7 @@
 						<independentVar lookup="row">/systems/pneumatics/bleed-1-psi-pre-cmd</independentVar>
 						<tableData>
 							10   0
-							16  -6
+							16  -5
 							29  -5
 							35 -11
 						</tableData>
@@ -642,7 +642,7 @@
 		<switch name="/systems/pneumatics/pack-1-valve-cmd">
 			<default value="0"/>
 			<test logic="AND" value="1">
-				/systems/pneumatics/bleed-1-psi-cmd ge 10.5
+				/systems/pneumatics/bleed-1-psi ge 10.5
 				/systems/pneumatics/pack-1-cmd eq 1
 				/controls/electrical/smoke-elec-air ne 1
 				/systems/failures/pneumatics/pack-1 ne 1
@@ -656,7 +656,7 @@
 		
 		<switch name="/systems/pneumatics/pack-1-flow-cmd">
 			<default value="0"/>
-			<test logic="AND" value="11">
+			<test logic="AND" value="12">
 				/systems/pneumatics/pack-1-valve-cmd gt 0
 				/systems/electrical/bus/ac-1 ge 112
 			</test>
@@ -727,7 +727,7 @@
 		<switch name="/systems/pneumatics/pack-2-valve-cmd">
 			<default value="0"/>
 			<test logic="AND" value="1">
-				/systems/pneumatics/bleed-2-psi-cmd ge 10.5
+				/systems/pneumatics/bleed-2-psi ge 10.5
 				/systems/pneumatics/pack-2-cmd eq 1
 				/controls/electrical/smoke-elec-air ne 3
 				/systems/failures/pneumatics/pack-2 ne 1
@@ -741,7 +741,7 @@
 		
 		<switch name="/systems/pneumatics/pack-2-flow-cmd">
 			<default value="0"/>
-			<test logic="AND" value="10">
+			<test logic="AND" value="12">
 				/systems/pneumatics/pack-2-valve-cmd gt 0
 				/systems/electrical/bus/ac-1 ge 112
 			</test>
@@ -812,7 +812,7 @@
 		<switch name="/systems/pneumatics/pack-3-valve-cmd">
 			<default value="0"/>
 			<test logic="AND" value="1">
-				/systems/pneumatics/bleed-3-psi-cmd ge 10.5
+				/systems/pneumatics/bleed-3-psi ge 10.5
 				/systems/pneumatics/pack-3-cmd eq 1
 				/controls/electrical/smoke-elec-air ne 2
 				/systems/failures/pneumatics/pack-3 ne 1
@@ -918,7 +918,7 @@
 			</test>
 			<test logic="AND" value="1">
 				/systems/pneumatics/system eq 1
-				/systems/pneumatics/bleed-1-psi-cmd ge 10.5
+				/systems/pneumatics/bleed-1-psi ge 10.5
 			</test>
 			<test value="0">
 				/systems/pneumatics/system eq 1
@@ -944,7 +944,7 @@
 			</test>
 			<test logic="AND" value="1">
 				/systems/pneumatics/system eq 1
-				/systems/pneumatics/bleed-2-psi-cmd ge 10.5
+				/systems/pneumatics/bleed-2-psi ge 10.5
 			</test>
 			<test value="0">
 				/systems/pneumatics/system eq 1
@@ -960,7 +960,7 @@
 			</test>
 			<test logic="AND" value="1">
 				/systems/pneumatics/system eq 1
-				/systems/pneumatics/bleed-3-psi-cmd ge 10.5
+				/systems/pneumatics/bleed-3-psi ge 10.5
 			</test>
 			<test value="0">
 				/systems/pneumatics/system eq 1
