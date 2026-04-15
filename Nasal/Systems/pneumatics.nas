@@ -20,6 +20,8 @@ var PNEUMATICS = {
 		pack2: props.globals.getNode("/systems/pneumatics/pack-2-cmd"),
 		pack3: props.globals.getNode("/systems/pneumatics/pack-3-cmd"),
 	},
+	paxLoad: props.globals.getNode("/systems/pneumatics/pax-load"),
+	paxLoadCalc: 0,
 	Psi: {
 		apu: props.globals.getNode("/systems/pneumatics/apu-psi"),
 		bleed1: props.globals.getNode("/systems/pneumatics/bleed-1-psi"),
@@ -54,6 +56,8 @@ var PNEUMATICS = {
 		pack1: props.globals.getNode("/controls/pneumatics/pack-1"),
 		pack2: props.globals.getNode("/controls/pneumatics/pack-2"),
 		pack3: props.globals.getNode("/controls/pneumatics/pack-3"),
+		paxLoadHundreds: props.globals.getNode("/controls/pneumatics/pax-load-hundreds"),
+		paxLoadTens: props.globals.getNode("/controls/pneumatics/pax-load-tens"),
 		system: props.globals.getNode("/controls/pneumatics/system"),
 		trimAir: props.globals.getNode("/controls/pneumatics/trim-air"),
 	},
@@ -101,6 +105,10 @@ var PNEUMATICS = {
 		me.Controls.trimAir.setBoolValue(1);
 		manualPneuLightt.stop();
 		me.Lights.manualFlash.setValue(0);
+		
+		var paxLoadCalc = math.round((pts.Payload.Weight.weightLb[0].getValue() + pts.Payload.Weight.weightLb[1].getValue() + pts.Payload.Weight.weightLb[2].getValue()) / 150, 10);
+		me.Controls.paxLoadHundreds.setValue(math.floor(paxLoadCalc / 100));
+		me.Controls.paxLoadTens.setValue(math.mod(math.floor(paxLoadCalc / 10), 10));
 	},
 	resetFailures: func() {
 		me.Failures.bleedApu.setBoolValue(0);

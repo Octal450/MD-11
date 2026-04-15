@@ -256,6 +256,9 @@ var Payload = {
 	Armament: {
 		msg: props.globals.getNode("/payload/armament/msg"),
 	},
+	Weight: {
+		weightLb: [props.globals.getNode("/payload/weight[0]/weight-lb"), props.globals.getNode("/payload/weight[1]/weight-lb"), props.globals.getNode("/payload/weight[2]/weight-lb"), props.globals.getNode("/payload/weight[3]/weight-lb"), props.globals.getNode("/payload/weight[4]/weight-lb"), props.globals.getNode("/payload/weight[5]/weight-lb")],
+	},
 };
 
 var Position = {

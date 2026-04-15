@@ -905,6 +905,22 @@
 				/systems/pneumatics/isol/isol-1-3-active eq 1
 			</test>
 		</switch>
+		
+		<!-- Pax Load -->
+		<fcs_function name="/systems/pneumatics/pax-load">
+			<function>
+				<sum>
+					<product>
+						<property>/controls/pneumatics/pax-load-hundreds</property>
+						<value>100</value>
+					</product>
+					<product>
+						<property>/controls/pneumatics/pax-load-tens</property>
+						<value>10</value>
+					</product>
+				</sum>
+			</function>
+		</fcs_function>
 	
 	</channel>
 	

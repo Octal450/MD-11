@@ -3978,6 +3978,65 @@
 	</animation>
 	
 	<!-- PNEUMATICS -->
+	<!-- Pax Load Selector -->
+	<animation>
+		<type>knob</type>
+		<object-name>PaxLoadHundreds</object-name>
+		<property>controls/cockpit/overhead/pax-load-hundreds</property>
+		<drag-direction>vertical</drag-direction>
+		<drag-scale-px>15</drag-scale-px>
+		<factor>36</factor>
+		<center>
+			<x-m>-21.8138</x-m>
+			<y-m>0</y-m>
+			<z-m>-17.9005</z-m>
+		</center>
+		<axis>
+			<x>0</x>
+			<y>1</y>
+			<z>0</z>
+		</axis>
+		<action>
+			<binding>
+				<command>property-adjust</command>
+				<property>controls/pneumatics/pax-load-hundreds</property>
+				<factor>-1</factor>
+				<min>0</min>
+				<max>10</max>
+				<wrap>true</wrap>
+			</binding>
+		</action>
+	</animation>
+	
+	<animation>
+		<type>knob</type>
+		<object-name>PaxLoadTens</object-name>
+		<property>controls/cockpit/overhead/pax-load-tens</property>
+		<drag-direction>vertical</drag-direction>
+		<drag-scale-px>15</drag-scale-px>
+		<factor>36</factor>
+		<center>
+			<x-m>-21.8138</x-m>
+			<y-m>0</y-m>
+			<z-m>-17.9005</z-m>
+		</center>
+		<axis>
+			<x>0</x>
+			<y>1</y>
+			<z>0</z>
+		</axis>
+		<action>
+			<binding>
+				<command>property-adjust</command>
+				<property>controls/pneumatics/pax-load-tens</property>
+				<factor>-1</factor>
+				<min>0</min>
+				<max>10</max>
+				<wrap>true</wrap>
+			</binding>
+		</action>
+	</animation>
+	
 	<!-- Pneumatic System Control Button -->
 	<animation>
 		<type>pick</type>

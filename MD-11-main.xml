@@ -809,6 +809,8 @@
 			<pack-1 type="bool">1</pack-1>
 			<pack-2 type="bool">1</pack-2>
 			<pack-3 type="bool">1</pack-3>
+			<pax-load-hundreds type="int">2</pax-load-hundreds>
+			<pax-load-tens type="int">8</pax-load-tens>
 			<system type="bool">1</system>
 			<trim-air type="bool">1</trim-air>
 		</pneumatics>

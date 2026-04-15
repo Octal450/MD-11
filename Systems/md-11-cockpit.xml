@@ -440,6 +440,28 @@
 			<c1>20</c1>
 		</lag_filter>
 		
+		<linear_actuator name="/controls/cockpit/overhead/pax-load-hundreds-linear">
+			<input>/controls/pneumatics/pax-load-hundreds</input>
+			<module>10</module>
+			<rate>0.5</rate>
+		</linear_actuator>
+		
+		<lag_filter name="/controls/cockpit/overhead/pax-load-hundreds">
+			<input>/controls/cockpit/overhead/pax-load-hundreds-linear</input>
+			<c1>20</c1>
+		</lag_filter>
+		
+		<linear_actuator name="/controls/cockpit/overhead/pax-load-tens-linear">
+			<input>/controls/pneumatics/pax-load-tens</input>
+			<module>10</module>
+			<rate>0.5</rate>
+		</linear_actuator>
+		
+		<lag_filter name="/controls/cockpit/overhead/pax-load-tens">
+			<input>/controls/cockpit/overhead/pax-load-tens-linear</input>
+			<c1>20</c1>
+		</lag_filter>
+		
 		<lag_filter name="/controls/cockpit/overhead/seatbelt-sign">
 			<input>/controls/switches/seatbelt-sign</input>
 			<c1>20</c1>
