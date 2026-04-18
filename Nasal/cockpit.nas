@@ -21,8 +21,8 @@ var variousReset = func() {
 	pts.Controls.Lighting.turnoffLightL.setBoolValue(0);
 	pts.Controls.Lighting.turnoffLightR.setBoolValue(0);
 	pts.Controls.Switches.adgHandle.setValue(0);
-	pts.Controls.Switches.gpwsOvrd.setValue(0);
-	pts.Controls.Switches.gpwsOvrdCover.setBoolValue(0);
+	pts.Controls.Switches.gpws.setValue(0);
+	pts.Controls.Switches.gpwsCover.setBoolValue(0);
 	pts.Controls.Switches.minimumsMode.setBoolValue(0);
 	pts.Controls.Switches.minimumsBaro.setValue(math.max(pts.Instrumentation.Altimeter.indicatedAltitudeFt.getValue() + 200, 0));
 	pts.Controls.Switches.minimumsRa.setValue(200);
@@ -376,13 +376,13 @@ setlistener("/systems/electrical/outputs/fcp", func() {
 }, 0, 0);
 
 # Overhead GPWS
-var gpwsOvrd = 0;
-setlistener("/controls/switches/gpws-ovrd", func() {
-	gpwsOvrd = pts.Controls.Switches.gpwsOvrd.getValue();
+var gpwsSw = 0;
+setlistener("/controls/switches/gpws", func() {
+	gpwsSw = pts.Controls.Switches.gpws.getValue();
 	
-	if (gpwsOvrd == 1) pts.Instrumentation.MkViii.Inputs.Discretes.selfTest.setBoolValue(1);
+	if (gpwsSw == 1) pts.Instrumentation.MkViii.Inputs.Discretes.selfTest.setBoolValue(1);
 	else pts.Instrumentation.MkViii.Inputs.Discretes.selfTest.setBoolValue(0);
 	
-	if (gpwsOvrd == -1) pts.Instrumentation.MkViii.Inputs.Discretes.momentaryFlapOverride.setBoolValue(1);
+	if (gpwsSw == -1) pts.Instrumentation.MkViii.Inputs.Discretes.momentaryFlapOverride.setBoolValue(1);
 	else pts.Instrumentation.MkViii.Inputs.Discretes.momentaryFlapOverride.setBoolValue(0);
 }, 0, 0);
