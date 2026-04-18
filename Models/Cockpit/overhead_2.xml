@@ -156,11 +156,9 @@
 	
 	<!-- GPWS -->
 	<animation>
-		<type>knob</type>
+		<type>rotate</type>
 		<object-name>GpwsOvrdCover</object-name>
 		<property>controls/cockpit/overhead/gpws-ovrd-cover</property>
-		<drag-direction>vertical</drag-direction>
-		<drag-scale-px>15</drag-scale-px>
 		<factor>-100</factor>
 		<center>
 			<x-m>-16.8084</x-m>
@@ -172,41 +170,54 @@
 			<y>1</y>
 			<z>0</z>
 		</axis>
-		<increase>
+	</animation>
+	<animation>
+		<type>pick</type>
+		<object-name>GpwsOvrdCover</object-name>
+		<action>
+			<button>0</button>
+			<button>1</button>
+			<button>3</button>
+			<button>4</button>
+			<repeatable>false</repeatable>
 			<binding>
-				<command>property-assign</command>
+				<command>property-toggle</command>
 				<property>controls/switches/gpws-ovrd-cover</property>
-				<value>1</value>
 			</binding>
-		</increase>
-		<decrease>
 			<binding>
 				<condition>
-					<equals>
-						<property>controls/switches/gpws-ovrd</property>
-						<value>-1</value>
-					</equals>
+					<and>
+						<equals>
+							<property>controls/switches/gpws-ovrd-cover</property>
+							<value>0</value>
+						</equals>
+						<equals>
+							<property>controls/switches/gpws-ovrd</property>
+							<value>-1</value>
+						</equals>
+					</and>
 				</condition>
 				<command>nasal</command>
 				<script>core.Sound.switch1();</script>
 			</binding>
 			<binding>
 				<condition>
-					<equals>
-						<property>controls/switches/gpws-ovrd</property>
-						<value>-1</value>
-					</equals>
+					<and>
+						<equals>
+							<property>controls/switches/gpws-ovrd-cover</property>
+							<value>0</value>
+						</equals>
+						<equals>
+							<property>controls/switches/gpws-ovrd</property>
+							<value>-1</value>
+						</equals>
+					</and>
 				</condition>
 				<command>property-assign</command>
 				<property>controls/switches/gpws-ovrd</property>
 				<value>0</value>
 			</binding>
-			<binding>
-				<command>property-assign</command>
-				<property>controls/switches/gpws-ovrd-cover</property>
-				<value>0</value>
-			</binding>
-		</decrease>
+		</action>
 	</animation>
 	
 	<animation>
