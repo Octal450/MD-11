@@ -157,8 +157,8 @@
 	<!-- GPWS -->
 	<animation>
 		<type>rotate</type>
-		<object-name>GpwsOvrdCover</object-name>
-		<property>controls/cockpit/overhead/gpws-ovrd-cover</property>
+		<object-name>GpwsCover</object-name>
+		<property>controls/cockpit/overhead/gpws-cover</property>
 		<factor>-100</factor>
 		<center>
 			<x-m>-16.8084</x-m>
@@ -173,7 +173,7 @@
 	</animation>
 	<animation>
 		<type>pick</type>
-		<object-name>GpwsOvrdCover</object-name>
+		<object-name>GpwsCover</object-name>
 		<action>
 			<button>0</button>
 			<button>1</button>
@@ -182,17 +182,17 @@
 			<repeatable>false</repeatable>
 			<binding>
 				<command>property-toggle</command>
-				<property>controls/switches/gpws-ovrd-cover</property>
+				<property>controls/switches/gpws-cover</property>
 			</binding>
 			<binding>
 				<condition>
 					<and>
 						<equals>
-							<property>controls/switches/gpws-ovrd-cover</property>
+							<property>controls/switches/gpws-cover</property>
 							<value>0</value>
 						</equals>
 						<equals>
-							<property>controls/switches/gpws-ovrd</property>
+							<property>controls/switches/gpws</property>
 							<value>-1</value>
 						</equals>
 					</and>
@@ -204,17 +204,17 @@
 				<condition>
 					<and>
 						<equals>
-							<property>controls/switches/gpws-ovrd-cover</property>
+							<property>controls/switches/gpws-cover</property>
 							<value>0</value>
 						</equals>
 						<equals>
-							<property>controls/switches/gpws-ovrd</property>
+							<property>controls/switches/gpws</property>
 							<value>-1</value>
 						</equals>
 					</and>
 				</condition>
 				<command>property-assign</command>
-				<property>controls/switches/gpws-ovrd</property>
+				<property>controls/switches/gpws</property>
 				<value>0</value>
 			</binding>
 		</action>
@@ -222,8 +222,8 @@
 	
 	<animation>
 		<type>rotate</type>
-		<object-name>GpwsOvrd</object-name>
-		<property>controls/cockpit/overhead/gpws-ovrd</property>
+		<object-name>Gpws</object-name>
+		<property>controls/cockpit/overhead/gpws</property>
 		<interpolation>
 			<entry><ind>-1</ind><dep>-30</dep></entry>
 			<entry><ind> 0</ind><dep>  0</dep></entry>
@@ -242,26 +242,26 @@
 	</animation>
 	<animation>
 		<type>pick</type>
-		<object-name>GpwsOvrd</object-name>
+		<object-name>Gpws</object-name>
 		<action>
 			<button>0</button>
 			<button>4</button>
 			<repeatable>false</repeatable>
 			<binding>
 				<condition>
-					<not><property>controls/switches/gpws-ovrd-cover</property></not>
+					<not><property>controls/switches/gpws-cover</property></not>
 				</condition>
 				<command>property-cycle</command>
-				<property>controls/switches/gpws-ovrd</property>
+				<property>controls/switches/gpws</property>
 				<value>0</value>
 				<value>1</value>
 			</binding>
 			<binding>
 				<condition>
-					<property>controls/switches/gpws-ovrd-cover</property>
+					<property>controls/switches/gpws-cover</property>
 				</condition>
 				<command>property-cycle</command>
-				<property>controls/switches/gpws-ovrd</property>
+				<property>controls/switches/gpws</property>
 				<value>-1</value>
 				<value>0</value>
 				<value>1</value>
@@ -277,19 +277,19 @@
 			<repeatable>false</repeatable>
 			<binding>
 				<condition>
-					<not><property>controls/switches/gpws-ovrd-cover</property></not>
+					<not><property>controls/switches/gpws-cover</property></not>
 				</condition>
 				<command>property-cycle</command>
-				<property>controls/switches/gpws-ovrd</property>
+				<property>controls/switches/gpws</property>
 				<value>0</value>
 				<value>1</value>
 			</binding>
 			<binding>
 				<condition>
-					<property>controls/switches/gpws-ovrd-cover</property>
+					<property>controls/switches/gpws-cover</property>
 				</condition>
 				<command>property-cycle</command>
-				<property>controls/switches/gpws-ovrd</property>
+				<property>controls/switches/gpws</property>
 				<value>1</value>
 				<value>0</value>
 				<value>-1</value>

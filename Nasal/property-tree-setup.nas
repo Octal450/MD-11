@@ -47,8 +47,8 @@ var Controls = {
 	Switches: {
 		adgHandle: props.globals.getNode("/controls/switches/adg-handle"),
 		annunTest: props.globals.getNode("/controls/switches/annun-test"),
-		gpwsOvrd: props.globals.getNode("/controls/switches/gpws-ovrd"),
-		gpwsOvrdCover: props.globals.getNode("/controls/switches/gpws-ovrd-cover"),
+		gpws: props.globals.getNode("/controls/switches/gpws"),
+		gpwsCover: props.globals.getNode("/controls/switches/gpws-cover"),
 		minimumsBaro: props.globals.getNode("/controls/switches/minimums-baro"),
 		minimumsMode: props.globals.getNode("/controls/switches/minimums-mode"),
 		minimumsRa: props.globals.getNode("/controls/switches/minimums-ra"),
