@@ -6,6 +6,9 @@
 
 var Consumables = {
 	Fuel: {
+		Tank: {
+			levelLbs: [props.globals.getNode("/consumables/fuel/tank[0]/level-lbs"), props.globals.getNode("/consumables/fuel/tank[1]/level-lbs"), props.globals.getNode("/consumables/fuel/tank[2]/level-lbs"), props.globals.getNode("/consumables/fuel/tank[3]/level-lbs"), props.globals.getNode("/consumables/fuel/tank[4]/level-lbs"), props.globals.getNode("/consumables/fuel/tank[5]/level-lbs"), props.globals.getNode("/consumables/fuel/tank[6]/level-lbs"), props.globals.getNode("/consumables/fuel/tank[7]/level-lbs")],
+		},
 		totalFuelLbs: props.globals.getNode("/consumables/fuel/total-fuel-lbs"),
 	},
 };
