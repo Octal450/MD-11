@@ -6,6 +6,9 @@
 
 var Consumables = {
 	Fuel: {
+		Tank: {
+			levelLbs: [props.globals.getNode("/consumables/fuel/tank[0]/level-lbs"), props.globals.getNode("/consumables/fuel/tank[1]/level-lbs"), props.globals.getNode("/consumables/fuel/tank[2]/level-lbs"), props.globals.getNode("/consumables/fuel/tank[3]/level-lbs"), props.globals.getNode("/consumables/fuel/tank[4]/level-lbs"), props.globals.getNode("/consumables/fuel/tank[5]/level-lbs"), props.globals.getNode("/consumables/fuel/tank[6]/level-lbs"), props.globals.getNode("/consumables/fuel/tank[7]/level-lbs")],
+		},
 		totalFuelLbs: props.globals.getNode("/consumables/fuel/total-fuel-lbs"),
 	},
 };
@@ -254,6 +257,9 @@ var Orientation = {
 var Payload = {
 	Armament: {
 		msg: props.globals.getNode("/payload/armament/msg"),
+	},
+	Weight: {
+		weightLb: [props.globals.getNode("/payload/weight[0]/weight-lb"), props.globals.getNode("/payload/weight[1]/weight-lb"), props.globals.getNode("/payload/weight[2]/weight-lb"), props.globals.getNode("/payload/weight[3]/weight-lb"), props.globals.getNode("/payload/weight[4]/weight-lb"), props.globals.getNode("/payload/weight[5]/weight-lb")],
 	},
 };
 

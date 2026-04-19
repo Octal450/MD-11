@@ -37,7 +37,7 @@ var afsCanvas = {
 		me._root = me._canvas.createGroup();
 		
 		me._svg = me._root.createChild("group");
-		canvas.parsesvg(me._svg, "Aircraft/MD-11/gui/canvas/afs.svg", {"font-mapper": font_mapper});
+		canvas.parsesvg(me._svg, "Aircraft/MD-11/Nasal/Panel2D/afs.svg", {"font-mapper": font_mapper});
 		
 		me._svgKeys = me.getKeys();
 		foreach(me._key; me._svgKeys) {

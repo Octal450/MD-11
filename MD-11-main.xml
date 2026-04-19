@@ -2053,9 +2053,9 @@
 			<file>Aircraft/MD-11/Nasal/Autopush/route.nas</file>
 		</autopush_route>
 		<panel2d>
-			<file>Aircraft/MD-11/gui/canvas/common.nas</file>
-			<file>Aircraft/MD-11/gui/canvas/afs.nas</file>
-			<file>Aircraft/MD-11/gui/canvas/engine-start.nas</file>
+			<file>Aircraft/MD-11/Nasal/Panel2D/common.nas</file>
+			<file>Aircraft/MD-11/Nasal/Panel2D/afs.nas</file>
+			<file>Aircraft/MD-11/Nasal/Panel2D/engine-start.nas</file>
 		</panel2d>
 	</nasal>
 
