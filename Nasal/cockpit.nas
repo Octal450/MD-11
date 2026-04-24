@@ -76,7 +76,9 @@ var ApPanel = {
 		}
 	},
 	apDisc: func() {
-		afs.killApWarn();
+		if (pts.Systems.Caws.ApOff.hornSilenceEnabled.getBoolValue()) {
+			afs.killApWarn();
+		}
 		if (afs.Output.ap1.getBoolValue()) {
 			afs.ITAF.ap1Master(0);
 		}
