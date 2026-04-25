@@ -467,7 +467,13 @@
 			<default value="/systems/caws/apoff/trigger"/>
 			<test logic="OR" value="0">
 				/systems/electrical/outputs/mk-viii lt 24
-				/systems/caws/apoff/out eq 1
+				<test logic="OR">
+					<test logic="AND">
+						/systems/caws/apoff/actuator ge 0.7
+						/it-autoflight/sound/apoff eq 0
+					</test>
+					/systems/caws/apoff/out eq 1
+				</test>
 			</test>
 			<test logic="AND" value="1">
 				/systems/caws/apoff/out eq 0
@@ -481,6 +487,17 @@
 			<rate_limit sense="decr">100</rate_limit>
 			<output>/systems/caws/apoff/out</output>
 		</actuator>
+		
+		<switch name="/systems/caws/apoff/horn-silence-enabled">
+			<default value="0"/>
+			<test logic="AND" value="1">
+				<test logic="OR">
+					/systems/caws/apoff/actuator ge 0.7
+					/systems/caws/apoff/horn-silence-enabled eq 1
+				</test>
+				/it-autoflight/sound/apoff eq 1
+			</test>
+		</switch>
 		
 		<!-- Autopilot Horn Once -->
 		<switch name="/systems/caws/apoff/single-trigger">

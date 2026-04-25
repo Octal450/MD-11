@@ -76,7 +76,9 @@ var ApPanel = {
 		}
 	},
 	apDisc: func() {
-		afs.killApWarn();
+		if (pts.Systems.Caws.ApOff.hornSilenceEnabled.getBoolValue()) {
+			afs.killApWarn();
+		}
 		if (afs.Output.ap1.getBoolValue()) {
 			afs.ITAF.ap1Master(0);
 		}
@@ -239,6 +241,9 @@ var ApPanel = {
 				}
 			} else {
 				systems.FCC.inhibitAltCapTime.setValue(pts.Sim.Time.elapsedSec.getValue() + 2);
+				if (me.vertTemp == 0 or me.vertTemp == 1 or me.vertTemp == 5) { # It will be set to 1 by the next JSBSim loop anyways, this is just for sequencing so it happens before vert = 1;
+					afs.Input.inhibitAltCap.setBoolValue(1);
+				}
 				afs.Input.vert.setValue(1);
 			}
 		}

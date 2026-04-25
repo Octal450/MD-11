@@ -137,6 +137,7 @@
 			<default value="0"/>
 			<test logic="AND" value="1">
 				<test logic="OR">
+					/it-autoflight/output/vert eq 0
 					/it-autoflight/output/vert eq 1
 					/it-autoflight/output/vert eq 5
 				</test>

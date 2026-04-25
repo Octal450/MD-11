@@ -30,7 +30,7 @@ var engineStartCanvas = {
 		me._dialog = canvas.Window.new([307, 200], "dialog", nil, 0);
 		me._dialog.set("title", me._title);
 		me._dialog.onClose = func() { panel2d.engineStartDialog.close(); };
-		me._canvas  = me._dialog.createCanvas();
+		me._canvas = me._dialog.createCanvas();
 		me._root = me._canvas.createGroup();
 		
 		me._svg = me._root.createChild("group");

@@ -349,6 +349,11 @@ var Systems = {
 			singleCueFd: props.globals.getNode("/systems/acconfig/options/single-cue-fd"),
 		}
 	},
+	Caws: {
+		ApOff: {
+			hornSilenceEnabled: props.globals.getNode("/systems/caws/apoff/horn-silence-enabled"),
+		},
+	},
 	Core: {
 		blinkFast: props.globals.getNode("/systems/core/blink-fast"),
 		blinkMed: props.globals.getNode("/systems/core/blink-med"),
