@@ -16,6 +16,8 @@ var ENGINES = {
 	oilQtyInput: [props.globals.getNode("/engines/engine[0]/oil-qty-input"), props.globals.getNode("/engines/engine[1]/oil-qty-input"), props.globals.getNode("/engines/engine[2]/oil-qty-input")],
 	oilTemp: [props.globals.getNode("/engines/engine[0]/oil-temp"), props.globals.getNode("/engines/engine[1]/oil-temp"), props.globals.getNode("/engines/engine[2]/oil-temp")],
 	state: [props.globals.getNode("/engines/engine[0]/state"), props.globals.getNode("/engines/engine[1]/state"), props.globals.getNode("/engines/engine[2]/state")],
+	stateLast: [0, 0, 0],
+	stateTemp: [0, 0, 0],
 	twoEngineOn: props.globals.getNode("/systems/engines/two-engine-on"),
 	Controls: {
 		cutoff: [props.globals.getNode("/controls/engines/engine[0]/cutoff-switch"), props.globals.getNode("/controls/engines/engine[1]/cutoff-switch"), props.globals.getNode("/controls/engines/engine[2]/cutoff-switch")],
@@ -38,6 +40,37 @@ var ENGINES = {
 		me.oilQtyInput[2].setValue(math.round((rand() * 8) + 20 , 0.1)); # Random between 20 and 28
 	},
 };
+
+# Engine State Transition Events
+setlistener("/engines/engine[0]/state", func() {
+	ENGINES.stateTemp[0] = ENGINES.state[0].getValue();
+	
+	if (ENGINES.stateLast[0] == 3 and ENGINES.stateTemp[0] == 0) {
+		FADEC.Controls.altn1.setBoolValue(0);
+	}
+	
+	ENGINES.stateLast[0] = ENGINES.stateTemp[0];
+}, 0, 0);
+
+setlistener("/engines/engine[1]/state", func() {
+	ENGINES.stateTemp[1] = ENGINES.state[1].getValue();
+	
+	if (ENGINES.stateLast[1] == 3 and ENGINES.stateTemp[1] == 0) {
+		FADEC.Controls.altn2.setBoolValue(0);
+	}
+	
+	ENGINES.stateLast[1] = ENGINES.stateTemp[1];
+}, 0, 0);
+
+setlistener("/engines/engine[2]/state", func() {
+	ENGINES.stateTemp[2] = ENGINES.state[2].getValue();
+	
+	if (ENGINES.stateLast[2] == 3 and ENGINES.stateTemp[2] == 0) {
+		FADEC.Controls.altn3.setBoolValue(0);
+	}
+	
+	ENGINES.stateLast[2] = ENGINES.stateTemp[2];
+}, 0, 0);
 
 # Base off Engine 2
 var doRevThrust = func() {
