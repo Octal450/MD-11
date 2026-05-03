@@ -182,11 +182,11 @@ var CanvasFuel = {
 			me["XFeed1"].setRotation(90 * D2R);
 			
 			if (systems.FUEL.Lights.xFeed1Disag.getBoolValue()) {
-				me["XFeed1_disag"].show();
 				me["XFeed1"].setColor(0.9412, 0.7255, 0);
+				me["XFeed1_disag"].show();
 			} else {
-				me["XFeed1_disag"].hide();
 				me["XFeed1"].setColor(0, 1, 0);
+				me["XFeed1_disag"].hide();
 			}
 		} else {
 			me["XFeed1"].setRotation(0);

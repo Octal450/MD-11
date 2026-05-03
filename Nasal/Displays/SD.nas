@@ -2,6 +2,7 @@
 # Copyright (c) 2026 Josh Davidson (Octal450)
 
 var display = nil;
+var air = nil;
 var config = nil;
 var conseq = nil;
 var elec = nil;
@@ -15,6 +16,56 @@ var status = nil;
 var xx = nil;
 
 var Value = {
+	Air: {
+		apuPsi: 0,
+		bleed1: 0,
+		bleed1Psi: 0,
+		bleed2: 0,
+		bleed2Psi: 0,
+		bleed3: 0,
+		bleed3Psi: 0,
+		bleedApu: 0,
+		cabinTempF: 0,
+		cabinAftTarget: 0,
+		cabinFwdTarget: 0,
+		cabinMidTarget: 0,
+		cargoAftTarget: 0,
+		cargoFwdTarget: 0,
+		cockpitTarget: 0,
+		eng1Psi: 0,
+		eng2Psi: 0,
+		eng3Psi: 0,
+		freighter: 0,
+		Schematic: {
+			apu: 0,
+			apuLine: 0,
+			bleed1Conn: 0,
+			bleed1Line: 0,
+			bleed1Line2: 0,
+			bleed1Line3: 0,
+			bleed2Conn: 0,
+			bleed2Line: 0,
+			bleed2Line2: 0,
+			bleed3Conn: 0,
+			bleed3Line: 0,
+			bleed3Line2: 0,
+			cabinLine: 0,
+			eng1: 0,
+			eng2: 0,
+			eng3: 0,
+			isol12: 0,
+			isol12Line: 0,
+			isol13: 0,
+			isol13Line: 0,
+			packLine: 0,
+			pack1: 0,
+			pack1Line: 0,
+			pack2: 0,
+			pack2Line: 0,
+			pack3: 0,
+			pack3Line: 0,
+		},
+	},
 	Apu: {
 		n2: 0,
 	},
@@ -224,12 +275,14 @@ var CanvasBase = {
 		# Hide the pages by default
 		me.hidePages();
 		
+		air.setup();
 		elec.setup();
 		engDials.setup();
 		engTapes.setup();
 		fuel.setup();
 	},
 	hidePages: func() {
+		air.page.hide();
 		config.page.hide();
 		conseq.page.hide();
 		elec.page.hide();
@@ -244,7 +297,9 @@ var CanvasBase = {
 	},
 	update: func() {
 		if (systems.DUController.updateSd) {
-			if (systems.DUController.sdPage == "CONFIG") {
+			if (systems.DUController.sdPage == "AIR") {
+				air.update();
+			} else if (systems.DUController.sdPage == "CONFIG") {
 				config.update();
 			} else if (systems.DUController.sdPage == "CONSEQ") {
 				conseq.update();
@@ -369,6 +424,7 @@ var setup = func() {
 	
 	display.addPlacement({"node": "sd.screen"});
 	
+	var airGroup = display.createGroup();
 	var configGroup = display.createGroup();
 	var conseqGroup = display.createGroup();
 	var elecGroup = display.createGroup();
@@ -381,6 +437,7 @@ var setup = func() {
 	var statusGroup = display.createGroup();
 	var xxGroup = display.createGroup();
 	
+	air = CanvasAir.new(airGroup, "Aircraft/MD-11/Nasal/Displays/res/SD-AIR.svg");
 	config = CanvasConfig.new(configGroup, "Aircraft/MD-11/Nasal/Displays/res/SD-CONFIG.svg");
 	conseq = CanvasConseq.new(conseqGroup, "Aircraft/MD-11/Nasal/Displays/res/SD-CONSEQ.svg");
 	elec = CanvasElec.new(elecGroup, "Aircraft/MD-11/Nasal/Displays/res/SD-ELEC.svg");

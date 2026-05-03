@@ -7,6 +7,21 @@ var PNEUMATICS = {
 		pack2: props.globals.getNode("/systems/pneumatics/pack-2-flow"),
 		pack3: props.globals.getNode("/systems/pneumatics/pack-3-flow"),
 	},
+	Hvac: {
+		cabinAftTarget: props.globals.getNode("/systems/pneumatics/hvac/cabin-aft-target"),
+		cabinFwdTarget: props.globals.getNode("/systems/pneumatics/hvac/cabin-fwd-target"),
+		cabinMidTarget: props.globals.getNode("/systems/pneumatics/hvac/cabin-mid-target"),
+		cargoAftTarget: props.globals.getNode("/systems/pneumatics/hvac/cargo-aft-target"),
+		cargoFwdTarget: props.globals.getNode("/systems/pneumatics/hvac/cargo-fwd-target"),
+		cockpitTarget: props.globals.getNode("/systems/pneumatics/hvac/cockpit-target"),
+	},
+	PackCmd: {
+		pack1: props.globals.getNode("/systems/pneumatics/pack-1-cmd"),
+		pack2: props.globals.getNode("/systems/pneumatics/pack-2-cmd"),
+		pack3: props.globals.getNode("/systems/pneumatics/pack-3-cmd"),
+	},
+	paxLoad: props.globals.getNode("/systems/pneumatics/pax-load"),
+	paxLoadCalc: 0,
 	Psi: {
 		apu: props.globals.getNode("/systems/pneumatics/apu-psi"),
 		bleed1: props.globals.getNode("/systems/pneumatics/bleed-1-psi"),
@@ -17,26 +32,32 @@ var PNEUMATICS = {
 		eng3: props.globals.getNode("/systems/pneumatics/eng-3-psi"),
 		ground: props.globals.getNode("/systems/pneumatics/ground-psi"),
 	},
+	Valve: {
+		isol12: props.globals.getNode("/systems/pneumatics/isol/isol-1-2-valve"),
+		isol13: props.globals.getNode("/systems/pneumatics/isol/isol-1-3-valve"),
+	},
 	system: props.globals.getNode("/systems/pneumatics/system"),
 	Controls: {
-		aftTemp: props.globals.getNode("/controls/pneumatics/aft-temp"),
 		avionicsFan: props.globals.getNode("/controls/pneumatics/avionics-fan"),
 		bleedApu: props.globals.getNode("/controls/pneumatics/bleed-apu"),
 		bleed1: props.globals.getNode("/controls/pneumatics/bleed-1"),
 		bleed2: props.globals.getNode("/controls/pneumatics/bleed-2"),
 		bleed3: props.globals.getNode("/controls/pneumatics/bleed-3"),
+		cabinAftTemp: props.globals.getNode("/controls/pneumatics/cabin-aft-temp"),
+		cabinFwdTemp: props.globals.getNode("/controls/pneumatics/cabin-fwd-temp"),
+		cabinMidTemp: props.globals.getNode("/controls/pneumatics/cabin-mid-temp"),
 		cargoAftTemp: props.globals.getNode("/controls/pneumatics/cargo-aft-temp"),
 		cargoFwdTemp: props.globals.getNode("/controls/pneumatics/cargo-fwd-temp"),
 		cockpitTemp: props.globals.getNode("/controls/pneumatics/cockpit-temp"),
 		econ: props.globals.getNode("/controls/pneumatics/econ"),
-		fwdTemp: props.globals.getNode("/controls/pneumatics/fwd-temp"),
 		groundAir: props.globals.getNode("/controls/pneumatics/ground-air"), # No switch in cockpit
 		isol12: props.globals.getNode("/controls/pneumatics/isol-1-2"),
 		isol13: props.globals.getNode("/controls/pneumatics/isol-1-3"),
-		midTemp: props.globals.getNode("/controls/pneumatics/mid-temp"),
 		pack1: props.globals.getNode("/controls/pneumatics/pack-1"),
 		pack2: props.globals.getNode("/controls/pneumatics/pack-2"),
 		pack3: props.globals.getNode("/controls/pneumatics/pack-3"),
+		paxLoadHundreds: props.globals.getNode("/controls/pneumatics/pax-load-hundreds"),
+		paxLoadTens: props.globals.getNode("/controls/pneumatics/pax-load-tens"),
 		system: props.globals.getNode("/controls/pneumatics/system"),
 		trimAir: props.globals.getNode("/controls/pneumatics/trim-air"),
 	},
@@ -51,26 +72,32 @@ var PNEUMATICS = {
 		system: props.globals.getNode("/systems/failures/pneumatics/system"),
 	},
 	Lights: {
+		apuDisag: props.globals.getNode("/systems/pneumatics/lights/apu-disag"),
+		isol12Disag: props.globals.getNode("/systems/pneumatics/lights/isol-1-2-disag"),
+		isol13Disag: props.globals.getNode("/systems/pneumatics/lights/isol-1-3-disag"),
 		manualFlash: props.globals.initNode("/systems/pneumatics/lights/manual-flash", 0, "INT"),
 		manualFlashTemp: 0,
+		pack1Flow: props.globals.getNode("/systems/pneumatics/lights/pack-1-flow"),
+		pack2Flow: props.globals.getNode("/systems/pneumatics/lights/pack-2-flow"),
+		pack3Flow: props.globals.getNode("/systems/pneumatics/lights/pack-3-flow"),
 	},
 	init: func() {
 		me.resetFailures();
-		me.Controls.aftTemp.setValue(0.45);
 		me.Controls.avionicsFan.setBoolValue(1);
 		me.Controls.bleedApu.setBoolValue(0);
 		me.Controls.bleed1.setBoolValue(1);
 		me.Controls.bleed2.setBoolValue(1);
 		me.Controls.bleed3.setBoolValue(1);
+		me.Controls.cabinAftTemp.setValue(0.45);
+		me.Controls.cabinFwdTemp.setValue(0.45);
+		me.Controls.cabinMidTemp.setValue(0.45);
 		me.Controls.cargoFwdTemp.setValue(0.5);
 		me.Controls.cargoAftTemp.setValue(0.4);
 		me.Controls.cockpitTemp.setValue(0.45);
 		me.Controls.econ.setBoolValue(1);
-		me.Controls.fwdTemp.setValue(0.45);
 		me.Controls.groundAir.setBoolValue(0);
 		me.Controls.isol12.setBoolValue(0);
 		me.Controls.isol13.setBoolValue(0);
-		me.Controls.midTemp.setValue(0.45);
 		me.Controls.pack1.setBoolValue(1);
 		me.Controls.pack2.setBoolValue(1);
 		me.Controls.pack3.setBoolValue(1);
@@ -78,6 +105,10 @@ var PNEUMATICS = {
 		me.Controls.trimAir.setBoolValue(1);
 		manualPneuLightt.stop();
 		me.Lights.manualFlash.setValue(0);
+		
+		var paxLoadCalc = math.round((pts.Payload.Weight.weightLb[0].getValue() + pts.Payload.Weight.weightLb[1].getValue() + pts.Payload.Weight.weightLb[2].getValue()) / 150, 10);
+		me.Controls.paxLoadHundreds.setValue(math.floor(paxLoadCalc / 100));
+		me.Controls.paxLoadTens.setValue(math.mod(math.floor(paxLoadCalc / 10), 10));
 	},
 	resetFailures: func() {
 		me.Failures.bleedApu.setBoolValue(0);

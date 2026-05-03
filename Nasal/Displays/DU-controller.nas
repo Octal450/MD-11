@@ -97,7 +97,21 @@ var DUController = {
 		me.sdPage = page;
 	},
 	showSdPage: func(p) {
-		if (p == "CONFIG") {
+		if (p == "AIR") {
+			canvas_sd.air.update();
+			canvas_sd.air.page.show();
+			canvas_sd.conseq.page.hide();
+			canvas_sd.elec.page.hide();
+			canvas_sd.engDials.page.hide();
+			canvas_sd.engTapes.page.hide();
+			canvas_sd.fuel.page.hide();
+			canvas_sd.hyd.page.hide();
+			canvas_sd.misc.page.hide();
+			canvas_sd.noNd.page.hide();
+			canvas_sd.status.page.hide();
+			canvas_sd.config.page.hide();
+		} else if (p == "CONFIG") {
+			canvas_sd.air.page.hide();
 			canvas_sd.conseq.page.hide();
 			canvas_sd.elec.page.hide();
 			canvas_sd.engDials.page.hide();
@@ -110,6 +124,7 @@ var DUController = {
 			canvas_sd.config.update();
 			canvas_sd.config.page.show();
 		} else if (p == "CONSEQ") {
+			canvas_sd.air.page.hide();
 			canvas_sd.config.page.hide();
 			canvas_sd.elec.page.hide();
 			canvas_sd.engDials.page.hide();
@@ -122,6 +137,7 @@ var DUController = {
 			canvas_sd.conseq.update();
 			canvas_sd.conseq.page.show();
 		} else if (p == "ELEC") {
+			canvas_sd.air.page.hide();
 			canvas_sd.config.page.hide();
 			canvas_sd.conseq.page.hide();
 			canvas_sd.engDials.page.hide();
@@ -135,6 +151,7 @@ var DUController = {
 			canvas_sd.elec.page.show();
 		} else if (p == "ENG") {
 			if (me.eadType == "GE-Tapes" or me.eadType == "PW-Tapes") { # Tape style EAD means tape style SD
+				canvas_sd.air.page.hide();
 				canvas_sd.config.page.hide();
 				canvas_sd.conseq.page.hide();
 				canvas_sd.elec.page.hide();
@@ -147,6 +164,7 @@ var DUController = {
 				canvas_sd.engTapes.update();
 				canvas_sd.engTapes.page.show();
 			} else {
+				canvas_sd.air.page.hide();
 				canvas_sd.config.page.hide();
 				canvas_sd.conseq.page.hide();
 				canvas_sd.elec.page.hide();
@@ -160,6 +178,7 @@ var DUController = {
 				canvas_sd.engDials.page.show();
 			}
 		} else if (p == "FUEL") {
+			canvas_sd.air.page.hide();
 			canvas_sd.config.page.hide();
 			canvas_sd.conseq.page.hide();
 			canvas_sd.elec.page.hide();
@@ -172,6 +191,7 @@ var DUController = {
 			canvas_sd.fuel.update();
 			canvas_sd.fuel.page.show();
 		} else if (p == "HYD") {
+			canvas_sd.air.page.hide();
 			canvas_sd.config.page.hide();
 			canvas_sd.conseq.page.hide();
 			canvas_sd.elec.page.hide();
@@ -184,6 +204,7 @@ var DUController = {
 			canvas_sd.hyd.update();
 			canvas_sd.hyd.page.show();
 		} else if (p == "MISC") {
+			canvas_sd.air.page.hide();
 			canvas_sd.config.page.hide();
 			canvas_sd.conseq.page.hide();
 			canvas_sd.elec.page.hide();
@@ -196,6 +217,7 @@ var DUController = {
 			canvas_sd.misc.update();
 			canvas_sd.misc.page.show();
 		} else if (p == "ND") {
+			canvas_sd.air.page.hide();
 			canvas_sd.config.page.hide();
 			canvas_sd.conseq.page.hide();
 			canvas_sd.elec.page.hide();
@@ -207,6 +229,7 @@ var DUController = {
 			canvas_sd.status.page.hide();
 			canvas_sd.noNd.page.show();
 		} else if (p == "STATUS") {
+			canvas_sd.air.page.hide();
 			canvas_sd.config.page.hide();
 			canvas_sd.conseq.page.hide();
 			canvas_sd.elec.page.hide();

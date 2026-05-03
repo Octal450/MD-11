@@ -325,8 +325,18 @@
 		</lag_filter>
 		
 		<!-- Overhead -->
-		<lag_filter name="/controls/cockpit/overhead/aft-temp">
-			<input>/controls/pneumatics/aft-temp</input>
+		<lag_filter name="/controls/cockpit/overhead/cabin-aft-temp">
+			<input>/controls/pneumatics/cabin-aft-temp</input>
+			<c1>20</c1>
+		</lag_filter>
+		
+		<lag_filter name="/controls/cockpit/overhead/cabin-fwd-temp">
+			<input>/controls/pneumatics/cabin-fwd-temp</input>
+			<c1>20</c1>
+		</lag_filter>
+		
+		<lag_filter name="/controls/cockpit/overhead/cabin-mid-temp">
+			<input>/controls/pneumatics/cabin-mid-temp</input>
 			<c1>20</c1>
 		</lag_filter>
 		
@@ -357,11 +367,6 @@
 		
 		<lag_filter name="/controls/cockpit/overhead/emer-pwr">
 			<input>/controls/electrical/emer-pwr</input>
-			<c1>20</c1>
-		</lag_filter>
-		
-		<lag_filter name="/controls/cockpit/overhead/fwd-temp">
-			<input>/controls/pneumatics/fwd-temp</input>
 			<c1>20</c1>
 		</lag_filter>
 		
@@ -420,11 +425,6 @@
 			<c1>20</c1>
 		</lag_filter>
 		
-		<lag_filter name="/controls/cockpit/overhead/mid-temp">
-			<input>/controls/pneumatics/mid-temp</input>
-			<c1>20</c1>
-		</lag_filter>
-		
 		<lag_filter name="/controls/cockpit/overhead/no-smoking-sign">
 			<input>/controls/switches/no-smoking-sign</input>
 			<c1>20</c1>
@@ -437,6 +437,28 @@
 		
 		<lag_filter name="/controls/cockpit/overhead/overhead-integ">
 			<input>/controls/lighting/overhead-integ</input>
+			<c1>20</c1>
+		</lag_filter>
+		
+		<linear_actuator name="/controls/cockpit/overhead/pax-load-hundreds-linear">
+			<input>/controls/pneumatics/pax-load-hundreds</input>
+			<module>10</module>
+			<rate>0.5</rate>
+		</linear_actuator>
+		
+		<lag_filter name="/controls/cockpit/overhead/pax-load-hundreds">
+			<input>/controls/cockpit/overhead/pax-load-hundreds-linear</input>
+			<c1>20</c1>
+		</lag_filter>
+		
+		<linear_actuator name="/controls/cockpit/overhead/pax-load-tens-linear">
+			<input>/controls/pneumatics/pax-load-tens</input>
+			<module>10</module>
+			<rate>0.5</rate>
+		</linear_actuator>
+		
+		<lag_filter name="/controls/cockpit/overhead/pax-load-tens">
+			<input>/controls/cockpit/overhead/pax-load-tens-linear</input>
 			<c1>20</c1>
 		</lag_filter>
 		

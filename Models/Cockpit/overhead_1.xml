@@ -13,6 +13,28 @@
 	</effect>
 	
 	<animation>
+		<type>select</type>
+		<object-name>AirPanel.freighter</object-name>
+		<object-name>CabinAir</object-name>
+		<object-name>CabinAirCover</object-name>
+		<object-name>CabinAirHinge</object-name>
+		<object-name>overhead.freighter.text</object-name>
+		<condition>
+			<property>options/freighter</property>
+		</condition>
+	</animation>
+	<animation>
+		<type>select</type>
+		<object-name>AirPanel.pax</object-name>
+		<object-name>AftTemp</object-name>
+		<object-name>AftTemp.light</object-name>
+		<object-name>overhead.pax.text</object-name>
+		<condition>
+			<not><property>options/freighter</property></not>
+		</condition>
+	</animation>
+	
+	<animation>
 		<type>material</type>
 		<object-name>AftTemp.light</object-name>
 		<object-name>CargoAftTemp.light</object-name>
@@ -32,6 +54,8 @@
 		<object-name>maininteg.indicator</object-name>
 		<object-name>MidTemp.light</object-name>
 		<object-name>overhead.text</object-name>
+		<object-name>overhead.freighter.text</object-name>
+		<object-name>overhead.pax.text</object-name>
 		<object-name>ovhdflood.indicator</object-name>
 		<object-name>ovhdinteg.indicator</object-name>
 		<object-name>Plane.022</object-name>
@@ -3954,6 +3978,65 @@
 	</animation>
 	
 	<!-- PNEUMATICS -->
+	<!-- Pax Load Selector -->
+	<animation>
+		<type>knob</type>
+		<object-name>PaxLoadHundreds</object-name>
+		<property>controls/cockpit/overhead/pax-load-hundreds</property>
+		<drag-direction>vertical</drag-direction>
+		<drag-scale-px>15</drag-scale-px>
+		<factor>36</factor>
+		<center>
+			<x-m>-21.8138</x-m>
+			<y-m>0</y-m>
+			<z-m>-17.9005</z-m>
+		</center>
+		<axis>
+			<x>0</x>
+			<y>1</y>
+			<z>0</z>
+		</axis>
+		<action>
+			<binding>
+				<command>property-adjust</command>
+				<property>controls/pneumatics/pax-load-hundreds</property>
+				<factor>-1</factor>
+				<min>0</min>
+				<max>10</max>
+				<wrap>true</wrap>
+			</binding>
+		</action>
+	</animation>
+	
+	<animation>
+		<type>knob</type>
+		<object-name>PaxLoadTens</object-name>
+		<property>controls/cockpit/overhead/pax-load-tens</property>
+		<drag-direction>vertical</drag-direction>
+		<drag-scale-px>15</drag-scale-px>
+		<factor>36</factor>
+		<center>
+			<x-m>-21.8138</x-m>
+			<y-m>0</y-m>
+			<z-m>-17.9005</z-m>
+		</center>
+		<axis>
+			<x>0</x>
+			<y>1</y>
+			<z>0</z>
+		</axis>
+		<action>
+			<binding>
+				<command>property-adjust</command>
+				<property>controls/pneumatics/pax-load-tens</property>
+				<factor>-1</factor>
+				<min>0</min>
+				<max>10</max>
+				<wrap>true</wrap>
+			</binding>
+		</action>
+	</animation>
+	
 	<!-- Pneumatic System Control Button -->
 	<animation>
 		<type>pick</type>
@@ -4070,7 +4153,7 @@
 		<type>knob</type>
 		<object-name>FwdTemp</object-name>
 		<object-name>FwdTemp.light</object-name>
-		<property>controls/cockpit/overhead/fwd-temp</property>
+		<property>controls/cockpit/overhead/cabin-fwd-temp</property>
 		<interpolation>
 			<entry><ind>0.00</ind><dep> 180</dep></entry>
 			<entry><ind>0.05</ind><dep> 113</dep></entry>
@@ -4089,7 +4172,7 @@
 		<action>
 			<binding>
 				<command>property-adjust</command>
-				<property>controls/pneumatics/fwd-temp</property>
+				<property>controls/pneumatics/cabin-fwd-temp</property>
 				<factor>0.05</factor>
 				<min>0</min>
 				<max>0.85</max>
@@ -4101,7 +4184,7 @@
 		<type>knob</type>
 		<object-name>MidTemp</object-name>
 		<object-name>MidTemp.light</object-name>
-		<property>controls/cockpit/overhead/mid-temp</property>
+		<property>controls/cockpit/overhead/cabin-mid-temp</property>
 		<interpolation>
 			<entry><ind>0.00</ind><dep> 180</dep></entry>
 			<entry><ind>0.05</ind><dep> 113</dep></entry>
@@ -4120,7 +4203,7 @@
 		<action>
 			<binding>
 				<command>property-adjust</command>
-				<property>controls/pneumatics/mid-temp</property>
+				<property>controls/pneumatics/cabin-mid-temp</property>
 				<factor>0.05</factor>
 				<min>0</min>
 				<max>0.85</max>
@@ -4132,7 +4215,7 @@
 		<type>knob</type>
 		<object-name>AftTemp</object-name>
 		<object-name>AftTemp.light</object-name>
-		<property>controls/cockpit/overhead/aft-temp</property>
+		<property>controls/cockpit/overhead/cabin-aft-temp</property>
 		<interpolation>
 			<entry><ind>0.00</ind><dep> 180</dep></entry>
 			<entry><ind>0.05</ind><dep> 113</dep></entry>
@@ -4151,7 +4234,7 @@
 		<action>
 			<binding>
 				<command>property-adjust</command>
-				<property>controls/pneumatics/aft-temp</property>
+				<property>controls/pneumatics/cabin-aft-temp</property>
 				<factor>0.05</factor>
 				<min>0</min>
 				<max>0.85</max>
@@ -4752,6 +4835,72 @@
 	
 	<animation>
 		<type>pick</type>
+		<object-name>Bleed-1B</object-name>
+		<object-name>Bleed-1B.manf</object-name>
+		<object-name>Bleed-1B.temphi</object-name>
+		<action>
+			<button>0</button>
+			<repeatable>false</repeatable>
+			<binding>
+				<condition>
+					<and>
+						<not><property>systems/pneumatics/system</property></not>
+						<greater-than-equals>
+							<property>systems/electrical/bus/dc-bat</property>
+							<value>24</value>
+						</greater-than-equals>
+					</and>
+				</condition>
+				<command>property-toggle</command>
+				<property>controls/pneumatics/bleed-1</property>
+			</binding>
+			<binding>
+				<condition>
+					<and>
+						<property>systems/pneumatics/system</property>
+						<greater-than-equals>
+							<property>systems/electrical/bus/dc-bat</property>
+							<value>24</value>
+						</greater-than-equals>
+					</and>
+				</condition>
+				<command>nasal</command>
+				<script>systems.manualPneuLightt.start();</script>
+			</binding>
+			<binding>
+				<command>property-assign</command>
+				<property>controls/cockpit/overhead/bleed-1b</property>
+				<value>1</value>
+			</binding>
+			<binding>
+				<command>nasal</command>
+				<script>core.Sound.btn2();</script>
+			</binding>
+			<mod-up>
+				<binding>
+					<command>property-assign</command>
+					<property>controls/cockpit/overhead/bleed-1b</property>
+					<value>0</value>
+				</binding>
+			</mod-up>
+		</action>
+	</animation>
+	<animation>
+		<type>translate</type>
+		<object-name>Bleed-1B</object-name>
+		<object-name>Bleed-1B.manf</object-name>
+		<object-name>Bleed-1B.temphi</object-name>
+		<property>controls/cockpit/overhead/bleed-1b</property>
+		<factor>-0.001</factor>
+		<axis>
+			<x>1</x>
+			<y>0</y>
+			<z>0</z>
+		</axis>
+	</animation>
+	
+	<animation>
+		<type>pick</type>
 		<object-name>Bleed-2</object-name>
 		<object-name>Bleed-2.off</object-name>
 		<object-name>Bleed-2.press</object-name>
@@ -4846,6 +4995,72 @@
 				</equals>
 			</or>
 		</condition>
+	</animation>
+	
+	<animation>
+		<type>pick</type>
+		<object-name>Bleed-2B</object-name>
+		<object-name>Bleed-2B.manf</object-name>
+		<object-name>Bleed-2B.temphi</object-name>
+		<action>
+			<button>0</button>
+			<repeatable>false</repeatable>
+			<binding>
+				<condition>
+					<and>
+						<not><property>systems/pneumatics/system</property></not>
+						<greater-than-equals>
+							<property>systems/electrical/bus/dc-bat</property>
+							<value>24</value>
+						</greater-than-equals>
+					</and>
+				</condition>
+				<command>property-toggle</command>
+				<property>controls/pneumatics/bleed-2</property>
+			</binding>
+			<binding>
+				<condition>
+					<and>
+						<property>systems/pneumatics/system</property>
+						<greater-than-equals>
+							<property>systems/electrical/bus/dc-bat</property>
+							<value>24</value>
+						</greater-than-equals>
+					</and>
+				</condition>
+				<command>nasal</command>
+				<script>systems.manualPneuLightt.start();</script>
+			</binding>
+			<binding>
+				<command>property-assign</command>
+				<property>controls/cockpit/overhead/bleed-2b</property>
+				<value>1</value>
+			</binding>
+			<binding>
+				<command>nasal</command>
+				<script>core.Sound.btn2();</script>
+			</binding>
+			<mod-up>
+				<binding>
+					<command>property-assign</command>
+					<property>controls/cockpit/overhead/bleed-2b</property>
+					<value>0</value>
+				</binding>
+			</mod-up>
+		</action>
+	</animation>
+	<animation>
+		<type>translate</type>
+		<object-name>Bleed-2B</object-name>
+		<object-name>Bleed-2B.manf</object-name>
+		<object-name>Bleed-2B.temphi</object-name>
+		<property>controls/cockpit/overhead/bleed-2b</property>
+		<factor>-0.001</factor>
+		<axis>
+			<x>1</x>
+			<y>0</y>
+			<z>0</z>
+		</axis>
 	</animation>
 	
 	<animation>
@@ -5008,6 +5223,72 @@
 				</equals>
 			</or>
 		</condition>
+	</animation>
+	
+	<animation>
+		<type>pick</type>
+		<object-name>Bleed-3B</object-name>
+		<object-name>Bleed-3B.manf</object-name>
+		<object-name>Bleed-3B.temphi</object-name>
+		<action>
+			<button>0</button>
+			<repeatable>false</repeatable>
+			<binding>
+				<condition>
+					<and>
+						<not><property>systems/pneumatics/system</property></not>
+						<greater-than-equals>
+							<property>systems/electrical/bus/dc-bat</property>
+							<value>24</value>
+						</greater-than-equals>
+					</and>
+				</condition>
+				<command>property-toggle</command>
+				<property>controls/pneumatics/bleed-3</property>
+			</binding>
+			<binding>
+				<condition>
+					<and>
+						<property>systems/pneumatics/system</property>
+						<greater-than-equals>
+							<property>systems/electrical/bus/dc-bat</property>
+							<value>24</value>
+						</greater-than-equals>
+					</and>
+				</condition>
+				<command>nasal</command>
+				<script>systems.manualPneuLightt.start();</script>
+			</binding>
+			<binding>
+				<command>property-assign</command>
+				<property>controls/cockpit/overhead/bleed-3b</property>
+				<value>1</value>
+			</binding>
+			<binding>
+				<command>nasal</command>
+				<script>core.Sound.btn2();</script>
+			</binding>
+			<mod-up>
+				<binding>
+					<command>property-assign</command>
+					<property>controls/cockpit/overhead/bleed-3b</property>
+					<value>0</value>
+				</binding>
+			</mod-up>
+		</action>
+	</animation>
+	<animation>
+		<type>translate</type>
+		<object-name>Bleed-3B</object-name>
+		<object-name>Bleed-3B.manf</object-name>
+		<object-name>Bleed-3B.temphi</object-name>
+		<property>controls/cockpit/overhead/bleed-3b</property>
+		<factor>-0.001</factor>
+		<axis>
+			<x>1</x>
+			<y>0</y>
+			<z>0</z>
+		</axis>
 	</animation>
 	
 	<animation>

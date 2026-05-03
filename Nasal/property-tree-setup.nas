@@ -244,6 +244,7 @@ var Instrumentation = {
 
 var Options = {
 	eng: props.globals.getNode("/options/eng"),
+	freighter: props.globals.getNode("/options/freighter"),
 	type: props.globals.getNode("/options/type"),
 };
 
@@ -331,6 +332,7 @@ var Sim = {
 var Systems = {
 	Acconfig: {
 		Options: {
+			cabinTempF: props.globals.getNode("/systems/acconfig/options/cabin-temp-f"),
 			deflectedAileron: props.globals.getNode("/systems/acconfig/options/deflected-aileron"),
 			Du: {
 				eadFps: props.globals.getNode("/systems/acconfig/options/du/ead-fps"),

@@ -201,6 +201,45 @@
 	
 	<animation>
 		<type>pick</type>
+		<object-name>air.btn</object-name>
+		<action>
+			<button>0</button>
+			<binding>
+				<command>nasal</command>
+				<script>
+					systems.DUController.setSdPage("AIR");
+					core.Sound.btn2();
+				</script>
+			</binding>
+			<binding>
+				<command>property-assign</command>
+				<property>controls/cockpit/screensel/air</property>
+				<value>1</value>
+			</binding>
+			<mod-up>
+				<binding>
+					<command>property-assign</command>
+					<property>controls/cockpit/screensel/air</property>
+					<value>0</value>
+				</binding>
+			</mod-up>
+		</action>
+	</animation>
+	<animation>
+		<type>translate</type>
+		<object-name>air.btn</object-name>
+		<object-name>air.label</object-name>
+		<property>controls/cockpit/screensel/air</property>
+		<factor>-0.001</factor>
+		<axis>
+			<x>0</x>
+			<y>0</y>
+			<z>1</z>
+		</axis>
+	</animation>
+	
+	<animation>
+		<type>pick</type>
 		<object-name>config.btn</object-name>
 		<action>
 			<button>0</button>
