@@ -10,12 +10,13 @@ var CanvasAir = {
 	},
 	getKeys: func() {
 		return ["AI_tail_group", "AI_wing_L_group", "AI_wing_R_group", "Airplane_pax_divide", "Alert_error", "APU", "APU_disag", "APU_group", "APU_line", "Bleed1", "Bleed1_conn", "Bleed1_conn2", "Bleed1_line", "Bleed1_line2", "Bleed1_line3", "Bleed1_psi",
-		"Bleed1_psi_error", "Bleed1_psi_box", "Bleed1_temp_error", "Bleed2", "Bleed2_conn", "Bleed2_line", "Bleed2_line2", "Bleed2_psi", "Bleed2_psi_error", "Bleed2_psi_box", "Bleed2_temp_error", "Bleed3", "Bleed3_conn", "Bleed3_line", "Bleed3_line2",
-		"Bleed3_psi", "Bleed3_psi_error", "Bleed3_psi_box", "Bleed3_temp_error", "Cabin_line", "CabinAft_dtemp", "CabinAft_duct", "CabinAft_dtemp_error", "CabinAft_line", "CabinAft_set", "CabinAft_set_error", "CabinAft_temp", "CabinAft_temp_error", "CabinAlt",
-		"CabinAlt_box", "CabinAlt_box", "CabinAlt_error", "CabinDP", "CabinDP_error", "CabinFwd_dtemp_error", "CabinFwd_duct", "CabinFwd_set", "CabinFwd_set_error", "CabinFwd_temp_error", "CabinLand", "CabinLand_error", "CabinMid_dtemp_error", "CabinMid_duct",
-		"CabinMid_set", "CabinMid_set_error", "CabinMid_temp_error", "CabinRate", "CabinRate_box", "CabinRate_error", "CabinRateDn", "CabinRateUp", "CargoAft_set", "CargoAft_set_error", "CargoAft_temp_error", "CargoFwd_set", "CargoFwd_set", "CargoFwd_set_error",
-		"CargoFwd_temp_error", "CargoMid_temp_error", "Cockpit_dtemp_error", "Cockpit_duct", "Cockpit_set", "Cockpit_set_error", "Cockpit_temp_error", "Isol12", "Isol12_disag", "Isol12_line", "Isol13", "Isol13_disag", "Isol13_line", "Pack_line", "Pack1_circle",
-		"Pack1_imp", "Pack1_line", "Pack1_temp_error", "Pack2_circle", "Pack2_imp", "Pack2_line", "Pack2_temp_error", "Pack3_circle", "Pack3_imp", "Pack3_line", "Pack3_temp_error", "Pax", "PaxGroup", "ZoneUnit"];
+		"Bleed1_psi_error", "Bleed1_psi_box", "Bleed1_temp", "Bleed1_temp_error", "Bleed2", "Bleed2_conn", "Bleed2_line", "Bleed2_line2", "Bleed2_psi", "Bleed2_psi_error", "Bleed2_psi_box", "Bleed2_temp", "Bleed2_temp_error", "Bleed3", "Bleed3_conn",
+		"Bleed3_line", "Bleed3_line2", "Bleed3_psi", "Bleed3_psi_error", "Bleed3_psi_box", "Bleed3_temp", "Bleed3_temp_error", "Cabin_line", "CabinAft_dtemp", "CabinAft_duct", "CabinAft_dtemp_error", "CabinAft_line", "CabinAft_set", "CabinAft_set_error",
+		"CabinAft_temp", "CabinAft_temp_error", "CabinAlt", "CabinAlt_box", "CabinAlt_box", "CabinAlt_error", "CabinDP", "CabinDP_error", "CabinFwd_dtemp_error", "CabinFwd_duct", "CabinFwd_set", "CabinFwd_set_error", "CabinFwd_temp_error", "CabinLand",
+		"CabinLand_error", "CabinMid_dtemp_error", "CabinMid_duct", "CabinMid_set", "CabinMid_set_error", "CabinMid_temp_error", "CabinRate", "CabinRate_box", "CabinRate_error", "CabinRateDn", "CabinRateUp", "CargoAft_set", "CargoAft_set_error",
+		"CargoAft_temp_error", "CargoFwd_set", "CargoFwd_set", "CargoFwd_set_error", "CargoFwd_temp_error", "CargoMid_temp_error", "Cockpit_dtemp_error", "Cockpit_duct", "Cockpit_set", "Cockpit_set_error", "Cockpit_temp_error", "Isol12", "Isol12_disag",
+		"Isol12_line", "Isol13", "Isol13_disag", "Isol13_line", "Pack_line", "Pack1_circle", "Pack1_imp", "Pack1_line", "Pack1_temp", "Pack1_temp_error", "Pack2_circle", "Pack2_imp", "Pack2_line", "Pack2_temp", "Pack2_temp_error", "Pack3_circle", "Pack3_imp",
+		"Pack3_line", "Pack3_temp", "Pack3_temp_error", "Pax", "PaxGroup", "ZoneUnit"];
 	},
 	setup: func() {
 		Value.Air.freighter = pts.Options.freighter.getBoolValue();
@@ -33,12 +34,18 @@ var CanvasAir = {
 		me["AI_tail_group"].hide();
 		me["AI_wing_L_group"].hide();
 		me["AI_wing_R_group"].hide();
+		me["Bleed1_temp"].setText("0gC");
+		me["Bleed2_temp"].setText("0gC");
+		me["Bleed3_temp"].setText("0gC");
 		me["CabinAlt"].setText("0");
 		me["CabinAlt_box"].hide();
 		me["CabinDP"].setText("0");
 		me["CabinRate"].setText("0");
 		me["CabinRate_box"].hide();
 		me["CabinRateDn"].hide();
+		me["Pack1_temp"].setText("0gC");
+		me["Pack2_temp"].setText("0gC");
+		me["Pack3_temp"].setText("0gC");
 	},
 	update: func() {
 		Value.Misc.wow = pts.Position.wow.getBoolValue();
