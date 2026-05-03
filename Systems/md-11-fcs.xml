@@ -1828,6 +1828,25 @@
 				/services/chocks/enable eq 1
 			</test>
 		</switch>
+		
+		<!-- Parking Brake Light -->
+		<actuator name="/systems/fcs/brakes/parking-actuator">
+			<input>/controls/gear/brake-parking</input>
+			<rate_limit>/systems/fcs/brakes/rate</rate_limit>
+		</actuator>
+		
+		<switch name="/systems/gear/lights/brake-parking">
+			<default value="0"/>
+			<test logic="AND" value="1">
+				/systems/fcs/brakes/parking-actuator ge 0.5
+				<test logic="OR">
+					/systems/fcs/brakes/left-actuator ge 0.5
+					/systems/fcs/brakes/right-actuator ge 0.5
+					/systems/fcs/brakes/center-actuator ge 0.5
+				</test>
+				/systems/electrical/bus/dc-bat ge 24
+			</test>
+		</switch>
 	
 	</channel>
 

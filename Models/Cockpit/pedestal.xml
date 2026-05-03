@@ -42,6 +42,17 @@
 		</emission>
 	</animation>
 	
+	<animation>
+		<type>material</type>
+		<object-name>brake.light</object-name>
+		<emission>
+			<red>1.0</red>
+			<green>1.0</green>
+			<blue>0.0</blue>
+			<factor-prop>systems/gear/lights/brake-parking</factor-prop>
+		</emission>
+	</animation>
+	
 	<!-- No button lights without power! -->
 	<animation>
 		<type>select</type>
