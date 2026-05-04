@@ -672,7 +672,7 @@ var Init2 = {
 					unit[me.id].setMessage("FORMAT ERROR");
 				}
 			} else if (me.scratchpadState == 1) {
-				unit[me.id].scratchpadSet(sprintf("%4.1f", math.round(pts.Fdm.JSBSim.Inertia.cgPercentMac.getValue(), 0.1)));
+				unit[me.id].scratchpadSet(sprintf("%3.1f", math.round(pts.Fdm.JSBSim.Inertia.cgPercentMac.getValue(), 0.1)));
 			} else {
 				unit[me.id].setMessage("NOT ALLOWED");
 			}
@@ -689,7 +689,7 @@ var Init2 = {
 					unit[me.id].setMessage("FORMAT ERROR");
 				}
 			} else if (me.scratchpadState == 1) {
-				unit[me.id].scratchpadSet(sprintf("%4.1f", math.round(pts.Fdm.JSBSim.Inertia.zfwcgPercentMac.getValue(), 0.1)));
+				unit[me.id].scratchpadSet(sprintf("%3.1f", math.round(pts.Fdm.JSBSim.Inertia.zfwcgPercentMac.getValue(), 0.1)));
 			} else {
 				unit[me.id].setMessage("NOT ALLOWED");
 			}

@@ -88,12 +88,21 @@ var CanvasEngBase = {
 		me["Fuel_thousands"].setText(sprintf("%d", math.floor(Value.Misc.fuel / 1000)));
 		me["Fuel"].setText(right(sprintf("%03d", Value.Misc.fuel), 3));
 		
-		Value.Misc.cg = fms.Internal.cgPercentMac.getValue();
+		Value.Misc.cg = math.round(fms.Internal.cgPercentMac.getValue(), 0.1);
 		if (Value.Misc.cg > 0) {
-			me["CG"].setText(sprintf("%4.1f", math.round(Value.Misc.cg, 0.1)));
+			me["CG"].setText(sprintf("%4.1f", Value.Misc.cg));
 			me["CG"].show();
+			
+			if (Value.Misc.cg < math.round(fms.Internal.cgFwdLimit.getValue()) or Value.Misc.cg > math.round(fms.Internal.cgAftLimit.getValue())) {
+				me["CG"].setColor(0.9412, 0.7255, 0);
+				me["CG_box"].show();
+			} else {
+				me["CG"].setColor(1, 1, 1);
+				me["CG_box"].hide();
+			}
 		} else {
 			me["CG"].hide();
+			me["CG_box"].hide();
 		}
 		
 		# Stab
@@ -173,11 +182,11 @@ var CanvasEngDials = {
 	},
 	getKeys: func() {
 		return ["Alert_error", "APU", "APU_EGT", "APU_EGT_error", "APU_N1", "APU_N1_error", "APU_N2", "APU_N2_error", "APU_Qty", "APU_Qty_error", "CabinAlt", "CabinAlt_box", "CabinAlt_error", "CabinRate", "CabinRate_box", "CabinRate_error", "CabinRateDn",
-		"CabinRateUp", "CG", "CG_error", "EmvComp1", "EmvComp1_error", "EmvComp2", "EmvComp2_error", "EmvComp3", "EmvComp3_error", "EmvTurb1", "EmvTurb1_error", "EmvTurb2", "EmvTurb2_error", "EmvTurb3", "EmvTurb3_error", "Fuel", "Fuel_error", "Fuel_thousands",
-		"GE_group", "GW", "GW_error", "GW_thousands", "NacelleTemp1", "NacelleTemp1_error", "NacelleTemp2", "NacelleTemp2_error", "NacelleTemp3", "NacelleTemp3_error", "OilPsi1", "OilPsi1_error", "OilPsi1_needle", "OilPsi2", "OilPsi2_error", "OilPsi2_needle",
-		"OilPsi3", "OilPsi3_error", "OilPsi3_needle", "OilQty1", "OilQty1_box", "OilQty1_cline", "OilQty1_error", "OilQty1_needle", "OilQty2", "OilQty2_box", "OilQty2_cline", "OilQty2_error", "OilQty2_needle", "OilQty3", "OilQty3_box", "OilQty3_cline",
-		"OilQty3_error", "OilQty3_needle", "OilTemp1", "OilTemp1_box", "OilTemp1_error", "OilTemp1_needle", "OilTemp2", "OilTemp2_box", "OilTemp2_error", "OilTemp2_needle", "OilTemp3", "OilTemp3_box", "OilTemp3_error", "OilTemp3_needle", "PW_group", "Stab",
-		"Stab_box", "Stab_error", "StabGreen", "StabNeedle", "StabUnit"];
+		"CabinRateUp", "CG", "CG_box", "CG_error", "EmvComp1", "EmvComp1_error", "EmvComp2", "EmvComp2_error", "EmvComp3", "EmvComp3_error", "EmvTurb1", "EmvTurb1_error", "EmvTurb2", "EmvTurb2_error", "EmvTurb3", "EmvTurb3_error", "Fuel", "Fuel_error",
+		"Fuel_thousands", "GE_group", "GW", "GW_error", "GW_thousands", "NacelleTemp1", "NacelleTemp1_error", "NacelleTemp2", "NacelleTemp2_error", "NacelleTemp3", "NacelleTemp3_error", "OilPsi1", "OilPsi1_error", "OilPsi1_needle", "OilPsi2", "OilPsi2_error",
+		"OilPsi2_needle", "OilPsi3", "OilPsi3_error", "OilPsi3_needle", "OilQty1", "OilQty1_box", "OilQty1_cline", "OilQty1_error", "OilQty1_needle", "OilQty2", "OilQty2_box", "OilQty2_cline", "OilQty2_error", "OilQty2_needle", "OilQty3", "OilQty3_box",
+		"OilQty3_cline", "OilQty3_error", "OilQty3_needle", "OilTemp1", "OilTemp1_box", "OilTemp1_error", "OilTemp1_needle", "OilTemp2", "OilTemp2_box", "OilTemp2_error", "OilTemp2_needle", "OilTemp3", "OilTemp3_box", "OilTemp3_error", "OilTemp3_needle",
+		"PW_group", "Stab", "Stab_box", "Stab_error", "StabGreen", "StabNeedle", "StabUnit"];
 	},
 	setup: func() {
 		Value.Eng.type = pts.Options.eng.getValue();
@@ -373,11 +382,11 @@ var CanvasEngTapes = {
 	},
 	getKeys: func() {
 		return ["Alert_error", "APU", "APU_EGT", "APU_EGT_error", "APU_N1", "APU_N1_error", "APU_N2", "APU_N2_error", "APU_Qty", "APU_Qty_error", "CabinAlt", "CabinAlt_box", "CabinAlt_error", "CabinRate", "CabinRate_box", "CabinRate_error", "CabinRateDn",
-		"CabinRateUp", "CG", "CG_error", "EmvComp1", "EmvComp1_error", "EmvComp2", "EmvComp2_error", "EmvComp3", "EmvComp3_error", "EmvTurb1", "EmvTurb1_error", "EmvTurb2", "EmvTurb2_error", "EmvTurb3", "EmvTurb3_error", "Fuel", "Fuel_error", "Fuel_thousands",
-		"GE_group", "GW", "GW_error", "GW_thousands", "NacelleTemp1", "NacelleTemp1_error", "NacelleTemp2", "NacelleTemp2_error", "NacelleTemp3", "NacelleTemp3_error", "OilPsi_bars", "OilPsi1", "OilPsi1_bar", "OilPsi1_error", "OilPsi2", "OilPsi2_bar",
-		"OilPsi2_error", "OilPsi3", "OilPsi3_bar", "OilPsi3_error", "OilQty_bars", "OilQty1", "OilQty1_bar", "OilQty1_box", "OilQty1_cline", "OilQty1_error", "OilQty2", "OilQty2_bar", "OilQty2_box", "OilQty2_cline", "OilQty2_error", "OilQty3", "OilQty3_bar",
-		"OilQty3_box", "OilQty3_cline", "OilQty3_error", "OilTemp_bars", "OilTemp1", "OilTemp1_bar", "OilTemp1_box", "OilTemp1_error", "OilTemp2", "OilTemp2_bar", "OilTemp2_box", "OilTemp2_error", "OilTemp3", "OilTemp3_bar", "OilTemp3_box", "OilTemp3_error",
-		"PW_group", "Stab", "Stab_box", "Stab_error", "StabGreen", "StabNeedle", "StabUnit"];
+		"CabinRateUp", "CG", "CG_box", "CG_error", "EmvComp1", "EmvComp1_error", "EmvComp2", "EmvComp2_error", "EmvComp3", "EmvComp3_error", "EmvTurb1", "EmvTurb1_error", "EmvTurb2", "EmvTurb2_error", "EmvTurb3", "EmvTurb3_error", "Fuel", "Fuel_error",
+		"Fuel_thousands", "GE_group", "GW", "GW_error", "GW_thousands", "NacelleTemp1", "NacelleTemp1_error", "NacelleTemp2", "NacelleTemp2_error", "NacelleTemp3", "NacelleTemp3_error", "OilPsi_bars", "OilPsi1", "OilPsi1_bar", "OilPsi1_error", "OilPsi2",
+		"OilPsi2_bar", "OilPsi2_error", "OilPsi3", "OilPsi3_bar", "OilPsi3_error", "OilQty_bars", "OilQty1", "OilQty1_bar", "OilQty1_box", "OilQty1_cline", "OilQty1_error", "OilQty2", "OilQty2_bar", "OilQty2_box", "OilQty2_cline", "OilQty2_error", "OilQty3",
+		"OilQty3_bar", "OilQty3_box", "OilQty3_cline", "OilQty3_error", "OilTemp_bars", "OilTemp1", "OilTemp1_bar", "OilTemp1_box", "OilTemp1_error", "OilTemp2", "OilTemp2_bar", "OilTemp2_box", "OilTemp2_error", "OilTemp3", "OilTemp3_bar", "OilTemp3_box",
+		"OilTemp3_error", "PW_group", "Stab", "Stab_box", "Stab_error", "StabGreen", "StabNeedle", "StabUnit"];
 	},
 	setup: func() {
 		Value.Eng.type = pts.Options.eng.getValue();

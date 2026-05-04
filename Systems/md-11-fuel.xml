@@ -26,10 +26,25 @@
 		
 		<switch name="/systems/fuel/cg-control/fuel-stored">
 			<default value="/systems/fuel/cg-control/fuel-stored"/>
-			<test value="/consumables/fuel/total-fuel-actual"> <!-- Should be when refueling ends, but the user here might adjust fuel at point prior to takeoff -->
+			<test value="/consumables/fuel/total-fuel-actual"> <!-- Should be when refueling ends, but the user here might adjust fuel at a point prior to takeoff -->
 				/systems/fms/internal/phase eq 0
 			</test>
 		</switch>
+		
+		<summer name="/systems/fuel/cg-control/tank-1-lbs">
+			<input>propulsion/tank[0]/contents-lbs</input>
+			<input>propulsion/tank[1]/contents-lbs</input>
+		</summer>
+		
+		<pure_gain name="/systems/fuel/cg-control/tank-2-lbs">
+			<input>propulsion/tank[2]/contents-lbs</input>
+			<gain>1.0</gain>
+		</pure_gain>
+		
+		<summer name="/systems/fuel/cg-control/tank-3-lbs">
+			<input>propulsion/tank[3]/contents-lbs</input>
+			<input>propulsion/tank[4]/contents-lbs</input>
+		</summer>
 		
 		<switch name="/systems/fuel/cg-control/available-cmd">
 			<default value="0"/>
@@ -86,21 +101,6 @@
 				/engines/engine[1]/state ne 3
 			</test>
 		</switch>
-		
-		<summer name="/systems/fuel/cg-control/tank-1-lbs">
-			<input>propulsion/tank[0]/contents-lbs</input>
-			<input>propulsion/tank[1]/contents-lbs</input>
-		</summer>
-		
-		<pure_gain name="/systems/fuel/cg-control/tank-2-lbs">
-			<input>propulsion/tank[2]/contents-lbs</input>
-			<gain>1.0</gain>
-		</pure_gain>
-		
-		<summer name="/systems/fuel/cg-control/tank-3-lbs">
-			<input>propulsion/tank[3]/contents-lbs</input>
-			<input>propulsion/tank[4]/contents-lbs</input>
-		</summer>
 		
 		<summer name="/systems/fuel/cg-control/target-cg">
 			<input>/systems/fuel/cg-control/cg-aft-limit</input>

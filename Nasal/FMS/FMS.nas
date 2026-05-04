@@ -7,6 +7,8 @@ var Internal = {
 	bankAngle1: props.globals.getNode("/systems/fms/internal/bank-limit-1"),
 	bankAngle2: props.globals.getNode("/systems/fms/internal/bank-limit-2"),
 	bankAngleVss: props.globals.getNode("/systems/fms/internal/bank-limit-vss"),
+	cgAftLimit: props.globals.getNode("/systems/fms/internal/cg-aft-limit"),
+	cgFwdLimit: props.globals.getNode("/systems/fms/internal/cg-fwd-limit"),
 	cgPercentMac: props.globals.getNode("/systems/fms/internal/cg-percent-mac"),
 	engOn: 0,
 	maxFl: props.globals.getNode("/systems/fms/internal/max-fl"),

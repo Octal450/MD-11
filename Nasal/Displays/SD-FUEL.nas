@@ -9,8 +9,8 @@ var CanvasFuel = {
 		return m;
 	},
 	getKeys: func() {
-		return ["AFIValve", "AFIValve_disag", "AFIValve_line", "Alert_error", "APU", "APU_line", "CG", "CG_error", "Eng1_line", "Eng1_line2", "Eng1Used", "Eng1Used_error", "Eng2_conn", "Eng2_line", "Eng2_line2", "Eng2_line3", "Eng2TankTail_text", "Eng2Used",
-		"Eng2Used_error", "Eng3_line", "Eng3_line2", "Eng3Used", "Eng3Used_error", "Fuel", "Fuel_error", "Fuel_thousands", "GW", "GW_error", "GW_label", "GW_thousands", "GW_units", "ManifoldAux_conn", "ManifoldAux_conn2", "ManifoldAux_conn3",
+		return ["AFIValve", "AFIValve_disag", "AFIValve_line", "Alert_error", "APU", "APU_line", "CG", "CG_box", "CG_error", "Eng1_line", "Eng1_line2", "Eng1Used", "Eng1Used_error", "Eng2_conn", "Eng2_line", "Eng2_line2", "Eng2_line3", "Eng2TankTail_text",
+		"Eng2Used", "Eng2Used_error", "Eng3_line", "Eng3_line2", "Eng3Used", "Eng3Used_error", "Fuel", "Fuel_error", "Fuel_thousands", "GW", "GW_error", "GW_label", "GW_thousands", "GW_units", "ManifoldAux_conn", "ManifoldAux_conn2", "ManifoldAux_conn3",
 		"ManifoldAux_conn4", "ManifoldAux_line", "ManifoldAux_line2", "ManifoldAux_line3", "ManifoldAux_line4", "ManifoldAux_line5", "ManifoldAux_line6", "ManifoldAux_line7", "ManifoldAux_line8", "ManifoldAux_line9", "ManifoldAux_line10", "ManifoldAux_line11",
 		"Tank1_error", "Tank1_qty", "Tank1_qty_bar", "Tank1Aft_circle", "Tank1Aft_imp", "Tank1Aft_line", "Tank1Aft_line2", "Tank1Aft_p", "Tank1Fill", "Tank1Fwd_circle", "Tank1Fwd_imp", "Tank1Fwd_line", "Tank1Fwd_p", "Tank1Trans_circle", "Tank1Trans_conn",
 		"Tank1Trans_imp", "Tank1Trans_line", "Tank1Trans_p", "Tank1TransFill_line", "Tank2_error", "Tank2_qty", "Tank2_qty_bar", "Tank2Aft_line", "Tank2AftAPU_conn", "Tank2AftAPU_line", "Tank2AftAPU_line2", "Tank2AftFwd_conn", "Tank2AftL_circle",
@@ -69,12 +69,21 @@ var CanvasFuel = {
 		}
 		
 		# CG, GW, Fuel Total
-		Value.Misc.cg = fms.Internal.cgPercentMac.getValue();
+		Value.Misc.cg = math.round(fms.Internal.cgPercentMac.getValue(), 0.1);
 		if (Value.Misc.cg > 0) {
-			me["CG"].setText(sprintf("%4.1f", math.round(Value.Misc.cg, 0.1)));
+			me["CG"].setText(sprintf("%4.1f", Value.Misc.cg));
 			me["CG"].show();
+			
+			if (Value.Misc.cg < math.round(fms.Internal.cgFwdLimit.getValue()) or Value.Misc.cg > math.round(fms.Internal.cgAftLimit.getValue())) {
+				me["CG"].setColor(0.9412, 0.7255, 0);
+				me["CG_box"].show();
+			} else {
+				me["CG"].setColor(1, 1, 1);
+				me["CG_box"].hide();
+			}
 		} else {
 			me["CG"].hide();
+			me["CG_box"].hide();
 		}
 		
 		# GW (except error X) is hidden in most pictures but is in FCOM, need to investigate what makes it show, hidden in setup() for now
