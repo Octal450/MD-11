@@ -69,10 +69,10 @@
 	</group>
 	
 	<group>
-		<layout>table</layout>
 		<visible>
 			<not><property>/payload/armament/msg</property></not>
 		</visible>
+		<layout>table</layout>
 	
 		<group>
 			<row>0</row>
@@ -306,7 +306,6 @@
 				</binding>
 				<live>true</live>
 			</checkbox>
-		
 		</group>
 		
 		<vrule>
@@ -616,7 +615,6 @@
 				</binding>
 				<live>true</live>
 			</checkbox>
-		
 		</group>
 		
 		<vrule>
@@ -926,9 +924,7 @@
 				</binding>
 				<live>true</live>
 			</checkbox>
-		
 		</group>
-	
 	</group>
 
 </PropertyList>
