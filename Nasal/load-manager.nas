@@ -66,6 +66,11 @@ var LoadManager = {
 		}
 	},
 	setLoad: func() {
+		if (!pts.Position.wow.getBoolValue() and pts.Payload.Armament.msg.getBoolValue()) {
+			gui.popupTip("Load Manager usage is not allowed when airborne with OPRF damage enabled.");
+			return;
+		}
+		
 		settimer(func() {
 			for (var i = 0; i < 8; i = i + 1) {
 				pts.Consumables.Fuel.Tank.levelLbs[i].setValue(me.Fuel.tank[i].getValue());

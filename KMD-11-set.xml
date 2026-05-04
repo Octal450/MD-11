@@ -11,14 +11,14 @@
 		<menubar>
 			<default>
 				<menu n="101">
-					<item n="8">
+					<item n="9">
 						<label>Toggle Boom</label>
 						<binding>
 							<command>property-toggle</command>
 							<property>/options/boom-pos-cmd</property>
 						</binding>
 					</item>
-					<item n="9">
+					<item n="10">
 						<label>Toggle Drogue</label>
 						<binding>
 							<command>property-toggle</command>
