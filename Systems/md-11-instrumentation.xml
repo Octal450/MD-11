@@ -375,16 +375,16 @@
 						<independentVar lookup="column">zero</independentVar> <!-- Take advantage of the table lookup to interpolate -->
 						<independentVar lookup="table">/systems/acconfig/options/deflected-aileron</independentVar>
 						<tableData breakPoint="0">
-							     0   1
-							-20 -20 -20
-							  0   0   0
-							 20  20  20
+							     0
+							-20 -20
+							  0   0
+							 20  20
 						</tableData>
 						<tableData breakPoint="1"> <!-- Removes the effect of the 4 degree droop with flaps up -->
-							     0   1
-							-16 -20 -20
-							  4   0   0
-							 20  20  20
+							     0
+							-16 -20
+							  4   0
+							 20  20
 						</tableData>
 					</table>
 				</avg>
@@ -400,16 +400,16 @@
 						<independentVar lookup="column">zero</independentVar> <!-- Take advantage of the table lookup to interpolate -->
 						<independentVar lookup="table">/systems/acconfig/options/deflected-aileron</independentVar>
 						<tableData breakPoint="0">
-							     0   1
-							-20 -20 -20
-							  0   0   0
-							 20  20  20
+							     0
+							-20 -20
+							  0   0
+							 20  20
 						</tableData>
 						<tableData breakPoint="1"> <!-- Removes the effect of the 4 degree droop with flaps up -->
-							     0   1
-							-16 -20 -20
-							  4   0   0
-							 20  20  20
+							     0
+							-16 -20
+							  4   0
+							 20  20
 						</tableData>
 					</table>
 				</avg>

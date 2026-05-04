@@ -90,7 +90,6 @@ var LoadManager = {
 };
 
 gui.menuBind("fuel-and-payload", "core.LoadManager.openDialog(1)");
-LoadManager.init();
 
 setlistener("/systems/load-manager/weight-p[0]", func() {
 	LoadManager.updatePax(0);

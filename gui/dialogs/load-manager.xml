@@ -23,12 +23,22 @@
 			setprop("/sim/gui/dialogs/load-manager/cg-percent-mac", sprintf("%4.1f", math.round(getprop("/systems/load-manager/cg-percent-mac"), 0.1)) ~ "% MAC");
 			setprop("/sim/gui/dialogs/load-manager/zfwcg-percent-mac", sprintf("%4.1f", math.round(getprop("/systems/load-manager/zfwcg-percent-mac"), 0.1)) ~ "% MAC");
 			
+			setprop("/sim/gui/dialogs/load-manager/cg-aft-limit", sprintf("%4.1f", math.round(getprop("/systems/load-manager/cg-aft-limit"), 0.1)) ~ "% MAC");
+			setprop("/sim/gui/dialogs/load-manager/cg-fwd-limit", sprintf("%4.1f", math.round(getprop("/systems/load-manager/cg-fwd-limit"), 0.1)) ~ "% MAC");
+			setprop("/sim/gui/dialogs/load-manager/zfwcg-aft-limit", sprintf("%4.1f", math.round(getprop("/systems/load-manager/zfwcg-aft-limit"), 0.1)) ~ "% MAC");
+			setprop("/sim/gui/dialogs/load-manager/zfwcg-fwd-limit", sprintf("%4.1f", math.round(getprop("/systems/load-manager/zfwcg-fwd-limit"), 0.1)) ~ "% MAC");
+			
 			var loop = maketimer(0.1, func() {
 				setprop("/sim/gui/dialogs/load-manager/gw-lbs", sprintf("%d", math.round(getprop("/systems/load-manager/gw-lbs"))) ~ " lbs");
 				setprop("/sim/gui/dialogs/load-manager/zfw-lbs", sprintf("%d", math.round(getprop("/systems/load-manager/zfw-lbs"))) ~ " lbs");
 				
 				setprop("/sim/gui/dialogs/load-manager/cg-percent-mac", sprintf("%4.1f", math.round(getprop("/systems/load-manager/cg-percent-mac"), 0.1)) ~ "% MAC");
 				setprop("/sim/gui/dialogs/load-manager/zfwcg-percent-mac", sprintf("%4.1f", math.round(getprop("/systems/load-manager/zfwcg-percent-mac"), 0.1)) ~ "% MAC");
+			
+				setprop("/sim/gui/dialogs/load-manager/cg-aft-limit", sprintf("%4.1f", math.round(getprop("/systems/load-manager/cg-aft-limit"), 0.1)) ~ "% MAC");
+				setprop("/sim/gui/dialogs/load-manager/cg-fwd-limit", sprintf("%4.1f", math.round(getprop("/systems/load-manager/cg-fwd-limit"), 0.1)) ~ "% MAC");
+				setprop("/sim/gui/dialogs/load-manager/zfwcg-aft-limit", sprintf("%4.1f", math.round(getprop("/systems/load-manager/zfwcg-aft-limit"), 0.1)) ~ "% MAC");
+				setprop("/sim/gui/dialogs/load-manager/zfwcg-fwd-limit", sprintf("%4.1f", math.round(getprop("/systems/load-manager/zfwcg-fwd-limit"), 0.1)) ~ "% MAC");
 			});
 			loop.start();
 		</open>
@@ -1413,6 +1423,32 @@
 		<text>
 			<row>0</row>
 			<col>1</col>
+			<color>
+				<red>1</red>
+				<green>0</green>
+				<blue>0</blue>
+				<alpha>1</alpha>
+			</color>
+			<visible>
+				<greater-than>
+					<property>/sim/gui/dialogs/load-manager/gw-lbs</property>
+					<property>/sim/gui/dialogs/load-manager/mtow-lbs</property>
+				</greater-than>
+			</visible>
+			<halign>center</halign>
+			<label>9999999999</label>
+			<live>true</live>
+			<property>/sim/gui/dialogs/load-manager/gw-lbs</property>
+		</text>
+		<text>
+			<row>0</row>
+			<col>1</col>
+			<visible>
+				<less-than-equals>
+					<property>/sim/gui/dialogs/load-manager/gw-lbs</property>
+					<property>/sim/gui/dialogs/load-manager/mtow-lbs</property>
+				</less-than-equals>
+			</visible>
 			<halign>center</halign>
 			<label>9999999999</label>
 			<live>true</live>
@@ -1429,6 +1465,44 @@
 		<text>
 			<row>0</row>
 			<col>3</col>
+			<color>
+				<red>1</red>
+				<green>0</green>
+				<blue>0</blue>
+				<alpha>1</alpha>
+			</color>
+			<visible>
+				<or>
+					<less-than>
+						<property>/sim/gui/dialogs/load-manager/cg-percent-mac</property>
+						<property>/sim/gui/dialogs/load-manager/cg-fwd-limit</property>
+					</less-than>
+					<greater-than>
+						<property>/sim/gui/dialogs/load-manager/cg-percent-mac</property>
+						<property>/sim/gui/dialogs/load-manager/cg-aft-limit</property>
+					</greater-than>
+				</or>
+			</visible>
+			<halign>center</halign>
+			<label>999999999</label>
+			<live>true</live>
+			<property>/sim/gui/dialogs/load-manager/cg-percent-mac</property>
+		</text>
+		<text>
+			<row>0</row>
+			<col>3</col>
+			<visible>
+				<and>
+					<greater-than-equals>
+						<property>/sim/gui/dialogs/load-manager/cg-percent-mac</property>
+						<property>/sim/gui/dialogs/load-manager/cg-fwd-limit</property>
+					</greater-than-equals>
+					<less-than-equals>
+						<property>/sim/gui/dialogs/load-manager/cg-percent-mac</property>
+						<property>/sim/gui/dialogs/load-manager/cg-aft-limit</property>
+					</less-than-equals>
+				</and>
+			</visible>
 			<halign>center</halign>
 			<label>999999999</label>
 			<live>true</live>
@@ -1451,6 +1525,32 @@
 		<text>
 			<row>1</row>
 			<col>1</col>
+			<color>
+				<red>1</red>
+				<green>0</green>
+				<blue>0</blue>
+				<alpha>1</alpha>
+			</color>
+			<visible>
+				<greater-than>
+					<property>/sim/gui/dialogs/load-manager/zfw-lbs</property>
+					<property>/sim/gui/dialogs/load-manager/mzfw-lbs</property>
+				</greater-than>
+			</visible>
+			<halign>center</halign>
+			<label>9999999999</label>
+			<live>true</live>
+			<property>/sim/gui/dialogs/load-manager/zfw-lbs</property>
+		</text>
+		<text>
+			<row>1</row>
+			<col>1</col>
+			<visible>
+				<less-than-equals>
+					<property>/sim/gui/dialogs/load-manager/zfw-lbs</property>
+					<property>/sim/gui/dialogs/load-manager/mzfw-lbs</property>
+				</less-than-equals>
+			</visible>
 			<halign>center</halign>
 			<label>9999999999</label>
 			<live>true</live>
@@ -1467,6 +1567,44 @@
 		<text>
 			<row>1</row>
 			<col>3</col>
+			<color>
+				<red>1</red>
+				<green>0</green>
+				<blue>0</blue>
+				<alpha>1</alpha>
+			</color>
+			<visible>
+				<or>
+					<less-than>
+						<property>/sim/gui/dialogs/load-manager/zfwcg-percent-mac</property>
+						<property>/sim/gui/dialogs/load-manager/zfwcg-fwd-limit</property>
+					</less-than>
+					<greater-than>
+						<property>/sim/gui/dialogs/load-manager/zfwcg-percent-mac</property>
+						<property>/sim/gui/dialogs/load-manager/zfwcg-aft-limit</property>
+					</greater-than>
+				</or>
+			</visible>
+			<halign>center</halign>
+			<label>999999999</label>
+			<live>true</live>
+			<property>/sim/gui/dialogs/load-manager/zfwcg-percent-mac</property>
+		</text>
+		<text>
+			<row>1</row>
+			<col>3</col>
+			<visible>
+				<and>
+					<greater-than-equals>
+						<property>/sim/gui/dialogs/load-manager/zfwcg-percent-mac</property>
+						<property>/sim/gui/dialogs/load-manager/zfwcg-fwd-limit</property>
+					</greater-than-equals>
+					<less-than-equals>
+						<property>/sim/gui/dialogs/load-manager/zfwcg-percent-mac</property>
+						<property>/sim/gui/dialogs/load-manager/zfwcg-aft-limit</property>
+					</less-than-equals>
+				</and>
+			</visible>
 			<halign>center</halign>
 			<label>999999999</label>
 			<live>true</live>
@@ -1576,7 +1714,7 @@
 			<halign>center</halign>
 			<label>999999999</label>
 			<live>true</live>
-			<property>/sim/gui/dialogs/load-manager/min-cg-percent-mac</property>
+			<property>/sim/gui/dialogs/load-manager/cg-fwd-limit</property>
 		</text>
 		
 		<text>
@@ -1592,7 +1730,7 @@
 			<halign>center</halign>
 			<label>999999999</label>
 			<live>true</live>
-			<property>/sim/gui/dialogs/load-manager/min-zfwcg-percent-mac</property>
+			<property>/sim/gui/dialogs/load-manager/zfwcg-fwd-limit</property>
 		</text>
 		
 		<text>
@@ -1608,7 +1746,7 @@
 			<halign>center</halign>
 			<label>999999999</label>
 			<live>true</live>
-			<property>/sim/gui/dialogs/load-manager/max-cg-percent-mac</property>
+			<property>/sim/gui/dialogs/load-manager/cg-aft-limit</property>
 		</text>
 		
 		<text>
@@ -1624,7 +1762,7 @@
 			<halign>center</halign>
 			<label>999999999</label>
 			<live>true</live>
-			<property>/sim/gui/dialogs/load-manager/max-zfwcg-percent-mac</property>
+			<property>/sim/gui/dialogs/load-manager/zfwcg-aft-limit</property>
 		</text>
 	</group>
 	

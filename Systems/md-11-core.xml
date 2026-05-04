@@ -561,6 +561,54 @@
 			</function>
 		</fcs_function>
 		
+		<fcs_function name="/systems/load-manager/zfwcg-aft-limit"> <!-- From FCOM -->
+			<function>
+				<table>
+					<independentVar lookup="row">/systems/load-manager/zfw-lbs</independentVar>
+					<independentVar lookup="column">zero</independentVar> <!-- Take advantage of the table lookup to interpolate -->
+					<independentVar lookup="table">/systems/load-manager/gw-lbs</independentVar>
+					<tableData breakPoint="608500">
+						        0
+						242100  31.0
+						260500  31.2
+						324100  31.8
+						365800  30.1
+						451300  28.8
+					</tableData>
+					<tableData breakPoint="620000">
+						        0
+						242100  31.0
+						260500  31.2
+						324100  31.8
+						335900  28.7
+						383600  27.8
+						451300  26.9
+					</tableData>
+					<tableData breakPoint="630500">
+						        0
+						242100  31.0
+						260500  31.2
+						324100  31.8
+						348400  25.7
+						400000  25.0
+						451300  24.6
+					</tableData>
+				</table>
+			</function>
+		</fcs_function>
+		
+		<fcs_function name="/systems/load-manager/zfwcg-fwd-limit"> <!-- From FCOM -->
+			<function>
+				<table>
+					<independentVar lookup="row">/systems/load-manager/zfw-lbs</independentVar>
+					<tableData>
+						380000  12.0
+						451300  13.2
+					</tableData>
+				</table>
+			</function>
+		</fcs_function>
+		
 		<fcs_function name="/systems/load-manager/cg-x-in">
 			<function>
 				<quotient> <!-- Weighted average -->
@@ -649,7 +697,36 @@
 			</function>
 		</fcs_function>
 		
+		<fcs_function name="/systems/load-manager/cg-aft-limit"> <!-- From FCOM -->
+			<function>
+				<table>
+					<independentVar lookup="row">/systems/load-manager/gw-lbs</independentVar>
+					<tableData>
+						242100  31.0
+						260500  31.2
+						272900  34.0
+						570000  34.0
+						608500  29.7
+						630500  26.8
+						633000  26.5
+					</tableData>
+				</table>
+			</function>
+		</fcs_function>
 		
+		<fcs_function name="/systems/load-manager/cg-fwd-limit"> <!-- From FCOM -->
+			<function>
+				<table>
+					<independentVar lookup="row">/systems/load-manager/gw-lbs</independentVar>
+					<tableData>
+						380000  12.0
+						461300  13.4
+						618000  12.8
+						630500  18.1
+					</tableData>
+				</table>
+			</function>
+		</fcs_function>
 	
 	</channel>
 
