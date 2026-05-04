@@ -26,7 +26,7 @@
 		
 		<switch name="/systems/fuel/cg-control/fuel-stored">
 			<default value="/systems/fuel/cg-control/fuel-stored"/>
-			<test value="/consumables/fuel/total-fuel-lbs"> <!-- Should be when refueling ends, but the user here might adjust fuel at point prior to takeoff -->
+			<test value="/consumables/fuel/total-fuel-actual"> <!-- Should be when refueling ends, but the user here might adjust fuel at point prior to takeoff -->
 				/systems/fms/internal/phase eq 0
 			</test>
 		</switch>
@@ -176,7 +176,7 @@
 				/systems/fuel/cg-control/direction-cg-latch eq -1
 			</test>
 			<test logic="AND" value="1"> <!-- Aft -->
-				/consumables/fuel/total-fuel-lbs ge 51000
+				/consumables/fuel/total-fuel-actual ge 51000
 				propulsion/tank[7]/contents-lbs le /systems/fuel/cg-control/tail-fuel-limit
 				/systems/fuel/cg-control/direction-cg-latch eq 1
 			</test>

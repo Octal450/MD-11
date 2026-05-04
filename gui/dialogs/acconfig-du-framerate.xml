@@ -248,23 +248,6 @@
 		
 		<button>
 			<halign>center</halign>
-			<legend>Apply/Save</legend>
-			<pref-width>80</pref-width>
-			<binding>
-				<command>nasal</command>
-				<script>
-					acconfig.OPTIONS.write();
-					canvas_pfd.rateApply();
-					#canvas_nd.rateApply();
-					canvas_ead.rateApply();
-					canvas_sd.rateApply();
-					canvas_isfd.rateApply();
-					canvas_mcdu.rateApply();
-				</script>
-			</binding>
-		</button>
-		<button>
-			<halign>center</halign>
 			<legend>Default</legend>
 			<pref-width>80</pref-width>
 			<binding>
@@ -288,7 +271,24 @@
 		</button>
 		<button>
 			<halign>center</halign>
-			<legend>Apply/Save/Go Away</legend>
+			<legend>Apply/Save</legend>
+			<pref-width>80</pref-width>
+			<binding>
+				<command>nasal</command>
+				<script>
+					acconfig.OPTIONS.write();
+					canvas_pfd.rateApply();
+					#canvas_nd.rateApply();
+					canvas_ead.rateApply();
+					canvas_sd.rateApply();
+					canvas_isfd.rateApply();
+					canvas_mcdu.rateApply();
+				</script>
+			</binding>
+		</button>
+		<button>
+			<halign>center</halign>
+			<legend>Apply/Save and Close</legend>
 			<pref-width>180</pref-width>
 			<binding>
 				<command>nasal</command>

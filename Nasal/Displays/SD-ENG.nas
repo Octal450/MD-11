@@ -84,7 +84,7 @@ var CanvasEngBase = {
 			me["GW_thousands"].hide();
 		}
 		
-		Value.Misc.fuel = math.round(pts.Consumables.Fuel.totalFuelLbs.getValue(), 100);
+		Value.Misc.fuel = math.round(pts.Consumables.Fuel.totalFuelActual.getValue(), 100);
 		me["Fuel_thousands"].setText(sprintf("%d", math.floor(Value.Misc.fuel / 1000)));
 		me["Fuel"].setText(right(sprintf("%03d", Value.Misc.fuel), 3));
 		

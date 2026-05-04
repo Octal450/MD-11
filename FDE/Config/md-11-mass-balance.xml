@@ -21,7 +21,7 @@
 	
 	<!-- All below positions fudged for CG accuracy -->
 	<pointmass name="Forward Cabin">
-		<weight unit="LBS">5000</weight>
+		<weight unit="LBS">5100</weight>
 		<location name="POINTMASS" unit="M">
 			<x>-12.4</x>
 			<y>0</y>
@@ -29,7 +29,7 @@
 		</location>
 	</pointmass>
 	<pointmass name="Mid Cabin">
-		<weight unit="LBS">17000</weight>
+		<weight unit="LBS">17100</weight>
 		<location name="POINTMASS" unit="M">
 			<x>-7.7</x>
 			<y>0</y>
@@ -37,7 +37,7 @@
 		</location>
 	</pointmass>
 	<pointmass name="Aft Cabin">
-		<weight unit="LBS">20000</weight>
+		<weight unit="LBS">20100</weight>
 		<location name="POINTMASS" unit="M">
 			<x>7.2</x>
 			<y>0</y>

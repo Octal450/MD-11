@@ -85,6 +85,13 @@
 						</binding>
 					</item>
 					<item>
+						<label>Load Manager</label>
+						<binding>
+							<command>dialog-show</command>
+							<dialog-name>load-manager</dialog-name>
+						</binding>
+					</item>
+					<item>
 						<label>System Failures</label>
 						<binding>
 							<command>dialog-show</command>
@@ -1220,6 +1227,14 @@
 					<script>systems.doFullThrust();</script>
 				</binding>
 			</key>
+			<key n="76">
+				<name>L</name>
+				<desc>Open Load Manager</desc>
+				<binding>
+					<command>nasal</command>
+					<script>core.LoadManager.openDialog();</script>
+				</binding>
+			</key>
 			<key n="80">
 				<name>P</name>
 				<desc>Open CG dialog</desc>
@@ -1953,6 +1968,32 @@
 			<sys-2-qty-input type="double">8</sys-2-qty-input> <!-- Randomized later in sim init -->
 			<sys-3-qty-input type="double">8</sys-3-qty-input> <!-- Randomized later in sim init -->
 		</hydraulics>
+		<load-manager n="0">
+			<pax n="0" type="int">0</pax>
+			<pax n="1" type="int">0</pax>
+			<pax n="2" type="int">0</pax>
+			<tank-capacity n="0" type="int">0</tank-capacity>
+			<tank-capacity n="1" type="int">0</tank-capacity>
+			<tank-capacity n="2" type="int">0</tank-capacity>
+			<tank-capacity n="3" type="int">0</tank-capacity>
+			<tank-capacity n="4" type="int">0</tank-capacity>
+			<tank-capacity n="5" type="int">0</tank-capacity>
+			<tank-capacity n="6" type="int">0</tank-capacity>
+			<tank-capacity n="7" type="int">0</tank-capacity>
+			<total-fuel type="int">0</total-fuel>
+			<weight n="3" type="int">0</weight>
+			<weight n="4" type="int">0</weight>
+			<weight n="5" type="int">0</weight>
+			<weight-f n="0" type="int">0</weight-f>
+			<weight-f n="1" type="int">0</weight-f>
+			<weight-f n="2" type="int">0</weight-f>
+			<weight-k n="0" type="int">0</weight-k>
+			<weight-k n="1" type="int">0</weight-k>
+			<weight-k n="2" type="int">0</weight-k>
+			<weight-p n="0" type="int">0</weight-p>
+			<weight-p n="1" type="int">0</weight-p>
+			<weight-p n="2" type="int">0</weight-p>
+		</load-manager>
 		<misc n="0">
 			<minimums-ref-alt type="double">0</minimums-ref-alt>
 		</misc>
@@ -1968,6 +2009,7 @@
 		<core>
 			<file>Aircraft/MD-11/Nasal/core.nas</file>
 			<file>Aircraft/MD-11/Nasal/hack-canvas.nas</file>
+			<file>Aircraft/MD-11/Nasal/load-manager.nas</file>
 			<file>Aircraft/MD-11/Nasal/thunder-effects.nas</file>
 			<file>Aircraft/MD-11/Nasal/view-controller.nas</file>
 			<file>Aircraft/MD-11/Models/Instruments/ND/ND.nas</file>

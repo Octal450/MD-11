@@ -141,7 +141,7 @@ var EditFlightData = {
 		}
 		
 		# Calculate UFOB
-		flightData.ufobLbs = math.round(pts.Consumables.Fuel.totalFuelLbs.getValue(), 100) / 1000;
+		flightData.ufobLbs = math.round(pts.Consumables.Fuel.totalFuelActual.getValue(), 100) / 1000;
 		
 		# Calculate GW
 		if (flightData.zfwLbs > 0) {
@@ -465,7 +465,7 @@ var EditFlightData = {
 		Internal.request[2] = 0;
 		mcdu.unit[0].setPage("acStatus");
 		mcdu.unit[1].setPage("acStatus");
-		flightData.blockFuelLbs = math.round(pts.Consumables.Fuel.totalFuelLbs.getValue(), 100) / 1000;
+		flightData.blockFuelLbs = math.round(pts.Consumables.Fuel.totalFuelActual.getValue(), 100) / 1000;
 		flightData.gwLbs = math.round(pts.Fdm.JSBSim.Inertia.weightLbs.getValue() / 1000, 0.1);
 		flightData.tocg = math.round(pts.Fdm.JSBSim.Inertia.cgPercentMac.getValue(), 0.1);
 		flightData.togwLbs = flightData.gwLbs - flightData.taxiFuel;

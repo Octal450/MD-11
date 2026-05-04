@@ -79,6 +79,15 @@
 				</button>
 				<button>
 					<halign>center</halign>
+					<legend>Load Manager</legend>
+					<pref-width>140</pref-width>
+					<binding>
+						<command>dialog-show</command>
+						<dialog-name>load-manager</dialog-name>
+					</binding>
+				</button>
+				<button>
+					<halign>center</halign>
 					<legend>System Failures</legend>
 					<pref-width>140</pref-width>
 					<enable>

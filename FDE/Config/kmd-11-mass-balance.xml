@@ -28,6 +28,14 @@
 			<z>6.8</z>
 		</location>
 	</pointmass>
+	<pointmass name="Placeholder">
+		<weight unit="LBS">0</weight>
+		<location name="POINTMASS" unit="M"> 
+			<x>2.837</x>
+			<y>0</y>
+			<z>5.69282</z>
+		</location>
+	</pointmass>
 	<pointmass name="Aft Fuel Tank">
 		<weight unit="LBS">27300</weight>
 		<location name="POINTMASS" unit="M"> 
@@ -59,15 +67,6 @@
 			<x>14.3</x>
 			<y>0</y>
 			<z>5.0</z>
-		</location>
-	</pointmass>
-	
-	<pointmass name="Nothing"> <!-- Various code expects 6 pointmasses -->
-		<weight unit="LBS">0</weight>
-		<location name="POINTMASS" unit="M">
-			<x>0</x>
-			<y>0</y>
-			<z>0</z>
 		</location>
 	</pointmass>
 

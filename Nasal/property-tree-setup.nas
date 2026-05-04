@@ -7,9 +7,11 @@
 var Consumables = {
 	Fuel: {
 		Tank: {
+			capacityGalUs: [props.globals.getNode("/consumables/fuel/tank[0]/capacity-gal_us"), props.globals.getNode("/consumables/fuel/tank[1]/capacity-gal_us"), props.globals.getNode("/consumables/fuel/tank[2]/capacity-gal_us"), props.globals.getNode("/consumables/fuel/tank[3]/capacity-gal_us"), props.globals.getNode("/consumables/fuel/tank[4]/capacity-gal_us"), props.globals.getNode("/consumables/fuel/tank[5]/capacity-gal_us"), props.globals.getNode("/consumables/fuel/tank[6]/capacity-gal_us"), props.globals.getNode("/consumables/fuel/tank[7]/capacity-gal_us")],
+			densityPpg: [props.globals.getNode("/consumables/fuel/tank[0]/density-ppg"), props.globals.getNode("/consumables/fuel/tank[1]/density-ppg"), props.globals.getNode("/consumables/fuel/tank[2]/density-ppg"), props.globals.getNode("/consumables/fuel/tank[3]/density-ppg"), props.globals.getNode("/consumables/fuel/tank[4]/density-ppg"), props.globals.getNode("/consumables/fuel/tank[5]/density-ppg"), props.globals.getNode("/consumables/fuel/tank[6]/density-ppg"), props.globals.getNode("/consumables/fuel/tank[7]/density-ppg")],
 			levelLbs: [props.globals.getNode("/consumables/fuel/tank[0]/level-lbs"), props.globals.getNode("/consumables/fuel/tank[1]/level-lbs"), props.globals.getNode("/consumables/fuel/tank[2]/level-lbs"), props.globals.getNode("/consumables/fuel/tank[3]/level-lbs"), props.globals.getNode("/consumables/fuel/tank[4]/level-lbs"), props.globals.getNode("/consumables/fuel/tank[5]/level-lbs"), props.globals.getNode("/consumables/fuel/tank[6]/level-lbs"), props.globals.getNode("/consumables/fuel/tank[7]/level-lbs")],
 		},
-		totalFuelLbs: props.globals.getNode("/consumables/fuel/total-fuel-lbs"),
+		totalFuelActual: props.globals.getNode("/consumables/fuel/total-fuel-actual"),
 	},
 };
 
@@ -245,6 +247,7 @@ var Instrumentation = {
 var Options = {
 	eng: props.globals.getNode("/options/eng"),
 	freighter: props.globals.getNode("/options/freighter"),
+	tanker: props.globals.getNode("/options/tanker"),
 	type: props.globals.getNode("/options/type"),
 };
 
@@ -260,6 +263,7 @@ var Payload = {
 		msg: props.globals.getNode("/payload/armament/msg"),
 	},
 	Weight: {
+		name: [props.globals.getNode("/payload/weight[0]/name"), props.globals.getNode("/payload/weight[1]/name"), props.globals.getNode("/payload/weight[2]/name"), props.globals.getNode("/payload/weight[3]/name"), props.globals.getNode("/payload/weight[4]/name"), props.globals.getNode("/payload/weight[5]/name")],
 		weightLb: [props.globals.getNode("/payload/weight[0]/weight-lb"), props.globals.getNode("/payload/weight[1]/weight-lb"), props.globals.getNode("/payload/weight[2]/weight-lb"), props.globals.getNode("/payload/weight[3]/weight-lb"), props.globals.getNode("/payload/weight[4]/weight-lb"), props.globals.getNode("/payload/weight[5]/weight-lb")],
 	},
 };

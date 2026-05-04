@@ -169,6 +169,17 @@
 			</test>
 			<output>contact/any-wow-out</output>
 		</switch>
+		
+		<summer name="/consumables/fuel/total-fuel-actual"> <!-- Total fuel without the feed pipes -->
+			<input>propulsion/tank[0]/contents-lbs</input>
+			<input>propulsion/tank[1]/contents-lbs</input>
+			<input>propulsion/tank[2]/contents-lbs</input>
+			<input>propulsion/tank[3]/contents-lbs</input>
+			<input>propulsion/tank[4]/contents-lbs</input>
+			<input>propulsion/tank[5]/contents-lbs</input>
+			<input>propulsion/tank[6]/contents-lbs</input>
+			<input>propulsion/tank[7]/contents-lbs</input>
+		</summer>
 	
 	</channel>
 	
@@ -268,6 +279,377 @@
 				</floor>
 			</function>
 		</fcs_function>
+	
+	</channel>
+	
+	<channel name="Load Manager">
+		
+		<!-- Fuel Distribution -->
+		<!--
+			Refueling schedule:
+			Load 1, 2, 3 until 5000 in each
+			Load 0, 2, 4 so that 0 + 1 = 2 = 3 + 4 until 0 and 4 are full
+			Load 1, 2, 3 so that 0 + 1 = 2 = 3 + 4 until 0, 1, 3, 4 are full
+			Load 2 until full
+			Load 5 until full
+			Load 6 until full
+			Load 7 until full
+		-->
+		
+		<pure_gain name="/systems/load-manager/fuel/total-fuel"> <!-- Keep synchronized -->
+			<input>/systems/load-manager/total-fuel</input>
+			<gain>1.0</gain>
+		</pure_gain>
+		
+		<fcs_function name="/systems/load-manager/fuel/tank[0]"> <!-- Tank 1 Outboard -->
+			<function>
+				<difference>
+					<quotient>
+						<property>/systems/load-manager/total-fuel</property>
+						<value>3</value>
+					</quotient>
+					<value>5000</value>
+				</difference>
+			</function>
+			<clipto>
+				<min>0</min>
+				<max>/systems/load-manager/tank-capacity[0]</max>
+			</clipto>
+		</fcs_function>
+		
+		<fcs_function name="/systems/load-manager/fuel/tank[4]"> <!-- Tank 3 Outboard -->
+			<function>
+				<difference>
+					<quotient>
+						<property>/systems/load-manager/total-fuel</property>
+						<value>3</value>
+					</quotient>
+					<value>5000</value>
+				</difference>
+			</function>
+			<clipto>
+				<min>0</min>
+				<max>/systems/load-manager/tank-capacity[4]</max>
+			</clipto>
+		</fcs_function>
+		
+		<fcs_function name="/systems/load-manager/fuel/tank[1]"> <!-- Tank 1 Inboard -->
+			<function>
+				<min>
+					<quotient> <!-- 1 = 2 = 3 (low fuel) -->
+						<property>/systems/load-manager/total-fuel</property>
+						<value>3</value>
+					</quotient>
+					<difference> <!-- 0 + 1 = 2 -->
+						<property>/systems/load-manager/fuel/tank[2]</property>
+						<property>/systems/load-manager/fuel/tank[0]</property>
+					</difference>
+				</min>
+			</function>
+			<clipto>
+				<min>0</min>
+				<max>/systems/load-manager/tank-capacity[1]</max>
+			</clipto>
+		</fcs_function>
+		
+		<fcs_function name="/systems/load-manager/fuel/tank[3]"> <!-- Tank 3 Inboard -->
+			<function>
+				<min>
+					<quotient> <!-- 1 = 2 = 3 (low fuel) -->
+						<property>/systems/load-manager/total-fuel</property>
+						<value>3</value>
+					</quotient>
+					<difference> <!-- 3 + 4 = 2 -->
+						<property>/systems/load-manager/fuel/tank[2]</property>
+						<property>/systems/load-manager/fuel/tank[4]</property>
+					</difference>
+				</min>
+			</function>
+			<clipto>
+				<min>0</min>
+				<max>/systems/load-manager/tank-capacity[3]</max>
+			</clipto>
+		</fcs_function>
+		
+		<fcs_function name="/systems/load-manager/fuel/tank[2]"> <!-- Tank 2 -->
+			<function>
+				<max>
+					<quotient> <!-- Balanced -->
+						<property>/systems/load-manager/total-fuel</property>
+						<value>3</value>
+					</quotient>
+					<difference> <!-- Tanks 1 and 3 full -->
+						<property>/systems/load-manager/total-fuel</property>
+						<property>/systems/load-manager/fuel/tank[0]</property>
+						<property>/systems/load-manager/fuel/tank[1]</property>
+						<property>/systems/load-manager/fuel/tank[3]</property>
+						<property>/systems/load-manager/fuel/tank[4]</property>
+					</difference>
+				</max>
+			</function>
+			<clipto>
+				<min>0</min>
+				<max>/systems/load-manager/tank-capacity[2]</max>
+			</clipto>
+		</fcs_function>
+		
+		<fcs_function name="/systems/load-manager/fuel/tank[5]"> <!-- Upper Aux Tank -->
+			<function>
+				<difference>
+					<property>/systems/load-manager/total-fuel</property>
+					<property>/systems/load-manager/fuel/tank[0]</property>
+					<property>/systems/load-manager/fuel/tank[1]</property>
+					<property>/systems/load-manager/fuel/tank[2]</property>
+					<property>/systems/load-manager/fuel/tank[3]</property>
+					<property>/systems/load-manager/fuel/tank[4]</property>
+				</difference>
+			</function>
+			<clipto>
+				<min>0</min>
+				<max>/systems/load-manager/tank-capacity[5]</max>
+			</clipto>
+		</fcs_function>
+		
+		<fcs_function name="/systems/load-manager/fuel/tank[6]"> <!-- Lower Aux Tank -->
+			<function>
+				<difference>
+					<property>/systems/load-manager/total-fuel</property>
+					<property>/systems/load-manager/fuel/tank[0]</property>
+					<property>/systems/load-manager/fuel/tank[1]</property>
+					<property>/systems/load-manager/fuel/tank[2]</property>
+					<property>/systems/load-manager/fuel/tank[3]</property>
+					<property>/systems/load-manager/fuel/tank[4]</property>
+					<property>/systems/load-manager/fuel/tank[5]</property>
+				</difference>
+			</function>
+			<clipto>
+				<min>0</min>
+				<max>/systems/load-manager/tank-capacity[6]</max>
+			</clipto>
+		</fcs_function>
+		
+		<fcs_function name="/systems/load-manager/fuel/tank[7]"> <!-- Tail Tank -->
+			<function>
+				<difference>
+					<property>/systems/load-manager/total-fuel</property>
+					<property>/systems/load-manager/fuel/tank[0]</property>
+					<property>/systems/load-manager/fuel/tank[1]</property>
+					<property>/systems/load-manager/fuel/tank[2]</property>
+					<property>/systems/load-manager/fuel/tank[3]</property>
+					<property>/systems/load-manager/fuel/tank[4]</property>
+					<property>/systems/load-manager/fuel/tank[5]</property>
+					<property>/systems/load-manager/fuel/tank[6]</property>
+				</difference>
+			</function>
+			<clipto>
+				<min>0</min>
+				<max>/systems/load-manager/tank-capacity[7]</max>
+			</clipto>
+		</fcs_function>
+		
+		<summer name="/systems/load-manager/fuel/total-calc">
+			<input>/systems/load-manager/fuel/tank[0]</input>
+			<input>/systems/load-manager/fuel/tank[1]</input>
+			<input>/systems/load-manager/fuel/tank[2]</input>
+			<input>/systems/load-manager/fuel/tank[3]</input>
+			<input>/systems/load-manager/fuel/tank[4]</input>
+			<input>/systems/load-manager/fuel/tank[5]</input>
+			<input>/systems/load-manager/fuel/tank[6]</input>
+			<input>/systems/load-manager/fuel/tank[7]</input>
+		</summer>
+		
+		<!-- Payload -->
+		<switch name="/systems/load-manager/weight[0]">
+			<default value="/systems/load-manager/weight-p[0]"/>
+			<test value="/systems/load-manager/weight-k[0]">
+				/options/tanker eq 1
+			</test>
+			<test value="/systems/load-manager/weight-f[0]">
+				/options/freighter eq 1
+			</test>
+		</switch>
+		
+		<switch name="/systems/load-manager/weight[1]">
+			<default value="/systems/load-manager/weight-p[1]"/>
+			<test value="/systems/load-manager/weight-k[1]">
+				/options/tanker eq 1
+			</test>
+			<test value="/systems/load-manager/weight-f[1]">
+				/options/freighter eq 1
+			</test>
+		</switch>
+		
+		<switch name="/systems/load-manager/weight[2]">
+			<default value="/systems/load-manager/weight-p[2]"/>
+			<test value="/systems/load-manager/weight-k[2]">
+				/options/tanker eq 1
+			</test>
+			<test value="/systems/load-manager/weight-f[2]">
+				/options/freighter eq 1
+			</test>
+		</switch>
+		
+		<!-- Weights and CGs -->
+		<summer name="/systems/load-manager/zfw-lbs">
+			<input>inertia/empty-weight-lbs</input>
+			<input>/systems/load-manager/weight[0]</input>
+			<input>/systems/load-manager/weight[1]</input>
+			<input>/systems/load-manager/weight[2]</input>
+			<input>/systems/load-manager/weight[3]</input>
+			<input>/systems/load-manager/weight[4]</input>
+			<input>/systems/load-manager/weight[5]</input>
+		</summer>
+		
+		<summer name="/systems/load-manager/gw-lbs">
+			<input>/systems/load-manager/zfw-lbs</input>
+			<input>/systems/load-manager/total-fuel</input>
+		</summer>
+		
+		<fcs_function name="/systems/load-manager/zfwcg-x-in">
+			<function>
+				<quotient> <!-- Weighted average -->
+					<sum>
+						<product>
+							<property>inertia/empty-weight-lbs</property>
+							<property>inertia/empty-weight-x-in</property>
+						</product>
+						<product>
+							<property>/systems/load-manager/weight[0]</property>
+							<property>inertia/pointmass-location-X-inches[0]</property>
+						</product>
+						<product>
+							<property>/systems/load-manager/weight[1]</property>
+							<property>inertia/pointmass-location-X-inches[1]</property>
+						</product>
+						<product>
+							<property>/systems/load-manager/weight[2]</property>
+							<property>inertia/pointmass-location-X-inches[2]</property>
+						</product>
+						<product>
+							<property>/systems/load-manager/weight[3]</property>
+							<property>inertia/pointmass-location-X-inches[3]</property>
+						</product>
+						<product>
+							<property>/systems/load-manager/weight[4]</property>
+							<property>inertia/pointmass-location-X-inches[4]</property>
+						</product>
+						<product>
+							<property>/systems/load-manager/weight[5]</property>
+							<property>inertia/pointmass-location-X-inches[5]</property>
+						</product>
+					</sum>
+					<property>/systems/load-manager/zfw-lbs</property>
+				</quotient>
+			</function>
+		</fcs_function>
+		
+		<fcs_function name="/systems/load-manager/zfwcg-percent-mac">
+			<function>
+				<product>
+					<quotient>
+						<difference>
+							<product>
+								<property>/systems/load-manager/zfwcg-x-in</property>
+								<value>0.0254</value> <!-- Inches to meters -->
+							</product>
+							<value>0.24116</value> <!-- Offset -->
+						</difference>
+						<value>7.68</value> <!-- MAC length -->
+					</quotient>
+					<value>100</value>
+				</product>
+			</function>
+		</fcs_function>
+		
+		<fcs_function name="/systems/load-manager/cg-x-in">
+			<function>
+				<quotient> <!-- Weighted average -->
+					<sum>
+						<product>
+							<property>inertia/empty-weight-lbs</property>
+							<property>inertia/empty-weight-x-in</property>
+						</product>
+						<product>
+							<property>/systems/load-manager/weight[0]</property>
+							<property>inertia/pointmass-location-X-inches[0]</property>
+						</product>
+						<product>
+							<property>/systems/load-manager/weight[1]</property>
+							<property>inertia/pointmass-location-X-inches[1]</property>
+						</product>
+						<product>
+							<property>/systems/load-manager/weight[2]</property>
+							<property>inertia/pointmass-location-X-inches[2]</property>
+						</product>
+						<product>
+							<property>/systems/load-manager/weight[3]</property>
+							<property>inertia/pointmass-location-X-inches[3]</property>
+						</product>
+						<product>
+							<property>/systems/load-manager/weight[4]</property>
+							<property>inertia/pointmass-location-X-inches[4]</property>
+						</product>
+						<product>
+							<property>/systems/load-manager/weight[5]</property>
+							<property>inertia/pointmass-location-X-inches[5]</property>
+						</product>
+						<product>
+							<property>/systems/load-manager/fuel/tank[0]</property>
+							<property>propulsion/tank[0]/x-position</property>
+						</product>
+						<product>
+							<property>/systems/load-manager/fuel/tank[1]</property>
+							<property>propulsion/tank[1]/x-position</property>
+						</product>
+						<product>
+							<property>/systems/load-manager/fuel/tank[2]</property>
+							<property>propulsion/tank[2]/x-position</property>
+						</product>
+						<product>
+							<property>/systems/load-manager/fuel/tank[3]</property>
+							<property>propulsion/tank[3]/x-position</property>
+						</product>
+						<product>
+							<property>/systems/load-manager/fuel/tank[4]</property>
+							<property>propulsion/tank[4]/x-position</property>
+						</product>
+						<product>
+							<property>/systems/load-manager/fuel/tank[5]</property>
+							<property>propulsion/tank[5]/x-position</property>
+						</product>
+						<product>
+							<property>/systems/load-manager/fuel/tank[6]</property>
+							<property>propulsion/tank[6]/x-position</property>
+						</product>
+						<product>
+							<property>/systems/load-manager/fuel/tank[7]</property>
+							<property>propulsion/tank[7]/x-position</property>
+						</product>
+					</sum>
+					<property>/systems/load-manager/gw-lbs</property>
+				</quotient>
+			</function>
+		</fcs_function>
+		
+		<fcs_function name="/systems/load-manager/cg-percent-mac">
+			<function>
+				<product>
+					<quotient>
+						<difference>
+							<product>
+								<property>/systems/load-manager/cg-x-in</property>
+								<value>0.0254</value> <!-- Inches to meters -->
+							</product>
+							<value>0.24116</value> <!-- Offset -->
+						</difference>
+						<value>7.68</value> <!-- MAC length -->
+					</quotient>
+					<value>100</value>
+				</product>
+			</function>
+		</fcs_function>
+		
+		
 	
 	</channel>
 

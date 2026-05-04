@@ -64,6 +64,7 @@
 		<eng type="string">PW</eng>
 		<eng-string type="string">PW4462</eng-string>
 		<freighter type="bool">0</freighter>
+		<tanker type="bool">0</tanker>
 		<type type="string">MD-11</type>
 	</options>
 	
@@ -72,19 +73,19 @@
 			<name>Forward Cabin</name>
 			<weight-lb alias="/fdm/jsbsim/inertia/pointmass-weight-lbs[0]"/>
 			<min-lb type="double">0</min-lb>
-			<max-lb type="double">6120</max-lb>
+			<max-lb type="double">6150</max-lb>
 		</weight>
 		<weight n="1">
 			<name>Mid Cabin</name>
 			<weight-lb alias="/fdm/jsbsim/inertia/pointmass-weight-lbs[1]"/>
 			<min-lb type="double">0</min-lb>
-			<max-lb type="double">21960</max-lb>
+			<max-lb type="double">22050</max-lb>
 		</weight>
 		<weight n="2">
 			<name>Aft Cabin</name>
 			<weight-lb alias="/fdm/jsbsim/inertia/pointmass-weight-lbs[2]"/>
 			<min-lb type="double">0</min-lb>
-			<max-lb type="double">29880</max-lb>
+			<max-lb type="double">29850</max-lb>
 		</weight>
 		<weight n="3">
 			<name>Forward Cargo</name>
