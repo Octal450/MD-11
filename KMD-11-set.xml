@@ -111,22 +111,22 @@
 			<use_hitpoints_instead_of_failure_modes_bool type="bool">0</use_hitpoints_instead_of_failure_modes_bool>
 		</d-config>
 		<weight n="0">
-			<name>Forward Fuel Tank</name>
+			<name>Forward Upper Cargo</name>
 			<weight-lb alias="/fdm/jsbsim/inertia/pointmass-weight-lbs[0]"/>
 			<min-lb type="double">0</min-lb>
-			<max-lb type="double">59500</max-lb>
+			<max-lb type="double">33600</max-lb>
 		</weight>
 		<weight n="1">
-			<name>Not Installed</name>
+			<name>Mid Upper Cargo</name>
 			<weight-lb alias="/fdm/jsbsim/inertia/pointmass-weight-lbs[1]"/>
 			<min-lb type="double">0</min-lb>
-			<max-lb type="double">0.001</max-lb>
+			<max-lb type="double">33600</max-lb>
 		</weight>
 		<weight n="2">
-			<name>Aft Fuel Tank</name>
+			<name>Aft Upper Cargo</name>
 			<weight-lb alias="/fdm/jsbsim/inertia/pointmass-weight-lbs[2]"/>
 			<min-lb type="double">0</min-lb>
-			<max-lb type="double">70300</max-lb>
+			<max-lb type="double">42000</max-lb>
 		</weight>
 		<weight n="3">
 			<name>Forward Lower Cargo</name>
