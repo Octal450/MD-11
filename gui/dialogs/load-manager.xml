@@ -244,9 +244,28 @@
 					<hrule>
 						<stretch>true</stretch>
 					</hrule>
-					<text>
-						<label>Passenger Weight</label>
-					</text>
+					
+					<group>
+						<layout>table</layout>
+						
+						<text>
+							<row>0</row>
+							<col>0</col>
+							<visible>
+								<not><property>/systems/acconfig/options/load-manager-pax-count</property></not>
+							</visible>
+							<label>Passenger Weight</label>
+						</text>
+						<text>
+							<row>0</row>
+							<col>0</col>
+							<visible>
+								<property>/systems/acconfig/options/load-manager-pax-count</property>
+							</visible>
+							<label>Passenger Count</label>
+						</text>
+					</group>
+					
 					<hrule>
 						<stretch>true</stretch>
 					</hrule>
@@ -317,10 +336,24 @@
 					<text>
 						<row>0</row>
 						<col>5</col>
+						<visible>
+							<not><property>/systems/acconfig/options/load-manager-pax-count</property></not>
+						</visible>
 						<halign>center</halign>
 						<label>999999</label>
 						<live>true</live>
 						<property>/systems/load-manager/weight-p[0]</property>
+					</text>
+					<text>
+						<row>0</row>
+						<col>5</col>
+						<visible>
+							<property>/systems/acconfig/options/load-manager-pax-count</property>
+						</visible>
+						<halign>center</halign>
+						<label>999999</label>
+						<live>true</live>
+						<property>/systems/load-manager/pax[0]</property>
 					</text>
 					
 					<button>
@@ -406,10 +439,24 @@
 					<text>
 						<row>1</row>
 						<col>5</col>
+						<visible>
+							<not><property>/systems/acconfig/options/load-manager-pax-count</property></not>
+						</visible>
 						<halign>center</halign>
 						<label>999999</label>
 						<live>true</live>
 						<property>/systems/load-manager/weight-p[1]</property>
+					</text>
+					<text>
+						<row>1</row>
+						<col>5</col>
+						<visible>
+							<property>/systems/acconfig/options/load-manager-pax-count</property>
+						</visible>
+						<halign>center</halign>
+						<label>999999</label>
+						<live>true</live>
+						<property>/systems/load-manager/pax[1]</property>
 					</text>
 					
 					<button>
@@ -495,10 +542,24 @@
 					<text>
 						<row>2</row>
 						<col>5</col>
+						<visible>
+							<not><property>/systems/acconfig/options/load-manager-pax-count</property></not>
+						</visible>
 						<halign>center</halign>
 						<label>999999</label>
 						<live>true</live>
 						<property>/systems/load-manager/weight-p[2]</property>
+					</text>
+					<text>
+						<row>2</row>
+						<col>5</col>
+						<visible>
+							<property>/systems/acconfig/options/load-manager-pax-count</property>
+						</visible>
+						<halign>center</halign>
+						<label>999999</label>
+						<live>true</live>
+						<property>/systems/load-manager/pax[2]</property>
 					</text>
 					
 					<button>
@@ -1781,98 +1842,122 @@
 		
 		<vrule/>
 		
-		<canvas>
-			<name>loadmanager</name>
-			<valign>center</valign>
-			<halign>center</halign>
-			<stretch>false</stretch>
-			<pref-width>300</pref-width>
-			<pref-height>400</pref-height>
-			<nasal>
-				<load>
-					<![CDATA[
-						# Canvas Load Manager Graph
-						# Copyright (2026) Josh Davidson (Octal450)
-						
-						var Value = {
-							cgAftLimit:  props.globals.getNode("/systems/load-manager/cg-aft-limit"),
-							cgAftLimitRound: 0,
-							cgFwdLimit:  props.globals.getNode("/systems/load-manager/cg-fwd-limit"),
-							cgFwdLimitRound: 0,
-							cgPercentMac: props.globals.getNode("/systems/load-manager/cg-percent-mac"),
-							cgPercentMacRound: 0,
-							gwLbs: props.globals.getNode("/systems/load-manager/gw-lbs"),
-							gwLbsRound: 0,
-							mtow: props.globals.getNode("/limits/mass-and-balance/maximum-takeoff-mass-lbs"),
-							mzfw: props.globals.getNode("/limits/mass-and-balance/maximum-zero-fuel-mass-lbs"),
-							zfwcgAftLimit:  props.globals.getNode("/systems/load-manager/zfwcg-aft-limit"),
-							zfwcgAftLimitRound: 0,
-							zfwcgFwdLimit:  props.globals.getNode("/systems/load-manager/zfwcg-fwd-limit"),
-							zfwcgFwdLimitRound: 0,
-							zfwcgPercentMac: props.globals.getNode("/systems/load-manager/zfwcg-percent-mac"),
-							zfwcgPercentMacRound: 0,
-							zfwLbs: props.globals.getNode("/systems/load-manager/zfw-lbs"),
-							zfwLbsRound: 0,
-						};
-						
-						var font_mapper = func(family, weight) {
-							return "LiberationFonts/LiberationSans-Regular.ttf";
-						};
-						
-						var getGraphKeys = func() {
-							return ["CG", "CG_dot", "CG_text", "ZFWCG", "ZFWCG_dot", "ZFWCG_text"];
-						}
-						
-						var load_manager_canvas_dlg = canvas.get(cmdarg());
-						var root = load_manager_canvas_dlg.createGroup();
-						load_manager_canvas_dlg.setColorBackground(0, 0, 0, 1.0);
-						
-						var graphSvg = root.createChild("group");
-						canvas.parsesvg(graphSvg, "Aircraft/MD-11/gui/dialogs/load-manager-graph.svg", {"font-mapper": font_mapper});
-						
-						var obj = {};
-						var graphSvgKeys = getGraphKeys();
-						foreach(var key; graphSvgKeys) {
-							obj[key] = graphSvg.getElementById(key);
-						}
-						
-						var update = func() {
-							Value.cgAftLimitRound = math.round(Value.cgAftLimit.getValue(), 0.1);
-							Value.cgFwdLimitRound = math.round(Value.cgFwdLimit.getValue(), 0.1);
-							Value.cgPercentMacRound = math.round(Value.cgPercentMac.getValue(), 0.1);
-							Value.gwLbsRound = math.round(Value.gwLbs.getValue(), 100);
-							Value.zfwcgAftLimitRound = math.round(Value.zfwcgAftLimit.getValue(), 0.1);
-							Value.zfwcgFwdLimitRound = math.round(Value.zfwcgFwdLimit.getValue(), 0.1);
-							Value.zfwcgPercentMacRound = math.round(Value.zfwcgPercentMac.getValue(), 0.1);
-							Value.zfwLbsRound = math.round(Value.zfwLbs.getValue(), 100);
+		<group>
+			<layout>vbox</layout>
+			
+			<checkbox>
+				<visible>
+					<and>
+						<not><property>/options/freighter</property></not>
+						<not><property>/options/tanker</property></not>
+					</and>
+				</visible>
+				<label>Display passenger count instead of weight</label>
+				<halign>center</halign>
+				<property>/systems/acconfig/options/load-manager-pax-count</property>
+				<binding>
+					<command>dialog-apply</command>
+				</binding>
+				<binding>
+					<command>nasal</command>
+					<script>acconfig.OPTIONS.write();</script>
+				</binding>
+				<live>true</live>
+			</checkbox>
+			
+			<canvas>
+				<name>loadmanager</name>
+				<valign>top</valign>
+				<halign>center</halign>
+				<stretch>false</stretch>
+				<pref-width>300</pref-width>
+				<pref-height>400</pref-height>
+				<nasal>
+					<load>
+						<![CDATA[
+							# Canvas Load Manager Graph
+							# Copyright (2026) Josh Davidson (Octal450)
 							
-							obj["CG"].setTranslation(math.clamp((Value.cgPercentMacRound - 8) * (17/2), 0, 255), math.clamp((Value.gwLbsRound - 220000) * (-17/20000), -374, 0));
-							obj["ZFWCG"].setTranslation(math.clamp((Value.zfwcgPercentMacRound - 8) * (17/2), 0, 255), math.clamp((Value.zfwLbsRound - 220000) * (-17/20000), -374, 0));
+							var Value = {
+								cgAftLimit:  props.globals.getNode("/systems/load-manager/cg-aft-limit"),
+								cgAftLimitRound: 0,
+								cgFwdLimit:  props.globals.getNode("/systems/load-manager/cg-fwd-limit"),
+								cgFwdLimitRound: 0,
+								cgPercentMac: props.globals.getNode("/systems/load-manager/cg-percent-mac"),
+								cgPercentMacRound: 0,
+								gwLbs: props.globals.getNode("/systems/load-manager/gw-lbs"),
+								gwLbsRound: 0,
+								mtow: props.globals.getNode("/limits/mass-and-balance/maximum-takeoff-mass-lbs"),
+								mzfw: props.globals.getNode("/limits/mass-and-balance/maximum-zero-fuel-mass-lbs"),
+								zfwcgAftLimit:  props.globals.getNode("/systems/load-manager/zfwcg-aft-limit"),
+								zfwcgAftLimitRound: 0,
+								zfwcgFwdLimit:  props.globals.getNode("/systems/load-manager/zfwcg-fwd-limit"),
+								zfwcgFwdLimitRound: 0,
+								zfwcgPercentMac: props.globals.getNode("/systems/load-manager/zfwcg-percent-mac"),
+								zfwcgPercentMacRound: 0,
+								zfwLbs: props.globals.getNode("/systems/load-manager/zfw-lbs"),
+								zfwLbsRound: 0,
+							};
 							
-							if (Value.gwLbsRound > Value.mtow.getValue() or Value.cgPercentMacRound < Value.cgFwdLimitRound or Value.cgPercentMacRound > Value.cgAftLimitRound) {
-								obj["CG_dot"].setColorFill(1, 0, 0);
-								obj["CG_text"].setColor(1, 0, 0);
-							} else {
-								obj["CG_dot"].setColorFill(0, 1, 0);
-								obj["CG_text"].setColor(0, 1, 0);
+							var font_mapper = func(family, weight) {
+								return "LiberationFonts/LiberationSans-Regular.ttf";
+							};
+							
+							var getGraphKeys = func() {
+								return ["CG", "CG_dot", "CG_text", "ZFWCG", "ZFWCG_dot", "ZFWCG_text"];
 							}
 							
-							if (Value.zfwLbsRound > Value.mzfw.getValue() or Value.zfwcgPercentMacRound < Value.zfwcgFwdLimitRound or Value.zfwcgPercentMacRound > Value.zfwcgAftLimitRound) {
-								obj["ZFWCG_dot"].setColorFill(1, 0, 0);
-								obj["ZFWCG_text"].setColor(1, 0, 0);
-							} else {
-								obj["ZFWCG_dot"].setColorFill(0, 1, 0);
-								obj["ZFWCG_text"].setColor(0, 1, 0);
+							var load_manager_canvas_dlg = canvas.get(cmdarg());
+							var root = load_manager_canvas_dlg.createGroup();
+							load_manager_canvas_dlg.setColorBackground(0, 0, 0, 1.0);
+							
+							var graphSvg = root.createChild("group");
+							canvas.parsesvg(graphSvg, "Aircraft/MD-11/gui/dialogs/load-manager-graph.svg", {"font-mapper": font_mapper});
+							
+							var obj = {};
+							var graphSvgKeys = getGraphKeys();
+							foreach(var key; graphSvgKeys) {
+								obj[key] = graphSvg.getElementById(key);
 							}
-						}
-						
-						update();
-						lmTimer = maketimer(0.1, update);
-						lmTimer.start();
-					]]>
-				</load>
-			</nasal>
-		</canvas>
+							
+							var update = func() {
+								Value.cgAftLimitRound = math.round(Value.cgAftLimit.getValue(), 0.1);
+								Value.cgFwdLimitRound = math.round(Value.cgFwdLimit.getValue(), 0.1);
+								Value.cgPercentMacRound = math.round(Value.cgPercentMac.getValue(), 0.1);
+								Value.gwLbsRound = math.round(Value.gwLbs.getValue(), 100);
+								Value.zfwcgAftLimitRound = math.round(Value.zfwcgAftLimit.getValue(), 0.1);
+								Value.zfwcgFwdLimitRound = math.round(Value.zfwcgFwdLimit.getValue(), 0.1);
+								Value.zfwcgPercentMacRound = math.round(Value.zfwcgPercentMac.getValue(), 0.1);
+								Value.zfwLbsRound = math.round(Value.zfwLbs.getValue(), 100);
+								
+								obj["CG"].setTranslation(math.clamp((Value.cgPercentMacRound - 8) * (17/2), 0, 255), math.clamp((Value.gwLbsRound - 220000) * (-17/20000), -374, 0));
+								obj["ZFWCG"].setTranslation(math.clamp((Value.zfwcgPercentMacRound - 8) * (17/2), 0, 255), math.clamp((Value.zfwLbsRound - 220000) * (-17/20000), -374, 0));
+								
+								if (Value.gwLbsRound > Value.mtow.getValue() or Value.cgPercentMacRound < Value.cgFwdLimitRound or Value.cgPercentMacRound > Value.cgAftLimitRound) {
+									obj["CG_dot"].setColorFill(1, 0, 0);
+									obj["CG_text"].setColor(1, 0, 0);
+								} else {
+									obj["CG_dot"].setColorFill(0, 1, 0);
+									obj["CG_text"].setColor(0, 1, 0);
+								}
+								
+								if (Value.zfwLbsRound > Value.mzfw.getValue() or Value.zfwcgPercentMacRound < Value.zfwcgFwdLimitRound or Value.zfwcgPercentMacRound > Value.zfwcgAftLimitRound) {
+									obj["ZFWCG_dot"].setColorFill(1, 0, 0);
+									obj["ZFWCG_text"].setColor(1, 0, 0);
+								} else {
+									obj["ZFWCG_dot"].setColorFill(0, 1, 0);
+									obj["ZFWCG_text"].setColor(0, 1, 0);
+								}
+							}
+							
+							update();
+							lmTimer = maketimer(0.1, update);
+							lmTimer.start();
+						]]>
+					</load>
+				</nasal>
+			</canvas>
+		</group>
 	</group>
 	
 	<hrule/>
