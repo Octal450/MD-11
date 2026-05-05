@@ -234,10 +234,7 @@
 					<row>2</row>
 					<col>0</col>
 					<visible>
-						<and>
-							<not><property>/options/freighter</property></not>
-							<not><property>/options/tanker</property></not>
-						</and>
+						<not><property>/options/freighter</property></not>
 					</visible>
 					<layout>hbox</layout>
 					
@@ -275,10 +272,7 @@
 					<row>3</row>
 					<col>0</col>
 					<visible>
-						<and>
-							<not><property>/options/freighter</property></not>
-							<not><property>/options/tanker</property></not>
-						</and>
+						<not><property>/options/freighter</property></not>
 					</visible>
 					<layout>table</layout>
 					
@@ -596,10 +590,7 @@
 					<row>2</row>
 					<col>0</col>
 					<visible>
-						<and>
-							<property>/options/freighter</property>
-							<not><property>/options/tanker</property></not>
-						</and>
+						<property>/options/freighter</property>
 					</visible>
 					<layout>hbox</layout>
 					
@@ -618,10 +609,7 @@
 					<row>3</row>
 					<col>0</col>
 					<visible>
-						<and>
-							<property>/options/freighter</property>
-							<not><property>/options/tanker</property></not>
-						</and>
+						<property>/options/freighter</property>
 					</visible>
 					<layout>table</layout>
 					
@@ -893,233 +881,11 @@
 					</button>
 				</group>
 				
-				<group> <!-- Tanker -->
-					<row>2</row>
-					<col>0</col>
-					<visible>
-						<property>/options/tanker</property>
-					</visible>
-					<layout>hbox</layout>
-					
-					<hrule>
-						<stretch>true</stretch>
-					</hrule>
-					<text>
-						<label>Refueling Tank Weight</label>
-					</text>
-					<hrule>
-						<stretch>true</stretch>
-					</hrule>
-				</group>
-				
-				<group> <!-- Tanker -->
-					<row>3</row>
-					<col>0</col>
-					<visible>
-						<property>/options/tanker</property>
-					</visible>
-					<layout>table</layout>
-					
-					<text>
-						<row>0</row>
-						<col>0</col>
-						<halign>right</halign>
-						<label>Forward Tank:</label>
-					</text>
-					
-					<slider>
-						<row>0</row>
-						<col>1</col>
-						<pref-width>250</pref-width>
-						<halign>center</halign>
-						<property>/systems/load-manager/weight-k[0]</property>
-						<step>100</step>
-						<min>0</min>
-						<max>59500</max>
-						<live>true</live>
-						<binding>
-							<command>dialog-apply</command>
-						</binding>
-					</slider>
-					
-					<button>
-						<row>0</row>
-						<col>3</col>
-						<pref-width>25</pref-width>
-						<pref-height>25</pref-height>
-						<legend>&lt;&lt;</legend>
-						<binding>
-							<command>property-adjust</command>
-							<property>/systems/load-manager/weight-k[0]</property>
-							<min>0</min>
-							<step>-1000</step>
-							<wrap>false</wrap>
-						</binding>
-					</button>
-					<button>
-						<row>0</row>
-						<col>4</col>
-						<pref-width>25</pref-width>
-						<pref-height>25</pref-height>
-						<legend>&lt;</legend>
-						<binding>
-							<command>property-adjust</command>
-							<property>/systems/load-manager/weight-k[0]</property>
-							<min>0</min>
-							<step>-100</step>
-							<wrap>false</wrap>
-						</binding>
-					</button>
-					
-					<text>
-						<row>0</row>
-						<col>5</col>
-						<halign>center</halign>
-						<label>999999</label>
-						<live>true</live>
-						<property>/systems/load-manager/weight-k[0]</property>
-					</text>
-					
-					<button>
-						<row>0</row>
-						<col>6</col>
-						<pref-width>25</pref-width>
-						<pref-height>25</pref-height>
-						<legend>&gt;</legend>
-						<binding>
-							<command>property-adjust</command>
-							<property>/systems/load-manager/weight-k[0]</property>
-							<max>59500</max>
-							<step>100</step>
-							<wrap>false</wrap>
-						</binding>
-					</button>
-					<button>
-						<row>0</row>
-						<col>7</col>
-						<pref-width>25</pref-width>
-						<pref-height>25</pref-height>
-						<legend>&gt;&gt;</legend>
-						<binding>
-							<command>property-adjust</command>
-							<property>/systems/load-manager/weight-k[0]</property>
-							<max>59500</max>
-							<step>1000</step>
-							<wrap>false</wrap>
-						</binding>
-					</button>
-					
-					<text>
-						<row>1</row>
-						<col>0</col>
-						<halign>right</halign>
-						<label>Aft Tank:</label>
-					</text>
-					
-					<slider>
-						<row>1</row>
-						<col>1</col>
-						<pref-width>250</pref-width>
-						<halign>center</halign>
-						<property>/systems/load-manager/weight-k[2]</property>
-						<step>100</step>
-						<min>0</min>
-						<max>70300</max>
-						<live>true</live>
-						<binding>
-							<command>dialog-apply</command>
-						</binding>
-					</slider>
-					
-					<button>
-						<row>1</row>
-						<col>3</col>
-						<pref-width>25</pref-width>
-						<pref-height>25</pref-height>
-						<legend>&lt;&lt;</legend>
-						<binding>
-							<command>property-adjust</command>
-							<property>/systems/load-manager/weight-k[2]</property>
-							<min>0</min>
-							<step>-1000</step>
-							<wrap>false</wrap>
-						</binding>
-					</button>
-					<button>
-						<row>1</row>
-						<col>4</col>
-						<pref-width>25</pref-width>
-						<pref-height>25</pref-height>
-						<legend>&lt;</legend>
-						<binding>
-							<command>property-adjust</command>
-							<property>/systems/load-manager/weight-k[2]</property>
-							<min>0</min>
-							<step>-100</step>
-							<wrap>false</wrap>
-						</binding>
-					</button>
-					
-					<text>
-						<row>1</row>
-						<col>5</col>
-						<halign>center</halign>
-						<label>999999</label>
-						<live>true</live>
-						<property>/systems/load-manager/weight-k[2]</property>
-					</text>
-					
-					<button>
-						<row>1</row>
-						<col>6</col>
-						<pref-width>25</pref-width>
-						<pref-height>25</pref-height>
-						<legend>&gt;</legend>
-						<binding>
-							<command>property-adjust</command>
-							<property>/systems/load-manager/weight-k[2]</property>
-							<max>70300</max>
-							<step>100</step>
-							<wrap>false</wrap>
-						</binding>
-					</button>
-					<button>
-						<row>1</row>
-						<col>7</col>
-						<pref-width>25</pref-width>
-						<pref-height>25</pref-height>
-						<legend>&gt;&gt;</legend>
-						<binding>
-							<command>property-adjust</command>
-							<property>/systems/load-manager/weight-k[2]</property>
-							<max>70300</max>
-							<step>1000</step>
-							<wrap>false</wrap>
-						</binding>
-					</button>
-					
-					<text>
-						<row>2</row>
-						<col>0</col>
-						<halign>right</halign>
-						<label>Note:</label>
-					</text>
-					<text>
-						<row>2</row>
-						<col>1</col>
-						<halign>center</halign>
-						<label>These are only for boom/drogue supply</label>
-					</text>
-				</group>
-				
-				<group> <!-- Passenger or Tanker -->
+				<group> <!-- Passenger -->
 					<row>4</row>
 					<col>0</col>
 					<visible>
-						<or>
-							<not><property>/options/freighter</property></not>
-							<property>/options/tanker</property>
-						</or>
+						<not><property>/options/freighter</property></not>
 					</visible>
 					<layout>hbox</layout>
 					
@@ -1138,10 +904,7 @@
 					<row>4</row>
 					<col>0</col>
 					<visible>
-						<and>
-							<property>/options/freighter</property>
-							<not><property>/options/tanker</property></not>
-						</and>
+						<property>/options/freighter</property>
 					</visible>
 					<layout>hbox</layout>
 					
@@ -1963,10 +1726,7 @@
 		
 		<checkbox>
 			<enable>
-				<and>
-					<not><property>/options/freighter</property></not>
-					<not><property>/options/tanker</property></not>
-				</and>
+				<not><property>/options/freighter</property></not>
 			</enable>
 			<label>Display passenger count instead of weight</label>
 			<halign>center</halign>

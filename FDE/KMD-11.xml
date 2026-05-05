@@ -12,7 +12,7 @@
 	<aerodynamics file="FDE/Config/md-11-aerodynamics.xml"/>
 	<external_reactions file="FDE/Config/md-11-external-reactions"/>
 	<ground_reactions file="FDE/Config/md-11-ground-reactions"/>
-	<mass_balance file="FDE/Config/kmd-11-mass-balance"/>
+	<mass_balance file="FDE/Config/md-11f-mass-balance"/>
 	<metrics file="FDE/Config/md-11-metrics"/>
 	
 	<system file="md-11-core"/>

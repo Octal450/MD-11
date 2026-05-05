@@ -461,9 +461,6 @@
 		<!-- Payload -->
 		<switch name="/systems/load-manager/weight[0]">
 			<default value="/systems/load-manager/weight-p[0]"/>
-			<test value="/systems/load-manager/weight-k[0]">
-				/options/tanker eq 1
-			</test>
 			<test value="/systems/load-manager/weight-f[0]">
 				/options/freighter eq 1
 			</test>
@@ -471,9 +468,6 @@
 		
 		<switch name="/systems/load-manager/weight[1]">
 			<default value="/systems/load-manager/weight-p[1]"/>
-			<test value="/systems/load-manager/weight-k[1]">
-				/options/tanker eq 1
-			</test>
 			<test value="/systems/load-manager/weight-f[1]">
 				/options/freighter eq 1
 			</test>
@@ -481,9 +475,6 @@
 		
 		<switch name="/systems/load-manager/weight[2]">
 			<default value="/systems/load-manager/weight-p[2]"/>
-			<test value="/systems/load-manager/weight-k[2]">
-				/options/tanker eq 1
-			</test>
 			<test value="/systems/load-manager/weight-f[2]">
 				/options/freighter eq 1
 			</test>
