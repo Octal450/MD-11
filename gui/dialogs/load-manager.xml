@@ -1794,7 +1794,7 @@
 					<row>0</row>
 					<col>2</col>
 					<halign>right</halign>
-					<label>Min ZFWCG:</label>
+					<label>Max CG:</label>
 				</text>
 				
 				<text>
@@ -1803,14 +1803,20 @@
 					<halign>center</halign>
 					<label>999999999</label>
 					<live>true</live>
-					<property>/sim/gui/dialogs/load-manager/zfwcg-fwd-limit</property>
+					<property>/sim/gui/dialogs/load-manager/cg-aft-limit</property>
+				</text>
+				
+				<text> <!-- Spacer -->
+					<row>0</row>
+					<col>4</col>
+					<label></label>
 				</text>
 				
 				<text>
 					<row>1</row>
 					<col>0</col>
 					<halign>right</halign>
-					<label>Max CG:</label>
+					<label>Min ZFWCG:</label>
 				</text>
 				
 				<text>
@@ -1819,7 +1825,7 @@
 					<halign>center</halign>
 					<label>999999999</label>
 					<live>true</live>
-					<property>/sim/gui/dialogs/load-manager/cg-aft-limit</property>
+					<property>/sim/gui/dialogs/load-manager/zfwcg-fwd-limit</property>
 				</text>
 				
 				<text>
@@ -1845,33 +1851,13 @@
 		<group>
 			<layout>vbox</layout>
 			
-			<checkbox>
-				<visible>
-					<and>
-						<not><property>/options/freighter</property></not>
-						<not><property>/options/tanker</property></not>
-					</and>
-				</visible>
-				<label>Display passenger count instead of weight</label>
-				<halign>center</halign>
-				<property>/systems/acconfig/options/load-manager-pax-count</property>
-				<binding>
-					<command>dialog-apply</command>
-				</binding>
-				<binding>
-					<command>nasal</command>
-					<script>acconfig.OPTIONS.write();</script>
-				</binding>
-				<live>true</live>
-			</checkbox>
-			
 			<canvas>
 				<name>loadmanager</name>
-				<valign>top</valign>
+				<valign>center</valign>
 				<halign>center</halign>
 				<stretch>false</stretch>
 				<pref-width>300</pref-width>
-				<pref-height>400</pref-height>
+				<pref-height>420</pref-height>
 				<nasal>
 					<load>
 						<![CDATA[
@@ -1968,16 +1954,37 @@
 		<button>
 			<halign>center</halign>
 			<legend>Default</legend>
-			<pref-width>150</pref-width>
+			<pref-width>100</pref-width>
 			<binding>
 				<command>nasal</command>
 				<script>core.LoadManager.setDefault();</script>
 			</binding>
 		</button>
+		
+		<checkbox>
+			<enable>
+				<and>
+					<not><property>/options/freighter</property></not>
+					<not><property>/options/tanker</property></not>
+				</and>
+			</enable>
+			<label>Display passenger count instead of weight</label>
+			<halign>center</halign>
+			<property>/systems/acconfig/options/load-manager-pax-count</property>
+			<binding>
+				<command>dialog-apply</command>
+			</binding>
+			<binding>
+				<command>nasal</command>
+				<script>acconfig.OPTIONS.write();</script>
+			</binding>
+			<live>true</live>
+		</checkbox>
+		
 		<button>
 			<halign>center</halign>
 			<legend>Apply</legend>
-			<pref-width>250</pref-width>
+			<pref-width>200</pref-width>
 			<binding>
 				<command>nasal</command>
 				<script>core.LoadManager.setLoad();</script>
@@ -1986,7 +1993,7 @@
 		<button>
 			<halign>center</halign>
 			<legend>Apply and Close</legend>
-			<pref-width>450</pref-width>
+			<pref-width>250</pref-width>
 			<binding>
 				<command>nasal</command>
 				<script>core.LoadManager.setLoad();</script>

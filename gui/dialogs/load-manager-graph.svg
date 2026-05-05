@@ -12,7 +12,7 @@
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    version="1.1"
    width="300"
-   height="400"
+   height="420"
    id="svg3651"
    inkscape:version="0.91 r13725"
    sodipodi:docname="load-manager-graph.svg">
@@ -29,9 +29,9 @@
      inkscape:window-height="1009"
      id="namedview8"
      showgrid="false"
-     inkscape:zoom="8"
-     inkscape:cx="14.504262"
-     inkscape:cy="30.14574"
+     inkscape:zoom="2"
+     inkscape:cx="158.42568"
+     inkscape:cy="320.08056"
      inkscape:window-x="-8"
      inkscape:window-y="-8"
      inkscape:window-maximized="1"
@@ -115,7 +115,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title />
+        <dc:title></dc:title>
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -123,7 +123,7 @@
      inkscape:groupmode="layer"
      id="layer1"
      inkscape:label="main"
-     transform="translate(0,-652.36221)">
+     transform="translate(0,-632.36221)">
     <g
        id="Grid"
        inkscape:label="#g4874"
@@ -360,7 +360,7 @@
          sodipodi:nodetypes="cc"
          inkscape:connector-curvature="0"
          id="path4443"
-         d="m 29.999822,661.86225 255.999848,0"
+         d="m 29.999822,661.86224 255.999848,0"
          style="fill:none;fill-rule:evenodd;stroke:#808080;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
     </g>
     <g
@@ -973,5 +973,18 @@
            y="1031.2432"
            style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:12.5px;font-family:'Liberation Sans';-inkscape-font-specification:'Liberation Sans';text-align:center;text-anchor:middle;fill:#00ff00">CG</tspan></text>
     </g>
+    <text
+       xml:space="preserve"
+       style="font-size:12.5px;line-height:150%;font-family:sans-serif;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#ffffff;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="150.07532"
+       y="650.09821"
+       id="text4271-2"
+       sodipodi:linespacing="150%"
+       transform="scale(1.0000065,0.99999351)"><tspan
+         sodipodi:role="line"
+         id="tspan4273-6"
+         x="150.07532"
+         y="650.09821"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:12.5px;font-family:'Liberation Sans';-inkscape-font-specification:'Liberation Sans';text-align:center;text-anchor:middle;fill:#ffffff">CG (% MAC) vs Weight (lbs)</tspan></text>
   </g>
 </svg>
