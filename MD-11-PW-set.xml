@@ -90,13 +90,13 @@
 			<name>Forward Cargo</name>
 			<weight-lb alias="/fdm/jsbsim/inertia/pointmass-weight-lbs[3]"/>
 			<min-lb type="double">0</min-lb>
-			<max-lb type="double">25200</max-lb>
+			<max-lb type="double">32400</max-lb>
 		</weight>
 		<weight n="4">
 			<name>Aft Cargo</name>
 			<weight-lb alias="/fdm/jsbsim/inertia/pointmass-weight-lbs[4]"/>
 			<min-lb type="double">0</min-lb>
-			<max-lb type="double">33600</max-lb>
+			<max-lb type="double">40600</max-lb>
 		</weight>
 		<weight n="5">
 			<name>Aft Bulk Cargo</name>

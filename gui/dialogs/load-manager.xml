@@ -628,7 +628,7 @@
 						<property>/systems/load-manager/weight-f[0]</property>
 						<step>100</step>
 						<min>0</min>
-						<max>33600</max>
+						<max>42600</max>
 						<live>true</live>
 						<binding>
 							<command>dialog-apply</command>
@@ -682,7 +682,7 @@
 						<binding>
 							<command>property-adjust</command>
 							<property>/systems/load-manager/weight-f[0]</property>
-							<max>33600</max>
+							<max>42600</max>
 							<step>100</step>
 							<wrap>false</wrap>
 						</binding>
@@ -696,7 +696,7 @@
 						<binding>
 							<command>property-adjust</command>
 							<property>/systems/load-manager/weight-f[0]</property>
-							<max>33600</max>
+							<max>42600</max>
 							<step>1000</step>
 							<wrap>false</wrap>
 						</binding>
@@ -717,7 +717,7 @@
 						<property>/systems/load-manager/weight-f[1]</property>
 						<step>100</step>
 						<min>0</min>
-						<max>33600</max>
+						<max>42800</max>
 						<live>true</live>
 						<binding>
 							<command>dialog-apply</command>
@@ -771,7 +771,7 @@
 						<binding>
 							<command>property-adjust</command>
 							<property>/systems/load-manager/weight-f[1]</property>
-							<max>33600</max>
+							<max>42800</max>
 							<step>100</step>
 							<wrap>false</wrap>
 						</binding>
@@ -785,7 +785,7 @@
 						<binding>
 							<command>property-adjust</command>
 							<property>/systems/load-manager/weight-f[1]</property>
-							<max>33600</max>
+							<max>42800</max>
 							<step>1000</step>
 							<wrap>false</wrap>
 						</binding>
@@ -952,7 +952,7 @@
 						<property>/systems/load-manager/weight[3]</property>
 						<step>100</step>
 						<min>0</min>
-						<max>25200</max>
+						<max>32400</max>
 						<live>true</live>
 						<binding>
 							<command>dialog-apply</command>
@@ -1006,7 +1006,7 @@
 						<binding>
 							<command>property-adjust</command>
 							<property>/systems/load-manager/weight[3]</property>
-							<max>25200</max>
+							<max>32400</max>
 							<step>100</step>
 							<wrap>false</wrap>
 						</binding>
@@ -1020,7 +1020,7 @@
 						<binding>
 							<command>property-adjust</command>
 							<property>/systems/load-manager/weight[3]</property>
-							<max>25200</max>
+							<max>32400</max>
 							<step>1000</step>
 							<wrap>false</wrap>
 						</binding>
@@ -1054,7 +1054,7 @@
 						<property>/systems/load-manager/weight[4]</property>
 						<step>100</step>
 						<min>0</min>
-						<max>33600</max>
+						<max>40600</max>
 						<live>true</live>
 						<binding>
 							<command>dialog-apply</command>
@@ -1108,7 +1108,7 @@
 						<binding>
 							<command>property-adjust</command>
 							<property>/systems/load-manager/weight[4]</property>
-							<max>33600</max>
+							<max>40600</max>
 							<step>100</step>
 							<wrap>false</wrap>
 						</binding>
@@ -1122,7 +1122,7 @@
 						<binding>
 							<command>property-adjust</command>
 							<property>/systems/load-manager/weight[4]</property>
-							<max>33600</max>
+							<max>40600</max>
 							<step>1000</step>
 							<wrap>false</wrap>
 						</binding>
@@ -1653,7 +1653,7 @@
 							};
 							
 							var getGraphKeys = func() {
-								return ["CG", "CG_dot", "CG_text", "ZFWCG", "ZFWCG_dot", "ZFWCG_text"];
+								return ["BoxF", "BoxP", "CG", "CG_dot", "CG_text", "ZFWCG", "ZFWCG_dot", "ZFWCG_text"];
 							}
 							
 							var load_manager_canvas_dlg = canvas.get(cmdarg());
@@ -1667,6 +1667,12 @@
 							var graphSvgKeys = getGraphKeys();
 							foreach(var key; graphSvgKeys) {
 								obj[key] = graphSvg.getElementById(key);
+							}
+							
+							if (pts.Options.freighter.getBoolValue()) {
+								obj["BoxP"].hide();
+							} else {
+								obj["BoxF"].hide();
 							}
 							
 							var update = func() {
