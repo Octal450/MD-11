@@ -63,6 +63,42 @@
 			</signal>
 			<signal>
 				<type>float</type>
+				<property>/engines/engine[0]/egt-actual</property>
+			</signal>
+			<signal>
+				<type>float</type>
+				<property>/engines/engine[1]/egt-actual</property>
+			</signal>
+			<signal>
+				<type>float</type>
+				<property>/engines/engine[2]/egt-actual</property>
+			</signal>
+			<signal>
+				<type>float</type>
+				<property>/engines/engine[0]/epr-actual</property>
+			</signal>
+			<signal>
+				<type>float</type>
+				<property>/engines/engine[1]/epr-actual</property>
+			</signal>
+			<signal>
+				<type>float</type>
+				<property>/engines/engine[2]/epr-actual</property>
+			</signal>
+			<signal>
+				<type>float</type>
+				<property>/engines/engine[0]/ff-actual</property>
+			</signal>
+			<signal>
+				<type>float</type>
+				<property>/engines/engine[1]/ff-actual</property>
+			</signal>
+			<signal>
+				<type>float</type>
+				<property>/engines/engine[2]/ff-actual</property>
+			</signal>
+			<signal>
+				<type>float</type>
 				<property>/engines/engine[4]/n1</property>
 			</signal>
 			<signal>

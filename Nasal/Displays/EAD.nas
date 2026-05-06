@@ -12,7 +12,6 @@ var Value = {
 	barRest: 293,
 	egtScale: 1000,
 	engType: "GE",
-	eprLimit: 0,
 	Fadec: {
 		activeMode: "T/O",
 		auto: 0,
@@ -38,7 +37,6 @@ var Value = {
 		checklistItems: ["", "LANDING GEAR", "STAB TRIM", "SLAT", "FLAP", "BRAKES", "SPOILERS"],
 		wow: 0,
 	},
-	n1Limit: 0,
 	needleRest: -44 * D2R,
 	tat: 0,
 };
@@ -255,9 +253,17 @@ var CanvasBase = {
 	},
 	updateBaseDials: func() {
 		# EGT
+		if (Value.engType == "PW") {
+			Value.egtScale = 700;
+		} else {
+			Value.egtScale = 1000;
+		}
+		
 		if (Value.Fadec.powered[0]) {
-			me["EGT1"].setText(sprintf("%d", math.round(systems.ENGINES.egt[0].getValue())));
-			me["EGT1_needle"].setRotation(pts.Instrumentation.Ead.egt[0].getValue() * D2R);
+			Value.Fadec.egt[0] = systems.ENGINES.egt[0].getValue();
+			
+			me["EGT1"].setText(sprintf("%d", math.round(Value.Fadec.egt[0])));
+			me["EGT1_needle"].setRotation((-44 + (Value.Fadec.egt[0] / Value.egtScale * 177)) * D2R);
 			
 			if (systems.IGNITION.ign1.getBoolValue()) {
 				me["EGT1_ignition"].show();
@@ -281,8 +287,10 @@ var CanvasBase = {
 		}
 		
 		if (Value.Fadec.powered[1]) {
-			me["EGT2"].setText(sprintf("%d", math.round(systems.ENGINES.egt[1].getValue())));
-			me["EGT2_needle"].setRotation(pts.Instrumentation.Ead.egt[1].getValue() * D2R);
+			Value.Fadec.egt[1] = systems.ENGINES.egt[1].getValue();
+			
+			me["EGT2"].setText(sprintf("%d", math.round(Value.Fadec.egt[1])));
+			me["EGT2_needle"].setRotation((-44 + (Value.Fadec.egt[1] / Value.egtScale * 177)) * D2R);
 			
 			if (systems.IGNITION.ign2.getBoolValue()) {
 				me["EGT2_ignition"].show();
@@ -306,8 +314,10 @@ var CanvasBase = {
 		}
 		
 		if (Value.Fadec.powered[2]) {
-			me["EGT3"].setText(sprintf("%d", math.round(systems.ENGINES.egt[2].getValue())));
-			me["EGT3_needle"].setRotation(pts.Instrumentation.Ead.egt[2].getValue() * D2R);
+			Value.Fadec.egt[2] = systems.ENGINES.egt[2].getValue();
+			
+			me["EGT3"].setText(sprintf("%d", math.round(Value.Fadec.egt[2])));
+			me["EGT3_needle"].setRotation((-44 + (Value.Fadec.egt[2] / Value.egtScale * 177)) * D2R);
 			
 			if (systems.IGNITION.ign3.getBoolValue()) {
 				me["EGT3_ignition"].show();
@@ -338,7 +348,7 @@ var CanvasBase = {
 				Value.Fadec.n2[0] = 0;
 				me["N21_needle"].setRotation(Value.needleRest);
 			} else {
-				me["N21_needle"].setRotation(pts.Instrumentation.Ead.n2[0].getValue() * D2R);
+				me["N21_needle"].setRotation((-44 + (Value.Fadec.n2[0] / 120 * 177)) * D2R);
 			}
 			
 			me["N21"].setText(sprintf("%5.1f", math.round(Value.Fadec.n2[0], 0.1)));
@@ -364,7 +374,7 @@ var CanvasBase = {
 				Value.Fadec.n2[1] = 0;
 				me["N22_needle"].setRotation(Value.needleRest);
 			} else {
-				me["N22_needle"].setRotation(pts.Instrumentation.Ead.n2[1].getValue() * D2R);
+				me["N22_needle"].setRotation((-44 + (Value.Fadec.n2[1] / 120 * 177)) * D2R);
 			}
 			
 			me["N22"].setText(sprintf("%5.1f", math.round(Value.Fadec.n2[1], 0.1)));
@@ -390,7 +400,7 @@ var CanvasBase = {
 				Value.Fadec.n2[2] = 0;
 				me["N23_needle"].setRotation(Value.needleRest);
 			} else {
-				me["N23_needle"].setRotation(pts.Instrumentation.Ead.n2[2].getValue() * D2R);
+				me["N23_needle"].setRotation((-44 + (Value.Fadec.n2[2] / 120 * 177)) * D2R);
 			}
 			
 			me["N23"].setText(sprintf("%5.1f", math.round(Value.Fadec.n2[2], 0.1)));
@@ -410,13 +420,13 @@ var CanvasBase = {
 		}
 	},
 	updateBaseTapes: func() {
+		# EGT
 		if (Value.engType == "PW") {
 			Value.egtScale = 700;
 		} else {
 			Value.egtScale = 1000;
 		}
 		
-		# EGT
 		if (Value.Fadec.powered[0]) {
 			Value.Fadec.egt[0] = systems.ENGINES.egt[0].getValue();
 			
@@ -671,10 +681,9 @@ var CanvasGeDials = {
 		
 		me["N1Lim"].setText(sprintf("%5.1f", math.round(Value.Fadec.n1Limit, 0.1)));
 		
-		Value.n1Limit = pts.Instrumentation.Ead.n1Limit.getValue();
-		me["N11_lim"].setRotation(Value.n1Limit * D2R);
-		me["N12_lim"].setRotation(Value.n1Limit * D2R);
-		me["N13_lim"].setRotation(Value.n1Limit * D2R);
+		me["N11_lim"].setRotation((-44 + (Value.Fadec.n1Limit / 120 * 177)) * D2R);
+		me["N12_lim"].setRotation((-44 + (Value.Fadec.n1Limit / 120 * 177)) * D2R);
+		me["N13_lim"].setRotation((-44 + (Value.Fadec.n1Limit / 120 * 177)) * D2R);
 		
 		# N1
 		if (Value.Fadec.powered[0]) {
@@ -684,8 +693,9 @@ var CanvasGeDials = {
 				Value.Fadec.n1[0] = 0;
 				me["N11_needle"].setRotation(Value.needleRest);
 			} else {
-				me["N11_needle"].setRotation(pts.Instrumentation.Ead.n1[0].getValue() * D2R);
+				me["N11_needle"].setRotation((-44 + (Value.Fadec.n1[0] / 120 * 177)) * D2R);
 			}
+			me["N11_thr"].setRotation((-44 + (systems.FADEC.targetN1[0].getValue() / 120 * 177)) * D2R);
 			
 			Value.Fadec.n1Round[0] = math.round(Value.Fadec.n1[0], 0.01);
 			if (Value.Fadec.n1Round[0] < 99) { # Prepare to show the zero at 100
@@ -698,8 +708,6 @@ var CanvasGeDials = {
 			me["N11_tens"].setTranslation(0, genevaN1Tens(num(right(sprintf("%06.3f", Value.Fadec.n1Round[0]), 6))) * 34);
 			me["N11_ones"].setTranslation(0, genevaN1Ones(num(right(sprintf("%05.3f", Value.Fadec.n1Round[0]), 5))) * 34);
 			me["N11_decimal"].setTranslation(0, (10 * math.round(math.mod(Value.Fadec.n1Round[0], 1), 0.001) * 34));
-			
-			me["N11_thr"].setRotation(pts.Instrumentation.Ead.n1Thr[0].getValue() * D2R);
 			
 			me["N11_box"].show();
 			me["N11_decimal"].show();
@@ -727,8 +735,9 @@ var CanvasGeDials = {
 				Value.Fadec.n1[1] = 0;
 				me["N12_needle"].setRotation(Value.needleRest);
 			} else {
-				me["N12_needle"].setRotation(pts.Instrumentation.Ead.n1[1].getValue() * D2R);
+				me["N12_needle"].setRotation((-44 + (Value.Fadec.n1[1] / 120 * 177)) * D2R);
 			}
+			me["N12_thr"].setRotation((-44 + (systems.FADEC.targetN1[1].getValue() / 120 * 177)) * D2R);
 			
 			Value.Fadec.n1Round[1] = math.round(Value.Fadec.n1[1], 0.01);
 			if (Value.Fadec.n1Round[1] < 99) { # Prepare to show the zero at 100
@@ -741,8 +750,6 @@ var CanvasGeDials = {
 			me["N12_tens"].setTranslation(0, genevaN1Tens(num(right(sprintf("%06.3f", Value.Fadec.n1Round[1]), 6))) * 34);
 			me["N12_ones"].setTranslation(0, genevaN1Ones(num(right(sprintf("%05.3f", Value.Fadec.n1Round[1]), 5))) * 34);
 			me["N12_decimal"].setTranslation(0, (10 * math.round(math.mod(Value.Fadec.n1Round[1], 1), 0.001) * 34));
-			
-			me["N12_thr"].setRotation(pts.Instrumentation.Ead.n1Thr[1].getValue() * D2R);
 			
 			me["N12_box"].show();
 			me["N12_decimal"].show();
@@ -770,8 +777,9 @@ var CanvasGeDials = {
 				Value.Fadec.n1[2] = 0;
 				me["N13_needle"].setRotation(Value.needleRest);
 			} else {
-				me["N13_needle"].setRotation(pts.Instrumentation.Ead.n1[2].getValue() * D2R);
+				me["N13_needle"].setRotation((-44 + (Value.Fadec.n1[2] / 120 * 177)) * D2R);
 			}
+			me["N13_thr"].setRotation((-44 + (systems.FADEC.targetN1[2].getValue() / 120 * 177)) * D2R);
 			
 			Value.Fadec.n1Round[2] = math.round(Value.Fadec.n1[2], 0.01);
 			if (Value.Fadec.n1Round[2] < 99) { # Prepare to show the zero at 100
@@ -784,8 +792,6 @@ var CanvasGeDials = {
 			me["N13_tens"].setTranslation(0, genevaN1Tens(num(right(sprintf("%06.3f", Value.Fadec.n1Round[2]), 6))) * 34);
 			me["N13_ones"].setTranslation(0, genevaN1Ones(num(right(sprintf("%05.3f", Value.Fadec.n1Round[2]), 5))) * 34);
 			me["N13_decimal"].setTranslation(0, (10 * math.round(math.mod(Value.Fadec.n1Round[2], 1), 0.001) * 34));
-			
-			me["N13_thr"].setRotation(pts.Instrumentation.Ead.n1Thr[2].getValue() * D2R);
 			
 			me["N13_box"].show();
 			me["N13_decimal"].show();
@@ -1126,10 +1132,9 @@ var CanvasPwDials = {
 		
 		me["EPRLim"].setText(sprintf("%4.2f", math.round(Value.Fadec.eprLimit, 0.01)));
 		
-		Value.eprLimit = pts.Instrumentation.Ead.eprLimit.getValue();
-		me["EPR1_lim"].setRotation(Value.eprLimit * D2R);
-		me["EPR2_lim"].setRotation(Value.eprLimit * D2R);
-		me["EPR3_lim"].setRotation(Value.eprLimit * D2R);
+		me["EPR1_lim"].setRotation((-44 + (Value.Fadec.eprLimit / 2.16 * 177)) * D2R);
+		me["EPR2_lim"].setRotation((-44 + (Value.Fadec.eprLimit / 2.16 * 177)) * D2R);
+		me["EPR3_lim"].setRotation((-44 + (Value.Fadec.eprLimit / 2.16 * 177)) * D2R);
 		
 		# EPR
 		if (Value.Fadec.powered[0]) {
@@ -1140,9 +1145,9 @@ var CanvasPwDials = {
 			me["EPR1_tenths"].setTranslation(0, genevaEprTenths(num(right(sprintf("%05.3f", Value.Fadec.eprRound[0] * 10), 5))) * 34);
 			me["EPR1_hundreths"].setTranslation(0, 10 * (math.round(math.mod(Value.Fadec.eprRound[0] * 10, 1), 0.0001) * 34));
 			
-			me["EPR1_needle"].setRotation(pts.Instrumentation.Ead.epr[0].getValue() * D2R);
+			me["EPR1_needle"].setRotation((-44 + (Value.Fadec.epr[0] / 2.16 * 177)) * D2R);
 			if (!systems.FADEC.n1Mode[0].getValue()) {
-				me["EPR1_thr"].setRotation(pts.Instrumentation.Ead.eprThr[0].getValue() * D2R);
+				me["EPR1_thr"].setRotation((-44 + (systems.FADEC.targetEpr[0].getValue() / 2.16 * 177)) * D2R);
 				me["EPR1_thr"].show();
 			} else {
 				me["EPR1_thr"].hide();
@@ -1172,9 +1177,9 @@ var CanvasPwDials = {
 			me["EPR2_tenths"].setTranslation(0, genevaEprTenths(num(right(sprintf("%05.3f", Value.Fadec.eprRound[1] * 10), 5))) * 34);
 			me["EPR2_hundreths"].setTranslation(0, 10 * (math.round(math.mod(Value.Fadec.eprRound[1] * 10, 1), 0.0001) * 34));
 			
-			me["EPR2_needle"].setRotation(pts.Instrumentation.Ead.epr[1].getValue() * D2R);
+			me["EPR2_needle"].setRotation((-44 + (Value.Fadec.epr[1] / 2.16 * 177)) * D2R);
 			if (!systems.FADEC.n1Mode[1].getValue()) {
-				me["EPR2_thr"].setRotation(pts.Instrumentation.Ead.eprThr[1].getValue() * D2R);
+				me["EPR2_thr"].setRotation((-44 + (systems.FADEC.targetEpr[1].getValue() / 2.16 * 177)) * D2R);
 				me["EPR2_thr"].show();
 			} else {
 				me["EPR2_thr"].hide();
@@ -1204,9 +1209,9 @@ var CanvasPwDials = {
 			me["EPR3_tenths"].setTranslation(0, genevaEprTenths(num(right(sprintf("%05.3f", Value.Fadec.eprRound[2] * 10), 5))) * 34);
 			me["EPR3_hundreths"].setTranslation(0, 10 * (math.round(math.mod(Value.Fadec.eprRound[2] * 10, 1), 0.0001) * 34));
 			
-			me["EPR3_needle"].setRotation(pts.Instrumentation.Ead.epr[2].getValue() * D2R);
+			me["EPR3_needle"].setRotation((-44 + (Value.Fadec.epr[2] / 2.16 * 177)) * D2R);
 			if (!systems.FADEC.n1Mode[2].getValue()) {
-				me["EPR3_thr"].setRotation(pts.Instrumentation.Ead.eprThr[2].getValue() * D2R);
+				me["EPR3_thr"].setRotation((-44 + (systems.FADEC.targetEpr[2].getValue() / 2.16 * 177)) * D2R);
 				me["EPR3_thr"].show();
 			} else {
 				me["EPR3_thr"].hide();
@@ -1234,7 +1239,7 @@ var CanvasPwDials = {
 		Value.Fadec.n1[2] = systems.ENGINES.n1[2].getValue();
 		
 		if (Value.Fadec.powered[0] and Value.Fadec.n1[0] >= Value.Fadec.minN) {
-			me["N11_needle"].setRotation(pts.Instrumentation.Ead.n1[0].getValue() * D2R);
+			me["N11_needle"].setRotation((-44 + (Value.Fadec.n1[0] / 120 * 177)) * D2R);
 			me["N11"].setText(sprintf("%5.1f", math.round(Value.Fadec.n1[0], 0.1)));
 			me["N11"].show();
 			me["N11_needle"].show();
@@ -1244,7 +1249,7 @@ var CanvasPwDials = {
 		}
 		
 		if (Value.Fadec.powered[1] and Value.Fadec.n1[1] >= Value.Fadec.minN) {
-			me["N12_needle"].setRotation(pts.Instrumentation.Ead.n1[1].getValue() * D2R);
+			me["N12_needle"].setRotation((-44 + (Value.Fadec.n1[1] / 120 * 177)) * D2R);
 			me["N12"].setText(sprintf("%5.1f", math.round(Value.Fadec.n1[1], 0.1)));
 			me["N12"].show();
 			me["N12_needle"].show();
@@ -1254,7 +1259,7 @@ var CanvasPwDials = {
 		}
 		
 		if (Value.Fadec.powered[2] and Value.Fadec.n1[2] >= Value.Fadec.minN) {
-			me["N13_needle"].setRotation(pts.Instrumentation.Ead.n1[2].getValue() * D2R);
+			me["N13_needle"].setRotation((-44 + (Value.Fadec.n1[2] / 120 * 177)) * D2R);
 			me["N13"].setText(sprintf("%5.1f", math.round(Value.Fadec.n1[2], 0.1)));
 			me["N13"].show();
 			me["N13_needle"].show();

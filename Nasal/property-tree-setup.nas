@@ -140,14 +140,6 @@ var Instrumentation = {
 	Ead: {
 		checklist: props.globals.getNode("/instrumentation/ead/checklist"),
 		checklistRed: props.globals.getNode("/instrumentation/ead/checklist-red"),
-		egt: [props.globals.getNode("/instrumentation/ead/egt[0]"), props.globals.getNode("/instrumentation/ead/egt[1]"), props.globals.getNode("/instrumentation/ead/egt[2]")],
-		epr: [props.globals.getNode("/instrumentation/ead/epr[0]"), props.globals.getNode("/instrumentation/ead/epr[1]"), props.globals.getNode("/instrumentation/ead/epr[2]")],
-		eprLimit: props.globals.getNode("/instrumentation/ead/epr-limit"),
-		eprThr: [props.globals.getNode("/instrumentation/ead/epr-thr[0]"), props.globals.getNode("/instrumentation/ead/epr-thr[1]"), props.globals.getNode("/instrumentation/ead/epr-thr[2]")],
-		n1: [props.globals.getNode("/instrumentation/ead/n1[0]"), props.globals.getNode("/instrumentation/ead/n1[1]"), props.globals.getNode("/instrumentation/ead/n1[2]")],
-		n1Limit: props.globals.getNode("/instrumentation/ead/n1-limit"),
-		n1Thr: [props.globals.getNode("/instrumentation/ead/n1-thr[0]"), props.globals.getNode("/instrumentation/ead/n1-thr[1]"), props.globals.getNode("/instrumentation/ead/n1-thr[2]")],
-		n2: [props.globals.getNode("/instrumentation/ead/n2[0]"), props.globals.getNode("/instrumentation/ead/n2[1]"), props.globals.getNode("/instrumentation/ead/n2[2]")],
 	},
 	Efis: {
 		hdgTrkSelected: [props.globals.initNode("/instrumentation/efis[0]/hdg-trk-selected", 0, "BOOL"), props.globals.initNode("/instrumentation/efis[1]/hdg-trk-selected", 0, "BOOL")],
