@@ -220,13 +220,13 @@ var CanvasEngDials = {
 		Value.Eng.oilPsi[1] = systems.ENGINES.oilPsi[1].getValue();
 		Value.Eng.oilPsi[2] = systems.ENGINES.oilPsi[2].getValue();
 		
-		me["OilPsi1"].setText(sprintf("%d", systems.ENGINES.oilPsi[0].getValue()));
+		me["OilPsi1"].setText(sprintf("%d", Value.Eng.oilPsi[0]));
 		me["OilPsi1_needle"].setRotation((-44 + (Value.Eng.oilPsi[0] / Value.Eng.oilPsiScale * 177)) * D2R);
 		
-		me["OilPsi2"].setText(sprintf("%d", systems.ENGINES.oilPsi[1].getValue()));
+		me["OilPsi2"].setText(sprintf("%d", Value.Eng.oilPsi[1]));
 		me["OilPsi2_needle"].setRotation((-44 + (Value.Eng.oilPsi[1] / Value.Eng.oilPsiScale * 177)) * D2R);
 		
-		me["OilPsi3"].setText(sprintf("%d", systems.ENGINES.oilPsi[2].getValue()));
+		me["OilPsi3"].setText(sprintf("%d", Value.Eng.oilPsi[2]));
 		me["OilPsi3_needle"].setRotation((-44 + (Value.Eng.oilPsi[2] / Value.Eng.oilPsiScale * 177)) * D2R);
 		
 		# Oil Temp
