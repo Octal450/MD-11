@@ -92,7 +92,6 @@ var Value = {
 		oilPsiScale: 160,
 		oilQty: [0, 0, 0],
 		oilQtyCline: [0, 0, 0],
-		oilQtyClineQt: [0, 0, 0],
 		oilTemp: [0, 0, 0],
 		state: [0, 0, 0],
 		type: "GE",
