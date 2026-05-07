@@ -75,9 +75,6 @@ var CanvasBase = {
 		
 		return me;
 	},
-	getKeys: func() {
-		return [];
-	},
 	setup: func() {
 		# Hide the pages by default
 		geDials.page.hide();
