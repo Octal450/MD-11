@@ -260,7 +260,7 @@ var CanvasBase = {
 			Value.Fadec.egt[0] = systems.ENGINES.egt[0].getValue();
 			
 			me["EGT1"].setText(sprintf("%d", math.round(Value.Fadec.egt[0])));
-			me["EGT1_needle"].setRotation((-44 + (Value.Fadec.egt[0] / Value.egtScale * 177)) * D2R);
+			me["EGT1_needle"].setRotation((-44 + (math.max(Value.Fadec.egt[0], 0) / Value.egtScale * 177)) * D2R);
 			
 			if (systems.IGNITION.ign1.getBoolValue()) {
 				me["EGT1_ignition"].show();
@@ -287,7 +287,7 @@ var CanvasBase = {
 			Value.Fadec.egt[1] = systems.ENGINES.egt[1].getValue();
 			
 			me["EGT2"].setText(sprintf("%d", math.round(Value.Fadec.egt[1])));
-			me["EGT2_needle"].setRotation((-44 + (Value.Fadec.egt[1] / Value.egtScale * 177)) * D2R);
+			me["EGT2_needle"].setRotation((-44 + (math.max(Value.Fadec.egt[1], 0) / Value.egtScale * 177)) * D2R);
 			
 			if (systems.IGNITION.ign2.getBoolValue()) {
 				me["EGT2_ignition"].show();
@@ -314,7 +314,7 @@ var CanvasBase = {
 			Value.Fadec.egt[2] = systems.ENGINES.egt[2].getValue();
 			
 			me["EGT3"].setText(sprintf("%d", math.round(Value.Fadec.egt[2])));
-			me["EGT3_needle"].setRotation((-44 + (Value.Fadec.egt[2] / Value.egtScale * 177)) * D2R);
+			me["EGT3_needle"].setRotation((-44 + (math.max(Value.Fadec.egt[2], 0) / Value.egtScale * 177)) * D2R);
 			
 			if (systems.IGNITION.ign3.getBoolValue()) {
 				me["EGT3_ignition"].show();
@@ -428,7 +428,7 @@ var CanvasBase = {
 			Value.Fadec.egt[0] = systems.ENGINES.egt[0].getValue();
 			
 			me["EGT1"].setText(sprintf("%d", math.round(Value.Fadec.egt[0])));
-			me["EGT1_bar"].setTranslation(0, Value.Fadec.egt[0] / Value.egtScale * -293);
+			me["EGT1_bar"].setTranslation(0, math.max(Value.Fadec.egt[0], 0) / Value.egtScale * -293);
 			
 			if (systems.IGNITION.ign1.getBoolValue()) {
 				me["EGT1_ignition"].show();
@@ -455,7 +455,7 @@ var CanvasBase = {
 			Value.Fadec.egt[1] = systems.ENGINES.egt[1].getValue();
 			
 			me["EGT2"].setText(sprintf("%d", math.round(Value.Fadec.egt[1])));
-			me["EGT2_bar"].setTranslation(0, Value.Fadec.egt[1] / Value.egtScale * -293);
+			me["EGT2_bar"].setTranslation(0, math.max(Value.Fadec.egt[1], 0) / Value.egtScale * -293);
 			
 			if (systems.IGNITION.ign2.getBoolValue()) {
 				me["EGT2_ignition"].show();
@@ -482,7 +482,7 @@ var CanvasBase = {
 			Value.Fadec.egt[2] = systems.ENGINES.egt[2].getValue();
 			
 			me["EGT3"].setText(sprintf("%d", math.round(Value.Fadec.egt[2])));
-			me["EGT3_bar"].setTranslation(0, Value.Fadec.egt[2] / Value.egtScale * -293);
+			me["EGT3_bar"].setTranslation(0, math.max(Value.Fadec.egt[2], 0) / Value.egtScale * -293);
 			
 			if (systems.IGNITION.ign3.getBoolValue()) {
 				me["EGT3_ignition"].show();
