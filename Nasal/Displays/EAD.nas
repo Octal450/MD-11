@@ -11,6 +11,9 @@ var xx = nil;
 var Value = {
 	barRest: 293,
 	egtScale: 1000,
+	egtRed: 960,
+	egtStart: 750,
+	egtYellow: 925,
 	engType: "GE",
 	Fadec: {
 		activeMode: "T/O",
@@ -27,6 +30,7 @@ var Value = {
 		powered: [0, 0, 0],
 		rating: "62K",
 		revState: [0, 0, 0],
+		state: [0, 0, 0],
 	},
 	Ignition: {
 		starter: [0, 0, 0],
@@ -249,18 +253,28 @@ var CanvasBase = {
 		}
 	},
 	updateBaseDials: func() {
+		Value.Fadec.state[0] = systems.ENGINES.state[0].getValue();
+		Value.Fadec.state[1] = systems.ENGINES.state[1].getValue();
+		Value.Fadec.state[2] = systems.ENGINES.state[2].getValue();
+		
 		# EGT
 		if (Value.engType == "PW") {
 			Value.egtScale = 700;
+			Value.egtRed = 650;
+			Value.egtStart = 535;
+			Value.egtYellow = 625;
 		} else {
 			Value.egtScale = 1000;
+			Value.egtRed = 960;
+			Value.egtStart = 750;
+			Value.egtYellow = 925;
 		}
 		
 		if (Value.Fadec.powered[0]) {
 			Value.Fadec.egt[0] = systems.ENGINES.egt[0].getValue();
 			
 			me["EGT1"].setText(sprintf("%d", math.round(Value.Fadec.egt[0])));
-			me["EGT1_needle"].setRotation((-44 + (math.max(Value.Fadec.egt[0], 0) / Value.egtScale * 177)) * D2R);
+			me["EGT1_needle"].setRotation(math.clamp((-44 + (Value.Fadec.egt[0] / Value.egtScale * 177)), -44, 133) * D2R);
 			
 			if (systems.IGNITION.ign1.getBoolValue()) {
 				me["EGT1_ignition"].show();
@@ -268,16 +282,34 @@ var CanvasBase = {
 				me["EGT1_ignition"].hide();
 			}
 			
-			if (Value.Ignition.starter[0] or systems.ENGINES.state[0].getValue() == 2) {
+			if (Value.Ignition.starter[0] or Value.Fadec.state[0] == 2) {
 				me["EGT1_redstart"].show();
 			} else {
 				me["EGT1_redstart"].hide();
+			}
+			
+			if ((Value.Ignition.starter[0] or Value.Fadec.state[0] == 2 and Value.Fadec.egt[0] > Value.egtStart) or Value.Fadec.egt[0] > Value.egtRed) {
+				me["EGT1"].setColor(1, 0, 0);
+				me["EGT1_box"].setColor(1, 0, 0);
+				me["EGT1_box"].show();
+				me["EGT1_needle"].setColorFill(1, 0, 0);
+			} else if (Value.Fadec.egt[0] > Value.egtYellow) {
+				me["EGT1"].setColor(0.9412, 0.7255, 0);
+				me["EGT1_box"].setColor(0.9412, 0.7255, 0);
+				me["EGT1_box"].show();
+				me["EGT1_needle"].setColorFill(0.9412, 0.7255, 0);
+			} else {
+				me["EGT1"].setColor(1, 1, 1);
+				me["EGT1_box"].setColor(1, 1, 1);
+				me["EGT1_box"].hide();
+				me["EGT1_needle"].setColorFill(1, 1, 1);
 			}
 			
 			me["EGT1"].show();
 			me["EGT1_needle"].show();
 		} else {
 			me["EGT1"].hide();
+			me["EGT1_box"].hide();
 			me["EGT1_ignition"].hide();
 			me["EGT1_needle"].hide();
 			me["EGT1_redstart"].hide();
@@ -287,7 +319,7 @@ var CanvasBase = {
 			Value.Fadec.egt[1] = systems.ENGINES.egt[1].getValue();
 			
 			me["EGT2"].setText(sprintf("%d", math.round(Value.Fadec.egt[1])));
-			me["EGT2_needle"].setRotation((-44 + (math.max(Value.Fadec.egt[1], 0) / Value.egtScale * 177)) * D2R);
+			me["EGT2_needle"].setRotation(math.clamp((-44 + (Value.Fadec.egt[1] / Value.egtScale * 177)), -44, 133) * D2R);
 			
 			if (systems.IGNITION.ign2.getBoolValue()) {
 				me["EGT2_ignition"].show();
@@ -295,16 +327,34 @@ var CanvasBase = {
 				me["EGT2_ignition"].hide();
 			}
 			
-			if (Value.Ignition.starter[1] or systems.ENGINES.state[1].getValue() == 2) {
+			if (Value.Ignition.starter[1] or Value.Fadec.state[1] == 2) {
 				me["EGT2_redstart"].show();
 			} else {
 				me["EGT2_redstart"].hide();
+			}
+			
+			if ((Value.Ignition.starter[1] or Value.Fadec.state[1] == 2 and Value.Fadec.egt[1] > Value.egtStart) or Value.Fadec.egt[1] > Value.egtRed) {
+				me["EGT2"].setColor(1, 0, 0);
+				me["EGT2_box"].setColor(1, 0, 0);
+				me["EGT2_box"].show();
+				me["EGT2_needle"].setColorFill(1, 0, 0);
+			} else if (Value.Fadec.egt[1] > Value.egtYellow) {
+				me["EGT2"].setColor(0.9412, 0.7255, 0);
+				me["EGT2_box"].setColor(0.9412, 0.7255, 0);
+				me["EGT2_box"].show();
+				me["EGT2_needle"].setColorFill(0.9412, 0.7255, 0);
+			} else {
+				me["EGT2"].setColor(1, 1, 1);
+				me["EGT2_box"].setColor(1, 1, 1);
+				me["EGT2_box"].hide();
+				me["EGT2_needle"].setColorFill(1, 1, 1);
 			}
 			
 			me["EGT2"].show();
 			me["EGT2_needle"].show();
 		} else {
 			me["EGT2"].hide();
+			me["EGT2_box"].hide();
 			me["EGT2_ignition"].hide();
 			me["EGT2_needle"].hide();
 			me["EGT2_redstart"].hide();
@@ -314,7 +364,7 @@ var CanvasBase = {
 			Value.Fadec.egt[2] = systems.ENGINES.egt[2].getValue();
 			
 			me["EGT3"].setText(sprintf("%d", math.round(Value.Fadec.egt[2])));
-			me["EGT3_needle"].setRotation((-44 + (math.max(Value.Fadec.egt[2], 0) / Value.egtScale * 177)) * D2R);
+			me["EGT3_needle"].setRotation(math.clamp((-44 + (Value.Fadec.egt[2] / Value.egtScale * 177)), -44, 133) * D2R);
 			
 			if (systems.IGNITION.ign3.getBoolValue()) {
 				me["EGT3_ignition"].show();
@@ -322,16 +372,34 @@ var CanvasBase = {
 				me["EGT3_ignition"].hide();
 			}
 			
-			if (Value.Ignition.starter[2] or systems.ENGINES.state[2].getValue() == 2) {
+			if (Value.Ignition.starter[2] or Value.Fadec.state[2] == 2) {
 				me["EGT3_redstart"].show();
 			} else {
 				me["EGT3_redstart"].hide();
+			}
+			
+			if ((Value.Ignition.starter[2] or Value.Fadec.state[2] == 2 and Value.Fadec.egt[2] > Value.egtStart) or Value.Fadec.egt[2] > Value.egtRed) {
+				me["EGT3"].setColor(1, 0, 0);
+				me["EGT3_box"].setColor(1, 0, 0);
+				me["EGT3_box"].show();
+				me["EGT3_needle"].setColorFill(1, 0, 0);
+			} else if (Value.Fadec.egt[2] > Value.egtYellow) {
+				me["EGT3"].setColor(0.9412, 0.7255, 0);
+				me["EGT3_box"].setColor(0.9412, 0.7255, 0);
+				me["EGT3_box"].show();
+				me["EGT3_needle"].setColorFill(0.9412, 0.7255, 0);
+			} else {
+				me["EGT3"].setColor(1, 1, 1);
+				me["EGT3_box"].setColor(1, 1, 1);
+				me["EGT3_box"].hide();
+				me["EGT3_needle"].setColorFill(1, 1, 1);
 			}
 			
 			me["EGT3"].show();
 			me["EGT3_needle"].show();
 		} else {
 			me["EGT3"].hide();
+			me["EGT3_box"].hide();
 			me["EGT3_ignition"].hide();
 			me["EGT3_needle"].hide();
 			me["EGT3_redstart"].hide();
@@ -417,18 +485,28 @@ var CanvasBase = {
 		}
 	},
 	updateBaseTapes: func() {
+		Value.Fadec.state[0] = systems.ENGINES.state[0].getValue();
+		Value.Fadec.state[1] = systems.ENGINES.state[1].getValue();
+		Value.Fadec.state[2] = systems.ENGINES.state[2].getValue();
+		
 		# EGT
 		if (Value.engType == "PW") {
 			Value.egtScale = 700;
+			Value.egtRed = 650;
+			Value.egtStart = 535;
+			Value.egtYellow = 625;
 		} else {
 			Value.egtScale = 1000;
+			Value.egtRed = 960;
+			Value.egtStart = 750;
+			Value.egtYellow = 925;
 		}
 		
 		if (Value.Fadec.powered[0]) {
 			Value.Fadec.egt[0] = systems.ENGINES.egt[0].getValue();
 			
 			me["EGT1"].setText(sprintf("%d", math.round(Value.Fadec.egt[0])));
-			me["EGT1_bar"].setTranslation(0, math.max(Value.Fadec.egt[0], 0) / Value.egtScale * -293);
+			me["EGT1_bar"].setTranslation(0, math.clamp(Value.Fadec.egt[0] / Value.egtScale * -293, -293, 0));
 			
 			if (systems.IGNITION.ign1.getBoolValue()) {
 				me["EGT1_ignition"].show();
@@ -436,10 +514,27 @@ var CanvasBase = {
 				me["EGT1_ignition"].hide();
 			}
 			
-			if (Value.Ignition.starter[0] or systems.ENGINES.state[0].getValue() == 2) {
+			if (Value.Ignition.starter[0] or Value.Fadec.state[0] == 2) {
 				me["EGT1_redstart"].show();
 			} else {
 				me["EGT1_redstart"].hide();
+			}
+			
+			if ((Value.Ignition.starter[0] or Value.Fadec.state[0] == 2 and Value.Fadec.egt[0] > Value.egtStart) or Value.Fadec.egt[0] > Value.egtRed) {
+				me["EGT1"].setColor(1, 0, 0);
+				me["EGT1_bar"].setColorFill(1, 0, 0);
+				me["EGT1_box"].setColor(1, 0, 0);
+				me["EGT1_box"].show();
+			} else if (Value.Fadec.egt[0] > Value.egtYellow) {
+				me["EGT1"].setColor(0.9412, 0.7255, 0);
+				me["EGT1_bar"].setColorFill(0.9412, 0.7255, 0);
+				me["EGT1_box"].setColor(0.9412, 0.7255, 0);
+				me["EGT1_box"].show();
+			} else {
+				me["EGT1"].setColor(1, 1, 1);
+				me["EGT1_bar"].setColorFill(1, 1, 1);
+				me["EGT1_box"].setColor(1, 1, 1);
+				me["EGT1_box"].hide();
 			}
 			
 			me["EGT1"].show();
@@ -447,6 +542,7 @@ var CanvasBase = {
 		} else {
 			me["EGT1"].hide();
 			me["EGT1_bar"].hide();
+			me["EGT1_box"].hide();
 			me["EGT1_ignition"].hide();
 			me["EGT1_redstart"].hide();
 		}
@@ -455,7 +551,7 @@ var CanvasBase = {
 			Value.Fadec.egt[1] = systems.ENGINES.egt[1].getValue();
 			
 			me["EGT2"].setText(sprintf("%d", math.round(Value.Fadec.egt[1])));
-			me["EGT2_bar"].setTranslation(0, math.max(Value.Fadec.egt[1], 0) / Value.egtScale * -293);
+			me["EGT2_bar"].setTranslation(0, math.clamp(Value.Fadec.egt[1] / Value.egtScale * -293, -293, 0));
 			
 			if (systems.IGNITION.ign2.getBoolValue()) {
 				me["EGT2_ignition"].show();
@@ -463,10 +559,27 @@ var CanvasBase = {
 				me["EGT2_ignition"].hide();
 			}
 			
-			if (Value.Ignition.starter[1] or systems.ENGINES.state[1].getValue() == 2) {
+			if (Value.Ignition.starter[1] or Value.Fadec.state[1] == 2) {
 				me["EGT2_redstart"].show();
 			} else {
 				me["EGT2_redstart"].hide();
+			}
+			
+			if ((Value.Ignition.starter[1] or Value.Fadec.state[1] == 2 and Value.Fadec.egt[1] > Value.egtStart) or Value.Fadec.egt[1] > Value.egtRed) {
+				me["EGT2"].setColor(1, 0, 0);
+				me["EGT2_bar"].setColorFill(1, 0, 0);
+				me["EGT2_box"].setColor(1, 0, 0);
+				me["EGT2_box"].show();
+			} else if (Value.Fadec.egt[1] > Value.egtYellow) {
+				me["EGT2"].setColor(0.9412, 0.7255, 0);
+				me["EGT2_bar"].setColorFill(0.9412, 0.7255, 0);
+				me["EGT2_box"].setColor(0.9412, 0.7255, 0);
+				me["EGT2_box"].show();
+			} else {
+				me["EGT2"].setColor(1, 1, 1);
+				me["EGT2_bar"].setColorFill(1, 1, 1);
+				me["EGT2_box"].setColor(1, 1, 1);
+				me["EGT2_box"].hide();
 			}
 			
 			me["EGT2"].show();
@@ -474,6 +587,7 @@ var CanvasBase = {
 		} else {
 			me["EGT2"].hide();
 			me["EGT2_bar"].hide();
+			me["EGT2_box"].hide();
 			me["EGT2_ignition"].hide();
 			me["EGT2_redstart"].hide();
 		}
@@ -482,7 +596,7 @@ var CanvasBase = {
 			Value.Fadec.egt[2] = systems.ENGINES.egt[2].getValue();
 			
 			me["EGT3"].setText(sprintf("%d", math.round(Value.Fadec.egt[2])));
-			me["EGT3_bar"].setTranslation(0, math.max(Value.Fadec.egt[2], 0) / Value.egtScale * -293);
+			me["EGT3_bar"].setTranslation(0, math.clamp(Value.Fadec.egt[2] / Value.egtScale * -293, -293, 0));
 			
 			if (systems.IGNITION.ign3.getBoolValue()) {
 				me["EGT3_ignition"].show();
@@ -490,10 +604,27 @@ var CanvasBase = {
 				me["EGT3_ignition"].hide();
 			}
 			
-			if (Value.Ignition.starter[2] or systems.ENGINES.state[2].getValue() == 2) {
+			if (Value.Ignition.starter[2] or Value.Fadec.state[2] == 2) {
 				me["EGT3_redstart"].show();
 			} else {
 				me["EGT3_redstart"].hide();
+			}
+			
+			if ((Value.Ignition.starter[2] or Value.Fadec.state[2] == 2 and Value.Fadec.egt[2] > Value.egtStart) or Value.Fadec.egt[2] > Value.egtRed) {
+				me["EGT3"].setColor(1, 0, 0);
+				me["EGT3_bar"].setColorFill(1, 0, 0);
+				me["EGT3_box"].setColor(1, 0, 0);
+				me["EGT3_box"].show();
+			} else if (Value.Fadec.egt[2] > Value.egtYellow) {
+				me["EGT3"].setColor(0.9412, 0.7255, 0);
+				me["EGT3_bar"].setColorFill(0.9412, 0.7255, 0);
+				me["EGT3_box"].setColor(0.9412, 0.7255, 0);
+				me["EGT3_box"].show();
+			} else {
+				me["EGT3"].setColor(1, 1, 1);
+				me["EGT3_bar"].setColorFill(1, 1, 1);
+				me["EGT3_box"].setColor(1, 1, 1);
+				me["EGT3_box"].hide();
 			}
 			
 			me["EGT3"].show();
@@ -501,6 +632,7 @@ var CanvasBase = {
 		} else {
 			me["EGT3"].hide();
 			me["EGT3_bar"].hide();
+			me["EGT3_box"].hide();
 			me["EGT3_ignition"].hide();
 			me["EGT3_redstart"].hide();
 		}
@@ -591,11 +723,11 @@ var CanvasGeDials = {
 		return m;
 	},
 	getKeys: func() {
-		return ["Alert_error", "Checklist", "Checklist_box", "Config", "EGT1", "EGT1_error", "EGT1_ignition", "EGT1_needle", "EGT1_redstart", "EGT2", "EGT2_error", "EGT2_ignition", "EGT2_needle", "EGT2_redstart", "EGT3", "EGT3_error", "EGT3_ignition",
-		"EGT3_needle", "EGT3_redstart", "FF1", "FF1_error", "FF2", "FF2_error", "FF3", "FF3_error", "FFOff1", "FFOff2", "FFOff3", "N11_box", "N11_decimal", "N11_decpnt", "N11_error", "N11_hundreds", "N11_lim", "N11_needle", "N11_ones", "N11_tens",
-		"N11_tens_zero", "N11_thr", "N12_box", "N12_decimal", "N12_decpnt", "N12_error", "N12_hundreds", "N12_lim", "N12_needle", "N12_ones", "N12_tens", "N12_tens_zero", "N12_thr", "N13_box", "N13_decimal", "N13_decpnt", "N13_error", "N13_hundreds", "N13_lim",
-		"N13_needle", "N13_ones", "N13_tens", "N13_tens_zero", "N13_thr", "N1Lim", "N1Lim_error", "N1LimBox", "N1LimFlexBox", "N1LimMode", "N21", "N21_cline", "N21_error", "N21_needle", "N22", "N22_cline", "N22_error", "N22_needle", "N23", "N23_cline",
-		"N23_error", "N23_needle", "REV1", "REV2", "REV3", "TAT", "TAT_error"];
+		return ["Alert_error", "Checklist", "Checklist_box", "Config", "EGT1", "EGT1_box", "EGT1_error", "EGT1_ignition", "EGT1_needle", "EGT1_redstart", "EGT2", "EGT2_box", "EGT2_error", "EGT2_ignition", "EGT2_needle", "EGT2_redstart", "EGT3", "EGT3_box",
+		"EGT3_error", "EGT3_ignition", "EGT3_needle", "EGT3_redstart", "FF1", "FF1_error", "FF2", "FF2_error", "FF3", "FF3_error", "FFOff1", "FFOff2", "FFOff3", "N11_box", "N11_decimal", "N11_decpnt", "N11_error", "N11_hundreds", "N11_lim", "N11_needle",
+		"N11_ones", "N11_tens", "N11_tens_zero", "N11_thr", "N12_box", "N12_decimal", "N12_decpnt", "N12_error", "N12_hundreds", "N12_lim", "N12_needle", "N12_ones", "N12_tens", "N12_tens_zero", "N12_thr", "N13_box", "N13_decimal", "N13_decpnt", "N13_error",
+		"N13_hundreds", "N13_lim", "N13_needle", "N13_ones", "N13_tens", "N13_tens_zero", "N13_thr", "N1Lim", "N1Lim_error", "N1LimBox", "N1LimFlexBox", "N1LimMode", "N21", "N21_cline", "N21_error", "N21_needle", "N22", "N22_cline", "N22_error", "N22_needle",
+		"N23", "N23_cline", "N23_error", "N23_needle", "REV1", "REV2", "REV3", "TAT", "TAT_error"];
 	},
 	setup: func() {
 		# Hide unimplemented objects
@@ -821,10 +953,10 @@ var CanvasGeTapes = {
 		return m;
 	},
 	getKeys: func() {
-		return ["Alert_error", "Checklist", "Checklist_box", "Config", "EGT_bars", "EGT1", "EGT1_bar", "EGT1_error", "EGT1_ignition", "EGT1_redstart", "EGT2", "EGT2_bar", "EGT2_error", "EGT2_ignition", "EGT2_redstart", "EGT3", "EGT3_bar", "EGT3_error",
-		"EGT3_ignition", "EGT3_redstart", "FF1", "FF1_error", "FF2", "FF2_error", "FF3", "FF3_error", "FFOff1", "FFOff2", "FFOff3", "N1_bars", "N11", "N11_bar", "N11_error", "N11_lim", "N11_thr", "N12", "N12_bar", "N12_error", "N12_lim", "N12_thr", "N13",
-		"N13_bar", "N13_error", "N13_lim", "N13_thr", "N1Lim", "N1Lim_error", "N1LimBox", "N1LimFlexBox", "N1LimMode", "N2_bars", "N21", "N21_bar", "N21_cline", "N21_error", "N22", "N22_bar", "N22_cline", "N22_error", "N23", "N23_bar", "N23_cline", "N23_error",
-		"REV1", "REV2", "REV3", "TAT", "TAT_error"];
+		return ["Alert_error", "Checklist", "Checklist_box", "Config", "EGT_bars", "EGT1", "EGT1_bar", "EGT1_box", "EGT1_error", "EGT1_ignition", "EGT1_redstart", "EGT2", "EGT2_bar", "EGT2_box", "EGT2_error", "EGT2_ignition", "EGT2_redstart", "EGT3",
+		"EGT3_bar", "EGT3_box", "EGT3_error", "EGT3_ignition", "EGT3_redstart", "FF1", "FF1_error", "FF2", "FF2_error", "FF3", "FF3_error", "FFOff1", "FFOff2", "FFOff3", "N1_bars", "N11", "N11_bar", "N11_error", "N11_lim", "N11_thr", "N12", "N12_bar",
+		"N12_error", "N12_lim", "N12_thr", "N13", "N13_bar", "N13_error", "N13_lim", "N13_thr", "N1Lim", "N1Lim_error", "N1LimBox", "N1LimFlexBox", "N1LimMode", "N2_bars", "N21", "N21_bar", "N21_cline", "N21_error", "N22", "N22_bar", "N22_cline", "N22_error",
+		"N23", "N23_bar", "N23_cline", "N23_error", "REV1", "REV2", "REV3", "TAT", "TAT_error"];
 	},
 	setup: func() {
 		# Hide unimplemented objects
@@ -1002,11 +1134,11 @@ var CanvasPwDials = {
 		return m;
 	},
 	getKeys: func() {
-		return ["Alert_error", "Checklist", "Checklist_box", "Config", "EGT1", "EGT1_error", "EGT1_ignition", "EGT1_needle", "EGT1_redstart", "EGT2", "EGT2_error", "EGT2_ignition", "EGT2_needle", "EGT2_redstart", "EGT3", "EGT3_error", "EGT3_ignition",
-		"EGT3_needle", "EGT3_redstart", "EGT_group", "EPR1_box", "EPR1_decpnt", "EPR1_error", "EPR1_hundreths", "EPR1_lim", "EPR1_needle", "EPR1_ones", "EPR1_tenths", "EPR1_thr", "EPR2_box", "EPR2_decpnt", "EPR2_error", "EPR2_hundreths", "EPR2_lim",
-		"EPR2_needle", "EPR2_ones", "EPR2_tenths", "EPR2_thr", "EPR3_box", "EPR3_decpnt", "EPR3_error", "EPR3_hundreths", "EPR3_lim", "EPR3_needle", "EPR3_ones", "EPR3_tenths", "EPR3_thr", "EPRLim", "EPRLim_error", "EPRLimBox", "EPRLimFlexBox", "EPRLimMode",
-		"EPRLimToBox", "FF1", "FF1_error", "FF2", "FF2_error", "FF3", "FF3_error", "FFOff1", "FFOff2", "FFOff3", "N11", "N11_error", "N11_needle", "N12", "N12_error", "N12_needle", "N13", "N13_error", "N13_needle", "N1_group", "N21", "N21_cline", "N21_error",
-		"N21_needle", "N22", "N22_cline", "N22_error", "N22_needle", "N23", "N23_cline", "N23_error", "N23_needle", "REV1", "REV2", "REV3", "TAT", "TAT_error"];
+		return ["Alert_error", "Checklist", "Checklist_box", "Config", "EGT1", "EGT1_box", "EGT1_error", "EGT1_ignition", "EGT1_needle", "EGT1_redstart", "EGT2", "EGT2_box", "EGT2_error", "EGT2_ignition", "EGT2_needle", "EGT2_redstart", "EGT3", "EGT3_box",
+		"EGT3_error", "EGT3_ignition", "EGT3_needle", "EGT3_redstart", "EGT_group", "EPR1_box", "EPR1_decpnt", "EPR1_error", "EPR1_hundreths", "EPR1_lim", "EPR1_needle", "EPR1_ones", "EPR1_tenths", "EPR1_thr", "EPR2_box", "EPR2_decpnt", "EPR2_error",
+		"EPR2_hundreths", "EPR2_lim", "EPR2_needle", "EPR2_ones", "EPR2_tenths", "EPR2_thr", "EPR3_box", "EPR3_decpnt", "EPR3_error", "EPR3_hundreths", "EPR3_lim", "EPR3_needle", "EPR3_ones", "EPR3_tenths", "EPR3_thr", "EPRLim", "EPRLim_error", "EPRLimBox",
+		"EPRLimFlexBox", "EPRLimMode", "EPRLimToBox", "FF1", "FF1_error", "FF2", "FF2_error", "FF3", "FF3_error", "FFOff1", "FFOff2", "FFOff3", "N11", "N11_error", "N11_needle", "N12", "N12_error", "N12_needle", "N13", "N13_error", "N13_needle", "N1_group",
+		"N21", "N21_cline", "N21_error", "N21_needle", "N22", "N22_cline", "N22_error", "N22_needle", "N23", "N23_cline", "N23_error", "N23_needle", "REV1", "REV2", "REV3", "TAT", "TAT_error"];
 	},
 	setup: func() {
 		# Hide unimplemented objects
@@ -1277,10 +1409,10 @@ var CanvasPwTapes = {
 		return m;
 	},
 	getKeys: func() {
-		return ["Alert_error", "Checklist", "Checklist_box", "Config", "EGT_bars", "EGT1", "EGT1_bar", "EGT1_error", "EGT1_ignition", "EGT1_redstart", "EGT2", "EGT2_bar", "EGT2_error", "EGT2_ignition", "EGT2_redstart", "EGT3", "EGT3_bar", "EGT3_error",
-		"EGT3_ignition", "EGT3_redstart", "EPR_bars", "EPR1", "EPR1_bar", "EPR1_error", "EPR1_lim", "EPR1_thr", "EPR2", "EPR2_bar", "EPR2_error", "EPR2_lim", "EPR2_thr", "EPR3", "EPR3_bar", "EPR3_error", "EPR3_lim", "EPR3_thr", "EPRLim", "EPRLim_error",
-		"EPRLimBox", "EPRLimFlexBox", "EPRLimMode", "EPRLimToBox", "FF1", "FF1_error", "FF2", "FF2_error", "FF3", "FF3_error", "FFOff1", "FFOff2", "FFOff3", "N11", "N11_error", "N12", "N12_error", "N13", "N13_error", "N2_bars", "N21", "N21_bar", "N21_cline",
-		"N21_error", "N22", "N22_bar", "N22_cline", "N22_error", "N23", "N23_bar", "N23_cline", "N23_error", "REV1", "REV2", "REV3", "TAT", "TAT_error"];
+		return ["Alert_error", "Checklist", "Checklist_box", "Config", "EGT_bars", "EGT1", "EGT1_bar", "EGT1_box", "EGT1_error", "EGT1_ignition", "EGT1_redstart", "EGT2", "EGT2_bar", "EGT2_box", "EGT2_error", "EGT2_ignition", "EGT2_redstart", "EGT3",
+		"EGT3_bar", "EGT3_box", "EGT3_error", "EGT3_ignition", "EGT3_redstart", "EPR_bars", "EPR1", "EPR1_bar", "EPR1_error", "EPR1_lim", "EPR1_thr", "EPR2", "EPR2_bar", "EPR2_error", "EPR2_lim", "EPR2_thr", "EPR3", "EPR3_bar", "EPR3_error", "EPR3_lim",
+		"EPR3_thr", "EPRLim", "EPRLim_error", "EPRLimBox", "EPRLimFlexBox", "EPRLimMode", "EPRLimToBox", "FF1", "FF1_error", "FF2", "FF2_error", "FF3", "FF3_error", "FFOff1", "FFOff2", "FFOff3", "N11", "N11_error", "N12", "N12_error", "N13", "N13_error",
+		"N2_bars", "N21", "N21_bar", "N21_cline", "N21_error", "N22", "N22_bar", "N22_cline", "N22_error", "N23", "N23_bar", "N23_cline", "N23_error", "REV1", "REV2", "REV3", "TAT", "TAT_error"];
 	},
 	setup: func() {
 		# Hide unimplemented objects

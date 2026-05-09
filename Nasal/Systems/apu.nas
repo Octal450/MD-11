@@ -15,18 +15,25 @@ var APU = {
 	Controls: {
 		start: props.globals.getNode("/controls/apu/start"),
 	},
+	Failures: {
+		fire: props.globals.getNode("/systems/failures/apu/fire"),
+	},
 	Lights: {
 		avail: props.globals.getNode("/systems/apu/lights/avail-flash"), # Flashes Elec Panel AVAIL light
 		on: props.globals.initNode("/systems/apu/lights/on", 0, "BOOL"),
 		onTemp: 0,
 	},
 	init: func() {
+		me.resetFailures();
 		me.oilQtyInput.setValue(math.round((rand() * 2) + 5.5 , 0.1)); # Random between 5.5 and 7.5
 		me.Controls.start.setBoolValue(0);
 		me.Lights.avail.setBoolValue(0);
 		me.Lights.on.setBoolValue(0);
 		me.autoConnect = 0;
 		me.autoShutdown = 0;
+	},
+	resetFailures: func() {
+		me.Failures.fire.setBoolValue(0);
 	},
 	loop: func() {
 		if (me.autoShutdown) {

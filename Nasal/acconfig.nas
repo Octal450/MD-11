@@ -92,7 +92,9 @@ var SYSTEM = {
 		}
 	},
 	resetFailures: func() {
+		systems.APU.resetFailures();
 		systems.ELECTRICAL.resetFailures();
+		systems.ENGINES.resetFailures();
 		systems.FCC.resetFailures();
 		systems.FUEL.resetFailures();
 		systems.GEAR.resetFailures();

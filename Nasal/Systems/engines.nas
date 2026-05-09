@@ -27,7 +27,13 @@ var ENGINES = {
 		throttle: [props.globals.getNode("/controls/engines/engine[0]/throttle"), props.globals.getNode("/controls/engines/engine[1]/throttle"), props.globals.getNode("/controls/engines/engine[2]/throttle")],
 		throttleTemp: [0, 0, 0],
 	},
+	Failures: {
+		fire1: props.globals.getNode("/systems/failures/engines/fire-1"),
+		fire2: props.globals.getNode("/systems/failures/engines/fire-2"),
+		fire3: props.globals.getNode("/systems/failures/engines/fire-3"),
+	},
 	init: func() {
+		me.resetFailures();
 		me.Controls.fuReset.setBoolValue(0);
 		me.Controls.start[0].setBoolValue(0);
 		me.Controls.start[1].setBoolValue(0);
@@ -38,6 +44,11 @@ var ENGINES = {
 		me.oilQtyInput[0].setValue(math.round((rand() * 8) + 20 , 0.1)); # Random between 20 and 28
 		me.oilQtyInput[1].setValue(math.round((rand() * 8) + 20 , 0.1)); # Random between 20 and 28
 		me.oilQtyInput[2].setValue(math.round((rand() * 8) + 20 , 0.1)); # Random between 20 and 28
+	},
+	resetFailures: func() {
+		me.Failures.fire1.setBoolValue(0);
+		me.Failures.fire2.setBoolValue(0);
+		me.Failures.fire3.setBoolValue(0);
 	},
 };
 

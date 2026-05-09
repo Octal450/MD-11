@@ -2167,7 +2167,7 @@
 			<output>/engines/engine[2]/epr-actual</output>
 		</fcs_function>
 		
-		<fcs_function name="/systems/fadec/egt-cmd-1">
+		<fcs_function name="/systems/fadec/egt-table-1">
 			<function>
 				<sum>
 					<property>propulsion/tat-c</property>
@@ -2176,7 +2176,7 @@
 						<independentVar lookup="column">atmosphere/density-altitude</independentVar>
 						<independentVar lookup="table">/controls/engines/engine[0]/cutoff</independentVar>
 						<tableData breakPoint="0">
-							         0    50000
+							       0    50000
 							 10.0    0    0
 							 35.0  420  320
 							 50.0  415  315
@@ -2184,13 +2184,41 @@
 							105.6  545  420
 						</tableData>
 						<tableData breakPoint="1">
-							         0    50000
+							       0    50000
 							 30.0    0    0
 							 65.2  305  190
 							105.6  545  420
 						</tableData>
 					</table>
 				</sum>
+			</function>
+		</fcs_function>
+		
+		<fcs_function name="/systems/fadec/egt-cmd-1">
+			<function>
+				<max>
+					<ifthen>
+						<eq>
+							<property>/engines/engine[0]/on-fire</property>
+							<value>1</value>
+						</eq>
+						<min>
+							<sum>
+								<quotient>
+									<property>propulsion/tat-c</property>
+									<value>4</value>
+								</quotient>
+								<value>710</value>
+							</sum>
+							<sum> <!-- Stop it from rising too fast -->
+								<property>/engines/engine[0]/egt-actual</property>
+								<value>50</value>
+							</sum>
+						</min>
+						<value>0</value>
+					</ifthen>
+					<property>/systems/fadec/egt-table-1</property>
+				</max>
 			</function>
 		</fcs_function>
 		
@@ -2200,7 +2228,7 @@
 			<output>/engines/engine[0]/egt-actual</output>
 		</lag_filter>
 		
-		<fcs_function name="/systems/fadec/egt-cmd-2">
+		<fcs_function name="/systems/fadec/egt-table-2">
 			<function>
 				<sum>
 					<property>propulsion/tat-c</property>
@@ -2209,7 +2237,7 @@
 						<independentVar lookup="column">atmosphere/density-altitude</independentVar>
 						<independentVar lookup="table">/controls/engines/engine[1]/cutoff</independentVar>
 						<tableData breakPoint="0">
-							         0    50000
+							       0    50000
 							 10.0    0    0
 							 35.0  420  320
 							 50.0  415  315
@@ -2217,7 +2245,7 @@
 							105.6  545  420
 						</tableData>
 						<tableData breakPoint="1">
-							         0    50000
+							       0    50000
 							 30.0    0    0
 							 65.2  305  190
 							105.6  545  420
@@ -2227,13 +2255,41 @@
 			</function>
 		</fcs_function>
 		
+		<fcs_function name="/systems/fadec/egt-cmd-2">
+			<function>
+				<max>
+					<ifthen>
+						<eq>
+							<property>/engines/engine[1]/on-fire</property>
+							<value>1</value>
+						</eq>
+						<min>
+							<sum>
+								<quotient>
+									<property>propulsion/tat-c</property>
+									<value>4</value>
+								</quotient>
+								<value>710</value>
+							</sum>
+							<sum> <!-- Stop it from rising too fast -->
+								<property>/engines/engine[1]/egt-actual</property>
+								<value>50</value>
+							</sum>
+						</min>
+						<value>0</value>
+					</ifthen>
+					<property>/systems/fadec/egt-table-2</property>
+				</max>
+			</function>
+		</fcs_function>
+		
 		<lag_filter name="/systems/fadec/egt-actual-2">
 			<input>/systems/fadec/egt-cmd-2</input>
 			<c1>0.35</c1>
 			<output>/engines/engine[1]/egt-actual</output>
 		</lag_filter>
 		
-		<fcs_function name="/systems/fadec/egt-cmd-3">
+		<fcs_function name="/systems/fadec/egt-table-3">
 			<function>
 				<sum>
 					<property>propulsion/tat-c</property>
@@ -2242,7 +2298,7 @@
 						<independentVar lookup="column">atmosphere/density-altitude</independentVar>
 						<independentVar lookup="table">/controls/engines/engine[2]/cutoff</independentVar>
 						<tableData breakPoint="0">
-							         0    50000
+							       0    50000
 							 10.0    0    0
 							 35.0  420  320
 							 50.0  415  315
@@ -2250,13 +2306,41 @@
 							105.6  545  420
 						</tableData>
 						<tableData breakPoint="1">
-							         0    50000
+							       0    50000
 							 30.0    0    0
 							 65.2  305  190
 							105.6  545  420
 						</tableData>
 					</table>
 				</sum>
+			</function>
+		</fcs_function>
+		
+		<fcs_function name="/systems/fadec/egt-cmd-3">
+			<function>
+				<max>
+					<ifthen>
+						<eq>
+							<property>/engines/engine[2]/on-fire</property>
+							<value>1</value>
+						</eq>
+						<min>
+							<sum>
+								<quotient>
+									<property>propulsion/tat-c</property>
+									<value>4</value>
+								</quotient>
+								<value>710</value>
+							</sum>
+							<sum> <!-- Stop it from rising too fast -->
+								<property>/engines/engine[2]/egt-actual</property>
+								<value>50</value>
+							</sum>
+						</min>
+						<value>0</value>
+					</ifthen>
+					<property>/systems/fadec/egt-table-3</property>
+				</max>
 			</function>
 		</fcs_function>
 		
