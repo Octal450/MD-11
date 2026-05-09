@@ -288,12 +288,12 @@ var CanvasBase = {
 				me["EGT1_redstart"].hide();
 			}
 			
-			if ((Value.Ignition.starter[0] or Value.Fadec.state[0] == 2 and Value.Fadec.egt[0] > Value.egtStart) or Value.Fadec.egt[0] > Value.egtRed) {
+			if ((Value.Ignition.starter[0] or Value.Fadec.state[0] == 2 and Value.Fadec.egt[0] - 0.5 > Value.egtStart) or Value.Fadec.egt[0] - 0.5 > Value.egtRed) {
 				me["EGT1"].setColor(1, 0, 0);
 				me["EGT1_box"].setColor(1, 0, 0);
 				me["EGT1_box"].show();
 				me["EGT1_needle"].setColorFill(1, 0, 0);
-			} else if (Value.Fadec.egt[0] > Value.egtYellow) {
+			} else if (Value.Fadec.egt[0] - 0.5 > Value.egtYellow) {
 				me["EGT1"].setColor(0.9412, 0.7255, 0);
 				me["EGT1_box"].setColor(0.9412, 0.7255, 0);
 				me["EGT1_box"].show();
@@ -333,12 +333,12 @@ var CanvasBase = {
 				me["EGT2_redstart"].hide();
 			}
 			
-			if ((Value.Ignition.starter[1] or Value.Fadec.state[1] == 2 and Value.Fadec.egt[1] > Value.egtStart) or Value.Fadec.egt[1] > Value.egtRed) {
+			if ((Value.Ignition.starter[1] or Value.Fadec.state[1] == 2 and Value.Fadec.egt[1] - 0.5 > Value.egtStart) or Value.Fadec.egt[1] - 0.5 > Value.egtRed) {
 				me["EGT2"].setColor(1, 0, 0);
 				me["EGT2_box"].setColor(1, 0, 0);
 				me["EGT2_box"].show();
 				me["EGT2_needle"].setColorFill(1, 0, 0);
-			} else if (Value.Fadec.egt[1] > Value.egtYellow) {
+			} else if (Value.Fadec.egt[1] - 0.5 > Value.egtYellow) {
 				me["EGT2"].setColor(0.9412, 0.7255, 0);
 				me["EGT2_box"].setColor(0.9412, 0.7255, 0);
 				me["EGT2_box"].show();
@@ -378,12 +378,12 @@ var CanvasBase = {
 				me["EGT3_redstart"].hide();
 			}
 			
-			if ((Value.Ignition.starter[2] or Value.Fadec.state[2] == 2 and Value.Fadec.egt[2] > Value.egtStart) or Value.Fadec.egt[2] > Value.egtRed) {
+			if ((Value.Ignition.starter[2] or Value.Fadec.state[2] == 2 and Value.Fadec.egt[2] - 0.5 > Value.egtStart) or Value.Fadec.egt[2] - 0.5 > Value.egtRed) {
 				me["EGT3"].setColor(1, 0, 0);
 				me["EGT3_box"].setColor(1, 0, 0);
 				me["EGT3_box"].show();
 				me["EGT3_needle"].setColorFill(1, 0, 0);
-			} else if (Value.Fadec.egt[2] > Value.egtYellow) {
+			} else if (Value.Fadec.egt[2] - 0.5 > Value.egtYellow) {
 				me["EGT3"].setColor(0.9412, 0.7255, 0);
 				me["EGT3_box"].setColor(0.9412, 0.7255, 0);
 				me["EGT3_box"].show();
@@ -520,12 +520,12 @@ var CanvasBase = {
 				me["EGT1_redstart"].hide();
 			}
 			
-			if ((Value.Ignition.starter[0] or Value.Fadec.state[0] == 2 and Value.Fadec.egt[0] > Value.egtStart) or Value.Fadec.egt[0] > Value.egtRed) {
+			if ((Value.Ignition.starter[0] or Value.Fadec.state[0] == 2 and Value.Fadec.egt[0] - 0.5 > Value.egtStart) or Value.Fadec.egt[0] - 0.5 > Value.egtRed) {
 				me["EGT1"].setColor(1, 0, 0);
 				me["EGT1_bar"].setColorFill(1, 0, 0);
 				me["EGT1_box"].setColor(1, 0, 0);
 				me["EGT1_box"].show();
-			} else if (Value.Fadec.egt[0] > Value.egtYellow) {
+			} else if (Value.Fadec.egt[0] - 0.5 > Value.egtYellow) {
 				me["EGT1"].setColor(0.9412, 0.7255, 0);
 				me["EGT1_bar"].setColorFill(0.9412, 0.7255, 0);
 				me["EGT1_box"].setColor(0.9412, 0.7255, 0);
@@ -565,12 +565,12 @@ var CanvasBase = {
 				me["EGT2_redstart"].hide();
 			}
 			
-			if ((Value.Ignition.starter[1] or Value.Fadec.state[1] == 2 and Value.Fadec.egt[1] > Value.egtStart) or Value.Fadec.egt[1] > Value.egtRed) {
+			if ((Value.Ignition.starter[1] or Value.Fadec.state[1] == 2 and Value.Fadec.egt[1] - 0.5 > Value.egtStart) or Value.Fadec.egt[1] - 0.5 > Value.egtRed) {
 				me["EGT2"].setColor(1, 0, 0);
 				me["EGT2_bar"].setColorFill(1, 0, 0);
 				me["EGT2_box"].setColor(1, 0, 0);
 				me["EGT2_box"].show();
-			} else if (Value.Fadec.egt[1] > Value.egtYellow) {
+			} else if (Value.Fadec.egt[1] - 0.5 > Value.egtYellow) {
 				me["EGT2"].setColor(0.9412, 0.7255, 0);
 				me["EGT2_bar"].setColorFill(0.9412, 0.7255, 0);
 				me["EGT2_box"].setColor(0.9412, 0.7255, 0);
@@ -610,12 +610,12 @@ var CanvasBase = {
 				me["EGT3_redstart"].hide();
 			}
 			
-			if ((Value.Ignition.starter[2] or Value.Fadec.state[2] == 2 and Value.Fadec.egt[2] > Value.egtStart) or Value.Fadec.egt[2] > Value.egtRed) {
+			if ((Value.Ignition.starter[2] or Value.Fadec.state[2] == 2 and Value.Fadec.egt[2] - 0.5 > Value.egtStart) or Value.Fadec.egt[2] - 0.5 > Value.egtRed) {
 				me["EGT3"].setColor(1, 0, 0);
 				me["EGT3_bar"].setColorFill(1, 0, 0);
 				me["EGT3_box"].setColor(1, 0, 0);
 				me["EGT3_box"].show();
-			} else if (Value.Fadec.egt[2] > Value.egtYellow) {
+			} else if (Value.Fadec.egt[2] - 0.5 > Value.egtYellow) {
 				me["EGT3"].setColor(0.9412, 0.7255, 0);
 				me["EGT3_bar"].setColorFill(0.9412, 0.7255, 0);
 				me["EGT3_box"].setColor(0.9412, 0.7255, 0);

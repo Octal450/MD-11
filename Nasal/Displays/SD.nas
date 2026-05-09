@@ -67,7 +67,9 @@ var Value = {
 		},
 	},
 	Apu: {
+		egt: 0,
 		n2: 0,
+		qty: 0,
 	},
 	Config: {
 		gearStatus: [0, 0, 0, 0],
