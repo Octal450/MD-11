@@ -170,7 +170,7 @@ var CanvasEngBase = {
 			me["APU_N2"].setText(sprintf("%d", math.round(Value.Apu.n2)));
 			me["APU_Qty"].setText(sprintf("%2.1f", math.round(Value.Apu.qty, 0.5)));
 			
-			if (Value.Apu.egt > 871.5) {
+			if (Value.Apu.egt > 872.5) {
 				me["APU_EGT"].setColor(1, 0, 0);
 				me["APU_EGT_box"].show();
 			} else {
