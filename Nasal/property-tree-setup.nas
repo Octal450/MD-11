@@ -140,6 +140,7 @@ var Instrumentation = {
 	Ead: {
 		checklist: props.globals.getNode("/instrumentation/ead/checklist"),
 		checklistRed: props.globals.getNode("/instrumentation/ead/checklist-red"),
+		egtMax: [props.globals.getNode("/instrumentation/ead/egt-max[0]"), props.globals.getNode("/instrumentation/ead/egt-max[1]"), props.globals.getNode("/instrumentation/ead/egt-max[2]")],
 	},
 	Efis: {
 		hdgTrkSelected: [props.globals.initNode("/instrumentation/efis[0]/hdg-trk-selected", 0, "BOOL"), props.globals.initNode("/instrumentation/efis[1]/hdg-trk-selected", 0, "BOOL")],

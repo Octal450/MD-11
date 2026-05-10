@@ -19,6 +19,7 @@ var Value = {
 		activeMode: "T/O",
 		auto: 0,
 		egt: [0, 0, 0],
+		egtMax: [0, 0, 0],
 		epr: [0, 0, 0],
 		eprLimit: 0,
 		eprRound: [0, 0, 0],
@@ -305,6 +306,14 @@ var CanvasBase = {
 				me["EGT1_needle"].setColorFill(1, 1, 1);
 			}
 			
+			Value.Fadec.egtMax[0] = math.round(pts.Instrumentation.Ead.egtMax[0].getValue());
+			if (Value.Fadec.egtMax[0] > Value.egtRed) {
+				me["EGT1_over"].setText(sprintf("%d", Value.Fadec.egtMax[0]));
+				me["EGT1_over"].show();
+			} else {
+				me["EGT1_over"].hide();
+			}
+			
 			me["EGT1"].show();
 			me["EGT1_needle"].show();
 		} else {
@@ -312,6 +321,7 @@ var CanvasBase = {
 			me["EGT1_box"].hide();
 			me["EGT1_ignition"].hide();
 			me["EGT1_needle"].hide();
+			me["EGT1_over"].hide();
 			me["EGT1_redstart"].hide();
 		}
 		
@@ -350,6 +360,14 @@ var CanvasBase = {
 				me["EGT2_needle"].setColorFill(1, 1, 1);
 			}
 			
+			Value.Fadec.egtMax[1] = math.round(pts.Instrumentation.Ead.egtMax[1].getValue());
+			if (Value.Fadec.egtMax[1] > Value.egtRed) {
+				me["EGT2_over"].setText(sprintf("%d", Value.Fadec.egtMax[1]));
+				me["EGT2_over"].show();
+			} else {
+				me["EGT2_over"].hide();
+			}
+			
 			me["EGT2"].show();
 			me["EGT2_needle"].show();
 		} else {
@@ -357,6 +375,7 @@ var CanvasBase = {
 			me["EGT2_box"].hide();
 			me["EGT2_ignition"].hide();
 			me["EGT2_needle"].hide();
+			me["EGT2_over"].hide();
 			me["EGT2_redstart"].hide();
 		}
 		
@@ -393,6 +412,14 @@ var CanvasBase = {
 				me["EGT3_box"].setColor(1, 1, 1);
 				me["EGT3_box"].hide();
 				me["EGT3_needle"].setColorFill(1, 1, 1);
+			}
+			
+			Value.Fadec.egtMax[2] = math.round(pts.Instrumentation.Ead.egtMax[2].getValue());
+			if (Value.Fadec.egtMax[2] > Value.egtRed) {
+				me["EGT3_over"].setText(sprintf("%d", Value.Fadec.egtMax[2]));
+				me["EGT3_over"].show();
+			} else {
+				me["EGT3_over"].hide();
 			}
 			
 			me["EGT3"].show();
@@ -537,6 +564,14 @@ var CanvasBase = {
 				me["EGT1_box"].hide();
 			}
 			
+			Value.Fadec.egtMax[0] = math.round(pts.Instrumentation.Ead.egtMax[0].getValue());
+			if (Value.Fadec.egtMax[0] > Value.egtRed) {
+				me["EGT1_over"].setText(sprintf("%d", Value.Fadec.egtMax[0]));
+				me["EGT1_over"].show();
+			} else {
+				me["EGT1_over"].hide();
+			}
+			
 			me["EGT1"].show();
 			me["EGT1_bar"].show();
 		} else {
@@ -544,6 +579,7 @@ var CanvasBase = {
 			me["EGT1_bar"].hide();
 			me["EGT1_box"].hide();
 			me["EGT1_ignition"].hide();
+			me["EGT1_over"].hide();
 			me["EGT1_redstart"].hide();
 		}
 		
@@ -582,6 +618,14 @@ var CanvasBase = {
 				me["EGT2_box"].hide();
 			}
 			
+			Value.Fadec.egtMax[1] = math.round(pts.Instrumentation.Ead.egtMax[1].getValue());
+			if (Value.Fadec.egtMax[1] > Value.egtRed) {
+				me["EGT2_over"].setText(sprintf("%d", Value.Fadec.egtMax[1]));
+				me["EGT2_over"].show();
+			} else {
+				me["EGT2_over"].hide();
+			}
+			
 			me["EGT2"].show();
 			me["EGT2_bar"].show();
 		} else {
@@ -589,6 +633,7 @@ var CanvasBase = {
 			me["EGT2_bar"].hide();
 			me["EGT2_box"].hide();
 			me["EGT2_ignition"].hide();
+			me["EGT2_over"].hide();
 			me["EGT2_redstart"].hide();
 		}
 		
@@ -625,6 +670,14 @@ var CanvasBase = {
 				me["EGT3_bar"].setColorFill(1, 1, 1);
 				me["EGT3_box"].setColor(1, 1, 1);
 				me["EGT3_box"].hide();
+			}
+			
+			Value.Fadec.egtMax[2] = math.round(pts.Instrumentation.Ead.egtMax[2].getValue());
+			if (Value.Fadec.egtMax[2] > Value.egtRed) {
+				me["EGT3_over"].setText(sprintf("%d", Value.Fadec.egtMax[2]));
+				me["EGT3_over"].show();
+			} else {
+				me["EGT3_over"].hide();
 			}
 			
 			me["EGT3"].show();
@@ -723,11 +776,11 @@ var CanvasGeDials = {
 		return m;
 	},
 	getKeys: func() {
-		return ["Alert_error", "Checklist", "Checklist_box", "Config", "EGT1", "EGT1_box", "EGT1_error", "EGT1_ignition", "EGT1_needle", "EGT1_redstart", "EGT2", "EGT2_box", "EGT2_error", "EGT2_ignition", "EGT2_needle", "EGT2_redstart", "EGT3", "EGT3_box",
-		"EGT3_error", "EGT3_ignition", "EGT3_needle", "EGT3_redstart", "FF1", "FF1_error", "FF2", "FF2_error", "FF3", "FF3_error", "FFOff1", "FFOff2", "FFOff3", "N11_box", "N11_decimal", "N11_decpnt", "N11_error", "N11_hundreds", "N11_lim", "N11_needle",
-		"N11_ones", "N11_tens", "N11_tens_zero", "N11_thr", "N12_box", "N12_decimal", "N12_decpnt", "N12_error", "N12_hundreds", "N12_lim", "N12_needle", "N12_ones", "N12_tens", "N12_tens_zero", "N12_thr", "N13_box", "N13_decimal", "N13_decpnt", "N13_error",
-		"N13_hundreds", "N13_lim", "N13_needle", "N13_ones", "N13_tens", "N13_tens_zero", "N13_thr", "N1Lim", "N1Lim_error", "N1LimBox", "N1LimFlexBox", "N1LimMode", "N21", "N21_cline", "N21_error", "N21_needle", "N22", "N22_cline", "N22_error", "N22_needle",
-		"N23", "N23_cline", "N23_error", "N23_needle", "REV1", "REV2", "REV3", "TAT", "TAT_error"];
+		return ["Alert_error", "Checklist", "Checklist_box", "Config", "EGT1", "EGT1_box", "EGT1_error", "EGT1_ignition", "EGT1_needle", "EGT1_over", "EGT1_redstart", "EGT2", "EGT2_box", "EGT2_error", "EGT2_ignition", "EGT2_needle", "EGT2_over",
+		"EGT2_redstart", "EGT3", "EGT3_box", "EGT3_error", "EGT3_ignition", "EGT3_needle", "EGT3_over", "EGT3_redstart", "FF1", "FF1_error", "FF2", "FF2_error", "FF3", "FF3_error", "FFOff1", "FFOff2", "FFOff3", "N11_box", "N11_decimal", "N11_decpnt",
+		"N11_error", "N11_hundreds", "N11_lim", "N11_needle", "N11_ones", "N11_tens", "N11_tens_zero", "N11_thr", "N12_box", "N12_decimal", "N12_decpnt", "N12_error", "N12_hundreds", "N12_lim", "N12_needle", "N12_ones", "N12_tens", "N12_tens_zero", "N12_thr",
+		"N13_box", "N13_decimal", "N13_decpnt", "N13_error", "N13_hundreds", "N13_lim", "N13_needle", "N13_ones", "N13_tens", "N13_tens_zero", "N13_thr", "N1Lim", "N1Lim_error", "N1LimBox", "N1LimFlexBox", "N1LimMode", "N21", "N21_cline", "N21_error",
+		"N21_needle", "N22", "N22_cline", "N22_error", "N22_needle", "N23", "N23_cline", "N23_error", "N23_needle", "REV1", "REV2", "REV3", "TAT", "TAT_error"];
 	},
 	setup: func() {
 		# Hide unimplemented objects
@@ -953,10 +1006,10 @@ var CanvasGeTapes = {
 		return m;
 	},
 	getKeys: func() {
-		return ["Alert_error", "Checklist", "Checklist_box", "Config", "EGT_bars", "EGT1", "EGT1_bar", "EGT1_box", "EGT1_error", "EGT1_ignition", "EGT1_redstart", "EGT2", "EGT2_bar", "EGT2_box", "EGT2_error", "EGT2_ignition", "EGT2_redstart", "EGT3",
-		"EGT3_bar", "EGT3_box", "EGT3_error", "EGT3_ignition", "EGT3_redstart", "FF1", "FF1_error", "FF2", "FF2_error", "FF3", "FF3_error", "FFOff1", "FFOff2", "FFOff3", "N1_bars", "N11", "N11_bar", "N11_error", "N11_lim", "N11_thr", "N12", "N12_bar",
-		"N12_error", "N12_lim", "N12_thr", "N13", "N13_bar", "N13_error", "N13_lim", "N13_thr", "N1Lim", "N1Lim_error", "N1LimBox", "N1LimFlexBox", "N1LimMode", "N2_bars", "N21", "N21_bar", "N21_cline", "N21_error", "N22", "N22_bar", "N22_cline", "N22_error",
-		"N23", "N23_bar", "N23_cline", "N23_error", "REV1", "REV2", "REV3", "TAT", "TAT_error"];
+		return ["Alert_error", "Checklist", "Checklist_box", "Config", "EGT_bars", "EGT1", "EGT1_bar", "EGT1_box", "EGT1_error", "EGT1_ignition", "EGT1_over", "EGT1_redstart", "EGT2", "EGT2_bar", "EGT2_box", "EGT2_error", "EGT2_ignition", "EGT2_over",
+		"EGT2_redstart", "EGT3", "EGT3_bar", "EGT3_box", "EGT3_error", "EGT3_ignition", "EGT3_over", "EGT3_redstart", "FF1", "FF1_error", "FF2", "FF2_error", "FF3", "FF3_error", "FFOff1", "FFOff2", "FFOff3", "N1_bars", "N11", "N11_bar", "N11_error", "N11_lim",
+		"N11_thr", "N12", "N12_bar", "N12_error", "N12_lim", "N12_thr", "N13", "N13_bar", "N13_error", "N13_lim", "N13_thr", "N1Lim", "N1Lim_error", "N1LimBox", "N1LimFlexBox", "N1LimMode", "N2_bars", "N21", "N21_bar", "N21_cline", "N21_error", "N22",
+		"N22_bar", "N22_cline", "N22_error", "N23", "N23_bar", "N23_cline", "N23_error", "REV1", "REV2", "REV3", "TAT", "TAT_error"];
 	},
 	setup: func() {
 		# Hide unimplemented objects
@@ -1134,11 +1187,11 @@ var CanvasPwDials = {
 		return m;
 	},
 	getKeys: func() {
-		return ["Alert_error", "Checklist", "Checklist_box", "Config", "EGT1", "EGT1_box", "EGT1_error", "EGT1_ignition", "EGT1_needle", "EGT1_redstart", "EGT2", "EGT2_box", "EGT2_error", "EGT2_ignition", "EGT2_needle", "EGT2_redstart", "EGT3", "EGT3_box",
-		"EGT3_error", "EGT3_ignition", "EGT3_needle", "EGT3_redstart", "EGT_group", "EPR1_box", "EPR1_decpnt", "EPR1_error", "EPR1_hundreths", "EPR1_lim", "EPR1_needle", "EPR1_ones", "EPR1_tenths", "EPR1_thr", "EPR2_box", "EPR2_decpnt", "EPR2_error",
-		"EPR2_hundreths", "EPR2_lim", "EPR2_needle", "EPR2_ones", "EPR2_tenths", "EPR2_thr", "EPR3_box", "EPR3_decpnt", "EPR3_error", "EPR3_hundreths", "EPR3_lim", "EPR3_needle", "EPR3_ones", "EPR3_tenths", "EPR3_thr", "EPRLim", "EPRLim_error", "EPRLimBox",
-		"EPRLimFlexBox", "EPRLimMode", "EPRLimToBox", "FF1", "FF1_error", "FF2", "FF2_error", "FF3", "FF3_error", "FFOff1", "FFOff2", "FFOff3", "N11", "N11_error", "N11_needle", "N12", "N12_error", "N12_needle", "N13", "N13_error", "N13_needle", "N1_group",
-		"N21", "N21_cline", "N21_error", "N21_needle", "N22", "N22_cline", "N22_error", "N22_needle", "N23", "N23_cline", "N23_error", "N23_needle", "REV1", "REV2", "REV3", "TAT", "TAT_error"];
+		return ["Alert_error", "Checklist", "Checklist_box", "Config", "EGT1", "EGT1_box", "EGT1_error", "EGT1_ignition", "EGT1_needle", "EGT1_over", "EGT1_redstart", "EGT2", "EGT2_box", "EGT2_error", "EGT2_ignition", "EGT2_needle", "EGT2_over",
+		"EGT2_redstart", "EGT3", "EGT3_box", "EGT3_error", "EGT3_ignition", "EGT3_needle", "EGT3_over", "EGT3_redstart", "EGT_group", "EPR1_box", "EPR1_decpnt", "EPR1_error", "EPR1_hundreths", "EPR1_lim", "EPR1_needle", "EPR1_ones", "EPR1_tenths", "EPR1_thr",
+		"EPR2_box", "EPR2_decpnt", "EPR2_error", "EPR2_hundreths", "EPR2_lim", "EPR2_needle", "EPR2_ones", "EPR2_tenths", "EPR2_thr", "EPR3_box", "EPR3_decpnt", "EPR3_error", "EPR3_hundreths", "EPR3_lim", "EPR3_needle", "EPR3_ones", "EPR3_tenths", "EPR3_thr",
+		"EPRLim", "EPRLim_error", "EPRLimBox", "EPRLimFlexBox", "EPRLimMode", "EPRLimToBox", "FF1", "FF1_error", "FF2", "FF2_error", "FF3", "FF3_error", "FFOff1", "FFOff2", "FFOff3", "N11", "N11_error", "N11_needle", "N12", "N12_error", "N12_needle", "N13",
+		"N13_error", "N13_needle", "N1_group", "N21", "N21_cline", "N21_error", "N21_needle", "N22", "N22_cline", "N22_error", "N22_needle", "N23", "N23_cline", "N23_error", "N23_needle", "REV1", "REV2", "REV3", "TAT", "TAT_error"];
 	},
 	setup: func() {
 		# Hide unimplemented objects
@@ -1409,10 +1462,10 @@ var CanvasPwTapes = {
 		return m;
 	},
 	getKeys: func() {
-		return ["Alert_error", "Checklist", "Checklist_box", "Config", "EGT_bars", "EGT1", "EGT1_bar", "EGT1_box", "EGT1_error", "EGT1_ignition", "EGT1_redstart", "EGT2", "EGT2_bar", "EGT2_box", "EGT2_error", "EGT2_ignition", "EGT2_redstart", "EGT3",
-		"EGT3_bar", "EGT3_box", "EGT3_error", "EGT3_ignition", "EGT3_redstart", "EPR_bars", "EPR1", "EPR1_bar", "EPR1_error", "EPR1_lim", "EPR1_thr", "EPR2", "EPR2_bar", "EPR2_error", "EPR2_lim", "EPR2_thr", "EPR3", "EPR3_bar", "EPR3_error", "EPR3_lim",
-		"EPR3_thr", "EPRLim", "EPRLim_error", "EPRLimBox", "EPRLimFlexBox", "EPRLimMode", "EPRLimToBox", "FF1", "FF1_error", "FF2", "FF2_error", "FF3", "FF3_error", "FFOff1", "FFOff2", "FFOff3", "N11", "N11_error", "N12", "N12_error", "N13", "N13_error",
-		"N2_bars", "N21", "N21_bar", "N21_cline", "N21_error", "N22", "N22_bar", "N22_cline", "N22_error", "N23", "N23_bar", "N23_cline", "N23_error", "REV1", "REV2", "REV3", "TAT", "TAT_error"];
+		return ["Alert_error", "Checklist", "Checklist_box", "Config", "EGT_bars", "EGT1", "EGT1_bar", "EGT1_box", "EGT1_error", "EGT1_ignition", "EGT1_over", "EGT1_redstart", "EGT2", "EGT2_bar", "EGT2_box", "EGT2_error", "EGT2_ignition", "EGT2_over",
+		"EGT2_redstart", "EGT3", "EGT3_bar", "EGT3_box", "EGT3_error", "EGT3_ignition", "EGT3_over", "EGT3_redstart", "EPR_bars", "EPR1", "EPR1_bar", "EPR1_error", "EPR1_lim", "EPR1_thr", "EPR2", "EPR2_bar", "EPR2_error", "EPR2_lim", "EPR2_thr", "EPR3",
+		"EPR3_bar", "EPR3_error", "EPR3_lim", "EPR3_thr", "EPRLim", "EPRLim_error", "EPRLimBox", "EPRLimFlexBox", "EPRLimMode", "EPRLimToBox", "FF1", "FF1_error", "FF2", "FF2_error", "FF3", "FF3_error", "FFOff1", "FFOff2", "FFOff3", "N11", "N11_error", "N12",
+		"N12_error", "N13", "N13_error", "N2_bars", "N21", "N21_bar", "N21_cline", "N21_error", "N22", "N22_bar", "N22_cline", "N22_error", "N23", "N23_bar", "N23_cline", "N23_error", "REV1", "REV2", "REV3", "TAT", "TAT_error"];
 	},
 	setup: func() {
 		# Hide unimplemented objects

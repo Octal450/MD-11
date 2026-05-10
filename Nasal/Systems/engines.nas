@@ -21,6 +21,7 @@ var ENGINES = {
 	twoEngineOn: props.globals.getNode("/systems/engines/two-engine-on"),
 	Controls: {
 		cutoff: [props.globals.getNode("/controls/engines/engine[0]/cutoff-switch"), props.globals.getNode("/controls/engines/engine[1]/cutoff-switch"), props.globals.getNode("/controls/engines/engine[2]/cutoff-switch")],
+		exceedanceReset: props.globals.getNode("/controls/engines/exceedance-reset"),
 		fuReset: props.globals.getNode("/controls/engines/fu-reset"),
 		start: [props.globals.getNode("/controls/engines/engine[0]/start-switch"), props.globals.getNode("/controls/engines/engine[1]/start-switch"), props.globals.getNode("/controls/engines/engine[2]/start-switch")],
 		startCmd: [props.globals.getNode("/controls/engines/engine[0]/start-cmd"), props.globals.getNode("/controls/engines/engine[1]/start-cmd"), props.globals.getNode("/controls/engines/engine[2]/start-cmd")],
@@ -34,6 +35,7 @@ var ENGINES = {
 	},
 	init: func() {
 		me.resetFailures();
+		me.Controls.exceedanceReset.setBoolValue(0);
 		me.Controls.fuReset.setBoolValue(0);
 		me.Controls.start[0].setBoolValue(0);
 		me.Controls.start[1].setBoolValue(0);

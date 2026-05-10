@@ -360,6 +360,39 @@
 				/systems/fms/internal/phase eq 1
 			</test>
 		</switch>
+		
+		<switch name="/instrumentation/ead/egt-max[0]">
+			<default value="/instrumentation/ead/egt-max[0]"/>
+			<test logic="OR" value="/systems/fadec/egt-redline">
+				/systems/acconfig/autoconfig-running eq 1
+				/controls/engines/exceedance-reset eq 1
+			</test>
+			<test logic="OR" value="/engines/engine[0]/egt-actual">
+				/engines/engine[0]/egt-actual gt /instrumentation/ead/egt-max[0]
+			</test>
+		</switch>
+		
+		<switch name="/instrumentation/ead/egt-max[1]">
+			<default value="/instrumentation/ead/egt-max[1]"/>
+			<test logic="OR" value="/systems/fadec/egt-redline">
+				/systems/acconfig/autoconfig-running eq 1
+				/controls/engines/exceedance-reset eq 1
+			</test>
+			<test logic="OR" value="/engines/engine[1]/egt-actual">
+				/engines/engine[1]/egt-actual gt /instrumentation/ead/egt-max[1]
+			</test>
+		</switch>
+		
+		<switch name="/instrumentation/ead/egt-max[2]">
+			<default value="/instrumentation/ead/egt-max[2]"/>
+			<test logic="OR" value="/systems/fadec/egt-redline">
+				/systems/acconfig/autoconfig-running eq 1
+				/controls/engines/exceedance-reset eq 1
+			</test>
+			<test logic="OR" value="/engines/engine[2]/egt-actual">
+				/engines/engine[2]/egt-actual gt /instrumentation/ead/egt-max[2]
+			</test>
+		</switch>
 	
 	</channel>
 	
