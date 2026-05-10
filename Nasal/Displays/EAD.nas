@@ -429,6 +429,7 @@ var CanvasBase = {
 			me["EGT3_box"].hide();
 			me["EGT3_ignition"].hide();
 			me["EGT3_needle"].hide();
+			me["EGT3_over"].hide();
 			me["EGT3_redstart"].hide();
 		}
 		
@@ -687,6 +688,7 @@ var CanvasBase = {
 			me["EGT3_bar"].hide();
 			me["EGT3_box"].hide();
 			me["EGT3_ignition"].hide();
+			me["EGT3_over"].hide();
 			me["EGT3_redstart"].hide();
 		}
 		
