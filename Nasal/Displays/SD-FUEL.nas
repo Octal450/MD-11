@@ -1119,6 +1119,9 @@ var CanvasFuel = {
 			} else {
 				me["Tank3Temp_box"].hide();
 			}
+		} else if (Value.Fuel.tank3Temp == 0) {
+			me["Tank3Temp"].setText("0gC");
+			me["Tank3Temp_box"].hide();
 		} else {
 			me["Tank3Temp"].setText("+" ~ sprintf("%d", Value.Fuel.tank3Temp) ~ "gC");
 			me["Tank3Temp_box"].hide();
@@ -1133,6 +1136,9 @@ var CanvasFuel = {
 			} else {
 				me["TankTailTemp_box"].hide();
 			}
+		} else if (Value.Fuel.tankTailTemp == 0) {
+			me["TankTailTemp"].setText("0gC");
+			me["TankTailTemp_box"].hide();
 		} else {
 			me["TankTailTemp"].setText("+" ~ sprintf("%d", Value.Fuel.tankTailTemp) ~ "gC");
 			me["TankTailTemp_box"].hide();
