@@ -96,7 +96,7 @@
 		</switch>
 		
 		<switch name="/systems/fuel/cg-control/tail-fuel-limit">
-			<default value="13110"/> <!-- Full (deadzone 5) -->
+			<default value="100000"/> <!-- No limit -->
 			<test value="5000"> <!-- Or tail alternate fail -->
 				/engines/engine[1]/state ne 3
 			</test>
@@ -177,6 +177,7 @@
 			</test>
 			<test logic="AND" value="1"> <!-- Aft -->
 				/consumables/fuel/total-fuel-actual ge 51000
+				propulsion/tank[7]/contents-lbs le 13110 <!-- Full deadzone 5 -->
 				propulsion/tank[7]/contents-lbs le /systems/fuel/cg-control/tail-fuel-limit
 				/systems/fuel/cg-control/direction-cg-latch eq 1
 			</test>
