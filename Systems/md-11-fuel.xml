@@ -96,7 +96,7 @@
 		</switch>
 		
 		<switch name="/systems/fuel/cg-control/tail-fuel-limit">
-			<default value="100000"/> <!-- No limit -->
+			<default value="13110"/> <!-- Full (deadzone 5) -->
 			<test value="5000"> <!-- Or tail alternate fail -->
 				/engines/engine[1]/state ne 3
 			</test>
