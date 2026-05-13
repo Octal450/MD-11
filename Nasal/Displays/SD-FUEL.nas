@@ -1112,7 +1112,7 @@ var CanvasFuel = {
 		# Fuel Temperature
 		Value.Fuel.tank3Temp = math.round(systems.FUEL.Temp.tank3.getValue());
 		if (Value.Fuel.tank3Temp < 0) {
-			me["Tank3Temp"].setText(sprintf("%2.0f", Value.Fuel.tank3Temp) ~ "gC");
+			me["Tank3Temp"].setText(sprintf("%d", Value.Fuel.tank3Temp) ~ "gC");
 			
 			if (Value.Fuel.tank3Temp < -37) { # FMS Freeze + 3
 				me["Tank3Temp_box"].show();
@@ -1120,13 +1120,13 @@ var CanvasFuel = {
 				me["Tank3Temp_box"].hide();
 			}
 		} else {
-			me["Tank3Temp"].setText("+" ~ sprintf("%2.0f", Value.Fuel.tank3Temp) ~ "gC");
+			me["Tank3Temp"].setText("+" ~ sprintf("%d", Value.Fuel.tank3Temp) ~ "gC");
 			me["Tank3Temp_box"].hide();
 		}
 		
 		Value.Fuel.tankTailTemp = math.round(systems.FUEL.Temp.tankTail.getValue());
 		if (Value.Fuel.tankTailTemp < 0) {
-			me["TankTailTemp"].setText(sprintf("%2.0f", Value.Fuel.tankTailTemp) ~ "gC");
+			me["TankTailTemp"].setText(sprintf("%d", Value.Fuel.tankTailTemp) ~ "gC");
 			
 			if (Value.Fuel.tankTailTemp < -37) { # FMS Freeze + 3
 				me["TankTailTemp_box"].show();
@@ -1134,7 +1134,7 @@ var CanvasFuel = {
 				me["TankTailTemp_box"].hide();
 			}
 		} else {
-			me["TankTailTemp"].setText("+" ~ sprintf("%2.0f", Value.Fuel.tankTailTemp) ~ "gC");
+			me["TankTailTemp"].setText("+" ~ sprintf("%d", Value.Fuel.tankTailTemp) ~ "gC");
 			me["TankTailTemp_box"].hide();
 		}
 	},
