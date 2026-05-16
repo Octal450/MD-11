@@ -41,9 +41,9 @@ jobs:
           include: ${{ inputs.include }}
           exclude: ${{ inputs.exclude }}
           compatibility: ${{ inputs.compatibility }}
-          commit_message: "Auto-Update Damage Libraries (KMD-11)"
+          commit_message: "Auto-Update Damage Libraries - KMD-11"
       - name: "Scheduled Update"
         uses: BobDotCom/OPRFAssetUpdater@v0.12
         if: "${{ github.event_name != 'workflow_dispatch' }}"
         with:
-          commit_message: "Files: Auto-Update Damage Libraries (KMD-11)"
+          commit_message: "Files: Auto-Update Damage Libraries - KMD-11"
