@@ -924,6 +924,68 @@
 	
 	</channel>
 	
+	<channel name="ESC Switches/Logic 2" execrate="8"> <!-- Needs to be after Main Pneumatics to avoid flashing off lights in certain situations -->
+		
+		<switch name="/systems/pneumatics/esc/pack-1">
+			<default value="/controls/pneumatics/pack-1"/>
+			<test logic="AND" value="0">
+				/systems/pneumatics/system eq 1
+				/systems/pneumatics/esc/packs-cmd-off eq 1
+			</test>
+			<test logic="AND" value="1">
+				/systems/pneumatics/system eq 1
+				/systems/pneumatics/bleed-1-psi ge 10.5
+			</test>
+			<test value="0">
+				/systems/pneumatics/system eq 1
+			</test>
+			<output>/controls/pneumatics/pack-1</output>
+		</switch>
+		
+		<switch name="/systems/pneumatics/esc/pack-2">
+			<default value="/controls/pneumatics/pack-2"/>
+			<test logic="AND" value="0">
+				/systems/pneumatics/system eq 1
+				/systems/pneumatics/apu-active eq 1
+				/systems/pneumatics/eng-1-psi ge 10.5
+			</test>
+			<test logic="AND" value="0">
+				/systems/pneumatics/system eq 1
+				/systems/pneumatics/apu-active eq 1
+				/systems/pneumatics/eng-3-psi ge 10.5
+			</test>
+			<test logic="AND" value="0">
+				/systems/pneumatics/system eq 1
+				/systems/pneumatics/esc/packs-cmd-off eq 1
+			</test>
+			<test logic="AND" value="1">
+				/systems/pneumatics/system eq 1
+				/systems/pneumatics/bleed-2-psi ge 10.5
+			</test>
+			<test value="0">
+				/systems/pneumatics/system eq 1
+			</test>
+			<output>/controls/pneumatics/pack-2</output>
+		</switch>
+		
+		<switch name="/systems/pneumatics/esc/pack-3">
+			<default value="/controls/pneumatics/pack-3"/>
+			<test logic="AND" value="0">
+				/systems/pneumatics/system eq 1
+				/systems/pneumatics/esc/packs-cmd-off eq 1
+			</test>
+			<test logic="AND" value="1">
+				/systems/pneumatics/system eq 1
+				/systems/pneumatics/bleed-3-psi ge 10.5
+			</test>
+			<test value="0">
+				/systems/pneumatics/system eq 1
+			</test>
+			<output>/controls/pneumatics/pack-3</output>
+		</switch>
+	
+	</channel>
+	
 	<channel name="Bleed Temperature" execrate="8">
 		
 		<fcs_function name="/systems/pneumatics/temp/apu">
@@ -1212,68 +1274,6 @@
 			<input>/systems/pneumatics/temp/bleed-3-actuator</input>
 			<c1>0.4</c1>
 		</lag_filter>
-	
-	</channel>
-	
-	<channel name="ESC Switches/Logic 2" execrate="8"> <!-- Needs to be after Main Pneumatics to avoid flashing off lights in certain situations -->
-		
-		<switch name="/systems/pneumatics/esc/pack-1">
-			<default value="/controls/pneumatics/pack-1"/>
-			<test logic="AND" value="0">
-				/systems/pneumatics/system eq 1
-				/systems/pneumatics/esc/packs-cmd-off eq 1
-			</test>
-			<test logic="AND" value="1">
-				/systems/pneumatics/system eq 1
-				/systems/pneumatics/bleed-1-psi ge 10.5
-			</test>
-			<test value="0">
-				/systems/pneumatics/system eq 1
-			</test>
-			<output>/controls/pneumatics/pack-1</output>
-		</switch>
-		
-		<switch name="/systems/pneumatics/esc/pack-2">
-			<default value="/controls/pneumatics/pack-2"/>
-			<test logic="AND" value="0">
-				/systems/pneumatics/system eq 1
-				/systems/pneumatics/apu-active eq 1
-				/systems/pneumatics/eng-1-psi ge 10.5
-			</test>
-			<test logic="AND" value="0">
-				/systems/pneumatics/system eq 1
-				/systems/pneumatics/apu-active eq 1
-				/systems/pneumatics/eng-3-psi ge 10.5
-			</test>
-			<test logic="AND" value="0">
-				/systems/pneumatics/system eq 1
-				/systems/pneumatics/esc/packs-cmd-off eq 1
-			</test>
-			<test logic="AND" value="1">
-				/systems/pneumatics/system eq 1
-				/systems/pneumatics/bleed-2-psi ge 10.5
-			</test>
-			<test value="0">
-				/systems/pneumatics/system eq 1
-			</test>
-			<output>/controls/pneumatics/pack-2</output>
-		</switch>
-		
-		<switch name="/systems/pneumatics/esc/pack-3">
-			<default value="/controls/pneumatics/pack-3"/>
-			<test logic="AND" value="0">
-				/systems/pneumatics/system eq 1
-				/systems/pneumatics/esc/packs-cmd-off eq 1
-			</test>
-			<test logic="AND" value="1">
-				/systems/pneumatics/system eq 1
-				/systems/pneumatics/bleed-3-psi ge 10.5
-			</test>
-			<test value="0">
-				/systems/pneumatics/system eq 1
-			</test>
-			<output>/controls/pneumatics/pack-3</output>
-		</switch>
 	
 	</channel>
 	
