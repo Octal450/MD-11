@@ -112,6 +112,7 @@ var CORE = {
 					fms.flightData.flexActive = 0;
 					fms.flightData.flexTemp = 0;
 				}
+				fms.flightData.toPacks = 1; # From now, FADEC calculations should use packs on value
 			} else if (Value.wow and Value.vertText == "T/O CLB" and systems.FADEC.throttleCompareMax.getValue() < 0.7) { # Rejected T/O
 				Internal.phaseNew = 0; # Preflight
 			} else if (flightData.accelAlt > -2000) {
@@ -121,6 +122,7 @@ var CORE = {
 						fms.flightData.flexActive = 0;
 						fms.flightData.flexTemp = 0;
 					}
+					fms.flightData.toPacks = 1; # From now, FADEC calculations should use packs on value
 				}
 			}
 		} else if (Internal.phase == 2) { # Climb
