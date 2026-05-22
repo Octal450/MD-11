@@ -34,9 +34,6 @@ var CanvasAir = {
 		me["AI_tail_group"].hide();
 		me["AI_wing_L_group"].hide();
 		me["AI_wing_R_group"].hide();
-		me["Bleed1_temp"].setText("0gC");
-		me["Bleed2_temp"].setText("0gC");
-		me["Bleed3_temp"].setText("0gC");
 		me["CabinAlt"].setText("0");
 		me["CabinAlt_box"].hide();
 		me["CabinDP"].setText("0");
@@ -352,6 +349,15 @@ var CanvasAir = {
 			me["Bleed3_psi"].setColor(1, 1, 1);
 			me["Bleed3_psi_box"].hide();
 		}
+		
+		# Bleed Temperatures
+		Value.Air.bleed1Temp = math.round(systems.PNEUMATICS.Temp.bleed1.getValue());
+		Value.Air.bleed2Temp = math.round(systems.PNEUMATICS.Temp.bleed2.getValue());
+		Value.Air.bleed3Temp = math.round(systems.PNEUMATICS.Temp.bleed3.getValue());
+		
+		me["Bleed1_temp"].setText(sprintf("%d", Value.Air.bleed1Temp) ~ "gC");
+		me["Bleed2_temp"].setText(sprintf("%d", Value.Air.bleed2Temp) ~ "gC");
+		me["Bleed3_temp"].setText(sprintf("%d", Value.Air.bleed3Temp) ~ "gC");
 		
 		# Schematic Lines Phase 1
 		Value.Air.apuPsi = math.round(systems.PNEUMATICS.Psi.apu.getValue());
