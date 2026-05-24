@@ -292,7 +292,6 @@ var CanvasAir = {
 			me["Bleed2"].setColor(1, 1, 1);
 		}
 		
-		
 		me["Bleed3"].setRotation(Value.Air.bleed3 * 90 * D2R);
 		if (Value.Air.bleed3 and systems.ENGINES.state[2].getValue() >= 2) {
 			me["Bleed3"].setColor(0, 1, 0);
