@@ -359,6 +359,15 @@ var CanvasAir = {
 		me["Bleed2_temp"].setText(sprintf("%d", Value.Air.bleed2Temp) ~ "gC");
 		me["Bleed3_temp"].setText(sprintf("%d", Value.Air.bleed3Temp) ~ "gC");
 		
+		# Cabin Pressurization
+		if (fms.flightData.airportToAlt > -2000) {
+			me["CabinLand"].setText(sprintf("%d", fms.flightData.airportToAlt));
+			me["CabinLand"].setColor(0.9608, 0, 0.7765);
+		} else {
+			me["CabinLand"].setText("----");
+			me["CabinLand"].setColor(0.9412, 0.7255, 0);
+		}
+		
 		# Schematic Lines Phase 1
 		Value.Air.apuPsi = math.round(systems.PNEUMATICS.Psi.apu.getValue());
 		Value.Air.eng1Psi = math.round(systems.PNEUMATICS.Psi.eng1.getValue());
@@ -535,15 +544,6 @@ var CanvasAir = {
 			me["Isol13_line"].setColor(0, 1, 0);
 		} else {
 			me["Isol13_line"].setColor(1, 1, 1);
-		}
-		
-		# Cabin Pressurization
-		if (fms.flightData.airportToAlt > -2000) {
-			me["CabinLand"].setText(sprintf("%d", fms.flightData.airportToAlt));
-			me["CabinLand"].setColor(0.9608, 0, 0.7765);
-		} else {
-			me["CabinLand"].setText("----");
-			me["CabinLand"].setColor(0.9412, 0.7255, 0);
 		}
 	},
 };
