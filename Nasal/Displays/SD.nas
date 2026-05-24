@@ -287,18 +287,19 @@ var CanvasBase = {
 		engTapes.setup();
 		fuel.setup();
 	},
-	hidePages: func() {
-		air.page.hide();
-		config.page.hide();
-		conseq.page.hide();
-		elec.page.hide();
-		engDials.page.hide();
-		engTapes.page.hide();
-		fuel.page.hide();
-		hyd.page.hide();
-		misc.page.hide();
-		noNd.page.hide();
-		status.page.hide();
+	hidePages: func(p = "") {
+		if (p != "AIR") air.page.hide();
+		if (p != "CONFIG") config.page.hide();
+		if (p != "CONSEQ") conseq.page.hide();
+		if (p != "ELEC") elec.page.hide();
+		if (p != "ENG") engDials.page.hide();
+		if (p != "ENGT") engTapes.page.hide();
+		if (p != "FUEL") fuel.page.hide();
+		if (p != "HYD") hyd.page.hide();
+		if (p != "MISC") misc.page.hide();
+		if (p != "ND") noNd.page.hide();
+		if (p != "STATUS") status.page.hide();
+		
 		xx.page.hide();
 	},
 	update: func() {
