@@ -9,10 +9,7 @@ var CanvasConfig = {
 		return m;
 	},
 	getKeys: func() {
-		return ["Alert_error", "AileronL_error", "AileronLDown", "AileronLUp", "AileronR_error", "AileronRDown", "AileronRUp", "CenterPressL", "CenterPressR", "CenterStatus", "ElevatorL_error", "ElevatorLDown", "ElevatorLUp", "ElevatorR_error", "ElevatorRDown",
-		"ElevatorRUp", "ELFGroup", "ELFNeedle", "Flap1", "Flap1_error", "Flap2", "Flap2_error", "Flap3", "Flap3_error", "Flap4", "Flap4_error", "FlapBox", "GearTest", "LeftPressLAft", "LeftPressLFwd", "LeftPressRAft", "LeftPressRFwd", "LeftStatus", "NosePressL",
-		"NosePressR", "NoseStatus", "RightPressLAft", "RightPressLFwd", "RightPressRAft", "RightPressRFwd", "RightStatus", "RudderLower_error", "RudderLowerLeft", "RudderLowerRight", "RudderUpper_error", "RudderUpperLeft", "RudderUpperRight", "SlatExt",
-		"SpoilerL", "SpoilerL_error", "SpoilerR", "SpoilerR_error", "Stab", "Stab_box", "Stab_error", "StabGreen", "StabNeedle", "StabUnit"];
+		return KeyListConfig;
 	},
 	update: func() {
 		Value.Misc.wow = pts.Position.wow.getBoolValue();
@@ -384,3 +381,65 @@ var CanvasConfig = {
 		}
 	},
 };
+
+# SVG Key List
+var KeyListConfig = [
+	"Alert_error",
+	"AileronLDown",
+	"AileronLUp",
+	"AileronL_error",
+	"AileronRDown",
+	"AileronRUp",
+	"AileronR_error",
+	"CenterPressL",
+	"CenterPressR",
+	"CenterStatus",
+	"ELFGroup",
+	"ELFNeedle",
+	"ElevatorLDown",
+	"ElevatorLUp",
+	"ElevatorL_error",
+	"ElevatorRDown",
+	"ElevatorRUp",
+	"ElevatorR_error",
+	"Flap1",
+	"Flap1_error",
+	"Flap2",
+	"Flap2_error",
+	"Flap3",
+	"Flap3_error",
+	"Flap4",
+	"Flap4_error",
+	"FlapBox",
+	"GearTest",
+	"LeftPressLAft",
+	"LeftPressLFwd",
+	"LeftPressRAft",
+	"LeftPressRFwd",
+	"LeftStatus",
+	"NosePressL",
+	"NosePressR",
+	"NoseStatus",
+	"RightPressLAft",
+	"RightPressLFwd",
+	"RightPressRAft",
+	"RightPressRFwd",
+	"RightStatus",
+	"RudderLowerLeft",
+	"RudderLowerRight",
+	"RudderLower_error",
+	"RudderUpperLeft",
+	"RudderUpperRight",
+	"RudderUpper_error",
+	"SlatExt",
+	"SpoilerL",
+	"SpoilerL_error",
+	"SpoilerR",
+	"SpoilerR_error",
+	"Stab",
+	"Stab_box",
+	"Stab_error",
+	"StabGreen",
+	"StabNeedle",
+	"StabUnit"
+];

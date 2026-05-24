@@ -60,8 +60,7 @@ var CanvasBase = {
 		return me;
 	},
 	getKeys: func() {
-		return ["Arrow", "Clr", "C1", "C1_L", "C2", "C2_L", "C3", "C3_L", "C4", "C4_L", "C5", "C5_L", "C6", "C6_L", "L1", "L1_B", "L1_L", "L2", "L2_B", "L2_L", "L3", "L3_B", "L3_L", "L4", "L4_B", "L4_L", "L5", "L5_B", "L5_L", "L6", "L6_B", "L6_L", "PageNum",
-		"R1", "R1_B", "R1_L", "R2", "R2_B", "R2_L", "R3", "R3_B", "R3_L", "R4", "R4_B", "R4_L", "R5", "R5_B", "R5_L", "R6", "R6_B", "R6_L", "Scratchpad", "Title"];
+		return KeyList;
 	},
 	setup: func() {
 		# Hide the pages by default
@@ -466,3 +465,60 @@ var showMcdu2 = func {
 var showMcdu3 = func {
 	gui.showDialog("mcdu3");
 }
+
+# SVG Key List
+var KeyList = [
+	"Arrow",
+	"C1",
+	"C1_L",
+	"C2",
+	"C2_L",
+	"C3",
+	"C3_L",
+	"C4",
+	"C4_L",
+	"C5",
+	"C5_L",
+	"C6",
+	"C6_L",
+	"Clr",
+	"L1",
+	"L1_B",
+	"L1_L",
+	"L2",
+	"L2_B",
+	"L2_L",
+	"L3",
+	"L3_B",
+	"L3_L",
+	"L4",
+	"L4_B",
+	"L4_L",
+	"L5",
+	"L5_B",
+	"L5_L",
+	"L6",
+	"L6_B",
+	"L6_L",
+	"PageNum",
+	"R1",
+	"R1_B",
+	"R1_L",
+	"R2",
+	"R2_B",
+	"R2_L",
+	"R3",
+	"R3_B",
+	"R3_L",
+	"R4",
+	"R4_B",
+	"R4_L",
+	"R5",
+	"R5_B",
+	"R5_L",
+	"R6",
+	"R6_B",
+	"R6_L",
+	"Scratchpad",
+	"Title"
+];

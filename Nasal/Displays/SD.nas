@@ -274,9 +274,6 @@ var CanvasBase = {
 		
 		return me;
 	},
-	getKeys: func() {
-		return [];
-	},
 	setup: func() {
 		# Hide the pages by default
 		me.hidePages();
@@ -385,6 +382,9 @@ var CanvasNoNd = {
 		m.init(canvasGroup, file);
 		
 		return m;
+	},
+	getKeys: func() {
+		return [];
 	},
 };
 
