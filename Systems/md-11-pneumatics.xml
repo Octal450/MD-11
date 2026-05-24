@@ -851,7 +851,7 @@
 			<output>propulsion/engine[2]/bleed-factor</output>
 		</fcs_function>
 		
-		<!-- Isolation Valve 1-2 Valve -->
+		<!-- Isolation 1-2 Valve -->
 		<actuator name="/systems/pneumatics/isol/isol-1-2-valve">
 			<input>/controls/pneumatics/isol-1-2</input>
 			<rate_limit>/systems/pneumatics/apu-isol-valve-rate</rate_limit>
@@ -874,7 +874,7 @@
 			<gain>/systems/pneumatics/isol/isol-1-2-active</gain>
 		</pure_gain>
 		
-		<!-- Isolation Valve 1-3 Valve -->
+		<!-- Isolation 1-3 Valve -->
 		<actuator name="/systems/pneumatics/isol/isol-1-3-valve">
 			<input>/controls/pneumatics/isol-1-3</input>
 			<rate_limit>/systems/pneumatics/apu-isol-valve-rate</rate_limit>
