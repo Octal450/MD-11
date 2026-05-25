@@ -605,7 +605,6 @@ var CanvasEngTapes = {
 
 # SVG Key Lists
 var KeyListDials = [
-	"Alert_error",
 	"APU",
 	"APU_EGT",
 	"APU_EGT_box",
@@ -617,6 +616,7 @@ var KeyListDials = [
 	"APU_Qty",
 	"APU_Qty_box",
 	"APU_Qty_error",
+	"Alert_error",
 	"CG",
 	"CG_box",
 	"CG_error",
@@ -625,9 +625,9 @@ var KeyListDials = [
 	"CabinAlt_error",
 	"CabinRate",
 	"CabinRate_box",
-	"CabinRate_error",
 	"CabinRateDn",
 	"CabinRateUp",
+	"CabinRate_error",
 	"EmvComp1",
 	"EmvComp1_error",
 	"EmvComp2",
@@ -691,15 +691,14 @@ var KeyListDials = [
 	"OilTemp3_needle",
 	"PW_group",
 	"Stab",
-	"Stab_box",
-	"Stab_error",
 	"StabGreen",
 	"StabNeedle",
-	"StabUnit"
+	"StabUnit",
+	"Stab_box",
+	"Stab_error"
 ];
 
 var KeyListTapes = [
-	"Alert_error",
 	"APU",
 	"APU_EGT",
 	"APU_EGT_box",
@@ -711,6 +710,7 @@ var KeyListTapes = [
 	"APU_Qty",
 	"APU_Qty_box",
 	"APU_Qty_error",
+	"Alert_error",
 	"CG",
 	"CG_box",
 	"CG_error",
@@ -719,9 +719,9 @@ var KeyListTapes = [
 	"CabinAlt_error",
 	"CabinRate",
 	"CabinRate_box",
-	"CabinRate_error",
 	"CabinRateDn",
 	"CabinRateUp",
+	"CabinRate_error",
 	"EmvComp1",
 	"EmvComp1_error",
 	"EmvComp2",
@@ -788,9 +788,9 @@ var KeyListTapes = [
 	"OilTemp3_error",
 	"PW_group",
 	"Stab",
-	"Stab_box",
-	"Stab_error",
 	"StabGreen",
 	"StabNeedle",
-	"StabUnit"
+	"StabUnit",
+	"Stab_box",
+	"Stab_error"
 ];
