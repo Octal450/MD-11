@@ -2,8 +2,9 @@
 # Copyright (c) 2026 Josh Davidson (Octal450)
 
 var FADEC = {
+	altn: [props.globals.getNode("/systems/fadec/control-1/altn", 1), props.globals.getNode("/systems/fadec/control-2/altn", 1), props.globals.getNode("/systems/fadec/control-3/altn", 1)], # GE only
 	anyEngineOut: 0,
-	n1Mode: [props.globals.getNode("/systems/fadec/control-1/n1-mode", 1), props.globals.getNode("/systems/fadec/control-2/n1-mode", 1), props.globals.getNode("/systems/fadec/control-3/n1-mode", 1)],
+	n1Mode: [props.globals.getNode("/systems/fadec/control-1/n1-mode", 1), props.globals.getNode("/systems/fadec/control-2/n1-mode", 1), props.globals.getNode("/systems/fadec/control-3/n1-mode", 1)], # PW only
 	pitchMode: "",
 	powered: [props.globals.getNode("/systems/fadec/eng-1-powered"), props.globals.getNode("/systems/fadec/eng-2-powered"), props.globals.getNode("/systems/fadec/eng-3-powered")],
 	reverseEngage: [props.globals.getNode("/systems/fadec/reverse-1/engage"), props.globals.getNode("/systems/fadec/reverse-2/engage"), props.globals.getNode("/systems/fadec/reverse-3/engage")],

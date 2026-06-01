@@ -875,7 +875,13 @@ var CanvasGeDials = {
 			} else {
 				me["N11_needle"].setRotation((-44 + (Value.Fadec.n1[0] / 120 * 177)) * D2R);
 			}
-			me["N11_thr"].setRotation((-44 + (systems.FADEC.targetN1[0].getValue() / 120 * 177)) * D2R);
+			
+			if (!systems.FADEC.altn[0].getValue()) {
+				me["N11_thr"].setRotation((-44 + (systems.FADEC.targetN1[0].getValue() / 120 * 177)) * D2R);
+				me["N11_thr"].show();
+			} else {
+				me["N11_thr"].hide();
+			}
 			
 			Value.Fadec.n1Round[0] = math.round(Value.Fadec.n1[0], 0.01);
 			if (Value.Fadec.n1Round[0] < 99) { # Prepare to show the zero at 100
@@ -896,7 +902,6 @@ var CanvasGeDials = {
 			me["N11_needle"].show();
 			me["N11_ones"].show();
 			me["N11_tens"].show();
-			me["N11_thr"].show();
 		} else {
 			me["N11_box"].hide();
 			me["N11_decimal"].hide();
@@ -917,7 +922,13 @@ var CanvasGeDials = {
 			} else {
 				me["N12_needle"].setRotation((-44 + (Value.Fadec.n1[1] / 120 * 177)) * D2R);
 			}
-			me["N12_thr"].setRotation((-44 + (systems.FADEC.targetN1[1].getValue() / 120 * 177)) * D2R);
+			
+			if (!systems.FADEC.altn[1].getValue()) {
+				me["N12_thr"].setRotation((-44 + (systems.FADEC.targetN1[1].getValue() / 120 * 177)) * D2R);
+				me["N12_thr"].show();
+			} else {
+				me["N12_thr"].hide();
+			}
 			
 			Value.Fadec.n1Round[1] = math.round(Value.Fadec.n1[1], 0.01);
 			if (Value.Fadec.n1Round[1] < 99) { # Prepare to show the zero at 100
@@ -938,7 +949,6 @@ var CanvasGeDials = {
 			me["N12_needle"].show();
 			me["N12_ones"].show();
 			me["N12_tens"].show();
-			me["N12_thr"].show();
 		} else {
 			me["N12_box"].hide();
 			me["N12_decimal"].hide();
@@ -959,7 +969,13 @@ var CanvasGeDials = {
 			} else {
 				me["N13_needle"].setRotation((-44 + (Value.Fadec.n1[2] / 120 * 177)) * D2R);
 			}
-			me["N13_thr"].setRotation((-44 + (systems.FADEC.targetN1[2].getValue() / 120 * 177)) * D2R);
+			
+			if (!systems.FADEC.altn[2].getValue()) {
+				me["N13_thr"].setRotation((-44 + (systems.FADEC.targetN1[2].getValue() / 120 * 177)) * D2R);
+				me["N13_thr"].show();
+			} else {
+				me["N13_thr"].hide();
+			}
 			
 			Value.Fadec.n1Round[2] = math.round(Value.Fadec.n1[2], 0.01);
 			if (Value.Fadec.n1Round[2] < 99) { # Prepare to show the zero at 100
@@ -980,7 +996,6 @@ var CanvasGeDials = {
 			me["N13_needle"].show();
 			me["N13_ones"].show();
 			me["N13_tens"].show();
-			me["N13_thr"].show();
 		} else {
 			me["N13_box"].hide();
 			me["N13_decimal"].hide();
@@ -1101,7 +1116,13 @@ var CanvasGeTapes = {
 			} else {
 				me["N11_bar"].setTranslation(0, Value.Fadec.n1[0] / 120 * -293);
 			}
-			me["N11_thr"].setTranslation(0, systems.FADEC.targetN1[0].getValue() / 120 * -293);
+			
+			if (!systems.FADEC.altn[0].getValue()) {
+				me["N11_thr"].setTranslation(0, systems.FADEC.targetN1[0].getValue() / 120 * -293);
+				me["N11_thr"].show();
+			} else {
+				me["N11_thr"].hide();
+			}
 			
 			if (Value.Fadec.revState[0] != 0) {
 				me["N11"].hide();
@@ -1111,7 +1132,6 @@ var CanvasGeTapes = {
 			}
 			
 			me["N11_bar"].show();
-			me["N11_thr"].show();
 		} else {
 			me["N11"].hide();
 			me["N11_bar"].hide();
@@ -1127,7 +1147,13 @@ var CanvasGeTapes = {
 			} else {
 				me["N12_bar"].setTranslation(0, Value.Fadec.n1[1] / 120 * -293);
 			}
-			me["N12_thr"].setTranslation(0, systems.FADEC.targetN1[1].getValue() / 120 * -293);
+			
+			if (!systems.FADEC.altn[1].getValue()) {
+				me["N12_thr"].setTranslation(0, systems.FADEC.targetN1[1].getValue() / 120 * -293);
+				me["N12_thr"].show();
+			} else {
+				me["N12_thr"].hide();
+			}
 			
 			if (Value.Fadec.revState[1] != 0) {
 				me["N12"].hide();
@@ -1137,7 +1163,6 @@ var CanvasGeTapes = {
 			}
 			
 			me["N12_bar"].show();
-			me["N12_thr"].show();
 		} else {
 			me["N12"].hide();
 			me["N12_bar"].hide();
@@ -1153,7 +1178,13 @@ var CanvasGeTapes = {
 			} else {
 				me["N13_bar"].setTranslation(0, Value.Fadec.n1[2] / 120 * -293);
 			}
-			me["N13_thr"].setTranslation(0, systems.FADEC.targetN1[2].getValue() / 120 * -293);
+			
+			if (!systems.FADEC.altn[2].getValue()) {
+				me["N13_thr"].setTranslation(0, systems.FADEC.targetN1[2].getValue() / 120 * -293);
+				me["N13_thr"].show();
+			} else {
+				me["N13_thr"].hide();
+			}
 			
 			if (Value.Fadec.revState[2] != 0) {
 				me["N13"].hide();
@@ -1163,7 +1194,6 @@ var CanvasGeTapes = {
 			}
 			
 			me["N13_bar"].show();
-			me["N13_thr"].show();
 		} else {
 			me["N13"].hide();
 			me["N13_bar"].hide();

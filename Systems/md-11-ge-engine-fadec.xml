@@ -928,10 +928,17 @@
 	<channel name="Engine N1 Control">
 		
 		<!-- Engine 1 -->
+		<switch name="/systems/fadec/control-1/altn">
+			<default value="0"/>
+			<test value="1">
+				/controls/fadec/altn-1 eq 1
+			</test>
+		</switch>
+		
 		<switch name="/systems/fadec/control-1/max-n1">
 			<default value="/systems/fadec/limit/max"/>
 			<test value="117.5">
-				/controls/fadec/altn-1 eq 1
+				/systems/fadec/control-1/altn eq 1
 			</test>
 		</switch>
 		
@@ -941,7 +948,7 @@
 				/systems/fadec/reverse-1/active eq 1
 			</test>
 			<test value="0">
-				/controls/fadec/altn-1 eq 1
+				/systems/fadec/control-1/altn eq 1
 			</test>
 		</switch>
 		
@@ -1014,10 +1021,17 @@
 		</lag_filter>
 		
 		<!-- Engine 2 -->
+		<switch name="/systems/fadec/control-2/altn">
+			<default value="0"/>
+			<test value="1">
+				/controls/fadec/altn-2 eq 1
+			</test>
+		</switch>
+		
 		<switch name="/systems/fadec/control-2/max-n1">
 			<default value="/systems/fadec/limit/max"/>
 			<test value="117.5">
-				/controls/fadec/altn-2 eq 1
+				/systems/fadec/control-2/altn eq 1
 			</test>
 		</switch>
 		
@@ -1027,7 +1041,7 @@
 				/systems/fadec/reverse-2/active eq 1
 			</test>
 			<test value="0">
-				/controls/fadec/altn-2 eq 1
+				/systems/fadec/control-2/altn eq 1
 			</test>
 		</switch>
 		
@@ -1100,10 +1114,17 @@
 		</lag_filter>
 		
 		<!-- Engine 3 -->
+		<switch name="/systems/fadec/control-3/altn">
+			<default value="0"/>
+			<test value="1">
+				/controls/fadec/altn-3 eq 1
+			</test>
+		</switch>
+		
 		<switch name="/systems/fadec/control-3/max-n1">
 			<default value="/systems/fadec/limit/max"/>
 			<test value="117.5">
-				/controls/fadec/altn-3 eq 1
+				/systems/fadec/control-3/altn eq 1
 			</test>
 		</switch>
 		
@@ -1113,7 +1134,7 @@
 				/systems/fadec/reverse-3/active eq 1
 			</test>
 			<test value="0">
-				/controls/fadec/altn-3 eq 1
+				/systems/fadec/control-3/altn eq 1
 			</test>
 		</switch>
 		
