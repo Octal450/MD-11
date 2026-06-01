@@ -288,10 +288,18 @@ var EditFlightData = {
 		} else if (fgcommand("load-flightplan", props.Node.new({"path": getprop("/sim/fg-home/") ~ "/Export/" ~ file ~ ".fgfp"}))) { # Try FGFP
 			flightData.coRte = file;
 		} else {
+			if (flightData.airportFrom != "" and flightData.airportTo != "") { # Re-initialize what's entered if it can't find one
+				me.newFlightplan(flightData.airportFrom, flightData.airportTo);
+			}
+			
 			return 1;
 		}
 		
 		if (size(RouteManager.departureAirport.getValue()) < 3 or size(RouteManager.destinationAirport.getValue()) < 3) {
+			if (flightData.airportFrom != "" and flightData.airportTo != "") { # Re-initialize what's entered if it can't find one
+				me.newFlightplan(flightData.airportFrom, flightData.airportTo);
+			}
+			
 			return 2;
 		}
 		
