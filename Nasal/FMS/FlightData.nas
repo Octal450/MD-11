@@ -417,6 +417,7 @@ var EditFlightData = {
 		
 		if (!skipRM) {
 			flightplan().cleanPlan(); # Clear List function in Route Manager
+			flightData.coRte = "";
 		}
 		
 		flightData.airportFrom = from;
