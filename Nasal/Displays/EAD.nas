@@ -294,7 +294,7 @@ var CanvasBase = {
 				me["EGT1_box"].setColor(1, 0, 0);
 				me["EGT1_box"].show();
 				me["EGT1_needle"].setColorFill(1, 0, 0);
-			} else if (Value.Fadec.egt[0] - 0.5 > Value.egtYellow) {
+			} else if (Value.Fadec.egt[0] - 0.5 > Value.egtYellow and pts.Instrumentation.Ead.egtYellowTimer[0].getValue() == 1) {
 				me["EGT1"].setColor(0.9412, 0.7255, 0);
 				me["EGT1_box"].setColor(0.9412, 0.7255, 0);
 				me["EGT1_box"].show();
@@ -348,7 +348,7 @@ var CanvasBase = {
 				me["EGT2_box"].setColor(1, 0, 0);
 				me["EGT2_box"].show();
 				me["EGT2_needle"].setColorFill(1, 0, 0);
-			} else if (Value.Fadec.egt[1] - 0.5 > Value.egtYellow) {
+			} else if (Value.Fadec.egt[1] - 0.5 > Value.egtYellow and pts.Instrumentation.Ead.egtYellowTimer[1].getValue() == 1) {
 				me["EGT2"].setColor(0.9412, 0.7255, 0);
 				me["EGT2_box"].setColor(0.9412, 0.7255, 0);
 				me["EGT2_box"].show();
@@ -402,7 +402,7 @@ var CanvasBase = {
 				me["EGT3_box"].setColor(1, 0, 0);
 				me["EGT3_box"].show();
 				me["EGT3_needle"].setColorFill(1, 0, 0);
-			} else if (Value.Fadec.egt[2] - 0.5 > Value.egtYellow) {
+			} else if (Value.Fadec.egt[2] - 0.5 > Value.egtYellow and pts.Instrumentation.Ead.egtYellowTimer[2].getValue() == 1) {
 				me["EGT3"].setColor(0.9412, 0.7255, 0);
 				me["EGT3_box"].setColor(0.9412, 0.7255, 0);
 				me["EGT3_box"].show();
@@ -553,7 +553,7 @@ var CanvasBase = {
 				me["EGT1_bar"].setColorFill(1, 0, 0);
 				me["EGT1_box"].setColor(1, 0, 0);
 				me["EGT1_box"].show();
-			} else if (Value.Fadec.egt[0] - 0.5 > Value.egtYellow) {
+			} else if (Value.Fadec.egt[0] - 0.5 > Value.egtYellow and pts.Instrumentation.Ead.egtYellowTimer[0].getValue() == 1) {
 				me["EGT1"].setColor(0.9412, 0.7255, 0);
 				me["EGT1_bar"].setColorFill(0.9412, 0.7255, 0);
 				me["EGT1_box"].setColor(0.9412, 0.7255, 0);
@@ -607,7 +607,7 @@ var CanvasBase = {
 				me["EGT2_bar"].setColorFill(1, 0, 0);
 				me["EGT2_box"].setColor(1, 0, 0);
 				me["EGT2_box"].show();
-			} else if (Value.Fadec.egt[1] - 0.5 > Value.egtYellow) {
+			} else if (Value.Fadec.egt[1] - 0.5 > Value.egtYellow and pts.Instrumentation.Ead.egtYellowTimer[1].getValue() == 1) {
 				me["EGT2"].setColor(0.9412, 0.7255, 0);
 				me["EGT2_bar"].setColorFill(0.9412, 0.7255, 0);
 				me["EGT2_box"].setColor(0.9412, 0.7255, 0);
@@ -661,7 +661,7 @@ var CanvasBase = {
 				me["EGT3_bar"].setColorFill(1, 0, 0);
 				me["EGT3_box"].setColor(1, 0, 0);
 				me["EGT3_box"].show();
-			} else if (Value.Fadec.egt[2] - 0.5 > Value.egtYellow) {
+			} else if (Value.Fadec.egt[2] - 0.5 > Value.egtYellow and pts.Instrumentation.Ead.egtYellowTimer[2].getValue() == 1) {
 				me["EGT3"].setColor(0.9412, 0.7255, 0);
 				me["EGT3_bar"].setColorFill(0.9412, 0.7255, 0);
 				me["EGT3_box"].setColor(0.9412, 0.7255, 0);

@@ -361,6 +361,45 @@
 			</test>
 		</switch>
 		
+		<switch name="/instrumentation/ead/egt-yellow-timer-cmd[0]">
+			<default value="0"/>
+			<test value="1">
+				/engines/engine[0]/egt-actual gt /systems/fadec/egt-yellow
+			</test>
+		</switch>
+		
+		<actuator name="/instrumentation/ead/egt-yellow-timer[0]">
+			<input>/instrumentation/ead/egt-yellow-timer-cmd[0]</input>
+			<rate_limit sense="incr">0.00333333333333333333333333333333</rate_limit> <!-- 5 minutes -->
+			<rate_limit sense="decr">1.0</rate_limit> <!-- 1 second -->
+		</actuator>
+		
+		<switch name="/instrumentation/ead/egt-yellow-timer-cmd[1]">
+			<default value="0"/>
+			<test value="1">
+				/engines/engine[1]/egt-actual gt /systems/fadec/egt-yellow
+			</test>
+		</switch>
+		
+		<actuator name="/instrumentation/ead/egt-yellow-timer[1]">
+			<input>/instrumentation/ead/egt-yellow-timer-cmd[1]</input>
+			<rate_limit sense="incr">0.00333333333333333333333333333333</rate_limit> <!-- 5 minutes -->
+			<rate_limit sense="decr">1.0</rate_limit> <!-- 1 second -->
+		</actuator>
+		
+		<switch name="/instrumentation/ead/egt-yellow-timer-cmd[2]">
+			<default value="0"/>
+			<test value="1">
+				/engines/engine[2]/egt-actual gt /systems/fadec/egt-yellow
+			</test>
+		</switch>
+		
+		<actuator name="/instrumentation/ead/egt-yellow-timer[2]">
+			<input>/instrumentation/ead/egt-yellow-timer-cmd[2]</input>
+			<rate_limit sense="incr">0.00333333333333333333333333333333</rate_limit> <!-- 5 minutes -->
+			<rate_limit sense="decr">1.0</rate_limit> <!-- 1 second -->
+		</actuator>
+		
 		<switch name="/instrumentation/ead/egt-max[0]">
 			<default value="/instrumentation/ead/egt-max[0]"/>
 			<test logic="OR" value="/systems/fadec/egt-redline">
