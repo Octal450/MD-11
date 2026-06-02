@@ -616,10 +616,6 @@
 							<property>/systems/pneumatics/pack-1-cmd</property>
 							<value>1</value>
 						</eq>
-						<ge>
-							<property>/systems/electrical/bus/ac-1</property>
-							<value>112</value>
-						</ge>
 						<nq>
 							<property>/systems/failures/pneumatics/pack-1</property>
 							<value>1</value>
@@ -656,7 +652,6 @@
 			<default value="0"/>
 			<test logic="AND" value="12">
 				/systems/pneumatics/pack-1-valve-cmd gt 0
-				/systems/electrical/bus/ac-1 ge 112
 				/systems/failures/pneumatics/pack-1 ne 1
 			</test>
 		</switch>
@@ -697,10 +692,6 @@
 							<property>/systems/pneumatics/pack-2-cmd</property>
 							<value>1</value>
 						</eq>
-						<ge>
-							<property>/systems/electrical/bus/ac-2</property>
-							<value>112</value>
-						</ge>
 						<nq>
 							<property>/systems/failures/pneumatics/pack-2</property>
 							<value>1</value>
@@ -737,7 +728,6 @@
 			<default value="0"/>
 			<test logic="AND" value="12">
 				/systems/pneumatics/pack-2-valve-cmd gt 0
-				/systems/electrical/bus/ac-2 ge 112
 				/systems/failures/pneumatics/pack-2 ne 1
 			</test>
 		</switch>
@@ -778,10 +768,6 @@
 							<property>/controls/pneumatics/pack-3</property>
 							<value>1</value>
 						</eq>
-						<ge>
-							<property>/systems/electrical/bus/ac-3</property>
-							<value>112</value>
-						</ge>
 						<nq>
 							<property>/systems/failures/pneumatics/pack-3</property>
 							<value>1</value>
@@ -818,7 +804,6 @@
 			<default value="0"/>
 			<test logic="AND" value="12">
 				/systems/pneumatics/pack-3-valve-cmd gt 0
-				/systems/electrical/bus/ac-3 ge 112
 				/systems/failures/pneumatics/pack-3 ne 1
 			</test>
 		</switch>
