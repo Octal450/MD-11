@@ -814,6 +814,8 @@
 		<type>select</type>
 		<object-name>AbsDisarmL.light</object-name>
 		<object-name>AbsDisarmR.light</object-name>
+		<object-name>EngFailL.light</object-name>
+		<object-name>EngFailR.light</object-name>
 		<object-name>FD1.off</object-name>
 		<object-name>FD2.off</object-name>
 		<object-name>IRS.captaux</object-name>
@@ -840,15 +842,10 @@
 	
 	<animation>
 		<type>select</type>
-		<object-name>master_warning_light_on</object-name>
-		<condition>
-			<property>controls/switches/annun-test</property>
-		</condition>
-	</animation>
-
-	<animation>
-		<type>select</type>
+		<object-name>EngFailL.light</object-name>
+		<object-name>EngFailR.light</object-name>
 		<object-name>master_caution_light_on</object-name>
+		<object-name>master_warning_light_on</object-name>
 		<condition>
 			<property>controls/switches/annun-test</property>
 		</condition>
