@@ -5,7 +5,26 @@ MATERIAL "Material.004" rgb 0.8 0.8 0.8  amb 1 1 1  emis 0.796 0.796 0.796  spec
 MATERIAL "DefaultWhite" rgb 1 1 1  amb 1 1 1  emis 0 0 0  spec 0 0 0  shi 20.2105  trans 0
 MATERIAL "DefaultWhite.012" rgb 1 1 1  amb 1 1 1  emis 1 1 1  spec 0 0 0  shi 0  trans 0
 OBJECT world
-kids 22
+kids 23
+OBJECT poly
+name "AntiSkid.off"
+loc -0.108652 0.00819001 -0.0738283
+texture "lights.png"
+crease 45.000000
+numvert 4
+0.106428 -6.51926e-09 0.0887471
+0.102526 -6.51926e-09 0.0887471
+0.102526 -6.51926e-09 0.0805172
+0.106428 -6.51926e-09 0.0805172
+numsurf 1
+SURF 0x30
+mat 4
+refs 4
+2 0.121734 0.0183337
+1 0.0830701 0.0183337
+0 0.0830701 0
+3 0.121734 0
+kids 0
 OBJECT poly
 name "AntiSkid"
 loc -0.00417475 -0.000887037 0.0108038

@@ -740,6 +740,7 @@
 			<x-feed-3 type="bool">0</x-feed-3>
 		</fuel>
 		<gear n="0">
+			<anti-skid type="bool">1</anti-skid>
 			<brake-parking type="bool">0</brake-parking>
 			<center-gear-up type="bool">0</center-gear-up>
 			<lever type="int">3</lever>

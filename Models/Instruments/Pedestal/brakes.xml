@@ -142,6 +142,7 @@
 	<!-- No button lights without power! -->
 	<animation>
 		<type>select</type>
+		<object-name>AntiSkid.off</object-name>
 		<object-name>AuxPump1.on</object-name>
 		<condition>
 			<or>
@@ -158,6 +159,57 @@
 					<value>24</value>
 				</greater-than-equals>
 			</or>
+		</condition>
+	</animation>
+	
+	<animation>
+		<type>pick</type>
+		<object-name>AntiSkid</object-name>
+		<object-name>AntiSkid.off</object-name>
+		<action>
+			<button>0</button>
+			<repeatable>false</repeatable>
+			<binding>
+				<command>property-toggle</command>
+				<property>controls/gear/anti-skid</property>
+			</binding>
+			<binding>
+				<command>nasal</command>
+				<script>core.Sound.btn2();</script>
+			</binding>
+		</action>
+	</animation>
+	<animation>
+		<type>translate</type>
+		<object-name>AntiSkid</object-name>
+		<object-name>AntiSkid.off</object-name>
+		<property>controls/gear/anti-skid</property>
+		<interpolation>
+			<entry><ind>0</ind><dep>-0.001</dep></entry>
+			<entry><ind>1</ind><dep> 0.000</dep></entry>
+		</interpolation>
+		<axis>
+			<x>0</x>
+			<y>0</y>
+			<z>1</z>
+		</axis>
+	</animation>
+	<animation>
+		<type>select</type>
+		<object-name>AntiSkid.off</object-name>
+		<condition>
+			<and>
+				<or>
+					<equals>
+						<property>controls/gear/anti-skid</property>
+						<value>0</value>
+					</equals>
+					<equals>
+						<property>controls/switches/annun-test</property>
+						<value>1</value>
+					</equals>
+				</or>
+			</and>
 		</condition>
 	</animation>
 	

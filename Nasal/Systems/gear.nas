@@ -32,6 +32,7 @@ var GEAR = {
 		rightRFwdInput: props.globals.getNode("/systems/gear/unit[2]/tire-r-fwd-psi-input"),
 	},
 	Controls: {
+		antiSkid: props.globals.getNode("/controls/gear/anti-skid"),
 		brakeLeft: props.globals.getNode("/controls/gear/brake-left"),
 		brakeParking: props.globals.getNode("/controls/gear/brake-parking"),
 		brakeRight: props.globals.getNode("/controls/gear/brake-right"),
@@ -46,6 +47,7 @@ var GEAR = {
 	},
 	init: func() {
 		me.resetFailures();
+		me.Controls.antiSkid.setBoolValue(1);
 		me.Controls.brakeParking.setBoolValue(0);
 		me.Controls.centerGearUp.setBoolValue(0);
 		me.TirePressurePsi.centerLInput.setValue(math.round((rand() * 6) + 167 , 0.1)); # Random between 167 and 163
