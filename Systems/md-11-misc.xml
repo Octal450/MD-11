@@ -95,6 +95,66 @@
 				/cabin/alt/prop gt 10000
 			</test-->
 		</switch>
+		
+		<!-- Engine Fail Light -->
+		<fcs_function name="/systems/misc/eng-diff-1">
+			<function>
+				<min>
+					<difference>
+						<property>/engines/engine[0]/n1-actual</property>
+						<property>/engines/engine[1]/n1-actual</property>
+					</difference>
+					<difference>
+						<property>/engines/engine[0]/n1-actual</property>
+						<property>/engines/engine[2]/n1-actual</property>
+					</difference>
+				</min>
+			</function>
+		</fcs_function>
+		
+		<fcs_function name="/systems/misc/eng-diff-2">
+			<function>
+				<min>
+					<difference>
+						<property>/engines/engine[1]/n1-actual</property>
+						<property>/engines/engine[0]/n1-actual</property>
+					</difference>
+					<difference>
+						<property>/engines/engine[1]/n1-actual</property>
+						<property>/engines/engine[2]/n1-actual</property>
+					</difference>
+				</min>
+			</function>
+		</fcs_function>
+		
+		<fcs_function name="/systems/misc/eng-diff-3">
+			<function>
+				<min>
+					<difference>
+						<property>/engines/engine[2]/n1-actual</property>
+						<property>/engines/engine[0]/n1-actual</property>
+					</difference>
+					<difference>
+						<property>/engines/engine[2]/n1-actual</property>
+						<property>/engines/engine[1]/n1-actual</property>
+					</difference>
+				</min>
+			</function>
+		</fcs_function>
+		
+		<switch name="/systems/misc/eng-fail">
+			<default value="0"/>
+			<test logic="AND" value="1">
+				/systems/fms/internal/phase eq 1
+				/instrumentation/airspeed-indicator/indicated-speed-kt ge 80
+				/instrumentation/airspeed-indicator/indicated-speed-kt le /systems/fms/flight-data/v1
+				<test logic="OR">
+					/systems/misc/eng-diff-1 le -11
+					/systems/misc/eng-diff-2 le -11
+					/systems/misc/eng-diff-3 le -11
+				</test>
+			</test>
+		</switch>
 	
 	</channel>
 	

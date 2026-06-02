@@ -842,12 +842,23 @@
 	
 	<animation>
 		<type>select</type>
-		<object-name>EngFailL.light</object-name>
-		<object-name>EngFailR.light</object-name>
 		<object-name>master_caution_light_on</object-name>
 		<object-name>master_warning_light_on</object-name>
 		<condition>
 			<property>controls/switches/annun-test</property>
+		</condition>
+	</animation>
+	
+	<!-- Engine Fail Light -->
+	<animation>
+		<type>select</type>
+		<object-name>EngFailL.light</object-name>
+		<object-name>EngFailR.light</object-name>
+		<condition>
+			<or>
+				<property>systems/misc/eng-fail</property>
+				<property>controls/switches/annun-test</property>
+			</or>
 		</condition>
 	</animation>
 	
