@@ -9,9 +9,8 @@
 	<property value="3">/systems/fuel/cg-control/cg-aft-margin</property> <!-- Don't touch unless you know what you are doing! -->
 	<property value="0">/systems/fuel/cg-control/cg-percent-mac</property>
 	<property value="0">/systems/fuel/cg-control/lsas-channels-active</property>
-	<property value="10">/systems/fuel/internal/tank-2-balance-deadzone</property> <!-- Don't touch unless you know what you are doing! -->
 	
-	<channel name="FSC System Mode" execrate="8">
+	<channel name="FSC General" execrate="8">
 		
 		<switch name="/systems/fuel/system">
 			<default value="/controls/fuel/system"/>
@@ -19,6 +18,21 @@
 				/systems/failures/fuel/system eq 1
 			</test>
 		</switch>
+		
+		<summer name="/systems/fuel/fsc/tank-1-lbs">
+			<input>propulsion/tank[0]/contents-lbs</input>
+			<input>propulsion/tank[1]/contents-lbs</input>
+		</summer>
+		
+		<pure_gain name="/systems/fuel/fsc/tank-2-lbs">
+			<input>propulsion/tank[2]/contents-lbs</input>
+			<gain>1.0</gain>
+		</pure_gain>
+		
+		<summer name="/systems/fuel/fsc/tank-3-lbs">
+			<input>propulsion/tank[3]/contents-lbs</input>
+			<input>propulsion/tank[4]/contents-lbs</input>
+		</summer>
 	
 	</channel>
 	
@@ -30,21 +44,6 @@
 				/systems/fms/internal/phase eq 0
 			</test>
 		</switch>
-		
-		<summer name="/systems/fuel/cg-control/tank-1-lbs">
-			<input>propulsion/tank[0]/contents-lbs</input>
-			<input>propulsion/tank[1]/contents-lbs</input>
-		</summer>
-		
-		<pure_gain name="/systems/fuel/cg-control/tank-2-lbs">
-			<input>propulsion/tank[2]/contents-lbs</input>
-			<gain>1.0</gain>
-		</pure_gain>
-		
-		<summer name="/systems/fuel/cg-control/tank-3-lbs">
-			<input>propulsion/tank[3]/contents-lbs</input>
-			<input>propulsion/tank[4]/contents-lbs</input>
-		</summer>
 		
 		<switch name="/systems/fuel/cg-control/available-cmd">
 			<default value="0"/>
@@ -68,9 +67,9 @@
 					/systems/fcc/lsas/right-out-avail eq 1
 				</test>
 				/systems/fuel/cg-control/fuel-stored ge 60000
-				/systems/fuel/cg-control/tank-1-lbs gt 11500
-				/systems/fuel/cg-control/tank-2-lbs gt 11500
-				/systems/fuel/cg-control/tank-3-lbs gt 11500
+				/systems/fuel/fsc/tank-1-lbs gt 11500
+				/systems/fuel/fsc/tank-2-lbs gt 11500
+				/systems/fuel/fsc/tank-3-lbs gt 11500
 				/systems/fuel/system eq 1
 			</test>
 		</switch>
@@ -504,24 +503,101 @@
 			<output>/controls/fuel/alt-pump</output>
 		</switch>
 		
-		<switch name="/systems/fuel/fsc/tank-2-feed-inhibit">
-			<default value="0"/>
-			<test value="1"> <!-- Do not try to balance 1 and 3 to 2 if the aux tanks are feeding -->
-				/systems/fuel/fsc/aux-pumps-can-fuel eq 1
+		<!-- Tank Balancing -->
+		<switch name="/systems/fuel/fsc/balance/start-lbs">
+			<default value="2400"/>
+			<test value="1500">
+				/options/freighter eq 1
 			</test>
 		</switch>
 		
-		<summer name="/systems/fuel/fsc/tank-1-level-bias">
-			<input>propulsion/tank[0]/contents-lbs</input>
-			<input>propulsion/tank[1]/contents-lbs</input>
-			<input>/systems/fuel/internal/tank-2-balance-deadzone</input>
+		<summer name="/systems/fuel/fsc/balance/tank-2-1-diff">
+			<input>/systems/fuel/fsc/tank-2-lbs</input>
+			<input>-/systems/fuel/fsc/tank-1-lbs</input>
 		</summer>
 		
-		<summer name="/systems/fuel/fsc/tank-3-level-bias">
-			<input>propulsion/tank[3]/contents-lbs</input>
-			<input>propulsion/tank[4]/contents-lbs</input>
-			<input>/systems/fuel/internal/tank-2-balance-deadzone</input>
+		<summer name="/systems/fuel/fsc/balance/tank-2-3-diff">
+			<input>/systems/fuel/fsc/tank-2-lbs</input>
+			<input>-/systems/fuel/fsc/tank-3-lbs</input>
 		</summer>
+		
+		<summer name="/systems/fuel/fsc/balance/tank-1-3-diff">
+			<input>/systems/fuel/fsc/tank-1-lbs</input>
+			<input>-/systems/fuel/fsc/tank-3-lbs</input>
+		</summer>
+		
+		<switch name="/systems/fuel/fsc/balance/tank-1-2-cmd">
+			<default value="/systems/fuel/fsc/balance/tank-1-2-cmd"/>
+			<test logic="OR" value="0">
+				/systems/fuel/system ne 1
+				/systems/fuel/fsc/aux-pumps-can-fuel eq 1
+				/systems/fuel/fsc/balance/tank-2-1-diff gt -400
+			</test>
+			<test value="1">
+				/systems/fuel/fsc/balance/tank-2-1-diff le -/systems/fuel/fsc/balance/start-lbs
+			</test>
+		</switch>
+		
+		<switch name="/systems/fuel/fsc/balance/tank-1-3-cmd">
+			<default value="/systems/fuel/fsc/balance/tank-1-3-cmd"/>
+			<test logic="OR" value="0">
+				/systems/fuel/system ne 1
+				/systems/fuel/fsc/aux-pumps-can-fuel eq 1
+				/systems/fuel/fsc/balance/tank-1-3-diff lt 400
+			</test>
+			<test value="1">
+				/systems/fuel/fsc/balance/tank-1-3-diff ge /systems/fuel/fsc/balance/start-lbs
+			</test>
+		</switch>
+		
+		<switch name="/systems/fuel/fsc/balance/tank-2-1-cmd">
+			<default value="/systems/fuel/fsc/balance/tank-2-1-cmd"/>
+			<test logic="OR" value="0">
+				/systems/fuel/system ne 1
+				/systems/fuel/fsc/aux-pumps-can-fuel eq 1
+				/systems/fuel/fsc/balance/tank-2-1-diff lt 400
+			</test>
+			<test value="1">
+				/systems/fuel/fsc/balance/tank-2-1-diff ge /systems/fuel/fsc/balance/start-lbs
+			</test>
+		</switch>
+		
+		<switch name="/systems/fuel/fsc/balance/tank-2-3-cmd">
+			<default value="/systems/fuel/fsc/balance/tank-2-3-cmd"/>
+			<test logic="OR" value="0">
+				/systems/fuel/system ne 1
+				/systems/fuel/fsc/aux-pumps-can-fuel eq 1
+				/systems/fuel/fsc/balance/tank-2-3-diff lt 400
+			</test>
+			<test value="1">
+				/systems/fuel/fsc/balance/tank-2-3-diff ge /systems/fuel/fsc/balance/start-lbs
+			</test>
+		</switch>
+		
+		<switch name="/systems/fuel/fsc/balance/tank-3-1-cmd">
+			<default value="/systems/fuel/fsc/balance/tank-3-1-cmd"/>
+			<test logic="OR" value="0">
+				/systems/fuel/system ne 1
+				/systems/fuel/fsc/aux-pumps-can-fuel eq 1
+				/systems/fuel/fsc/balance/tank-1-3-diff gt -400
+			</test>
+			<test value="1">
+				/systems/fuel/fsc/balance/tank-1-3-diff le -/systems/fuel/fsc/balance/start-lbs
+			</test>
+		</switch>
+		
+		<switch name="/systems/fuel/fsc/balance/tank-3-2-cmd">
+			<default value="/systems/fuel/fsc/balance/tank-3-2-cmd"/>
+			<test logic="OR" value="0">
+				/systems/fuel/system ne 1
+				/systems/fuel/fsc/aux-pumps-can-fuel eq 1
+				/systems/fuel/fsc/balance/tank-2-3-diff gt -400
+			</test>
+			<test value="1">
+				/systems/fuel/fsc/balance/tank-2-3-diff le -/systems/fuel/fsc/balance/start-lbs
+			</test>
+		</switch>
+		<!-- End Tank Balancing -->
 		
 		<switch name="/systems/fuel/fsc/tank-1-pumps-failed">
 			<default value="0"/>
@@ -559,6 +635,13 @@
 			</test>
 			<test logic="AND" value="1">
 				/systems/fuel/system eq 1
+				<test logic="OR">
+					/systems/fuel/fsc/balance/tank-1-2-cmd eq 1
+					/systems/fuel/fsc/balance/tank-1-3-cmd eq 1
+				</test>
+			</test>
+			<test logic="AND" value="1">
+				/systems/fuel/system eq 1
 				/engines/engine[0]/state ge 1
 				/systems/fuel/fsc/tank-1-pumps-failed eq 1
 			</test>
@@ -591,13 +674,10 @@
 			</test>
 			<test logic="AND" value="1">
 				/systems/fuel/system eq 1
-				/systems/fuel/fsc/tank-2-feed-inhibit eq 0
-				propulsion/tank[2]/contents-lbs gt /systems/fuel/fsc/tank-1-level-bias
-			</test>
-			<test logic="AND" value="1">
-				/systems/fuel/system eq 1
-				/systems/fuel/fsc/tank-2-feed-inhibit eq 0
-				propulsion/tank[2]/contents-lbs gt /systems/fuel/fsc/tank-3-level-bias
+				<test logic="OR">
+					/systems/fuel/fsc/balance/tank-2-1-cmd eq 1
+					/systems/fuel/fsc/balance/tank-2-3-cmd eq 1
+				</test>
 			</test>
 			<test logic="AND" value="1">
 				/systems/fuel/system eq 1
@@ -635,6 +715,13 @@
 			</test>
 			<test logic="AND" value="1">
 				/systems/fuel/system eq 1
+				<test logic="OR">
+					/systems/fuel/fsc/balance/tank-3-1-cmd eq 1
+					/systems/fuel/fsc/balance/tank-3-2-cmd eq 1
+				</test>
+			</test>
+			<test logic="AND" value="1">
+				/systems/fuel/system eq 1
 				/engines/engine[2]/state ge 1
 				/systems/fuel/fsc/tank-3-pumps-failed eq 1
 			</test>
@@ -669,8 +756,10 @@
 			</test>
 			<test logic="AND" value="1">
 				/systems/fuel/system eq 1
-				/systems/fuel/fsc/tank-2-feed-inhibit eq 0
-				propulsion/tank[2]/contents-lbs gt /systems/fuel/fsc/tank-1-level-bias
+				<test logic="OR">
+					/systems/fuel/fsc/balance/tank-2-1-cmd eq 1
+					/systems/fuel/fsc/balance/tank-3-1-cmd eq 1
+				</test>
 			</test>
 			<test value="0">
 				/systems/fuel/system eq 1
@@ -689,6 +778,13 @@
 			<test logic="AND" value="1">
 				/systems/fuel/system eq 1
 				/systems/fuel/fsc/aux-pumps-can-fuel eq 1
+			</test>
+			<test logic="AND" value="1">
+				/systems/fuel/system eq 1
+				<test logic="OR">
+					/systems/fuel/fsc/balance/tank-1-2-cmd eq 1
+					/systems/fuel/fsc/balance/tank-3-2-cmd eq 1
+				</test>
 			</test>
 			<test value="0">
 				/systems/fuel/system eq 1
@@ -709,8 +805,10 @@
 			</test>
 			<test logic="AND" value="1">
 				/systems/fuel/system eq 1
-				/systems/fuel/fsc/tank-2-feed-inhibit eq 0
-				propulsion/tank[2]/contents-lbs gt /systems/fuel/fsc/tank-3-level-bias
+				<test logic="OR">
+					/systems/fuel/fsc/balance/tank-1-3-cmd eq 1
+					/systems/fuel/fsc/balance/tank-2-3-cmd eq 1
+				</test>
 			</test>
 			<test value="0">
 				/systems/fuel/system eq 1
@@ -765,6 +863,10 @@
 					/systems/electrical/bus/ac-2 ge 112
 				</test>
 				/controls/fuel/pumps-2 eq 1
+				<test logic="OR">
+					/controls/apu/start eq 1
+					/engines/engine[3]/state ge 1
+				</test>
 			</test>
 		</switch>
 		
