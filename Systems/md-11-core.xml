@@ -393,6 +393,27 @@
 			</clipto>
 		</fcs_function>
 		
+		<!-- Aux and Tail tanks are filled at a 7.5:1 ratio -->
+		<fcs_function name="/systems/load-manager/fuel/tank[7]"> <!-- Tail Tank -->
+			<function>
+				<quotient>
+					<difference>
+						<property>/systems/load-manager/total-fuel</property>
+						<property>/systems/load-manager/fuel/tank[0]</property>
+						<property>/systems/load-manager/fuel/tank[1]</property>
+						<property>/systems/load-manager/fuel/tank[2]</property>
+						<property>/systems/load-manager/fuel/tank[3]</property>
+						<property>/systems/load-manager/fuel/tank[4]</property>
+					</difference>
+					<value>8.5</value>
+				</quotient>
+			</function>
+			<clipto>
+				<min>0</min>
+				<max>/systems/load-manager/tank-capacity[7]</max>
+			</clipto>
+		</fcs_function>
+		
 		<fcs_function name="/systems/load-manager/fuel/tank[5]"> <!-- Upper Aux Tank -->
 			<function>
 				<difference>
@@ -402,6 +423,7 @@
 					<property>/systems/load-manager/fuel/tank[2]</property>
 					<property>/systems/load-manager/fuel/tank[3]</property>
 					<property>/systems/load-manager/fuel/tank[4]</property>
+					<property>/systems/load-manager/fuel/tank[7]</property>
 				</difference>
 			</function>
 			<clipto>
@@ -420,30 +442,12 @@
 					<property>/systems/load-manager/fuel/tank[3]</property>
 					<property>/systems/load-manager/fuel/tank[4]</property>
 					<property>/systems/load-manager/fuel/tank[5]</property>
+					<property>/systems/load-manager/fuel/tank[7]</property>
 				</difference>
 			</function>
 			<clipto>
 				<min>0</min>
 				<max>/systems/load-manager/tank-capacity[6]</max>
-			</clipto>
-		</fcs_function>
-		
-		<fcs_function name="/systems/load-manager/fuel/tank[7]"> <!-- Tail Tank -->
-			<function>
-				<difference>
-					<property>/systems/load-manager/total-fuel</property>
-					<property>/systems/load-manager/fuel/tank[0]</property>
-					<property>/systems/load-manager/fuel/tank[1]</property>
-					<property>/systems/load-manager/fuel/tank[2]</property>
-					<property>/systems/load-manager/fuel/tank[3]</property>
-					<property>/systems/load-manager/fuel/tank[4]</property>
-					<property>/systems/load-manager/fuel/tank[5]</property>
-					<property>/systems/load-manager/fuel/tank[6]</property>
-				</difference>
-			</function>
-			<clipto>
-				<min>0</min>
-				<max>/systems/load-manager/tank-capacity[7]</max>
 			</clipto>
 		</fcs_function>
 		
