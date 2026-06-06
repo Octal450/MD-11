@@ -335,6 +335,81 @@
 			</test>
 		</switch>
 		
+		<!-- Aux to Tail Ground Fuel Scheduling -->
+		<!-- This maintains a 7.5:1 Aux to Tail ratio allowing for greater MTOW while staying within the CG envelope -->
+		<fcs_function name="/systems/fuel/fsc/gnd-schedule-tail-qty-cmd">
+			<function>
+				<floor>
+					<sum>
+						<quotient>
+							<sum>
+								<property>propulsion/tank[5]/contents-lbs</property>
+								<property>propulsion/tank[6]/contents-lbs</property>
+							</sum>
+							<value>7.5</value>
+						</quotient>
+						<value>0.5</value> <!-- Make it round -->
+					</sum>
+				</floor>
+			</function>
+			<clipto>
+				<min>0</min>
+				<max>13114</max>
+			</clipto>
+		</fcs_function>
+		
+		<summer name="/systems/fuel/fsc/balance/gnd-schedule-tail-diff">
+			<input>/systems/fuel/fsc/gnd-schedule-tail-qty-cmd</input>
+			<input>-propulsion/tank[7]/contents-lbs</input>
+		</summer>
+		
+		<switch name="/systems/fuel/fsc/gnd-schedule-active">
+			<default value="0"/>
+			<test logic="AND" value="1">
+				/systems/fuel/system eq 1
+				position/wow eq 1
+				/systems/fms/internal/phase eq 0
+				/systems/fuel/fsc/tank-1-lbs ge 40471
+				/systems/fuel/fsc/tank-2-lbs ge 64020
+				/systems/fuel/fsc/tank-3-lbs ge 40471
+			</test>
+		</switch>
+		
+		<switch name="/systems/fuel/fsc/gnd-schedule-direction-latch">
+			<default value="/systems/fuel/fsc/gnd-schedule-direction-latch"/>
+			<test value="0">
+				/systems/fuel/fsc/gnd-schedule-active ne 1
+			</test>
+			<test logic="AND" value="0">
+				/systems/fuel/fsc/balance/gnd-schedule-tail-diff le 100
+				/systems/fuel/fsc/balance/gnd-schedule-tail-diff ge -100
+			</test>
+			<test value="-1">
+				/systems/fuel/fsc/balance/gnd-schedule-tail-diff lt -500
+			</test>
+			<test value="1">
+				/systems/fuel/fsc/balance/gnd-schedule-tail-diff gt 500
+			</test>
+		</switch>
+		
+		<switch name="/systems/fuel/fsc/gnd-schedule-direction-cmd">
+			<default value="0"/>
+			<test logic="AND" value="-1">
+				/systems/fuel/fsc/gnd-schedule-active eq 1
+				/systems/fuel/fsc/gnd-schedule-direction-latch eq -1
+				propulsion/tank[7]/contents-lbs gt 10
+			</test>
+			<test logic="AND" value="1">
+				/systems/fuel/fsc/gnd-schedule-active eq 1
+				/systems/fuel/fsc/gnd-schedule-direction-latch eq 1
+				<test logic="OR">
+					propulsion/tank[5]/contents-lbs gt 10
+					propulsion/tank[6]/contents-lbs gt 10
+				</test>
+			</test>
+		</switch>
+		<!-- End Aux to Tail Ground Fuel Scheduling -->
+		
 		<switch name="/systems/fuel/fsc/trans-tail">
 			<default value="/controls/fuel/trans-tail"/>
 			<test logic="AND" value="0">
@@ -348,6 +423,10 @@
 				<test logic="OR"> <!-- CG control either not active or active and commanding forward transfer -->
 					/systems/fuel/cg-control/active eq 0
 					/systems/fuel/cg-control/direction-cmd eq -1
+				</test>
+				<test logic="OR"> <!-- Ground control either not active or active and commanding forward transfer -->
+					/systems/fuel/fsc/gnd-schedule-active eq 0
+					/systems/fuel/fsc/gnd-schedule-direction-cmd eq -1
 				</test>
 				propulsion/tank[7]/contents-lbs gt 10
 			</test>
@@ -420,6 +499,7 @@
 				/systems/failures/fuel/trans-aux-upper-l eq 1
 				/systems/failures/fuel/trans-aux-upper-r eq 1
 				/systems/fuel/cg-control/direction-cmd eq 0
+				/systems/fuel/fsc/gnd-schedule-direction-cmd eq 0
 			</test>
 			<test logic="AND" value="1">
 				/controls/fuel/trans-tail eq 1
@@ -427,6 +507,7 @@
 				/systems/failures/fuel/trans-aux-upper-l eq 1
 				/systems/failures/fuel/trans-aux-upper-r eq 1
 				/systems/fuel/cg-control/direction-cmd eq 0
+				/systems/fuel/fsc/gnd-schedule-direction-cmd eq 0
 			</test>
 		</switch>
 		
@@ -437,7 +518,10 @@
 			</test>
 			<test logic="AND" value="0">
 				/systems/fuel/system eq 1
-				/systems/fuel/cg-control/direction-cmd eq 1
+				<test logic="OR">
+					/systems/fuel/cg-control/direction-cmd eq 1
+					/systems/fuel/fsc/gnd-schedule-direction-cmd eq 1
+				</test>
 			</test>
 			<test logic="AND" value="1">
 				/systems/fuel/system eq 1
@@ -466,6 +550,10 @@
 			<test logic="AND" value="1">
 				/systems/fuel/system eq 1
 				/systems/fuel/cg-control/direction-cmd eq 1
+			</test>
+			<test logic="AND" value="1">
+				/systems/fuel/system eq 1
+				/systems/fuel/fsc/gnd-schedule-direction-cmd eq 1
 			</test>
 		</switch>
 		
@@ -904,28 +992,6 @@
 				</test>
 			</test>
 		</switch>
-		
-		<!-- 7.5:1 Aux to Tail Ground Fuel Scheduling -->
-		<fcs_function name="/systems/fuel/cg-schedule/tail-qty-cmd">
-			<function>
-				<floor>
-					<sum>
-						<quotient>
-							<sum>
-								<property>propulsion/tank[5]/contents-lbs</property>
-								<property>propulsion/tank[6]/contents-lbs</property>
-							</sum>
-							<value>7.5</value>
-						</quotient>
-						<value>0.5</value> <!-- Make it round -->
-					</sum>
-				</floor>
-			</function>
-			<clipto>
-				<min>0</min>
-				<max>13114</max>
-			</clipto>
-		</fcs_function>
 	
 	</channel>
 	
@@ -2307,7 +2373,10 @@
 				</test>
 				/systems/fuel/fsc/fill-tail eq 1
 				/systems/fuel/afi-valve eq 1
-				/systems/fuel/cg-control/direction-cmd eq 1
+				<test logic="OR">
+					/systems/fuel/cg-control/direction-cmd eq 1
+					/systems/fuel/fsc/gnd-schedule-direction-cmd eq 1
+				</test>
 				propulsion/tank[5]/contents-lbs gt 10
 			</test>
 		</switch>
@@ -2328,7 +2397,10 @@
 					/systems/fuel/trans-aux-lower-r eq 1
 				</test>
 				/systems/fuel/fsc/fill-tail eq 1
-				/systems/fuel/cg-control/direction-cmd eq 1
+				<test logic="OR">
+					/systems/fuel/cg-control/direction-cmd eq 1
+					/systems/fuel/fsc/gnd-schedule-direction-cmd eq 1
+				</test>
 				propulsion/tank[6]/contents-lbs gt 10
 			</test>
 		</switch>
