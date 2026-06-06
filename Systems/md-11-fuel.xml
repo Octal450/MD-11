@@ -358,7 +358,7 @@
 			<output>/controls/fuel/trans-tail</output>
 		</switch>
 		
-		<switch name="/systems/fuel/fsc/aux-pumps-cmd">
+		<switch name="/systems/fuel/fsc/trans-aux-lower-cmd">
 			<default value="1"/>
 			<test logic="OR" value="0">
 				/systems/fms/internal/phase eq 1
@@ -385,7 +385,6 @@
 			</test>
 			<test logic="AND" value="1">
 				/systems/fuel/system eq 1
-				/systems/fuel/fsc/aux-pumps-cmd eq 1
 				/systems/fuel/fsc/aux-pumps-can-fuel eq 1
 			</test>
 			<test value="0">
@@ -403,7 +402,6 @@
 			</test>
 			<test logic="AND" value="1">
 				/systems/fuel/system eq 1
-				/systems/fuel/fsc/aux-pumps-cmd eq 1
 				/systems/fuel/fsc/aux-pumps-can-fuel eq 1
 			</test>
 			<test value="0">
@@ -508,8 +506,7 @@
 		
 		<switch name="/systems/fuel/fsc/tank-2-feed-inhibit">
 			<default value="0"/>
-			<test logic="AND" value="1"> <!-- Do not try to balance 1 and 3 to 2 if the aux tanks are feeding -->
-				/systems/fuel/fsc/aux-pumps-cmd eq 1
+			<test value="1"> <!-- Do not try to balance 1 and 3 to 2 if the aux tanks are feeding -->
 				/systems/fuel/fsc/aux-pumps-can-fuel eq 1
 			</test>
 		</switch>
@@ -668,7 +665,6 @@
 			</test>
 			<test logic="AND" value="1">
 				/systems/fuel/system eq 1
-				/systems/fuel/fsc/aux-pumps-cmd eq 1
 				/systems/fuel/fsc/aux-pumps-can-fuel eq 1
 			</test>
 			<test logic="AND" value="1">
@@ -692,7 +688,6 @@
 			</test>
 			<test logic="AND" value="1">
 				/systems/fuel/system eq 1
-				/systems/fuel/fsc/aux-pumps-cmd eq 1
 				/systems/fuel/fsc/aux-pumps-can-fuel eq 1
 			</test>
 			<test value="0">
@@ -710,7 +705,6 @@
 			</test>
 			<test logic="AND" value="1">
 				/systems/fuel/system eq 1
-				/systems/fuel/fsc/aux-pumps-cmd eq 1
 				/systems/fuel/fsc/aux-pumps-can-fuel eq 1
 			</test>
 			<test logic="AND" value="1">
@@ -804,6 +798,28 @@
 				</test>
 			</test>
 		</switch>
+		
+		<!-- 7.5:1 Aux to Tail Scheduling -->
+		<fcs_function name="/systems/fuel/cg-schedule/tail-qty-cmd">
+			<function>
+				<floor>
+					<sum>
+						<quotient>
+							<sum>
+								<property>propulsion/tank[5]/contents-lbs</property>
+								<property>propulsion/tank[6]/contents-lbs</property>
+							</sum>
+							<value>7.5</value>
+						</quotient>
+						<value>0.5</value> <!-- Make it round -->
+					</sum>
+				</floor>
+			</function>
+			<clipto>
+				<min>0</min>
+				<max>13114</max>
+			</clipto>
+		</fcs_function>
 	
 	</channel>
 	
@@ -1368,13 +1384,13 @@
 				/systems/failures/fuel/trans-tail-l eq 1
 			</test>
 			<test logic="AND" value="1">
+				/systems/fuel/system eq 1
 				/controls/fuel/trans-tail eq 1
 				propulsion/tank[7]/contents-lbs gt 10
-				/systems/fuel/system eq 1
 			</test>
 			<test logic="AND" value="1">
-				/controls/fuel/trans-tail eq 1
 				/systems/fuel/system ne 1
+				/controls/fuel/trans-tail eq 1
 			</test>
 		</switch>
 		
@@ -1405,13 +1421,13 @@
 				/systems/failures/fuel/trans-tail-r eq 1
 			</test>
 			<test logic="AND" value="1">
+				/systems/fuel/system eq 1
 				/controls/fuel/trans-tail eq 1
 				propulsion/tank[7]/contents-lbs gt 10
-				/systems/fuel/system eq 1
 			</test>
 			<test logic="AND" value="1">
-				/controls/fuel/trans-tail eq 1
 				/systems/fuel/system ne 1
+				/controls/fuel/trans-tail eq 1
 			</test>
 		</switch>
 		
@@ -1442,15 +1458,16 @@
 				/systems/failures/fuel/trans-aux-lower-l eq 1
 			</test>
 			<test logic="AND" value="1">
+				/systems/fuel/system eq 1
 				/controls/fuel/trans-aux-l eq 1
 				/systems/fuel/trans-tail-l eq 0
 				/systems/fuel/trans-tail-r eq 0
 				propulsion/tank[6]/contents-lbs gt 10
-				/systems/fuel/system eq 1
+				/systems/fuel/fsc/trans-aux-lower-cmd eq 1
 			</test>
 			<test logic="AND" value="1">
-				/controls/fuel/trans-aux-l eq 1
 				/systems/fuel/system ne 1
+				/controls/fuel/trans-aux-l eq 1
 			</test>
 		</switch>
 		
@@ -1481,15 +1498,16 @@
 				/systems/failures/fuel/trans-aux-lower-r eq 1
 			</test>
 			<test logic="AND" value="1">
+				/systems/fuel/system eq 1
 				/controls/fuel/trans-aux-r eq 1
 				/systems/fuel/trans-tail-l eq 0
 				/systems/fuel/trans-tail-r eq 0
 				propulsion/tank[6]/contents-lbs gt 10
-				/systems/fuel/system eq 1
+				/systems/fuel/fsc/trans-aux-lower-cmd eq 1
 			</test>
 			<test logic="AND" value="1">
-				/controls/fuel/trans-aux-r eq 1
 				/systems/fuel/system ne 1
+				/controls/fuel/trans-aux-r eq 1
 			</test>
 		</switch>
 		
