@@ -543,6 +543,7 @@
 			<test logic="OR" value="0">
 				/systems/fuel/system ne 1
 				/systems/fuel/fsc/aux-pumps-can-fuel eq 1
+				propulsion/tank[0]/contents-lbs lt 500
 				/systems/fuel/fsc/balance/tank-1-3-diff lt 400
 			</test>
 			<test value="1">
@@ -555,6 +556,7 @@
 			<test logic="OR" value="0">
 				/systems/fuel/system ne 1
 				/systems/fuel/fsc/aux-pumps-can-fuel eq 1
+				/systems/fuel/fsc/tank-2-lbs lt 4000
 				/systems/fuel/fsc/balance/tank-2-1-diff lt 400
 			</test>
 			<test value="1">
@@ -567,6 +569,7 @@
 			<test logic="OR" value="0">
 				/systems/fuel/system ne 1
 				/systems/fuel/fsc/aux-pumps-can-fuel eq 1
+				/systems/fuel/fsc/tank-2-lbs lt 4000
 				/systems/fuel/fsc/balance/tank-2-3-diff lt 400
 			</test>
 			<test value="1">
@@ -579,6 +582,7 @@
 			<test logic="OR" value="0">
 				/systems/fuel/system ne 1
 				/systems/fuel/fsc/aux-pumps-can-fuel eq 1
+				propulsion/tank[4]/contents-lbs lt 500
 				/systems/fuel/fsc/balance/tank-1-3-diff gt -400
 			</test>
 			<test value="1">
@@ -901,7 +905,7 @@
 			</test>
 		</switch>
 		
-		<!-- 7.5:1 Aux to Tail Scheduling -->
+		<!-- 7.5:1 Aux to Tail Ground Fuel Scheduling -->
 		<fcs_function name="/systems/fuel/cg-schedule/tail-qty-cmd">
 			<function>
 				<floor>
