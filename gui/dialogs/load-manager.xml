@@ -289,9 +289,9 @@
 						<pref-width>250</pref-width>
 						<halign>center</halign>
 						<property>/systems/load-manager/weight-p[0]</property>
-						<step>150</step>
+						<step>200</step>
 						<min>0</min>
-						<max>6150</max>
+						<max>6200</max>
 						<live>true</live>
 						<binding>
 							<command>dialog-apply</command>
@@ -308,7 +308,7 @@
 							<command>property-adjust</command>
 							<property>/systems/load-manager/weight-p[0]</property>
 							<min>0</min>
-							<step>-1500</step>
+							<step>-2000</step>
 							<wrap>false</wrap>
 						</binding>
 					</button>
@@ -322,7 +322,7 @@
 							<command>property-adjust</command>
 							<property>/systems/load-manager/weight-p[0]</property>
 							<min>0</min>
-							<step>-150</step>
+							<step>-200</step>
 							<wrap>false</wrap>
 						</binding>
 					</button>
@@ -359,8 +359,8 @@
 						<binding>
 							<command>property-adjust</command>
 							<property>/systems/load-manager/weight-p[0]</property>
-							<max>6150</max>
-							<step>150</step>
+							<max>6200</max>
+							<step>200</step>
 							<wrap>false</wrap>
 						</binding>
 					</button>
@@ -373,8 +373,8 @@
 						<binding>
 							<command>property-adjust</command>
 							<property>/systems/load-manager/weight-p[0]</property>
-							<max>6150</max>
-							<step>1500</step>
+							<max>6200</max>
+							<step>2000</step>
 							<wrap>false</wrap>
 						</binding>
 					</button>
@@ -392,9 +392,9 @@
 						<pref-width>250</pref-width>
 						<halign>center</halign>
 						<property>/systems/load-manager/weight-p[1]</property>
-						<step>150</step>
+						<step>200</step>
 						<min>0</min>
-						<max>22050</max>
+						<max>22400</max>
 						<live>true</live>
 						<binding>
 							<command>dialog-apply</command>
@@ -411,7 +411,7 @@
 							<command>property-adjust</command>
 							<property>/systems/load-manager/weight-p[1]</property>
 							<min>0</min>
-							<step>-1500</step>
+							<step>-2000</step>
 							<wrap>false</wrap>
 						</binding>
 					</button>
@@ -425,7 +425,7 @@
 							<command>property-adjust</command>
 							<property>/systems/load-manager/weight-p[1]</property>
 							<min>0</min>
-							<step>-150</step>
+							<step>-200</step>
 							<wrap>false</wrap>
 						</binding>
 					</button>
@@ -462,8 +462,8 @@
 						<binding>
 							<command>property-adjust</command>
 							<property>/systems/load-manager/weight-p[1]</property>
-							<max>22050</max>
-							<step>150</step>
+							<max>22400</max>
+							<step>200</step>
 							<wrap>false</wrap>
 						</binding>
 					</button>
@@ -476,8 +476,8 @@
 						<binding>
 							<command>property-adjust</command>
 							<property>/systems/load-manager/weight-p[1]</property>
-							<max>22050</max>
-							<step>1500</step>
+							<max>22400</max>
+							<step>2000</step>
 							<wrap>false</wrap>
 						</binding>
 					</button>
@@ -495,9 +495,9 @@
 						<pref-width>250</pref-width>
 						<halign>center</halign>
 						<property>/systems/load-manager/weight-p[2]</property>
-						<step>150</step>
+						<step>200</step>
 						<min>0</min>
-						<max>29850</max>
+						<max>31000</max>
 						<live>true</live>
 						<binding>
 							<command>dialog-apply</command>
@@ -514,7 +514,7 @@
 							<command>property-adjust</command>
 							<property>/systems/load-manager/weight-p[2]</property>
 							<min>0</min>
-							<step>-1500</step>
+							<step>-2000</step>
 							<wrap>false</wrap>
 						</binding>
 					</button>
@@ -528,7 +528,7 @@
 							<command>property-adjust</command>
 							<property>/systems/load-manager/weight-p[2]</property>
 							<min>0</min>
-							<step>-150</step>
+							<step>-200</step>
 							<wrap>false</wrap>
 						</binding>
 					</button>
@@ -565,8 +565,8 @@
 						<binding>
 							<command>property-adjust</command>
 							<property>/systems/load-manager/weight-p[2]</property>
-							<max>29850</max>
-							<step>150</step>
+							<max>31000</max>
+							<step>200</step>
 							<wrap>false</wrap>
 						</binding>
 					</button>
@@ -579,8 +579,8 @@
 						<binding>
 							<command>property-adjust</command>
 							<property>/systems/load-manager/weight-p[2]</property>
-							<max>29850</max>
-							<step>1500</step>
+							<max>31000</max>
+							<step>2000</step>
 							<wrap>false</wrap>
 						</binding>
 					</button>

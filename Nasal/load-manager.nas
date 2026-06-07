@@ -82,7 +82,7 @@ var LoadManager = {
 		}, 0.1); # Make sure the JSBSim side has refreshed
 	},
 	updatePax: func(n) {
-		me.pax[n].setValue(math.round(me.weightP[n].getValue() / 150));
+		me.pax[n].setValue(math.round(me.weightP[n].getValue() / 200));
 	},
 };
 

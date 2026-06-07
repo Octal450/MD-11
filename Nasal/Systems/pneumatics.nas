@@ -111,7 +111,7 @@ var PNEUMATICS = {
 		manualPneuLightt.stop();
 		me.Lights.manualFlash.setValue(0);
 		
-		var paxLoadCalc = math.round((pts.Payload.Weight.weightLb[0].getValue() + pts.Payload.Weight.weightLb[1].getValue() + pts.Payload.Weight.weightLb[2].getValue()) / 150, 10);
+		var paxLoadCalc = math.round((pts.Payload.Weight.weightLb[0].getValue() + pts.Payload.Weight.weightLb[1].getValue() + pts.Payload.Weight.weightLb[2].getValue()) / 200, 10);
 		me.Controls.paxLoadHundreds.setValue(math.floor(paxLoadCalc / 100));
 		me.Controls.paxLoadTens.setValue(math.mod(math.floor(paxLoadCalc / 10), 10));
 	},
