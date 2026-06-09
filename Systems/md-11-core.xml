@@ -150,6 +150,17 @@
 			</test>
 		</switch>
 		
+		<summer name="/consumables/fuel/total-fuel-actual"> <!-- Total fuel without the feed pipes -->
+			<input>propulsion/tank[0]/contents-lbs</input>
+			<input>propulsion/tank[1]/contents-lbs</input>
+			<input>propulsion/tank[2]/contents-lbs</input>
+			<input>propulsion/tank[3]/contents-lbs</input>
+			<input>propulsion/tank[4]/contents-lbs</input>
+			<input>propulsion/tank[5]/contents-lbs</input>
+			<input>propulsion/tank[6]/contents-lbs</input>
+			<input>propulsion/tank[7]/contents-lbs</input>
+		</summer>
+		
 		<switch name="contact/any-wow"> <!-- For failure-bridge.nas -->
 			<default value="0"/>
 			<test logic="OR" value="1">
@@ -169,17 +180,6 @@
 			</test>
 			<output>contact/any-wow-out</output>
 		</switch>
-		
-		<summer name="/consumables/fuel/total-fuel-actual"> <!-- Total fuel without the feed pipes -->
-			<input>propulsion/tank[0]/contents-lbs</input>
-			<input>propulsion/tank[1]/contents-lbs</input>
-			<input>propulsion/tank[2]/contents-lbs</input>
-			<input>propulsion/tank[3]/contents-lbs</input>
-			<input>propulsion/tank[4]/contents-lbs</input>
-			<input>propulsion/tank[5]/contents-lbs</input>
-			<input>propulsion/tank[6]/contents-lbs</input>
-			<input>propulsion/tank[7]/contents-lbs</input>
-		</summer>
 	
 	</channel>
 	
@@ -305,7 +305,7 @@
 			<function>
 				<difference>
 					<quotient>
-						<property>/systems/load-manager/total-fuel</property>
+						<property>/systems/load-manager/fuel/total-fuel</property>
 						<value>3</value>
 					</quotient>
 					<value>5000</value>
@@ -321,7 +321,7 @@
 			<function>
 				<difference>
 					<quotient>
-						<property>/systems/load-manager/total-fuel</property>
+						<property>/systems/load-manager/fuel/total-fuel</property>
 						<value>3</value>
 					</quotient>
 					<value>5000</value>
@@ -337,7 +337,7 @@
 			<function>
 				<min>
 					<quotient> <!-- 1 = 2 = 3 (low fuel) -->
-						<property>/systems/load-manager/total-fuel</property>
+						<property>/systems/load-manager/fuel/total-fuel</property>
 						<value>3</value>
 					</quotient>
 					<difference> <!-- 0 + 1 = 2 -->
@@ -356,7 +356,7 @@
 			<function>
 				<min>
 					<quotient> <!-- 1 = 2 = 3 (low fuel) -->
-						<property>/systems/load-manager/total-fuel</property>
+						<property>/systems/load-manager/fuel/total-fuel</property>
 						<value>3</value>
 					</quotient>
 					<difference> <!-- 3 + 4 = 2 -->
@@ -375,11 +375,11 @@
 			<function>
 				<max>
 					<quotient> <!-- Balanced -->
-						<property>/systems/load-manager/total-fuel</property>
+						<property>/systems/load-manager/fuel/total-fuel</property>
 						<value>3</value>
 					</quotient>
 					<difference> <!-- Tanks 1 and 3 full -->
-						<property>/systems/load-manager/total-fuel</property>
+						<property>/systems/load-manager/fuel/total-fuel</property>
 						<property>/systems/load-manager/fuel/tank[0]</property>
 						<property>/systems/load-manager/fuel/tank[1]</property>
 						<property>/systems/load-manager/fuel/tank[3]</property>
@@ -398,7 +398,7 @@
 			<function>
 				<quotient>
 					<difference>
-						<property>/systems/load-manager/total-fuel</property>
+						<property>/systems/load-manager/fuel/total-fuel</property>
 						<property>/systems/load-manager/fuel/tank[0]</property>
 						<property>/systems/load-manager/fuel/tank[1]</property>
 						<property>/systems/load-manager/fuel/tank[2]</property>
@@ -417,7 +417,7 @@
 		<fcs_function name="/systems/load-manager/fuel/tank[5]"> <!-- Upper Aux Tank -->
 			<function>
 				<difference>
-					<property>/systems/load-manager/total-fuel</property>
+					<property>/systems/load-manager/fuel/total-fuel</property>
 					<property>/systems/load-manager/fuel/tank[0]</property>
 					<property>/systems/load-manager/fuel/tank[1]</property>
 					<property>/systems/load-manager/fuel/tank[2]</property>
@@ -435,7 +435,7 @@
 		<fcs_function name="/systems/load-manager/fuel/tank[6]"> <!-- Lower Aux Tank -->
 			<function>
 				<difference>
-					<property>/systems/load-manager/total-fuel</property>
+					<property>/systems/load-manager/fuel/total-fuel</property>
 					<property>/systems/load-manager/fuel/tank[0]</property>
 					<property>/systems/load-manager/fuel/tank[1]</property>
 					<property>/systems/load-manager/fuel/tank[2]</property>
@@ -497,7 +497,7 @@
 		
 		<summer name="/systems/load-manager/gw-lbs">
 			<input>/systems/load-manager/zfw-lbs</input>
-			<input>/systems/load-manager/total-fuel</input>
+			<input>/systems/load-manager/fuel/total-fuel</input>
 		</summer>
 		
 		<fcs_function name="/systems/load-manager/zfwcg-x-in">
