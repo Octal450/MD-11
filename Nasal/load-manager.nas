@@ -41,12 +41,8 @@ var LoadManager = {
 			}
 		}
 	},
-	openDialog: func(t = 0) {
-		if (t and getprop("/devices/status/keyboard/shift")) {
-			gui.showWeightDialog();
-		} else {
-			fgcommand("dialog-show", props.Node.new({"dialog-name": "load-manager"}));
-		}
+	openDialog: func() {
+		fgcommand("dialog-show", props.Node.new({"dialog-name": "load-manager"}));
 	},
 	setDefault: func() {
 		me.totalFuel.setValue(me.defaultFuel);
@@ -86,7 +82,7 @@ var LoadManager = {
 	},
 };
 
-gui.menuBind("fuel-and-payload", "core.LoadManager.openDialog(1)");
+gui.menuBind("fuel-and-payload", "core.LoadManager.openDialog()");
 
 setlistener("/systems/load-manager/weight-p[0]", func() {
 	LoadManager.updatePax(0);

@@ -70,6 +70,16 @@
 			<legend>X</legend>
 			<key>Esc</key>
 			<binding>
+				<condition>
+					<and>
+						<property>/devices/status/keyboard/ctrl</property>
+						<property>/devices/status/keyboard/shift</property>
+					</and>
+				</condition>
+				<command>nasal</command>
+				<script>gui.showWeightDialog();</script>
+			</binding>
+			<binding>
 				<command>dialog-close</command>
 			</binding>
 		</button>
