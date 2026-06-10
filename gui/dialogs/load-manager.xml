@@ -1276,10 +1276,7 @@
 						<alpha>1</alpha>
 					</color>
 					<visible>
-						<greater-than>
-							<property>/sim/gui/dialogs/load-manager/gw-lbs</property>
-							<property>/sim/gui/dialogs/load-manager/mtow-lbs</property>
-						</greater-than>
+						<property>/sim/gui/dialogs/load-manager/gw-red</property>
 					</visible>
 					<halign>center</halign>
 					<label>9999999999</label>
@@ -1290,10 +1287,7 @@
 					<row>0</row>
 					<col>1</col>
 					<visible>
-						<less-than-equals>
-							<property>/sim/gui/dialogs/load-manager/gw-lbs</property>
-							<property>/sim/gui/dialogs/load-manager/mtow-lbs</property>
-						</less-than-equals>
+						<not><property>/sim/gui/dialogs/load-manager/gw-red</property></not>
 					</visible>
 					<halign>center</halign>
 					<label>9999999999</label>
@@ -1318,16 +1312,7 @@
 						<alpha>1</alpha>
 					</color>
 					<visible>
-						<or>
-							<less-than>
-								<property>/sim/gui/dialogs/load-manager/cg-percent-mac</property>
-								<property>/sim/gui/dialogs/load-manager/cg-fwd-limit</property>
-							</less-than>
-							<greater-than>
-								<property>/sim/gui/dialogs/load-manager/cg-percent-mac</property>
-								<property>/sim/gui/dialogs/load-manager/cg-aft-limit</property>
-							</greater-than>
-						</or>
+						<property>/sim/gui/dialogs/load-manager/cg-red</property>
 					</visible>
 					<halign>center</halign>
 					<label>999999999</label>
@@ -1338,16 +1323,7 @@
 					<row>0</row>
 					<col>3</col>
 					<visible>
-						<and>
-							<greater-than-equals>
-								<property>/sim/gui/dialogs/load-manager/cg-percent-mac</property>
-								<property>/sim/gui/dialogs/load-manager/cg-fwd-limit</property>
-							</greater-than-equals>
-							<less-than-equals>
-								<property>/sim/gui/dialogs/load-manager/cg-percent-mac</property>
-								<property>/sim/gui/dialogs/load-manager/cg-aft-limit</property>
-							</less-than-equals>
-						</and>
+						<not><property>/sim/gui/dialogs/load-manager/cg-red</property></not>
 					</visible>
 					<halign>center</halign>
 					<label>999999999</label>
@@ -1378,10 +1354,7 @@
 						<alpha>1</alpha>
 					</color>
 					<visible>
-						<greater-than>
-							<property>/sim/gui/dialogs/load-manager/zfw-lbs</property>
-							<property>/sim/gui/dialogs/load-manager/mzfw-lbs</property>
-						</greater-than>
+						<property>/sim/gui/dialogs/load-manager/zfw-red</property>
 					</visible>
 					<halign>center</halign>
 					<label>9999999999</label>
@@ -1392,10 +1365,7 @@
 					<row>1</row>
 					<col>1</col>
 					<visible>
-						<less-than-equals>
-							<property>/sim/gui/dialogs/load-manager/zfw-lbs</property>
-							<property>/sim/gui/dialogs/load-manager/mzfw-lbs</property>
-						</less-than-equals>
+						<not><property>/sim/gui/dialogs/load-manager/zfw-red</property></not>
 					</visible>
 					<halign>center</halign>
 					<label>9999999999</label>
@@ -1420,16 +1390,7 @@
 						<alpha>1</alpha>
 					</color>
 					<visible>
-						<or>
-							<less-than>
-								<property>/sim/gui/dialogs/load-manager/zfwcg-percent-mac</property>
-								<property>/sim/gui/dialogs/load-manager/zfwcg-fwd-limit</property>
-							</less-than>
-							<greater-than>
-								<property>/sim/gui/dialogs/load-manager/zfwcg-percent-mac</property>
-								<property>/sim/gui/dialogs/load-manager/zfwcg-aft-limit</property>
-							</greater-than>
-						</or>
+						<property>/sim/gui/dialogs/load-manager/zfwcg-red</property>
 					</visible>
 					<halign>center</halign>
 					<label>999999999</label>
@@ -1440,16 +1401,7 @@
 					<row>1</row>
 					<col>3</col>
 					<visible>
-						<and>
-							<greater-than-equals>
-								<property>/sim/gui/dialogs/load-manager/zfwcg-percent-mac</property>
-								<property>/sim/gui/dialogs/load-manager/zfwcg-fwd-limit</property>
-							</greater-than-equals>
-							<less-than-equals>
-								<property>/sim/gui/dialogs/load-manager/zfwcg-percent-mac</property>
-								<property>/sim/gui/dialogs/load-manager/zfwcg-aft-limit</property>
-							</less-than-equals>
-						</and>
+						<not><property>/sim/gui/dialogs/load-manager/zfwcg-red</property></not>
 					</visible>
 					<halign>center</halign>
 					<label>999999999</label>
@@ -1644,10 +1596,18 @@
 								cgFwdLimitRound: 0,
 								cgPercentMac: props.globals.getNode("/systems/load-manager/cg-percent-mac"),
 								cgPercentMacRound: 0,
+								Dialog: {
+									cgRed: props.globals.initNode("/sim/gui/dialogs/load-manager/cg-red", 0, "BOOL"),
+									gwRed: props.globals.initNode("/sim/gui/dialogs/load-manager/gw-red", 0, "BOOL"),
+									zfwRed: props.globals.initNode("/sim/gui/dialogs/load-manager/zfw-red", 0, "BOOL"),
+									zfwcgRed: props.globals.initNode("/sim/gui/dialogs/load-manager/zfwcg-red", 0, "BOOL"),
+								},
 								gwLbs: props.globals.getNode("/systems/load-manager/gw-lbs"),
 								gwLbsRound: 0,
 								mtow: props.globals.getNode("/limits/mass-and-balance/maximum-takeoff-mass-lbs"),
+								mtowTemp: 0,
 								mzfw: props.globals.getNode("/limits/mass-and-balance/maximum-zero-fuel-mass-lbs"),
+								mzfwTemp: 0,
 								zfwcgAftLimit:  props.globals.getNode("/systems/load-manager/zfwcg-aft-limit"),
 								zfwcgAftLimitRound: 0,
 								zfwcgFwdLimit:  props.globals.getNode("/systems/load-manager/zfwcg-fwd-limit"),
@@ -1690,15 +1650,24 @@
 								Value.cgFwdLimitRound = math.round(Value.cgFwdLimit.getValue(), 0.1);
 								Value.cgPercentMacRound = math.round(Value.cgPercentMac.getValue(), 0.1);
 								Value.gwLbsRound = math.round(Value.gwLbs.getValue(), 100);
+								Value.mtowTemp = Value.mtow.getValue();
+								Value.mzfwTemp = Value.mzfw.getValue();
 								Value.zfwcgAftLimitRound = math.round(Value.zfwcgAftLimit.getValue(), 0.1);
 								Value.zfwcgFwdLimitRound = math.round(Value.zfwcgFwdLimit.getValue(), 0.1);
 								Value.zfwcgPercentMacRound = math.round(Value.zfwcgPercentMac.getValue(), 0.1);
 								Value.zfwLbsRound = math.round(Value.zfwLbs.getValue(), 100);
 								
+								# Dialog Red
+								Value.Dialog.cgRed.setBoolValue(Value.cgPercentMacRound < Value.cgFwdLimitRound or Value.cgPercentMacRound > Value.cgAftLimitRound);
+								Value.Dialog.gwRed.setBoolValue(Value.gwLbsRound > Value.mtowTemp);
+								Value.Dialog.zfwRed.setBoolValue(Value.zfwLbsRound > Value.mzfwTemp);
+								Value.Dialog.zfwcgRed.setBoolValue(Value.zfwcgPercentMacRound < Value.zfwcgFwdLimitRound or Value.zfwcgPercentMacRound > Value.zfwcgAftLimitRound);
+								
+								# Graph Animate
 								obj["CG"].setTranslation(math.clamp((Value.cgPercentMacRound - 8) * (17/2), 0, 255), math.clamp((Value.gwLbsRound - 220000) * (-17/20000), -374, 0));
 								obj["ZFWCG"].setTranslation(math.clamp((Value.zfwcgPercentMacRound - 8) * (17/2), 0, 255), math.clamp((Value.zfwLbsRound - 220000) * (-17/20000), -374, 0));
 								
-								if (Value.gwLbsRound > Value.mtow.getValue() or Value.cgPercentMacRound < Value.cgFwdLimitRound or Value.cgPercentMacRound > Value.cgAftLimitRound) {
+								if (Value.gwLbsRound > Value.mtowTemp or Value.cgPercentMacRound < Value.cgFwdLimitRound or Value.cgPercentMacRound > Value.cgAftLimitRound) {
 									obj["CG_dot"].setColorFill(1, 0, 0);
 									obj["CG_text"].setColor(1, 0, 0);
 								} else {
@@ -1706,7 +1675,7 @@
 									obj["CG_text"].setColor(0, 1, 0);
 								}
 								
-								if (Value.zfwLbsRound > Value.mzfw.getValue() or Value.zfwcgPercentMacRound < Value.zfwcgFwdLimitRound or Value.zfwcgPercentMacRound > Value.zfwcgAftLimitRound) {
+								if (Value.zfwLbsRound > Value.mzfwTemp or Value.zfwcgPercentMacRound < Value.zfwcgFwdLimitRound or Value.zfwcgPercentMacRound > Value.zfwcgAftLimitRound) {
 									obj["ZFWCG_dot"].setColorFill(1, 0, 0);
 									obj["ZFWCG_text"].setColor(1, 0, 0);
 								} else {
