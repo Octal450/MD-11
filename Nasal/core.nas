@@ -59,9 +59,9 @@ var fdmInit = setlistener("/sim/signals/fdm-initialized", func() {
 	canvas_isfd.setup();
 	canvas_mcdu.setup();
 	LoadManager.init();
+	acconfig.SYSTEM.finalInit();
 	removelistener(fdmInit);
 	initDone = 1;
-	acconfig.SYSTEM.finalInit();
 });
 
 var systemsLoop = maketimer(0.1, func() {
