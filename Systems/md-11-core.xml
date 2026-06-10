@@ -566,7 +566,7 @@
 			</test>
 		</switch>
 		
-		<fcs_function name="/systems/load-manager/zfw-lbs-limited"> <!-- From FCOM -->
+		<fcs_function name="/systems/load-manager/zfw-lbs-limited">
 			<function>
 				<min>
 					<property>/limits/mass-and-balance/maximum-zero-fuel-mass-lbs</property>
