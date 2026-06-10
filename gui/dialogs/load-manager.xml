@@ -962,7 +962,7 @@
 						<property>/systems/load-manager/weight[3]</property>
 						<step>100</step>
 						<min>0</min>
-						<max>32400</max>
+						<max>38400</max>
 						<live>true</live>
 						<binding>
 							<command>dialog-apply</command>
@@ -1016,7 +1016,7 @@
 						<binding>
 							<command>property-adjust</command>
 							<property>/systems/load-manager/weight[3]</property>
-							<max>32400</max>
+							<max>38400</max>
 							<step>100</step>
 							<wrap>false</wrap>
 						</binding>
@@ -1030,7 +1030,7 @@
 						<binding>
 							<command>property-adjust</command>
 							<property>/systems/load-manager/weight[3]</property>
-							<max>32400</max>
+							<max>38400</max>
 							<step>1000</step>
 							<wrap>false</wrap>
 						</binding>
@@ -1064,7 +1064,7 @@
 						<property>/systems/load-manager/weight[4]</property>
 						<step>100</step>
 						<min>0</min>
-						<max>40600</max>
+						<max>44600</max>
 						<live>true</live>
 						<binding>
 							<command>dialog-apply</command>
@@ -1118,7 +1118,7 @@
 						<binding>
 							<command>property-adjust</command>
 							<property>/systems/load-manager/weight[4]</property>
-							<max>40600</max>
+							<max>44600</max>
 							<step>100</step>
 							<wrap>false</wrap>
 						</binding>
@@ -1132,7 +1132,7 @@
 						<binding>
 							<command>property-adjust</command>
 							<property>/systems/load-manager/weight[4]</property>
-							<max>40600</max>
+							<max>44600</max>
 							<step>1000</step>
 							<wrap>false</wrap>
 						</binding>
