@@ -566,10 +566,19 @@
 			</test>
 		</switch>
 		
+		<fcs_function name="/systems/load-manager/zfw-lbs-limited"> <!-- From FCOM -->
+			<function>
+				<min>
+					<property>/limits/mass-and-balance/maximum-zero-fuel-mass-lbs</property>
+					<property>/systems/load-manager/zfw-lbs</property>
+				</min>
+			</function>
+		</fcs_function>
+		
 		<fcs_function name="/systems/load-manager/zfwcg-aft-limit"> <!-- From FCOM -->
 			<function>
 				<table>
-					<independentVar lookup="row">/systems/load-manager/zfw-lbs</independentVar>
+					<independentVar lookup="row">/systems/load-manager/zfw-lbs-limited</independentVar>
 					<independentVar lookup="column">zero</independentVar> <!-- Take advantage of the table lookup to interpolate -->
 					<independentVar lookup="table">/systems/load-manager/zfwcg-aft-limit-sel</independentVar>
 					<tableData breakPoint="0">
@@ -608,10 +617,11 @@
 		<fcs_function name="/systems/load-manager/zfwcg-fwd-limit"> <!-- From FCOM -->
 			<function>
 				<table>
-					<independentVar lookup="row">/systems/load-manager/zfw-lbs</independentVar>
+					<independentVar lookup="row">/systems/load-manager/zfw-lbs-limited</independentVar>
 					<tableData>
 						380000  12.0
 						451300  13.2
+						461300  13.4
 					</tableData>
 				</table>
 			</function>
