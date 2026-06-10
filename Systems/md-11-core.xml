@@ -556,6 +556,15 @@
 			</function>
 		</fcs_function>
 		
+		<fcs_function name="/systems/load-manager/zfw-lbs-limited">
+			<function>
+				<min>
+					<property>/limits/mass-and-balance/maximum-zero-fuel-mass-lbs</property>
+					<property>/systems/load-manager/zfw-lbs</property>
+				</min>
+			</function>
+		</fcs_function>
+		
 		<switch name="/systems/load-manager/zfwcg-aft-limit-sel">
 			<default value="0"/>
 			<test value="2">
@@ -565,15 +574,6 @@
 				/systems/load-manager/gw-lbs ge 619999.5
 			</test>
 		</switch>
-		
-		<fcs_function name="/systems/load-manager/zfw-lbs-limited">
-			<function>
-				<min>
-					<property>/limits/mass-and-balance/maximum-zero-fuel-mass-lbs</property>
-					<property>/systems/load-manager/zfw-lbs</property>
-				</min>
-			</function>
-		</fcs_function>
 		
 		<fcs_function name="/systems/load-manager/zfwcg-aft-limit"> <!-- From FCOM -->
 			<function>
