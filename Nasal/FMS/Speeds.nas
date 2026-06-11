@@ -173,7 +173,7 @@ var FmsSpd = {
 	engageAllowed: func() {
 		# In order to engage correctly during takeoff with manually set Vspeeds, toKts must be checked as the other variables are 0, this is required to prevent incorrect display of the hollow magenta bug on the PFD
 		# Sequencing when leaving phase 1 is not a concern as the bug is displayed when FMS SPD is active, meaning that the kts and mach variables will be populated, thus this will not return 0
-		if (Value.active and (pts.Position.gearAglFt.getValue() >= 400 or Internal.phase > 1) and !pts.Gear.wow[0].getBoolValue() and ((Internal.phase <= 1 and me.toKts > 0) or (me.kts > 0 and me.mach > 0))) {
+		if ((pts.Position.gearAglFt.getValue() >= 400 or Internal.phase > 1) and !pts.Gear.wow[0].getBoolValue() and ((Internal.phase <= 1 and me.toKts > 0) or (me.kts > 0 and me.mach > 0))) {
 			return 1;
 		} else {
 			return 0;
@@ -316,7 +316,9 @@ var FmsSpd = {
 			me.decel = 0;
 		}
 		
-		if (Internal.phase <= 1) { # Preflight/Takeoff
+		if (!Value.active) { # If Route Manager is not activated properly, then this logic will not work
+			me.cancelAndZero(1);
+		} else if (Internal.phase <= 1) { # Preflight/Takeoff
 			if (me.active) { # Re-enable driving if overriden
 				me.toDriving = 1;
 			}
