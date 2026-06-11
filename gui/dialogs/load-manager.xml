@@ -1602,6 +1602,7 @@
 									zfwRed: props.globals.initNode("/sim/gui/dialogs/load-manager/zfw-red", 0, "BOOL"),
 									zfwcgRed: props.globals.initNode("/sim/gui/dialogs/load-manager/zfwcg-red", 0, "BOOL"),
 								},
+								freighter: pts.Options.freighter.getBoolValue(),
 								gwLbs: props.globals.getNode("/systems/load-manager/gw-lbs"),
 								gwLbsRound: 0,
 								mtow: props.globals.getNode("/limits/mass-and-balance/maximum-takeoff-mass-lbs"),
@@ -1639,7 +1640,7 @@
 								obj[key] = graphSvg.getElementById(key);
 							}
 							
-							if (pts.Options.freighter.getBoolValue()) {
+							if (Value.freighter) {
 								obj["BoxP"].hide();
 							} else {
 								obj["BoxF"].hide();
