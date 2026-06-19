@@ -497,7 +497,7 @@
 		
 		<summer name="/systems/load-manager/gw-lbs">
 			<input>/systems/load-manager/zfw-lbs</input>
-			<input>/systems/load-manager/fuel/total-fuel</input>
+			<input>/systems/load-manager/fuel/total-calc</input>
 		</summer>
 		
 		<fcs_function name="/systems/load-manager/zfwcg-x-in">
