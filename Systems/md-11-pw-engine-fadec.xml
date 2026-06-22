@@ -1136,7 +1136,7 @@
 					<table>
 						<independentVar lookup="row">/controls/engines/engine[0]/throttle</independentVar>
 						<tableData>
-							0.05  0.00
+							0.00  0.00
 							1.00  0.78
 						</tableData>
 					</table>
@@ -1242,7 +1242,7 @@
 					<table>
 						<independentVar lookup="row">/controls/engines/engine[1]/throttle</independentVar>
 						<tableData>
-							0.05  0.00
+							0.00  0.00
 							1.00  0.78
 						</tableData>
 					</table>
@@ -1336,7 +1336,7 @@
 					<table>
 						<independentVar lookup="row">/controls/engines/engine[2]/throttle</independentVar>
 						<tableData>
-							0.05  0.00
+							0.00  0.00
 							1.00  0.78
 						</tableData>
 					</table>
@@ -1461,38 +1461,6 @@
 			</function>
 		</fcs_function>
 		
-		<!-- Reverse Idle N1 EPR -->
-		<fcs_function name="/systems/fadec/rev-idle-n1-ref">
-			<function>
-				<pow>
-					<product>
-						<value>28.2</value>
-						<property>/systems/fadec/limit/n1-epr-temp-factor</property>
-					</product>
-					<value>3.5</value>
-				</pow>
-			</function>
-		</fcs_function>
-		
-		<fcs_function name="/systems/fadec/rev-idle-n1-epr">
-			<function>
-				<sum>
-					<product>
-						<table>
-							<independentVar lookup="row">/systems/fadec/rev-idle-n1-ref</independentVar>
-							<tableData>
-								   65768.7  0.03
-								14591440.5  1.00
-								22078900.2  1.50
-							</tableData>
-						</table>
-						<property>/systems/fadec/epr/c1</property>
-					</product>
-					<property>/systems/fadec/epr/c2</property>
-				</sum>
-			</function>
-		</fcs_function>
-		
 		<!-- Engine 1 -->
 		<switch name="/systems/fadec/control-1/n1-mode">
 			<default value="0"/>
@@ -1510,11 +1478,9 @@
 		
 		<switch name="/systems/fadec/control-1/min-epr">
 			<default value="/systems/fadec/limit/idle"/>
-			<test value="/systems/fadec/rev-idle-n1-epr">
+			<test logic="OR" value="0">
 				/systems/fadec/reverse-1/active eq 1
-			</test>
-			<test value="0">
-				/systems/fadec/control-1/n1-mode eq 1
+				/systems/fadec/control-1/altn eq 1
 			</test>
 		</switch>
 		
@@ -1649,11 +1615,9 @@
 		
 		<switch name="/systems/fadec/control-2/min-epr">
 			<default value="/systems/fadec/limit/idle"/>
-			<test value="/systems/fadec/rev-idle-n1-epr">
+			<test logic="OR" value="0">
 				/systems/fadec/reverse-2/active eq 1
-			</test>
-			<test value="0">
-				/systems/fadec/control-2/n1-mode eq 1
+				/systems/fadec/control-2/altn eq 1
 			</test>
 		</switch>
 		
@@ -1788,11 +1752,9 @@
 		
 		<switch name="/systems/fadec/control-3/min-epr">
 			<default value="/systems/fadec/limit/idle"/>
-			<test value="/systems/fadec/rev-idle-n1-epr">
+			<test logic="OR" value="0">
 				/systems/fadec/reverse-3/active eq 1
-			</test>
-			<test value="0">
-				/systems/fadec/control-3/n1-mode eq 1
+				/systems/fadec/control-3/altn eq 1
 			</test>
 		</switch>
 		

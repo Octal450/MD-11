@@ -685,7 +685,7 @@
 					<table>
 						<independentVar lookup="row">/controls/engines/engine[0]/throttle</independentVar>
 						<tableData>
-							0.05  0.00
+							0.00  0.00
 							1.00  0.84
 						</tableData>
 					</table>
@@ -791,7 +791,7 @@
 					<table>
 						<independentVar lookup="row">/controls/engines/engine[1]/throttle</independentVar>
 						<tableData>
-							0.05  0.00
+							0.00  0.00
 							1.00  0.84
 						</tableData>
 					</table>
@@ -885,7 +885,7 @@
 					<table>
 						<independentVar lookup="row">/controls/engines/engine[2]/throttle</independentVar>
 						<tableData>
-							0.05  0.00
+							0.00  0.00
 							1.00  0.84
 						</tableData>
 					</table>
@@ -945,10 +945,8 @@
 		
 		<switch name="/systems/fadec/control-1/min-n1">
 			<default value="/systems/fadec/limit/idle"/>
-			<test value="28.4">
+			<test logic="OR" value="0">
 				/systems/fadec/reverse-1/active eq 1
-			</test>
-			<test value="0">
 				/systems/fadec/control-1/altn eq 1
 			</test>
 		</switch>
@@ -1038,10 +1036,8 @@
 		
 		<switch name="/systems/fadec/control-2/min-n1">
 			<default value="/systems/fadec/limit/idle"/>
-			<test value="28.4">
+			<test logic="OR" value="0">
 				/systems/fadec/reverse-2/active eq 1
-			</test>
-			<test value="0">
 				/systems/fadec/control-2/altn eq 1
 			</test>
 		</switch>
@@ -1131,10 +1127,8 @@
 		
 		<switch name="/systems/fadec/control-3/min-n1">
 			<default value="/systems/fadec/limit/idle"/>
-			<test value="28.4">
+			<test logic="OR" value="0">
 				/systems/fadec/reverse-3/active eq 1
-			</test>
-			<test value="0">
 				/systems/fadec/control-3/altn eq 1
 			</test>
 		</switch>
