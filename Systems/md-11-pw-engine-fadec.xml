@@ -2668,6 +2668,234 @@
 			<input>/systems/fadec/nacelle-temp-cmd-3</input>
 			<lag>0.8</lag>
 		</actuator>
+		
+		<fcs_function name="/engines/engine[0]/vib-n1">
+			<function>
+				<sum>
+					<table>
+						<independentVar lookup="row">/engines/engine[0]/n1-actual</independentVar>
+						<tableData>
+							 5  0.0
+							15  0.3
+						</tableData>
+					</table>
+					<product>   <!-- Low Freq -->
+						<value>0.08</value>
+						<sin>
+							<sum>
+								<product>
+									<value>0.06</value>
+									<property>/sim/time/elapsed-sec</property>
+								</product>
+								<value>0.85</value> <!-- Compressor phase (low) -->
+							</sum>
+						</sin>
+					</product>
+					<product>   <!-- Mid Freq -->
+						<value>0.06</value>
+						<sin>
+							<sum>
+								<product>
+									<value>0.18</value>
+									<property>/sim/time/elapsed-sec</property>
+								</product>
+								<value>0.65</value> <!-- Compressor phase (mid) -->
+							</sum>
+						</sin>
+					</product>
+				</sum>
+			</function>
+		</fcs_function>
+		
+		<fcs_function name="/engines/engine[0]/vib-n2">
+			<function>
+				<sum>
+					<table>
+						<independentVar lookup="row">/engines/engine[0]/n2-actual</independentVar>
+						<tableData>
+							20  0.0
+							50  0.8
+						</tableData>
+					</table>
+					<product>   <!-- Low Freq -->
+						<value>0.2</value>
+						<sin>
+							<sum>
+								<product>
+									<value>0.06</value>
+									<property>/sim/time/elapsed-sec</property>
+								</product>
+								<value>1.10</value> <!-- Turbine phase (low) -->
+							</sum>
+						</sin>
+					</product>
+					<product>   <!-- Mid Freq -->
+						<value>0.14</value>
+						<sin>
+							<sum>
+								<product>
+									<value>0.18</value>
+									<property>/sim/time/elapsed-sec</property>
+								</product>
+								<value>0.95</value> <!-- Turbine phase (mid) -->
+							</sum>
+						</sin>
+					</product>
+				</sum>
+			</function>
+		</fcs_function>
+		
+		<fcs_function name="/engines/engine[1]/vib-n1">
+			<function>
+				<sum>
+					<table>
+						<independentVar lookup="row">/engines/engine[1]/n1-actual</independentVar>
+						<tableData>
+							 5  0.0
+							15  0.3
+						</tableData>
+					</table>
+					<product>   <!-- Low Freq -->
+						<value>0.08</value>
+						<sin>
+							<sum>
+								<product>
+									<value>0.06</value>
+									<property>/sim/time/elapsed-sec</property>
+								</product>
+								<value>1.7</value> <!-- Compressor phase (low) -->
+							</sum>
+						</sin>
+					</product>
+					<product>   <!-- Mid Freq -->
+						<value>0.06</value>
+						<sin>
+							<sum>
+								<product>
+									<value>0.18</value>
+									<property>/sim/time/elapsed-sec</property>
+								</product>
+								<value>1.55</value> <!-- Compressor phase (mid) -->
+							</sum>
+						</sin>
+					</product>
+				</sum>
+			</function>
+		</fcs_function>
+		
+		<fcs_function name="/engines/engine[1]/vib-n2">
+			<function>
+				<sum>
+					<table>
+						<independentVar lookup="row">/engines/engine[1]/n2-actual</independentVar>
+						<tableData>
+							20  0.0
+							50  0.8
+						</tableData>
+					</table>
+					<product>   <!-- Low Freq -->
+						<value>0.2</value>
+						<sin>
+							<sum>
+								<product>
+									<value>0.06</value>
+									<property>/sim/time/elapsed-sec</property>
+								</product>
+								<value>1.95</value> <!-- Turbine phase (low) -->
+							</sum>
+						</sin>
+					</product>
+					<product>   <!-- Mid Freq -->
+						<value>0.14</value>
+						<sin>
+							<sum>
+								<product>
+									<value>0.18</value>
+									<property>/sim/time/elapsed-sec</property>
+								</product>
+								<value>1.85</value> <!-- Turbine phase (mid) -->
+							</sum>
+						</sin>
+					</product>
+				</sum>
+			</function>
+		</fcs_function>
+		
+		<fcs_function name="/engines/engine[2]/vib-n1">
+			<function>
+				<sum>
+					<table>
+						<independentVar lookup="row">/engines/engine[2]/n1-actual</independentVar>
+						<tableData>
+							 5  0.0
+							15  0.3
+						</tableData>
+					</table>
+					<product>   <!-- Low Freq -->
+						<value>0.08</value>
+						<sin>
+							<sum>
+								<product>
+									<value>0.06</value>
+									<property>/sim/time/elapsed-sec</property>
+								</product>
+								<value>2.55</value> <!-- Compressor phase (low) -->
+							</sum>
+						</sin>
+					</product>
+					<product>   <!-- Mid Freq -->
+						<value>0.06</value>
+						<sin>
+							<sum>
+								<product>
+									<value>0.18</value>
+									<property>/sim/time/elapsed-sec</property>
+								</product>
+								<value>2.45</value> <!-- Compressor phase (mid) -->
+							</sum>
+						</sin>
+					</product>
+				</sum>
+			</function>
+		</fcs_function>
+		
+		<fcs_function name="/engines/engine[2]/vib-n2">
+			<function>
+				<sum>
+					<table>
+						<independentVar lookup="row">/engines/engine[2]/n2-actual</independentVar>
+						<tableData>
+							20  0.0
+							50  0.8
+						</tableData>
+					</table>
+					<product>   <!-- Low Freq -->
+						<value>0.2</value>
+						<sin>
+							<sum>
+								<product>
+									<value>0.06</value>
+									<property>/sim/time/elapsed-sec</property>
+								</product>
+								<value>2.8</value> <!-- Turbine phase (low) -->
+							</sum>
+						</sin>
+					</product>
+					<product>   <!-- Mid Freq -->
+						<value>0.14</value>
+						<sin>
+							<sum>
+								<product>
+									<value>0.18</value>
+									<property>/sim/time/elapsed-sec</property>
+								</product>
+								<value>2.75</value> <!-- Turbine phase (mid) -->
+							</sum>
+						</sin>
+					</product>
+				</sum>
+			</function>
+		</fcs_function>
 	
 	</channel>
 	

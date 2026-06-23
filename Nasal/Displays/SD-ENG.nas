@@ -159,6 +159,15 @@ var CanvasEngBase = {
 		me["NacelleTemp2"].setText(sprintf("%d", math.round(systems.ENGINES.nacelleTemp[1].getValue())));
 		me["NacelleTemp3"].setText(sprintf("%d", math.round(systems.ENGINES.nacelleTemp[2].getValue())));
 		
+		# Vibration
+		me["EmvComp1"].setText(sprintf("%3.1f", math.round(systems.ENGINES.vibN1[0].getValue(), 0.1)));
+		me["EmvComp2"].setText(sprintf("%3.1f", math.round(systems.ENGINES.vibN1[1].getValue(), 0.1)));
+		me["EmvComp3"].setText(sprintf("%3.1f", math.round(systems.ENGINES.vibN1[2].getValue(), 0.1)));
+		
+		me["EmvTurb1"].setText(sprintf("%3.1f", math.round(systems.ENGINES.vibN2[0].getValue(), 0.1)));
+		me["EmvTurb2"].setText(sprintf("%3.1f", math.round(systems.ENGINES.vibN2[1].getValue(), 0.1)));
+		me["EmvTurb3"].setText(sprintf("%3.1f", math.round(systems.ENGINES.vibN2[2].getValue(), 0.1)));
+		
 		# APU
 		Value.Apu.n2 = systems.APU.n2.getValue();
 		if (Value.Apu.n2 >= 1 or Value.Misc.annunTestWow) {

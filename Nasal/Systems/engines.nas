@@ -19,6 +19,8 @@ var ENGINES = {
 	stateLast: [0, 0, 0],
 	stateTemp: [0, 0, 0],
 	twoEngineOn: props.globals.getNode("/systems/engines/two-engine-on"),
+	vibN1: [props.globals.getNode("/engines/engine[0]/vib-n1"), props.globals.getNode("/engines/engine[1]/vib-n1"), props.globals.getNode("/engines/engine[2]/vib-n1")],
+	vibN2: [props.globals.getNode("/engines/engine[0]/vib-n2"), props.globals.getNode("/engines/engine[1]/vib-n2"), props.globals.getNode("/engines/engine[2]/vib-n2")],
 	Controls: {
 		cutoff: [props.globals.getNode("/controls/engines/engine[0]/cutoff-switch"), props.globals.getNode("/controls/engines/engine[1]/cutoff-switch"), props.globals.getNode("/controls/engines/engine[2]/cutoff-switch")],
 		exceedanceReset: props.globals.getNode("/controls/engines/exceedance-reset"),
