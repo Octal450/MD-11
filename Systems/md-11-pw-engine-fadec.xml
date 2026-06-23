@@ -1478,8 +1478,7 @@
 		
 		<switch name="/systems/fadec/control-1/min-epr">
 			<default value="/systems/fadec/limit/idle"/>
-			<test logic="OR" value="0">
-				/systems/fadec/reverse-1/active eq 1
+			<test value="0">
 				/systems/fadec/control-1/altn eq 1
 			</test>
 		</switch>
@@ -1615,8 +1614,7 @@
 		
 		<switch name="/systems/fadec/control-2/min-epr">
 			<default value="/systems/fadec/limit/idle"/>
-			<test logic="OR" value="0">
-				/systems/fadec/reverse-2/active eq 1
+			<test value="0">
 				/systems/fadec/control-2/altn eq 1
 			</test>
 		</switch>
@@ -1752,8 +1750,7 @@
 		
 		<switch name="/systems/fadec/control-3/min-epr">
 			<default value="/systems/fadec/limit/idle"/>
-			<test logic="OR" value="0">
-				/systems/fadec/reverse-3/active eq 1
+			<test value="0">
 				/systems/fadec/control-3/altn eq 1
 			</test>
 		</switch>
