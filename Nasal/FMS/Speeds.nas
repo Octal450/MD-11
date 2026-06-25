@@ -608,7 +608,7 @@ var FmsSpd = {
 				me.pfdShowEconPreSel = 0;
 			} else if (Internal.phase == 3 and flightData.cruiseSpeedMode != 2) {
 				me.pfdShowEconPreSel = 0;
-			} else if (Internal.phase == 4 and flightData.descentSpeedMode != 2) {
+			} else if (Internal.phase >= 4 and flightData.descentSpeedMode != 2) {
 				me.pfdShowEconPreSel = 0;
 			} else {
 				if (!me.econKtsMach and me.econKtsCalc != me.kts) {
