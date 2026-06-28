@@ -71,6 +71,7 @@ var systemsLoop = maketimer(0.1, func() {
 	systems.FADEC.loop();
 	systems.DUController.loop();
 	SHAKE.loop();
+	MkViiiTranslator.loop();
 	
 	if (pts.Sim.Replay.replayState.getBoolValue()) {
 		pts.Sim.Model.wingflexEnable.setBoolValue(0);
@@ -398,6 +399,35 @@ var SHAKE = {
 		} else {
 			pts.Systems.Shake.shaking.setBoolValue(0);
 		}	    
+	},
+};
+
+# MK-VIII Translator
+# For some reason, the authors of that module chose to program outputs like a real ARINC429 bus... making it annoying for us to deal with, hence this "translator"
+var MkViiiTranslator = {
+	discrete1: 0,
+	dontSink: 0,
+	glideslope: 0,
+	pullUp: 0,
+	sinkRate: 0,
+	terrain: 0,
+	tooLowFlaps: 0,
+	tooLowGear: 0,
+	tooLowTerrain: 0,
+	loop: func() {
+		me.discrete1 = pts.Instrumentation.MkViii.Outputs.Arinc429.egpwsAlertDiscrete1.getValue();
+		
+		me.sinkRate = me.hasBit(me.discrete1, 2048);
+		me.pullUp = me.hasBit(me.discrete1, 4096);
+		me.terrain = me.hasBit(me.discrete1, 8192);
+		me.dontSink = me.hasBit(me.discrete1, 16384);
+		me.tooLowGear = me.hasBit(me.discrete1, 32768);
+		me.tooLowFlaps = me.hasBit(me.discrete1, 65536);
+		me.tooLowTerrain = me.hasBit(me.discrete1, 131072);
+		me.glideslope = me.hasBit(me.discrete1, 262144);
+	},
+	hasBit: func(word, bit) {
+		return math.mod(int(word / bit), 2);
 	},
 };
 

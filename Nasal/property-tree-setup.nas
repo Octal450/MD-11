@@ -179,6 +179,11 @@ var Instrumentation = {
 				selfTest: props.globals.getNode("/instrumentation/mk-viii/inputs/discretes/self-test"),
 			},
 		},
+		Outputs: {
+			Arinc429: {
+				egpwsAlertDiscrete1: props.globals.getNode("/instrumentation/mk-viii/outputs/arinc429/egpws-alert-discrete-1"),
+			},
+		},
 	},
 	Nav: {
 		Frequencies: {

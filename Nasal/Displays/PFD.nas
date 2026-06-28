@@ -32,12 +32,13 @@ var Value = {
 		ktsMachFms: 0,
 		ktsMachFmsEcon: 0,
 		ktsMachPreSel: 0,
+		land: "",
 		lat: 0,
 		mach: 0,
 		machPreSel: 0,
-		land: "",
 		pitch: "",
 		pitchArm: "",
+		pitchWarningActive: 0,
 		roll: "",
 		rollArm: "",
 		spdPitchAvail: 0,
@@ -2241,8 +2242,37 @@ var CanvasBase = {
 		}
 		
 		# FMA
+		if (core.MkViiiTranslator.pullUp) {
+			Value.Afs.pitchWarningActive = 1;
+			me["FMA_pitch_warning"].setColor(1, 0, 0);
+			me["FMA_pitch_warning"].setText("GROUND PROX");
+			
+			if (Value.Misc.blinkMed) {
+				Value.Afs.pitchWarningActive = 1;
+				me["FMA_pitch_warning"].show();
+			} else {
+				Value.Afs.pitchWarningActive = 0;
+				me["FMA_pitch_warning"].hide();
+			}
+		} else if (core.MkViiiTranslator.dontSink or core.MkViiiTranslator.sinkRate or core.MkViiiTranslator.terrain or core.MkViiiTranslator.tooLowFlaps or core.MkViiiTranslator.tooLowGear or core.MkViiiTranslator.tooLowTerrain) {
+			Value.Afs.pitchWarningActive = 1;
+			me["FMA_pitch_warning"].setColor(0.9412, 0.7255, 0);
+			me["FMA_pitch_warning"].setText("GROUND PROX");
+			
+			if (Value.Misc.blinkMed) {
+				Value.Afs.pitchWarningActive = 1;
+				me["FMA_pitch_warning"].show();
+			} else {
+				Value.Afs.pitchWarningActive = 0;
+				me["FMA_pitch_warning"].hide();
+			}
+		} else {
+			Value.Afs.pitchWarningActive = 0;
+			me["FMA_pitch_warning"].hide();
+		}
+		
 		if (Value.Afs.fd[n]) {
-			if (Value.Afs.land == "OFF" and !(afs.Fma.Blink.active[2] and afs.Fma.Blink.hide[2]) and !Value.Afs.bit[n]) {
+			if (Value.Afs.land == "OFF" and !(afs.Fma.Blink.active[2] and afs.Fma.Blink.hide[2]) and !Value.Afs.pitchWarningActive and !Value.Afs.bit[n]) {
 				me["FMA_pitch"].setText(sprintf("%s", Value.Afs.pitch));
 				me["FMA_pitch"].show();
 			} else {
@@ -2260,7 +2290,7 @@ var CanvasBase = {
 				me["FMA_roll"].show();
 			}
 			
-			if ((afs.Fma.Blink.active[0] and afs.Fma.Blink.hide[0]) or  Value.Afs.bit[n]) {
+			if ((afs.Fma.Blink.active[0] and afs.Fma.Blink.hide[0]) or Value.Afs.bit[n]) {
 				me["FMA_thrust"].hide();
 			} else {
 				me["FMA_thrust"].setText(sprintf("%s", Value.Afs.thrust));
@@ -2268,28 +2298,28 @@ var CanvasBase = {
 			}
 		} else {
 			if (Value.Afs.thrust == "PITCH") {
-				if ((Value.Afs.ap1 or Value.Afs.ap2) and !(afs.Fma.Blink.active[0] and afs.Fma.Blink.hide[0])) {
+				if ((Value.Afs.ap1 or Value.Afs.ap2) and !(afs.Fma.Blink.active[0] and afs.Fma.Blink.hide[0]) and !Value.Afs.bit[n]) {
 					me["FMA_thrust"].setText(sprintf("%s", Value.Afs.thrust));
 					me["FMA_thrust"].show();
 				} else {
 					me["FMA_thrust"].hide();
 				}
 				
-				if (Value.Afs.ats and Value.Afs.land == "OFF" and !(afs.Fma.Blink.active[2] and afs.Fma.Blink.hide[2])) {
+				if (Value.Afs.ats and Value.Afs.land == "OFF" and !(afs.Fma.Blink.active[2] and afs.Fma.Blink.hide[2]) and !Value.Afs.pitchWarningActive and !Value.Afs.bit[n]) {
 					me["FMA_pitch"].setText(sprintf("%s", Value.Afs.pitch));
 					me["FMA_pitch"].show();
 				} else {
 					me["FMA_pitch"].hide();
 				}
 			} else {
-				if ((Value.Afs.ap1 or Value.Afs.ap2) and Value.Afs.land == "OFF" and !(afs.Fma.Blink.active[2] and afs.Fma.Blink.hide[2])) {
+				if ((Value.Afs.ap1 or Value.Afs.ap2) and Value.Afs.land == "OFF" and !(afs.Fma.Blink.active[2] and afs.Fma.Blink.hide[2]) and !Value.Afs.pitchWarningActive and !Value.Afs.bit[n]) {
 					me["FMA_pitch"].setText(sprintf("%s", Value.Afs.pitch));
 					me["FMA_pitch"].show();
 				} else {
 					me["FMA_pitch"].hide();
 				}
 				
-				if (Value.Afs.ats and !(afs.Fma.Blink.active[0] and afs.Fma.Blink.hide[0])) {
+				if (Value.Afs.ats and !(afs.Fma.Blink.active[0] and afs.Fma.Blink.hide[0]) and !Value.Afs.bit[n]) {
 					me["FMA_thrust"].setText(sprintf("%s", Value.Afs.thrust));
 					me["FMA_thrust"].show();
 				} else {
@@ -2335,7 +2365,13 @@ var CanvasBase = {
 			me["FMA_thrust_arm"].setText("");
 		}
 		
-		me["FMA_pitch_arm"].setText(sprintf("%s", Value.Afs.pitchArm));
+		if (Value.Afs.pitchWarningActive) {
+			me["FMA_pitch_arm"].hide();
+		} else {
+			me["FMA_pitch_arm"].show();
+			me["FMA_pitch_arm"].setText(sprintf("%s", Value.Afs.pitchArm));
+		}
+		
 		me["FMA_roll_arm"].setText(sprintf("%s", Value.Afs.rollArm));
 		
 		if (Value.Afs.land == "DUAL") {
@@ -2352,7 +2388,12 @@ var CanvasBase = {
 			me["FMA_roll_arm"].setColor(1, 1, 1);
 		}
 		
-		if (Value.Afs.land != "OFF" and (Value.Afs.ap1 or Value.Afs.ap2 or Value.Afs.fd[n])) {
+		if (Value.Afs.pitchWarningActive) {
+			me["FMA_altitude"].hide();
+			me["FMA_altitude_T"].hide();
+			me["FMA_land"].hide();
+			me["FMA_pitch_land"].hide();
+		} else if (Value.Afs.land != "OFF" and (Value.Afs.ap1 or Value.Afs.ap2 or Value.Afs.fd[n])) {
 			if (Value.Afs.land == "DUAL") {
 				me["FMA_land"].setColor(0, 1, 0);
 				me["FMA_land"].setText("DUAL LAND");
@@ -2992,6 +3033,7 @@ var KeyList = [
 	"FMA_pitch",
 	"FMA_pitch_arm",
 	"FMA_pitch_land",
+	"FMA_pitch_warning",
 	"FMA_roll",
 	"FMA_roll_arm",
 	"FMA_speed",
