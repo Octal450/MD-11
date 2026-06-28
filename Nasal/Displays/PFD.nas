@@ -60,10 +60,13 @@ var Value = {
 	},
 	Alt: {
 		alert: 0,
+		highestBug: 0,
 		indicated: 0,
 		indicatedAbs: 0,
+		lowestBug: 0,
 		preSel: 0,
 		sel: 0,
+		showPreSel: 0,
 		Tape: {
 			five: 0,
 			fiveI: 0,
@@ -100,14 +103,20 @@ var Value = {
 		flapGearMax: 0,
 		fms: 0,
 		fmsEcon: 0,
+		fmsEconActive: 0,
 		hideV1: 0,
 		hideVr: 0,
+		highestBug: 0,
 		ias: 0,
+		lowestBug: 0,
 		mach: 0,
 		preSel: 0,
+		preSelActive: 0,
 		sel: 0,
+		showFms: 0,
 		showFmsEcon: 0,
 		showPreSel: 0,
+		showSel: 0,
 		showTaxi: 0,
 		trend: 0,
 		vfr: 0,
@@ -1021,7 +1030,7 @@ var CanvasBase = {
 		}
 		
 		# ASI Pre-Sel/Sel
-		Value.Asi.showPreSel = afs.Output.showSpd.getBoolValue();
+		Value.Asi.preSelActive = afs.Output.showSpd.getBoolValue();
 		
 		if (Value.Asi.fms > 0 and fms.FmsSpd.pfdDriving) {
 			Value.Afs.fmsSpdDriving = 1;
@@ -1030,12 +1039,36 @@ var CanvasBase = {
 		}
 		
 		if (Value.Asi.fmsEcon > 0 and fms.FmsSpd.pfdShowEconPreSel) {
-			Value.Asi.showFmsEcon = 1;
+			Value.Asi.fmsEconActive = 1;
 		} else {
-			Value.Asi.showFmsEcon = 0;
+			Value.Asi.fmsEconActive = 0;
 		}
 		
-		if (Value.Asi.Tape.preSel < -60 or Value.Asi.Tape.preSel > 60 or Value.Asi.showTaxi or afs.Internal.syncedSpd or !Value.Asi.showPreSel) {
+		if (Value.Asi.showTaxi or afs.Internal.syncedSpd or !Value.Asi.preSelActive) {
+			Value.Asi.showPreSel = 0;
+		} else {
+			Value.Asi.showPreSel = 1;
+		}
+		
+		if (!Value.Afs.spdPitchAvail or Value.Afs.fmsSpdDriving) {
+			Value.Asi.showSel = 0;
+		} else {
+			Value.Asi.showSel = 1;
+		}
+		
+		if (!Value.Afs.spdPitchAvail or Value.Asi.fms == 0) {
+			Value.Asi.showFms = 0;
+		} else {
+			Value.Asi.showFms = 1;
+		}
+		
+		if (!Value.Afs.spdPitchAvail or Value.Asi.fmsEcon == 0 or !Value.Asi.fmsEconActive) {
+			Value.Asi.showFmsEcon = 0;
+		} else {
+			Value.Asi.showFmsEcon = 1;
+		}
+		
+		if (!Value.Asi.showPreSel) {
 			me["ASI_mach_presel"].hide();
 			me["ASI_mach_presel_text"].hide();
 			me["ASI_presel"].hide();
@@ -1082,7 +1115,7 @@ var CanvasBase = {
 				me["ASI_presel"].show();
 			}
 		}
-		if (Value.Asi.Tape.sel < -60 or Value.Asi.Tape.sel > 60 or !Value.Afs.spdPitchAvail or Value.Afs.fmsSpdDriving) {
+		if (!Value.Asi.showSel) {
 			me["ASI_mach_sel"].hide();
 			me["ASI_mach_sel_text"].hide();
 			me["ASI_sel"].hide();
@@ -1103,7 +1136,7 @@ var CanvasBase = {
 				me["ASI_sel"].show();
 			}
 		}
-		if (Value.Asi.Tape.fms < -60 or Value.Asi.Tape.fms > 60 or !Value.Afs.spdPitchAvail or Value.Asi.fms == 0) {
+		if (!Value.Asi.showFms) {
 			me["ASI_fms"].hide();
 			me["ASI_fms_mach_text"].hide();
 		} else {
@@ -1124,7 +1157,7 @@ var CanvasBase = {
 			me["ASI_fms"].setTranslation(0, Value.Asi.Tape.fms * -4.4866);
 			me["ASI_fms"].show();
 		}
-		if (Value.Asi.Tape.fmsEcon < -60 or Value.Asi.Tape.fmsEcon > 60 or !Value.Afs.spdPitchAvail or Value.Asi.fmsEcon == 0 or !Value.Asi.showFmsEcon) {
+		if (!Value.Asi.showFmsEcon) {
 			me["ASI_fms_econ"].hide();
 			me["ASI_fms_econ_mach_text"].hide();
 		} else {
@@ -1140,7 +1173,51 @@ var CanvasBase = {
 			me["ASI_fms_econ"].show();
 		}
 		
-		if ((Value.Asi.Tape.preSel > 60 or Value.Asi.showTaxi) and !afs.Internal.syncedSpd and Value.Asi.showPreSel) {
+		# Up bug select
+		if (Value.Asi.showFmsEcon and Value.Asi.Tape.fmsEcon > 56 and
+			(!Value.Asi.showPreSel or Value.Asi.Tape.preSel <= 52 or Value.Asi.fmsEcon <= Value.Asi.preSel) and
+			(!Value.Asi.showSel or Value.Asi.Tape.sel <= 52 or Value.Asi.fmsEcon <= Value.Asi.sel) and
+			(!Value.Asi.showFms or Value.Asi.Tape.fms <= 56 or Value.Asi.fmsEcon <= Value.Asi.fms)) {
+			Value.Asi.lowestBug = 4;
+		} else if (Value.Asi.showFms and Value.Asi.Tape.fms > 56 and
+			(!Value.Asi.showPreSel or Value.Asi.Tape.preSel <= 52 or Value.Asi.fms <= Value.Asi.preSel) and
+			(!Value.Asi.showSel or Value.Asi.Tape.sel <= 52 or Value.Asi.fms <= Value.Asi.sel)) {
+			Value.Asi.lowestBug = 3;
+		} else if (Value.Asi.showSel and Value.Asi.Tape.sel > 52 and
+			(!Value.Asi.showPreSel or Value.Asi.Tape.preSel <= 52 or Value.Asi.sel <= Value.Asi.preSel)) {
+			Value.Asi.lowestBug = 2;
+		} else if (Value.Asi.showPreSel and Value.Asi.Tape.preSel > 52) {
+			Value.Asi.lowestBug = 1;
+		} else {
+			Value.Asi.lowestBug = 0;
+		}
+		
+		# Down bug select
+		if (Value.Asi.showFmsEcon and Value.Asi.Tape.fmsEcon < -56 and
+			(!Value.Asi.showPreSel or Value.Asi.Tape.preSel >= -52 or Value.Asi.fmsEcon >= Value.Asi.preSel) and
+			(!Value.Asi.showSel or Value.Asi.Tape.sel >= -52 or Value.Asi.fmsEcon >= Value.Asi.sel) and
+			(!Value.Asi.showFms or Value.Asi.Tape.fms >= -56 or Value.Asi.fmsEcon >= Value.Asi.fms)) {
+			Value.Asi.highestBug = 4;
+		} else if (Value.Asi.showFms and Value.Asi.Tape.fms < -56 and
+			(!Value.Asi.showPreSel or Value.Asi.Tape.preSel >= -52 or Value.Asi.fms >= Value.Asi.preSel) and
+			(!Value.Asi.showSel or Value.Asi.Tape.sel >= -52 or Value.Asi.fms >= Value.Asi.sel)) {
+			Value.Asi.highestBug = 3;
+		} else if (Value.Asi.showSel and Value.Asi.Tape.sel < -52 and
+			(!Value.Asi.showPreSel or Value.Asi.Tape.preSel >= -52 or Value.Asi.sel >= Value.Asi.preSel)) {
+			Value.Asi.highestBug = 2;
+		} else if (Value.Asi.showPreSel and Value.Asi.Tape.preSel < -52) {
+			Value.Asi.highestBug = 1;
+		} else {
+			Value.Asi.highestBug = 0;
+		}
+		
+		if (Value.Asi.lowestBug == 1 or Value.Asi.showTaxi) {
+			if (Value.Asi.showTaxi) {
+				me["ASI_bugs_up"].setTranslation(0, 0);
+			} else {
+				me["ASI_bugs_up"].setTranslation(0, math.clamp((Value.Asi.Tape.preSel * -4.4866) + 303.352, 0, 70));
+			}
+			
 			me["ASI_fms_up"].hide();
 			
 			if (Value.Asi.preSel > Value.Asi.vmoMmo and Value.Asi.flapGearMax > 0) {
@@ -1184,7 +1261,8 @@ var CanvasBase = {
 			}
 			
 			me["ASI_sel_up_text"].show();
-		} else if (Value.Asi.Tape.sel > 60 and Value.Afs.spdPitchAvail and !Value.Afs.fmsSpdDriving) { # It will never go outside envelope
+		} else if (Value.Asi.lowestBug == 2) { # It will never go outside envelope
+			me["ASI_bugs_up"].setTranslation(0, math.clamp((Value.Asi.Tape.sel * -4.4866) + 303.352, 0, 70));
 			me["ASI_fms_up"].hide();
 			me["ASI_mach_sel_up"].setColor(1, 1, 1);
 			me["ASI_sel_up"].setColor(1, 1, 1);
@@ -1205,7 +1283,9 @@ var CanvasBase = {
 			}
 			
 			me["ASI_sel_up_text"].show();
-		} else if (Value.Asi.Tape.fms > 60 and Value.Afs.spdPitchAvail and Value.Asi.fms != 0) { # It will never go outside envelope
+		} else if (Value.Asi.lowestBug == 3) { # It will never go outside envelope
+			me["ASI_bugs_up"].setTranslation(0, math.clamp((Value.Asi.Tape.fms * -4.4866) + 303.352, 0, 70));
+			
 			if (Value.Afs.fmsSpdDriving) {
 				me["ASI_fms_up"].setColorFill(0.9608, 0, 0.7765);
 			} else {
@@ -1224,14 +1304,15 @@ var CanvasBase = {
 			}
 			
 			me["ASI_sel_up_text"].show();
-		} else if (Value.Asi.Tape.fmsEcon > 60 and Value.Afs.spdPitchAvail and Value.Asi.fmsEcon != 0 and Value.Asi.showFmsEcon) { # It will never go outside envelope
+		} else if (Value.Asi.lowestBug == 4) { # It will never go outside envelope
+			me["ASI_bugs_up"].setTranslation(0, math.clamp((Value.Asi.Tape.fmsEcon * -4.4866) + 303.352, 0, 70));
 			me["ASI_fms_up"].setColorFill(0, 0, 0);
 			me["ASI_fms_up"].show();
 			me["ASI_mach_sel_up"].hide();
 			me["ASI_sel_up"].hide();
 			me["ASI_sel_up_text"].setColor(0.9608, 0, 0.7765);
 			
-			if (fms.FmsSpd.ktsMach) {
+			if (fms.FmsSpd.econKtsMach) {
 				me["ASI_sel_up_text"].setText("." ~ sprintf("%3.0f", fms.FmsSpd.econMachCalc * 1000));
 			} else {
 				me["ASI_sel_up_text"].setText(sprintf("%3.0f", fms.FmsSpd.econKtsCalc));
@@ -1245,7 +1326,13 @@ var CanvasBase = {
 			me["ASI_sel_up_text"].hide();
 		}
 		
-		if (Value.Asi.Tape.preSel < -60 and !Value.Asi.showTaxi and !afs.Internal.syncedSpd and Value.Asi.showPreSel) {
+		if (Value.Asi.showTaxi) {
+			me["ASI_fms_dn"].hide();
+			me["ASI_mach_sel_dn"].hide();
+			me["ASI_sel_dn"].hide();
+			me["ASI_sel_dn_text"].hide();
+		} else if (Value.Asi.highestBug == 1) {
+			me["ASI_bugs_dn"].setTranslation(0, math.clamp((Value.Asi.Tape.preSel * -4.4866) - 303.352, -70, 0));
 			me["ASI_fms_dn"].hide();
 			
 			if (Value.Asi.preSel > Value.Asi.vmoMmo and Value.Asi.flapGearMax > 0) {
@@ -1289,7 +1376,8 @@ var CanvasBase = {
 			}
 			
 			me["ASI_sel_dn_text"].show();
-		} else if (Value.Asi.Tape.sel < -60 and Value.Afs.spdPitchAvail and !Value.Asi.showTaxi and !Value.Afs.fmsSpdDriving) { # It will never go outside envelope
+		} else if (Value.Asi.highestBug == 2) { # It will never go outside envelope
+			me["ASI_bugs_dn"].setTranslation(0, math.clamp((Value.Asi.Tape.sel * -4.4866) - 303.352, -70, 0));
 			me["ASI_fms_dn"].hide();
 			me["ASI_mach_sel_dn"].setColor(1, 1, 1);
 			me["ASI_sel_dn"].setColor(1, 1, 1);
@@ -1310,7 +1398,9 @@ var CanvasBase = {
 			}
 			
 			me["ASI_sel_dn_text"].show();
-		} else if (Value.Asi.Tape.fms < -60 and Value.Afs.spdPitchAvail and !Value.Asi.showTaxi and Value.Asi.fms != 0) { # It will never go outside envelope
+		} else if (Value.Asi.highestBug == 3) { # It will never go outside envelope
+			me["ASI_bugs_dn"].setTranslation(0, math.clamp((Value.Asi.Tape.fms * -4.4866) - 303.352, -70, 0));
+			
 			if (Value.Afs.fmsSpdDriving) {
 				me["ASI_fms_dn"].setColorFill(0.9608, 0, 0.7765);
 			} else {
@@ -1329,14 +1419,15 @@ var CanvasBase = {
 			}
 			
 			me["ASI_sel_dn_text"].show();
-		} else if (Value.Asi.Tape.fmsEcon < -60 and Value.Afs.spdPitchAvail and !Value.Asi.showTaxi and Value.Asi.fms != 0 and Value.Asi.showFmsEcon) { # It will never go outside envelope
+		} else if (Value.Asi.highestBug == 4) { # It will never go outside envelope
+			me["ASI_bugs_dn"].setTranslation(0, math.clamp((Value.Asi.Tape.fmsEcon * -4.4866) - 303.352, -70, 0));
 			me["ASI_fms_dn"].setColorFill(0, 0, 0);
 			me["ASI_fms_dn"].show();
 			me["ASI_mach_sel_dn"].hide();
 			me["ASI_sel_dn"].hide();
 			me["ASI_sel_dn_text"].setColor(0.9608, 0, 0.7765);
 			
-			if (fms.FmsSpd.ktsMach) {
+			if (fms.FmsSpd.econKtsMach) {
 				me["ASI_sel_dn_text"].setText("." ~ sprintf("%3.0f", fms.FmsSpd.econMachCalc * 1000));
 			} else {
 				me["ASI_sel_dn_text"].setText(sprintf("%3.0f", fms.FmsSpd.econKtsCalc));
@@ -1623,20 +1714,43 @@ var CanvasBase = {
 		Value.Alt.preSel = Value.Afs.altSel - Value.Alt.indicated;
 		Value.Alt.sel = Value.Afs.alt - Value.Alt.indicated;
 		
-		if (Value.Alt.preSel < -525 or Value.Alt.preSel > 525 or afs.Internal.syncedAlt) {
+		if (afs.Internal.syncedAlt) {
+			Value.Alt.showPreSel = 0;
+		} else {
+			Value.Alt.showPreSel = 1;
+		}
+		
+		if (!Value.Alt.showPreSel) {
 			me["ALT_presel"].hide();
 		} else  {
 			me["ALT_presel"].setTranslation(0, (Value.Alt.preSel / 100) * -50.9016);
 			me["ALT_presel"].show();
 		}
-		if (Value.Alt.sel < -525 or Value.Alt.sel > 525) {
-			me["ALT_sel"].hide();
-		} else  {
-			me["ALT_sel"].setTranslation(0, (Value.Alt.sel / 100) * -50.9016);
-			me["ALT_sel"].show();
+		me["ALT_sel"].setTranslation(0, (Value.Alt.sel / 100) * -50.9016);
+		me["ALT_sel"].show();
+		
+		# Up bug select
+		if (Value.Alt.sel > 460 and
+			(!Value.Alt.showPreSel or Value.Alt.preSel <= 460 or Value.Alt.sel <= Value.Alt.preSel)) {
+			Value.Alt.lowestBug = 2;
+		} else if (Value.Alt.showPreSel and Value.Alt.preSel > 460) {
+			Value.Alt.lowestBug = 1;
+		} else {
+			Value.Alt.lowestBug = 0;
 		}
 		
-		if (Value.Alt.preSel > 525 and !afs.Internal.syncedAlt) {
+		# Down bug select
+		if (Value.Alt.sel < -460 and
+			(!Value.Alt.showPreSel or Value.Alt.preSel >= -460 or Value.Alt.sel >= Value.Alt.preSel)) {
+			Value.Alt.highestBug = 2;
+		} else if (Value.Alt.showPreSel and Value.Alt.preSel < -460) {
+			Value.Alt.highestBug = 1;
+		} else {
+			Value.Alt.highestBug = 0;
+		}
+		
+		if (Value.Alt.lowestBug == 1) {
+			me["ALT_bugs_up"].setTranslation(0, math.clamp(((Value.Alt.preSel / 100) * -50.9016) + 303.352, 0, 70));
 			me["ALT_sel_up"].setColorFill(0, 0, 0);
 			me["ALT_sel_up"].show();
 			if (Value.Afs.altSel == 0) {
@@ -1651,7 +1765,8 @@ var CanvasBase = {
 				me["ALT_sel_up_text_T"].setText(sprintf("%2.0f", math.floor(Value.Afs.altSel / 1000)));
 				me["ALT_sel_up_text_T"].show();
 			}
-		} else if (Value.Alt.sel > 525) {
+		} else if (Value.Alt.lowestBug == 2) {
+			me["ALT_bugs_up"].setTranslation(0, math.clamp(((Value.Alt.sel / 100) * -50.9016) + 303.352, 0, 70));
 			me["ALT_sel_up"].setColorFill(1, 1, 1);
 			me["ALT_sel_up"].show();
 			if (Value.Afs.alt == 0) {
@@ -1672,7 +1787,8 @@ var CanvasBase = {
 			me["ALT_sel_up_text_T"].hide();
 		}
 		
-		if (Value.Alt.preSel < -525 and !afs.Internal.syncedAlt) {
+		if (Value.Alt.highestBug == 1) {
+			me["ALT_bugs_dn"].setTranslation(0, math.clamp(((Value.Alt.preSel / 100) * -50.9016) - 303.352, -70, 0));
 			me["ALT_sel_dn"].setColorFill(0, 0, 0);
 			me["ALT_sel_dn"].show();
 			if (Value.Afs.altSel == 0) {
@@ -1687,7 +1803,8 @@ var CanvasBase = {
 				me["ALT_sel_dn_text_T"].setText(sprintf("%2.0f", math.floor(Value.Afs.altSel / 1000)));
 				me["ALT_sel_dn_text_T"].show();
 			}
-		} else if (Value.Alt.sel < -525) {
+		} else if (Value.Alt.highestBug == 2) {
+			me["ALT_bugs_dn"].setTranslation(0, math.clamp(((Value.Alt.sel / 100) * -50.9016) - 303.352, -70, 0));
 			me["ALT_sel_dn"].setColorFill(1, 1, 1);
 			me["ALT_sel_dn"].show();
 			if (Value.Afs.alt == 0) {
@@ -2720,6 +2837,8 @@ var KeyList = [
 	"AI_slipskid_t",
 	"ALT_agl",
 	"ALT_bowtie",
+	"ALT_bugs_dn",
+	"ALT_bugs_up",
 	"ALT_error",
 	"ALT_five",
 	"ALT_five_T",
@@ -2757,6 +2876,8 @@ var KeyList = [
 	"ASI_bowtie_L",
 	"ASI_bowtie_mach",
 	"ASI_bowtie_R",
+	"ASI_bugs_dn",
+	"ASI_bugs_up",
 	"ASI_error",
 	"ASI_f15",
 	"ASI_f15_p",
