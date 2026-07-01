@@ -713,7 +713,6 @@
 			<yd-upper-b type="bool">1</yd-upper-b>
 		</fcc>
 		<flight n="0">
-			<aileron-drives-tiller type="bool">0</aileron-drives-tiller>
 			<dial-a-flap type="double">15</dial-a-flap> <!-- Rounded in md-11-fcc.xml -->
 			<elevator-trim type="double">-0.194</elevator-trim> <!-- About 3.0ANU -->
 			<elevator-trim-lever type="int">0</elevator-trim-lever>
@@ -1701,6 +1700,7 @@
 		<acconfig n="0">
 			<autoconfig-running type="bool">0</autoconfig-running>
 			<options n="0">
+				<aileron-drives-tiller type="bool">0</aileron-drives-tiller>
 				<autopush n="0">
 					<show-route type="bool">1</show-route>
 					<show-wingtip type="bool">1</show-wingtip>

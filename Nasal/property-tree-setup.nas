@@ -22,7 +22,6 @@ var Controls = {
 		shadeRightCmd: props.globals.getNode("/controls/cockpit/shade-right-cmd"),
 	},
 	Flight: {
-		aileronDrivesTiller: props.globals.getNode("/controls/flight/aileron-drives-tiller"),
 		aileronTrim: props.globals.getNode("/controls/flight/aileron-trim"),
 		autoCoordination: props.globals.getNode("/controls/flight/auto-coordination", 1),
 		autoSlatTimer: props.globals.getNode("/controls/flight/auto-slat-timer"),

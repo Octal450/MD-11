@@ -1531,7 +1531,7 @@
 				/systems/acconfig/options/separate-tiller-axis eq 1
 			</test>
 			<test value="/controls/flight/aileron">
-				/controls/flight/aileron-drives-tiller eq 1
+				/systems/acconfig/options/aileron-drives-tiller eq 1
 			</test>
 		</switch>
 		
@@ -1583,7 +1583,7 @@
 		<switch name="/systems/fcs/tiller/rudder-cmd-switch">
 			<default value="/controls/flight/rudder"/>
 			<test value="/controls/flight/aileron">
-				/controls/flight/aileron-drives-tiller eq 1
+				/systems/acconfig/options/aileron-drives-tiller eq 1
 			</test>
 		</switch>
 		

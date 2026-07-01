@@ -339,11 +339,9 @@ controls.applyBrakes = func(v, which = 0) { # No interpolate, that's bad, we wil
 	}
 }
 
+# Disable auto-coordination
 if (pts.Controls.Flight.autoCoordination.getBoolValue()) {
 	pts.Controls.Flight.autoCoordination.setBoolValue(0);
-	pts.Controls.Flight.aileronDrivesTiller.setBoolValue(1);
-} else {
-	pts.Controls.Flight.aileronDrivesTiller.setBoolValue(0);
 }
 
 setlistener("/controls/flight/auto-coordination", func() {

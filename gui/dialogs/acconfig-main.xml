@@ -341,6 +341,23 @@
 			</group>
 			
 			<checkbox>
+				<enable>
+					<not><property>/systems/acconfig/options/separate-tiller-axis</property></not>
+				</enable>
+				<label>Aileron Drives Tiller</label>
+				<halign>left</halign>
+				<property>/systems/acconfig/options/aileron-drives-tiller</property>
+				<binding>
+					<command>dialog-apply</command>
+				</binding>
+				<binding>
+					<command>nasal</command>
+					<script>acconfig.OPTIONS.write();</script>
+				</binding>
+				<live>true</live>
+			</checkbox>
+			
+			<checkbox>
 				<label>IRS Aligns Instantly</label>
 				<halign>left</halign>
 				<property>/systems/acconfig/options/irs-aligns-instantly</property>
