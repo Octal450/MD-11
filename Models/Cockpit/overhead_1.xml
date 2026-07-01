@@ -29,6 +29,9 @@
 		<object-name>AftTemp</object-name>
 		<object-name>AftTemp.light</object-name>
 		<object-name>overhead.pax.text</object-name>
+		<object-name>PaxLoadHundreds</object-name>
+		<object-name>PaxLoadOnes</object-name>
+		<object-name>PaxLoadTens</object-name>
 		<condition>
 			<not><property>options/freighter</property></not>
 		</condition>
