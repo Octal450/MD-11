@@ -10,7 +10,7 @@ var xx = nil;
 
 var Value = {
 	barRest: 293,
-	egtScale: 1000,
+	egtScale: 1025,
 	egtRed: 960,
 	egtStart: 750,
 	egtYellow: 925,
@@ -265,7 +265,7 @@ var CanvasBase = {
 			Value.egtStart = 535;
 			Value.egtYellow = 625;
 		} else {
-			Value.egtScale = 1000;
+			Value.egtScale = 1025;
 			Value.egtRed = 960;
 			Value.egtStart = 750;
 			Value.egtYellow = 925;
@@ -275,7 +275,7 @@ var CanvasBase = {
 			Value.Fadec.egt[0] = systems.ENGINES.egt[0].getValue();
 			
 			me["EGT1"].setText(sprintf("%d", math.round(Value.Fadec.egt[0])));
-			me["EGT1_needle"].setRotation(math.clamp((-44 + (Value.Fadec.egt[0] / Value.egtScale * 177)), -44, 133) * D2R);
+			me["EGT1_needle"].setRotation(math.clamp((-45 + (Value.Fadec.egt[0] / Value.egtScale * 180)), -45, 135) * D2R);
 			
 			if (systems.IGNITION.ign1.getBoolValue()) {
 				me["EGT1_ignition"].show();
@@ -293,17 +293,17 @@ var CanvasBase = {
 				me["EGT1"].setColor(1, 0, 0);
 				me["EGT1_box"].setColor(1, 0, 0);
 				me["EGT1_box"].show();
-				me["EGT1_needle"].setColorFill(1, 0, 0);
+				me["EGT1_needle"].setColor(1, 0, 0);
 			} else if (Value.Fadec.egt[0] - 0.5 > Value.egtYellow and pts.Instrumentation.Ead.egtYellowTimer[0].getValue() == 1) {
 				me["EGT1"].setColor(0.9412, 0.7255, 0);
 				me["EGT1_box"].setColor(0.9412, 0.7255, 0);
 				me["EGT1_box"].show();
-				me["EGT1_needle"].setColorFill(0.9412, 0.7255, 0);
+				me["EGT1_needle"].setColor(0.9412, 0.7255, 0);
 			} else {
 				me["EGT1"].setColor(1, 1, 1);
 				me["EGT1_box"].setColor(1, 1, 1);
 				me["EGT1_box"].hide();
-				me["EGT1_needle"].setColorFill(1, 1, 1);
+				me["EGT1_needle"].setColor(1, 1, 1);
 			}
 			
 			Value.Fadec.egtMax[0] = math.round(pts.Instrumentation.Ead.egtMax[0].getValue());
@@ -329,7 +329,7 @@ var CanvasBase = {
 			Value.Fadec.egt[1] = systems.ENGINES.egt[1].getValue();
 			
 			me["EGT2"].setText(sprintf("%d", math.round(Value.Fadec.egt[1])));
-			me["EGT2_needle"].setRotation(math.clamp((-44 + (Value.Fadec.egt[1] / Value.egtScale * 177)), -44, 133) * D2R);
+			me["EGT2_needle"].setRotation(math.clamp((-45 + (Value.Fadec.egt[1] / Value.egtScale * 180)), -45, 135) * D2R);
 			
 			if (systems.IGNITION.ign2.getBoolValue()) {
 				me["EGT2_ignition"].show();
@@ -347,17 +347,17 @@ var CanvasBase = {
 				me["EGT2"].setColor(1, 0, 0);
 				me["EGT2_box"].setColor(1, 0, 0);
 				me["EGT2_box"].show();
-				me["EGT2_needle"].setColorFill(1, 0, 0);
+				me["EGT2_needle"].setColor(1, 0, 0);
 			} else if (Value.Fadec.egt[1] - 0.5 > Value.egtYellow and pts.Instrumentation.Ead.egtYellowTimer[1].getValue() == 1) {
 				me["EGT2"].setColor(0.9412, 0.7255, 0);
 				me["EGT2_box"].setColor(0.9412, 0.7255, 0);
 				me["EGT2_box"].show();
-				me["EGT2_needle"].setColorFill(0.9412, 0.7255, 0);
+				me["EGT2_needle"].setColor(0.9412, 0.7255, 0);
 			} else {
 				me["EGT2"].setColor(1, 1, 1);
 				me["EGT2_box"].setColor(1, 1, 1);
 				me["EGT2_box"].hide();
-				me["EGT2_needle"].setColorFill(1, 1, 1);
+				me["EGT2_needle"].setColor(1, 1, 1);
 			}
 			
 			Value.Fadec.egtMax[1] = math.round(pts.Instrumentation.Ead.egtMax[1].getValue());
@@ -383,7 +383,7 @@ var CanvasBase = {
 			Value.Fadec.egt[2] = systems.ENGINES.egt[2].getValue();
 			
 			me["EGT3"].setText(sprintf("%d", math.round(Value.Fadec.egt[2])));
-			me["EGT3_needle"].setRotation(math.clamp((-44 + (Value.Fadec.egt[2] / Value.egtScale * 177)), -44, 133) * D2R);
+			me["EGT3_needle"].setRotation(math.clamp((-45 + (Value.Fadec.egt[2] / Value.egtScale * 180)), -45, 135) * D2R);
 			
 			if (systems.IGNITION.ign3.getBoolValue()) {
 				me["EGT3_ignition"].show();
@@ -401,17 +401,17 @@ var CanvasBase = {
 				me["EGT3"].setColor(1, 0, 0);
 				me["EGT3_box"].setColor(1, 0, 0);
 				me["EGT3_box"].show();
-				me["EGT3_needle"].setColorFill(1, 0, 0);
+				me["EGT3_needle"].setColor(1, 0, 0);
 			} else if (Value.Fadec.egt[2] - 0.5 > Value.egtYellow and pts.Instrumentation.Ead.egtYellowTimer[2].getValue() == 1) {
 				me["EGT3"].setColor(0.9412, 0.7255, 0);
 				me["EGT3_box"].setColor(0.9412, 0.7255, 0);
 				me["EGT3_box"].show();
-				me["EGT3_needle"].setColorFill(0.9412, 0.7255, 0);
+				me["EGT3_needle"].setColor(0.9412, 0.7255, 0);
 			} else {
 				me["EGT3"].setColor(1, 1, 1);
 				me["EGT3_box"].setColor(1, 1, 1);
 				me["EGT3_box"].hide();
-				me["EGT3_needle"].setColorFill(1, 1, 1);
+				me["EGT3_needle"].setColor(1, 1, 1);
 			}
 			
 			Value.Fadec.egtMax[2] = math.round(pts.Instrumentation.Ead.egtMax[2].getValue());
@@ -441,7 +441,7 @@ var CanvasBase = {
 				Value.Fadec.n2[0] = 0;
 				me["N21_needle"].setRotation(Value.needleRest);
 			} else {
-				me["N21_needle"].setRotation((-44 + (Value.Fadec.n2[0] / 120 * 177)) * D2R);
+				me["N21_needle"].setRotation((-45 + (Value.Fadec.n2[0] / 120 * 180)) * D2R);
 			}
 			
 			me["N21"].setText(sprintf("%5.1f", math.round(Value.Fadec.n2[0], 0.1)));
@@ -467,7 +467,7 @@ var CanvasBase = {
 				Value.Fadec.n2[1] = 0;
 				me["N22_needle"].setRotation(Value.needleRest);
 			} else {
-				me["N22_needle"].setRotation((-44 + (Value.Fadec.n2[1] / 120 * 177)) * D2R);
+				me["N22_needle"].setRotation((-45 + (Value.Fadec.n2[1] / 120 * 180)) * D2R);
 			}
 			
 			me["N22"].setText(sprintf("%5.1f", math.round(Value.Fadec.n2[1], 0.1)));
@@ -493,7 +493,7 @@ var CanvasBase = {
 				Value.Fadec.n2[2] = 0;
 				me["N23_needle"].setRotation(Value.needleRest);
 			} else {
-				me["N23_needle"].setRotation((-44 + (Value.Fadec.n2[2] / 120 * 177)) * D2R);
+				me["N23_needle"].setRotation((-45 + (Value.Fadec.n2[2] / 120 * 180)) * D2R);
 			}
 			
 			me["N23"].setText(sprintf("%5.1f", math.round(Value.Fadec.n2[2], 0.1)));
@@ -524,7 +524,7 @@ var CanvasBase = {
 			Value.egtStart = 535;
 			Value.egtYellow = 625;
 		} else {
-			Value.egtScale = 1000;
+			Value.egtScale = 1025;
 			Value.egtRed = 960;
 			Value.egtStart = 750;
 			Value.egtYellow = 925;
@@ -861,9 +861,9 @@ var CanvasGeDials = {
 		
 		me["N1Lim"].setText(sprintf("%5.1f", math.round(Value.Fadec.n1Limit, 0.1)));
 		
-		me["N11_lim"].setRotation((-44 + (Value.Fadec.n1Limit / 120 * 177)) * D2R);
-		me["N12_lim"].setRotation((-44 + (Value.Fadec.n1Limit / 120 * 177)) * D2R);
-		me["N13_lim"].setRotation((-44 + (Value.Fadec.n1Limit / 120 * 177)) * D2R);
+		me["N11_lim"].setRotation((-45 + (Value.Fadec.n1Limit / 120 * 180)) * D2R);
+		me["N12_lim"].setRotation((-45 + (Value.Fadec.n1Limit / 120 * 180)) * D2R);
+		me["N13_lim"].setRotation((-45 + (Value.Fadec.n1Limit / 120 * 180)) * D2R);
 		
 		# N1
 		if (Value.Fadec.powered[0]) {
@@ -873,11 +873,11 @@ var CanvasGeDials = {
 				Value.Fadec.n1[0] = 0;
 				me["N11_needle"].setRotation(Value.needleRest);
 			} else {
-				me["N11_needle"].setRotation((-44 + (Value.Fadec.n1[0] / 120 * 177)) * D2R);
+				me["N11_needle"].setRotation((-45 + (Value.Fadec.n1[0] / 120 * 180)) * D2R);
 			}
 			
 			if (!systems.FADEC.altn[0].getValue()) {
-				me["N11_thr"].setRotation((-44 + (systems.FADEC.targetN1[0].getValue() / 120 * 177)) * D2R);
+				me["N11_thr"].setRotation((-45 + (systems.FADEC.targetN1[0].getValue() / 120 * 180)) * D2R);
 				me["N11_thr"].show();
 			} else {
 				me["N11_thr"].hide();
@@ -920,11 +920,11 @@ var CanvasGeDials = {
 				Value.Fadec.n1[1] = 0;
 				me["N12_needle"].setRotation(Value.needleRest);
 			} else {
-				me["N12_needle"].setRotation((-44 + (Value.Fadec.n1[1] / 120 * 177)) * D2R);
+				me["N12_needle"].setRotation((-45 + (Value.Fadec.n1[1] / 120 * 180)) * D2R);
 			}
 			
 			if (!systems.FADEC.altn[1].getValue()) {
-				me["N12_thr"].setRotation((-44 + (systems.FADEC.targetN1[1].getValue() / 120 * 177)) * D2R);
+				me["N12_thr"].setRotation((-45 + (systems.FADEC.targetN1[1].getValue() / 120 * 180)) * D2R);
 				me["N12_thr"].show();
 			} else {
 				me["N12_thr"].hide();
@@ -967,11 +967,11 @@ var CanvasGeDials = {
 				Value.Fadec.n1[2] = 0;
 				me["N13_needle"].setRotation(Value.needleRest);
 			} else {
-				me["N13_needle"].setRotation((-44 + (Value.Fadec.n1[2] / 120 * 177)) * D2R);
+				me["N13_needle"].setRotation((-45 + (Value.Fadec.n1[2] / 120 * 180)) * D2R);
 			}
 			
 			if (!systems.FADEC.altn[2].getValue()) {
-				me["N13_thr"].setRotation((-44 + (systems.FADEC.targetN1[2].getValue() / 120 * 177)) * D2R);
+				me["N13_thr"].setRotation((-45 + (systems.FADEC.targetN1[2].getValue() / 120 * 180)) * D2R);
 				me["N13_thr"].show();
 			} else {
 				me["N13_thr"].hide();
