@@ -9,7 +9,7 @@ var pwTapes = nil;
 var xx = nil;
 
 var Value = {
-	barRest: 293,
+	barRest: 0,
 	egtScale: 1025,
 	egtRed: 960,
 	egtStart: 750,
@@ -42,7 +42,7 @@ var Value = {
 		checklistItems: ["", "LANDING GEAR", "STAB TRIM", "SLAT", "FLAP", "BRAKES", "SPOILERS"],
 		wow: 0,
 	},
-	needleRest: -44 * D2R,
+	needleRest: -45 * D2R,
 	tat: 0,
 };
 
