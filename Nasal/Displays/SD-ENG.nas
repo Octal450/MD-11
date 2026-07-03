@@ -245,33 +245,33 @@ var CanvasEngDials = {
 		Value.Eng.oilPsi[2] = systems.ENGINES.oilPsi[2].getValue();
 		
 		me["OilPsi1"].setText(sprintf("%d", Value.Eng.oilPsi[0]));
-		me["OilPsi1_needle"].setRotation((-44 + (Value.Eng.oilPsi[0] / Value.Eng.oilPsiScale * 177)) * D2R);
+		me["OilPsi1_needle"].setRotation((-45 + (Value.Eng.oilPsi[0] / Value.Eng.oilPsiScale * 180)) * D2R);
 		
 		me["OilPsi2"].setText(sprintf("%d", Value.Eng.oilPsi[1]));
-		me["OilPsi2_needle"].setRotation((-44 + (Value.Eng.oilPsi[1] / Value.Eng.oilPsiScale * 177)) * D2R);
+		me["OilPsi2_needle"].setRotation((-45 + (Value.Eng.oilPsi[1] / Value.Eng.oilPsiScale * 180)) * D2R);
 		
 		me["OilPsi3"].setText(sprintf("%d", Value.Eng.oilPsi[2]));
-		me["OilPsi3_needle"].setRotation((-44 + (Value.Eng.oilPsi[2] / Value.Eng.oilPsiScale * 177)) * D2R);
+		me["OilPsi3_needle"].setRotation((-45 + (Value.Eng.oilPsi[2] / Value.Eng.oilPsiScale * 180)) * D2R);
 		
 		# Oil Temp
 		if (Value.Eng.fadecPowered[0]) {
-			Value.Eng.oilTemp[0] = math.round(systems.ENGINES.oilTemp[0].getValue());
+			Value.Eng.oilTemp[0] = systems.ENGINES.oilTemp[0].getValue();
 			
-			me["OilTemp1"].setText(sprintf("%d", Value.Eng.oilTemp[0]));
+			me["OilTemp1"].setText(sprintf("%d", math.round(Value.Eng.oilTemp[0])));
 			me["OilTemp1"].show();
 			
-			me["OilTemp1_needle"].setRotation((-44 + (Value.Eng.oilTemp[0] / 190 * 177)) * D2R);
+			me["OilTemp1_needle"].setRotation((-45 + (Value.Eng.oilTemp[0] / 190 * 180)) * D2R);
 			me["OilTemp1_needle"].show();
 			
 			if (Value.Eng.type == "PW") {
 				if (Value.Eng.oilTemp[0] < 49.5) {
 					me["OilTemp1"].setColor(0.9412, 0.7255, 0);
 					me["OilTemp1_box"].show();
-					me["OilTemp1_needle"].setColorFill(0.9412, 0.7255, 0);
+					me["OilTemp1_needle"].setColor(0.9412, 0.7255, 0);
 				} else {
 					me["OilTemp1"].setColor(1, 1, 1);
 					me["OilTemp1_box"].hide();
-					me["OilTemp1_needle"].setColorFill(1, 1, 1);
+					me["OilTemp1_needle"].setColor(1, 1, 1);
 				}
 			} else {
 				me["OilTemp1_box"].hide();
@@ -283,23 +283,23 @@ var CanvasEngDials = {
 		}
 		
 		if (Value.Eng.fadecPowered[1]) {
-			Value.Eng.oilTemp[1] = math.round(systems.ENGINES.oilTemp[1].getValue());
+			Value.Eng.oilTemp[1] = systems.ENGINES.oilTemp[1].getValue();
 			
-			me["OilTemp2"].setText(sprintf("%d", Value.Eng.oilTemp[1]));
+			me["OilTemp2"].setText(sprintf("%d", math.round(Value.Eng.oilTemp[1])));
 			me["OilTemp2"].show();
 			
-			me["OilTemp2_needle"].setRotation((-44 + (Value.Eng.oilTemp[1] / 190 * 177)) * D2R);
+			me["OilTemp2_needle"].setRotation((-45 + (Value.Eng.oilTemp[1] / 190 * 180)) * D2R);
 			me["OilTemp2_needle"].show();
 			
 			if (Value.Eng.type == "PW") {
 				if (Value.Eng.oilTemp[1] < 49.5) {
 					me["OilTemp2"].setColor(0.9412, 0.7255, 0);
 					me["OilTemp2_box"].show();
-					me["OilTemp2_needle"].setColorFill(0.9412, 0.7255, 0);
+					me["OilTemp2_needle"].setColor(0.9412, 0.7255, 0);
 				} else {
 					me["OilTemp2"].setColor(1, 1, 1);
 					me["OilTemp2_box"].hide();
-					me["OilTemp2_needle"].setColorFill(1, 1, 1);
+					me["OilTemp2_needle"].setColor(1, 1, 1);
 				}
 			} else {
 				me["OilTemp2_box"].hide();
@@ -311,23 +311,23 @@ var CanvasEngDials = {
 		}
 		
 		if (Value.Eng.fadecPowered[2]) {
-			Value.Eng.oilTemp[2] = math.round(systems.ENGINES.oilTemp[2].getValue());
+			Value.Eng.oilTemp[2] = systems.ENGINES.oilTemp[2].getValue();
 			
-			me["OilTemp3"].setText(sprintf("%d", Value.Eng.oilTemp[2]));
+			me["OilTemp3"].setText(sprintf("%d", math.round(Value.Eng.oilTemp[2])));
 			me["OilTemp3"].show();
 			
-			me["OilTemp3_needle"].setRotation((-44 + (Value.Eng.oilTemp[2] / 190 * 177)) * D2R);
+			me["OilTemp3_needle"].setRotation((-45 + (Value.Eng.oilTemp[2] / 190 * 180)) * D2R);
 			me["OilTemp3_needle"].show();
 			
 			if (Value.Eng.type == "PW") {
 				if (Value.Eng.oilTemp[2] < 49.5) {
 					me["OilTemp3"].setColor(0.9412, 0.7255, 0);
 					me["OilTemp3_box"].show();
-					me["OilTemp3_needle"].setColorFill(0.9412, 0.7255, 0);
+					me["OilTemp3_needle"].setColor(0.9412, 0.7255, 0);
 				} else {
 					me["OilTemp3"].setColor(1, 1, 1);
 					me["OilTemp3_box"].hide();
-					me["OilTemp3_needle"].setColorFill(1, 1, 1);
+					me["OilTemp3_needle"].setColor(1, 1, 1);
 				}
 			} else {
 				me["OilTemp3_box"].hide();
@@ -460,16 +460,16 @@ var CanvasEngTapes = {
 		
 		# Oil Temp
 		if (Value.Eng.fadecPowered[0]) {
-			Value.Eng.oilTemp[0] = math.round(systems.ENGINES.oilTemp[0].getValue());
+			Value.Eng.oilTemp[0] = systems.ENGINES.oilTemp[0].getValue();
 			
-			me["OilTemp1"].setText(sprintf("%d", Value.Eng.oilTemp[0]));
+			me["OilTemp1"].setText(sprintf("%d", math.round(Value.Eng.oilTemp[0])));
 			me["OilTemp1"].show();
 			
 			me["OilTemp1_bar"].setTranslation(0, Value.Eng.oilTemp[0] / 190 * -251);
 			me["OilTemp1_bar"].show();
 			
 			if (Value.Eng.type == "PW") {
-				if (Value.Eng.oilTemp[0] <= 50) {
+				if (Value.Eng.oilTemp[0] < 49.5) {
 					me["OilTemp1"].setColor(0.9412, 0.7255, 0);
 					me["OilTemp1_bar"].setColorFill(0.9412, 0.7255, 0);
 					me["OilTemp1_box"].show();
@@ -488,16 +488,16 @@ var CanvasEngTapes = {
 		}
 		
 		if (Value.Eng.fadecPowered[1]) {
-			Value.Eng.oilTemp[1] = math.round(systems.ENGINES.oilTemp[1].getValue());
+			Value.Eng.oilTemp[1] = systems.ENGINES.oilTemp[1].getValue();
 			
-			me["OilTemp2"].setText(sprintf("%d", Value.Eng.oilTemp[1]));
+			me["OilTemp2"].setText(sprintf("%d", math.round(Value.Eng.oilTemp[1])));
 			me["OilTemp2"].show();
 			
 			me["OilTemp2_bar"].setTranslation(0, Value.Eng.oilTemp[1] / 190 * -251);
 			me["OilTemp2_bar"].show();
 			
 			if (Value.Eng.type == "PW") {
-				if (Value.Eng.oilTemp[1] <= 50) {
+				if (Value.Eng.oilTemp[1] < 49.5) {
 					me["OilTemp2"].setColor(0.9412, 0.7255, 0);
 					me["OilTemp2_bar"].setColorFill(0.9412, 0.7255, 0);
 					me["OilTemp2_box"].show();
@@ -516,16 +516,16 @@ var CanvasEngTapes = {
 		}
 		
 		if (Value.Eng.fadecPowered[2]) {
-			Value.Eng.oilTemp[2] = math.round(systems.ENGINES.oilTemp[2].getValue());
+			Value.Eng.oilTemp[2] = systems.ENGINES.oilTemp[2].getValue();
 			
-			me["OilTemp3"].setText(sprintf("%d", Value.Eng.oilTemp[2]));
+			me["OilTemp3"].setText(sprintf("%d", math.round(Value.Eng.oilTemp[2])));
 			me["OilTemp3"].show();
 			
 			me["OilTemp3_bar"].setTranslation(0, Value.Eng.oilTemp[2] / 190 * -251);
 			me["OilTemp3_bar"].show();
 			
 			if (Value.Eng.type == "PW") {
-				if (Value.Eng.oilTemp[2] <= 50) {
+				if (Value.Eng.oilTemp[2] < 49.5) {
 					me["OilTemp3"].setColor(0.9412, 0.7255, 0);
 					me["OilTemp3_bar"].setColorFill(0.9412, 0.7255, 0);
 					me["OilTemp3_box"].show();
