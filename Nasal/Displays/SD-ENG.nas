@@ -355,31 +355,31 @@ var CanvasEngDials = {
 		if (Value.Eng.oilQty[0] < 4.5) {
 			me["OilQty1"].setColor(0.9412, 0.7255, 0);
 			me["OilQty1_box"].show();
-			me["OilQty1_needle"].setColorFill(0.9412, 0.7255, 0);
+			me["OilQty1_needle"].setColor(0.9412, 0.7255, 0);
 		} else {
 			me["OilQty1"].setColor(1, 1, 1);
 			me["OilQty1_box"].hide();
-			me["OilQty1_needle"].setColorFill(1, 1, 1);
+			me["OilQty1_needle"].setColor(1, 1, 1);
 		}
 		
 		if (Value.Eng.oilQty[1] < 4.5) {
 			me["OilQty2"].setColor(0.9412, 0.7255, 0);
 			me["OilQty2_box"].show();
-			me["OilQty2_needle"].setColorFill(0.9412, 0.7255, 0);
+			me["OilQty2_needle"].setColor(0.9412, 0.7255, 0);
 		} else {
 			me["OilQty2"].setColor(1, 1, 1);
 			me["OilQty2_box"].hide();
-			me["OilQty2_needle"].setColorFill(1, 1, 1);
+			me["OilQty2_needle"].setColor(1, 1, 1);
 		}
 		
 		if (Value.Eng.oilQty[2] < 4.5) {
 			me["OilQty3"].setColor(0.9412, 0.7255, 0);
 			me["OilQty3_box"].show();
-			me["OilQty3_needle"].setColorFill(0.9412, 0.7255, 0);
+			me["OilQty3_needle"].setColor(0.9412, 0.7255, 0);
 		} else {
 			me["OilQty3"].setColor(1, 1, 1);
 			me["OilQty3_box"].hide();
-			me["OilQty3_needle"].setColorFill(1, 1, 1);
+			me["OilQty3_needle"].setColor(1, 1, 1);
 		}
 		
 		Value.Eng.oilQtyCline[0] = pts.Instrumentation.Sd.Eng.oilQtyCline[0].getValue();
