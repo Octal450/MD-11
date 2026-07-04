@@ -1845,6 +1845,10 @@
 					</product>
 				</sum>
 			</function>
+			<clipto>
+				<min>0</min>
+				<max>9.9</max>
+			</clipto>
 		</fcs_function>
 		
 		<fcs_function name="/engines/engine[0]/vib-n2">
@@ -1883,6 +1887,10 @@
 					</product>
 				</sum>
 			</function>
+			<clipto>
+				<min>0</min>
+				<max>9.9</max>
+			</clipto>
 		</fcs_function>
 		
 		<fcs_function name="/engines/engine[1]/vib-n1">
@@ -1921,6 +1929,10 @@
 					</product>
 				</sum>
 			</function>
+			<clipto>
+				<min>0</min>
+				<max>9.9</max>
+			</clipto>
 		</fcs_function>
 		
 		<fcs_function name="/engines/engine[1]/vib-n2">
@@ -1959,6 +1971,10 @@
 					</product>
 				</sum>
 			</function>
+			<clipto>
+				<min>0</min>
+				<max>9.9</max>
+			</clipto>
 		</fcs_function>
 		
 		<fcs_function name="/engines/engine[2]/vib-n1">
@@ -1997,6 +2013,10 @@
 					</product>
 				</sum>
 			</function>
+			<clipto>
+				<min>0</min>
+				<max>9.9</max>
+			</clipto>
 		</fcs_function>
 		
 		<fcs_function name="/engines/engine[2]/vib-n2">
@@ -2035,6 +2055,10 @@
 					</product>
 				</sum>
 			</function>
+			<clipto>
+				<min>0</min>
+				<max>9.9</max>
+			</clipto>
 		</fcs_function>
 	
 	</channel>
