@@ -105,6 +105,7 @@ Used to load panel states and set ground equipment, as well as configure simulat
 
 Simulation:
 * Aileron Drives Tiller: Drive the tiller from the aileron axis instead of the rudder.
+* Allow OPRF Damage (KMD-11): Enables OPRF damage code on the bonus KMD-11.
 * IRS Aligns Instantly: Skips the ~10 minute alignment process of the IRS.
 * Keyboard Mode: Maps flight controls to number pad and number rows instead of view shortcuts.
 * Open When FlightGear Starts: Opens the Aircraft Configuration Center automatically when FlightGear starts.
@@ -112,7 +113,6 @@ Simulation:
 
 Aircraft:
 * 8.33KHz Radio Equipped: Equips the COMM radios with the new 8.33KHz VHF frequency spacing.
-* Allow OPRF Damage (KMD-11): Enables OPRF damage code on the bonus KMD-11.
 * Cabin Temp In Fahrenheit: Display cabin temperatures on the AIR synoptic in degrees Fahrenheit.
 * Deflected Ailerons Equipped (PIP): Equips the aircraft with the deflected ailerons system.
 * Engine Tape Gauges (EAD &amp; SD): Equips the EAD with the tape style engine gauges rather than dials.

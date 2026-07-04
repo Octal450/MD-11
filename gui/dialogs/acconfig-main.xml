@@ -355,6 +355,29 @@
 			</checkbox>
 			
 			<checkbox>
+				<enable>
+					<and>
+						<equals>
+							<property>/position/wow</property>
+							<value>1</value>
+						</equals>
+						<less-than>
+							<property>/velocities/groundspeed-kt</property>
+							<value>2</value>
+						</less-than>
+						<property>/systems/acconfig/damage-installed</property>
+					</and>
+				</enable>
+				<label>Allow OPRF Damage (KMD-11)</label>
+				<halign>left</halign>
+				<property>/payload/armament/msg</property>
+				<binding>
+					<command>dialog-apply</command>
+				</binding>
+				<live>true</live>
+			</checkbox>
+			
+			<checkbox>
 				<label>IRS Aligns Instantly</label>
 				<halign>left</halign>
 				<property>/systems/acconfig/options/irs-aligns-instantly</property>
@@ -437,29 +460,6 @@
 						acconfig.OPTIONS.write();
 						instruments.RADIOS.toggle833();
 					</script>
-				</binding>
-				<live>true</live>
-			</checkbox>
-			
-			<checkbox>
-				<enable>
-					<and>
-						<equals>
-							<property>/position/wow</property>
-							<value>1</value>
-						</equals>
-						<less-than>
-							<property>/velocities/groundspeed-kt</property>
-							<value>2</value>
-						</less-than>
-						<property>/systems/acconfig/damage-installed</property>
-					</and>
-				</enable>
-				<label>Allow OPRF Damage (KMD-11)</label>
-				<halign>left</halign>
-				<property>/payload/armament/msg</property>
-				<binding>
-					<command>dialog-apply</command>
 				</binding>
 				<live>true</live>
 			</checkbox>
