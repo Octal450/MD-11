@@ -1065,7 +1065,7 @@
 		<format>%3.0f</format>
 		<property>it-autoflight/input/kts</property>
 		<truncate>false</truncate>
-		<font>Std7SegCustom.ttf</font>
+		<font>Std7Seg.ttf</font>
 		<draw-text>true</draw-text>
 		<draw-alignment>false</draw-alignment>
 		<draw-boundingbox>false</draw-boundingbox>
@@ -1088,7 +1088,7 @@
 		<format>.%3.0f</format>
 		<property>it-autoflight/input/mach-x1000</property>
 		<truncate>false</truncate>
-		<font>Std7SegCustom.ttf</font>
+		<font>Std7Seg.ttf</font>
 		<draw-text>true</draw-text>
 		<draw-alignment>false</draw-alignment>
 		<draw-boundingbox>false</draw-boundingbox>
@@ -1109,7 +1109,7 @@
 		<axis-alignment>yz-plane</axis-alignment>
 		<type>literal</type>
 		<text>---</text>
-		<font>Std7SegCustom.ttf</font>
+		<font>Std7Seg.ttf</font>
 		<draw-text>true</draw-text>
 		<draw-alignment>false</draw-alignment>
 		<draw-boundingbox>false</draw-boundingbox>
@@ -1130,7 +1130,7 @@
 		<axis-alignment>yz-plane</axis-alignment>
 		<type>literal</type>
 		<text>.888</text>
-		<font>Std7SegCustom.ttf</font>
+		<font>Std7Seg.ttf</font>
 		<draw-text>true</draw-text>
 		<draw-alignment>false</draw-alignment>
 		<draw-boundingbox>false</draw-boundingbox>
@@ -1245,7 +1245,7 @@
 		<format>%03.0f</format>
 		<property>it-autoflight/input/hdg</property>
 		<truncate>false</truncate>
-		<font>Std7SegCustom.ttf</font>
+		<font>Std7Seg.ttf</font>
 		<draw-text>true</draw-text>
 		<draw-alignment>false</draw-alignment>
 		<draw-boundingbox>false</draw-boundingbox>
@@ -1266,7 +1266,7 @@
 		<axis-alignment>yz-plane</axis-alignment>
 		<type>literal</type>
 		<text>---</text>
-		<font>Std7SegCustom.ttf</font>
+		<font>Std7Seg.ttf</font>
 		<draw-text>true</draw-text>
 		<draw-alignment>false</draw-alignment>
 		<draw-boundingbox>false</draw-boundingbox>
@@ -1287,7 +1287,7 @@
 		<axis-alignment>yz-plane</axis-alignment>
 		<type>literal</type>
 		<text>888</text>
-		<font>Std7SegCustom.ttf</font>
+		<font>Std7Seg.ttf</font>
 		<draw-text>true</draw-text>
 		<draw-alignment>false</draw-alignment>
 		<draw-boundingbox>false</draw-boundingbox>
@@ -1389,7 +1389,7 @@
 		<format>%03.0f</format>
 		<property>it-autoflight/input/alt</property>
 		<truncate>false</truncate>
-		<font>Std7SegCustom.ttf</font>
+		<font>Std7Seg.ttf</font>
 		<draw-text>true</draw-text>
 		<draw-alignment>false</draw-alignment>
 		<draw-boundingbox>false</draw-boundingbox>
@@ -1410,7 +1410,7 @@
 		<axis-alignment>yz-plane</axis-alignment>
 		<type>literal</type>
 		<text>88888</text>
-		<font>Std7SegCustom.ttf</font>
+		<font>Std7Seg.ttf</font>
 		<draw-text>true</draw-text>
 		<draw-alignment>false</draw-alignment>
 		<draw-boundingbox>false</draw-boundingbox>
@@ -1498,7 +1498,7 @@
 		<format>%4.0f</format>
 		<property>it-autoflight/input/vs</property>
 		<truncate>false</truncate>
-		<font>Std7SegCustom.ttf</font>
+		<font>Std7Seg.ttf</font>
 		<draw-text>true</draw-text>
 		<draw-alignment>false</draw-alignment>
 		<draw-boundingbox>false</draw-boundingbox>
@@ -1521,7 +1521,7 @@
 		<format>%2.1f</format>
 		<property>it-autoflight/input/fpa</property>
 		<truncate>false</truncate>
-		<font>Std7SegCustom.ttf</font>
+		<font>Std7Seg.ttf</font>
 		<draw-text>true</draw-text>
 		<draw-alignment>false</draw-alignment>
 		<draw-boundingbox>false</draw-boundingbox>
@@ -1542,7 +1542,7 @@
 		<axis-alignment>yz-plane</axis-alignment>
 		<type>literal</type>
 		<text>----</text>
-		<font>Std7SegCustom.ttf</font>
+		<font>Std7Seg.ttf</font>
 		<draw-text>true</draw-text>
 		<draw-alignment>false</draw-alignment>
 		<draw-boundingbox>false</draw-boundingbox>
@@ -1563,7 +1563,7 @@
 		<axis-alignment>yz-plane</axis-alignment>
 		<type>literal</type>
 		<text>-888.8</text>
-		<font>Std7SegCustom.ttf</font>
+		<font>Std7Seg.ttf</font>
 		<draw-text>true</draw-text>
 		<draw-alignment>false</draw-alignment>
 		<draw-boundingbox>false</draw-boundingbox>

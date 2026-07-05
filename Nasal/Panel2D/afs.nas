@@ -42,7 +42,7 @@ var afsCanvas = {
 		me._svgKeys = me.getKeys();
 		foreach(me._key; me._svgKeys) {
 			me[me._key] = me._svg.getElementById(me._key);
-			if (find("_7seg", me._key) != -1) me[me._key].setFont("Std7SegCustom.ttf");
+			if (find("_7seg", me._key) != -1) me[me._key].setFont("Std7Seg.ttf");
 		}
 		
 		# Set up clickspots

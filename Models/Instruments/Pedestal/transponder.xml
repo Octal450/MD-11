@@ -73,7 +73,7 @@
 		<format>%1.0f</format>
 		<property>instrumentation/transponder/output/digit[0]</property>
 		<truncate>false</truncate>
-		<font>Std7SegCustom.ttf</font>
+		<font>Std7Seg.ttf</font>
 		<draw-text>true</draw-text>
 		<draw-alignment>false</draw-alignment>
 		<draw-boundingbox>false</draw-boundingbox>
@@ -96,7 +96,7 @@
 		<axis-alignment>xz-plane</axis-alignment>
 		<type>literal</type>
 		<text>8</text>
-		<font>Std7SegCustom.ttf</font>
+		<font>Std7Seg.ttf</font>
 		<draw-text>true</draw-text>
 		<draw-alignment>false</draw-alignment>
 		<draw-boundingbox>false</draw-boundingbox>
@@ -136,7 +136,7 @@
 		<format>%1.0f</format>
 		<property>instrumentation/transponder/output/digit[1]</property>
 		<truncate>false</truncate>
-		<font>Std7SegCustom.ttf</font>
+		<font>Std7Seg.ttf</font>
 		<draw-text>true</draw-text>
 		<draw-alignment>false</draw-alignment>
 		<draw-boundingbox>false</draw-boundingbox>
@@ -159,7 +159,7 @@
 		<axis-alignment>xz-plane</axis-alignment>
 		<type>literal</type>
 		<text>8</text>
-		<font>Std7SegCustom.ttf</font>
+		<font>Std7Seg.ttf</font>
 		<draw-text>true</draw-text>
 		<draw-alignment>false</draw-alignment>
 		<draw-boundingbox>false</draw-boundingbox>
@@ -199,7 +199,7 @@
 		<format>%1.0f</format>
 		<property>instrumentation/transponder/output/digit[2]</property>
 		<truncate>false</truncate>
-		<font>Std7SegCustom.ttf</font>
+		<font>Std7Seg.ttf</font>
 		<draw-text>true</draw-text>
 		<draw-alignment>false</draw-alignment>
 		<draw-boundingbox>false</draw-boundingbox>
@@ -222,7 +222,7 @@
 		<axis-alignment>xz-plane</axis-alignment>
 		<type>literal</type>
 		<text>8</text>
-		<font>Std7SegCustom.ttf</font>
+		<font>Std7Seg.ttf</font>
 		<draw-text>true</draw-text>
 		<draw-alignment>false</draw-alignment>
 		<draw-boundingbox>false</draw-boundingbox>
@@ -262,7 +262,7 @@
 		<format>%1.0f</format>
 		<property>instrumentation/transponder/output/digit[3]</property>
 		<truncate>false</truncate>
-		<font>Std7SegCustom.ttf</font>
+		<font>Std7Seg.ttf</font>
 		<draw-text>true</draw-text>
 		<draw-alignment>false</draw-alignment>
 		<draw-boundingbox>false</draw-boundingbox>
@@ -285,7 +285,7 @@
 		<axis-alignment>xz-plane</axis-alignment>
 		<type>literal</type>
 		<text>8</text>
-		<font>Std7SegCustom.ttf</font>
+		<font>Std7Seg.ttf</font>
 		<draw-text>true</draw-text>
 		<draw-alignment>false</draw-alignment>
 		<draw-boundingbox>false</draw-boundingbox>

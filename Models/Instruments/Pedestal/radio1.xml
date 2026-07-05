@@ -392,7 +392,7 @@
 		<format>%7.3f</format>
 		<property>instrumentation/crp[0]/active</property>
 		<truncate>false</truncate>
-		<font>Std7SegCustom.ttf</font>
+		<font>Std7Seg.ttf</font>
 		<draw-text>true</draw-text>
 		<draw-alignment>false</draw-alignment>
 		<draw-boundingbox>false</draw-boundingbox>
@@ -415,7 +415,7 @@
 		<axis-alignment>xz-plane</axis-alignment>
 		<type>literal</type>
 		<text>888.888</text>
-		<font>Std7SegCustom.ttf</font>
+		<font>Std7Seg.ttf</font>
 		<draw-text>true</draw-text>
 		<draw-alignment>false</draw-alignment>
 		<draw-boundingbox>false</draw-boundingbox>
@@ -441,7 +441,7 @@
 		<format>%7.3f</format>
 		<property>instrumentation/crp[0]/stby</property>
 		<truncate>false</truncate>
-		<font>Std7SegCustom.ttf</font>
+		<font>Std7Seg.ttf</font>
 		<draw-text>true</draw-text>
 		<draw-alignment>false</draw-alignment>
 		<draw-boundingbox>false</draw-boundingbox>
@@ -464,7 +464,7 @@
 		<axis-alignment>xz-plane</axis-alignment>
 		<type>literal</type>
 		<text>888.888</text>
-		<font>Std7SegCustom.ttf</font>
+		<font>Std7Seg.ttf</font>
 		<draw-text>true</draw-text>
 		<draw-alignment>false</draw-alignment>
 		<draw-boundingbox>false</draw-boundingbox>
