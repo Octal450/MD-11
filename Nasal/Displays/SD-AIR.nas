@@ -136,18 +136,21 @@ var CanvasAir = {
 		Value.Air.cargoAftTarget = systems.PNEUMATICS.Hvac.cargoAftTarget.getValue();
 		Value.Air.cargoFwdTarget = systems.PNEUMATICS.Hvac.cargoFwdTarget.getValue();
 		
+		me["Cockpit_temp"].setText(sprintf("%d", math.round(condF2C(systems.PNEUMATICS.Hvac.cockpitTemp.getValue()))) ~ "g");
 		if (Value.Air.cockpitTarget >= 60) {
 			me["Cockpit_set"].setText(sprintf("%d", math.round(condF2C(Value.Air.cockpitTarget))) ~ "g");
 		} else {
 			me["Cockpit_set"].setText("OFF");
 		}
 		
+		me["CabinFwd_temp"].setText(sprintf("%d", math.round(condF2C(systems.PNEUMATICS.Hvac.cabinFwdTemp.getValue()))) ~ "g");
 		if (Value.Air.cabinFwdTarget >= 60) {
 			me["CabinFwd_set"].setText(sprintf("%d", math.round(condF2C(Value.Air.cabinFwdTarget))) ~ "g");
 		} else {
 			me["CabinFwd_set"].setText("OFF");
 		}
 		
+		me["CabinMid_temp"].setText(sprintf("%d", math.round(condF2C(systems.PNEUMATICS.Hvac.cabinMidTemp.getValue()))) ~ "g");
 		if (Value.Air.cabinMidTarget >= 60) {
 			me["CabinMid_set"].setText(sprintf("%d", math.round(condF2C(Value.Air.cabinMidTarget))) ~ "g");
 		} else {
@@ -155,6 +158,7 @@ var CanvasAir = {
 		}
 		
 		if (!Value.Air.freighter) {
+			me["CabinAft_temp"].setText(sprintf("%d", math.round(condF2C(systems.PNEUMATICS.Hvac.cabinAftTemp.getValue()))) ~ "g");
 			if (Value.Air.cabinAftTarget >= 60) {
 				me["CabinAft_set"].setText(sprintf("%d", math.round(condF2C(Value.Air.cabinAftTarget))) ~ "g");
 			} else {
@@ -162,12 +166,16 @@ var CanvasAir = {
 			}
 		}
 		
+		me["CargoFwd_temp"].setText(sprintf("%d", math.round(condF2C(systems.PNEUMATICS.Hvac.cargoFwdTemp.getValue()))) ~ "g");
 		if (Value.Air.cargoFwdTarget >= 35) {
 			me["CargoFwd_set"].setText(sprintf("%d", math.round(condF2C(Value.Air.cargoFwdTarget))) ~ "g");
 		} else {
 			me["CargoFwd_set"].setText("OFF");
 		}
 		
+		me["CargoMid_temp"].setText(sprintf("%d", math.round(condF2C(systems.PNEUMATICS.Hvac.cargoMidTemp.getValue()))) ~ "g");
+		
+		me["CargoAft_temp"].setText(sprintf("%d", math.round(condF2C(systems.PNEUMATICS.Hvac.cargoAftTemp.getValue()))) ~ "g");
 		if (Value.Air.cargoAftTarget >= 35) {
 			me["CargoAft_set"].setText(sprintf("%d", math.round(condF2C(Value.Air.cargoAftTarget))) ~ "g");
 		} else {
@@ -605,6 +613,7 @@ var KeyListAir = [
 	"CabinFwd_duct",
 	"CabinFwd_set",
 	"CabinFwd_set_error",
+	"CabinFwd_temp",
 	"CabinFwd_temp_error",
 	"CabinLand",
 	"CabinLand_error",
@@ -612,6 +621,7 @@ var KeyListAir = [
 	"CabinMid_duct",
 	"CabinMid_set",
 	"CabinMid_set_error",
+	"CabinMid_temp",
 	"CabinMid_temp_error",
 	"CabinRate",
 	"CabinRate_box",
@@ -620,15 +630,19 @@ var KeyListAir = [
 	"CabinRateUp",
 	"CargoAft_set",
 	"CargoAft_set_error",
+	"CargoAft_temp",
 	"CargoAft_temp_error",
 	"CargoFwd_set",
 	"CargoFwd_set_error",
+	"CargoFwd_temp",
 	"CargoFwd_temp_error",
+	"CargoMid_temp",
 	"CargoMid_temp_error",
 	"Cockpit_dtemp_error",
 	"Cockpit_duct",
 	"Cockpit_set",
 	"Cockpit_set_error",
+	"Cockpit_temp",
 	"Cockpit_temp_error",
 	"Isol12",
 	"Isol12_disag",

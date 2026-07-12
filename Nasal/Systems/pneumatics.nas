@@ -9,11 +9,18 @@ var PNEUMATICS = {
 	},
 	Hvac: {
 		cabinAftTarget: props.globals.getNode("/systems/pneumatics/hvac/cabin-aft-target"),
+		cabinAftTemp: props.globals.getNode("/systems/pneumatics/hvac/cabin-aft-temp"),
 		cabinFwdTarget: props.globals.getNode("/systems/pneumatics/hvac/cabin-fwd-target"),
+		cabinFwdTemp: props.globals.getNode("/systems/pneumatics/hvac/cabin-fwd-temp"),
 		cabinMidTarget: props.globals.getNode("/systems/pneumatics/hvac/cabin-mid-target"),
+		cabinMidTemp: props.globals.getNode("/systems/pneumatics/hvac/cabin-mid-temp"),
 		cargoAftTarget: props.globals.getNode("/systems/pneumatics/hvac/cargo-aft-target"),
+		cargoAftTemp: props.globals.getNode("/systems/pneumatics/hvac/cargo-aft-temp"),
 		cargoFwdTarget: props.globals.getNode("/systems/pneumatics/hvac/cargo-fwd-target"),
+		cargoFwdTemp: props.globals.getNode("/systems/pneumatics/hvac/cargo-fwd-temp"),
+		cargoMidTemp: props.globals.getNode("/systems/pneumatics/hvac/cargo-mid-temp"),
 		cockpitTarget: props.globals.getNode("/systems/pneumatics/hvac/cockpit-target"),
+		cockpitTemp: props.globals.getNode("/systems/pneumatics/hvac/cockpit-temp"),
 	},
 	PackCmd: {
 		pack1: props.globals.getNode("/systems/pneumatics/pack-1-cmd"),
@@ -96,7 +103,7 @@ var PNEUMATICS = {
 		me.Controls.cabinAftTemp.setValue(0.45);
 		me.Controls.cabinFwdTemp.setValue(0.45);
 		me.Controls.cabinMidTemp.setValue(0.45);
-		me.Controls.cargoFwdTemp.setValue(0.5);
+		me.Controls.cargoFwdTemp.setValue(1);
 		me.Controls.cargoAftTemp.setValue(0.4);
 		me.Controls.cockpitTemp.setValue(0.45);
 		me.Controls.econ.setBoolValue(1);

@@ -1,0 +1,350 @@
+<?xml version="1.0"?>
+
+<!-- McDonnell Douglas MD-11 HVAC -->
+<!-- Copyright (c) 2026 Josh Davidson (Octal450) -->
+
+<system name="MD-11: HVAC">
+	
+	<property value="75">/systems/pneumatics/hvac/cabin-aft-temp</property>
+	<property value="75">/systems/pneumatics/hvac/cabin-fwd-temp</property>
+	<property value="75">/systems/pneumatics/hvac/cabin-mid-temp</property>
+	<property value="68">/systems/pneumatics/hvac/cargo-aft-temp</property>
+	<property value="70">/systems/pneumatics/hvac/cargo-fwd-temp</property>
+	<property value="68">/systems/pneumatics/hvac/cargo-mid-temp</property>
+	<property value="75">/systems/pneumatics/hvac/cockpit-temp</property>
+	
+	<!--
+	Cargo Mid zone is heated but not cooled or ventilated
+	Freighters have different upper zones: Cockpit, Courier, and Cargo. The Courier zone is mapped to Cabin Fwd, and the Cargo zone is mapped to Cabin Mid.
+	Cabin Aft simply mirrors Cabin Mid to "simulate" a larger zone, which corrects how it affects the Courier (Cabin Fwd) zone.
+	-->
+	
+	<channel name="HVAC Logic"> <!-- The airplane is calibrated in Fahrenheit since it's American designed, so that's what I'll use here -->
+		
+		<summer name="/systems/pneumatics/hvac/pack-flow">
+			<input>/systems/pneumatics/pack-1-flow</input>
+			<input>/systems/pneumatics/pack-2-flow</input>
+			<input>/systems/pneumatics/pack-3-flow</input>
+		</summer>
+		
+		<!-- HVAC Targets -->
+		<fcs_function name="/systems/pneumatics/hvac/cockpit-target">
+			<function>
+				<table>
+					<independentVar lookup="row">/controls/pneumatics/cockpit-temp</independentVar> <!-- 0 to 0.85 -->
+					<tableData>
+						0.00   0
+						0.05  65
+						0.85  85
+					</tableData>
+				</table>
+			</function>
+		</fcs_function>
+		
+		<fcs_function name="/systems/pneumatics/hvac/cabin-fwd-target">
+			<function>
+				<table>
+					<independentVar lookup="row">/controls/pneumatics/cabin-fwd-temp</independentVar> <!-- 0 to 0.85 -->
+					<tableData>
+						0.00   0
+						0.05  65
+						0.85  85
+					</tableData>
+				</table>
+			</function>
+		</fcs_function>
+		
+		<fcs_function name="/systems/pneumatics/hvac/cabin-mid-target">
+			<function>
+				<table>
+					<independentVar lookup="row">/controls/pneumatics/cabin-mid-temp</independentVar> <!-- 0 to 0.85 -->
+					<tableData>
+						0.00   0
+						0.05  65
+						0.85  85
+					</tableData>
+				</table>
+			</function>
+		</fcs_function>
+		
+		<fcs_function name="/systems/pneumatics/hvac/cabin-aft-target">
+			<function>
+				<table>
+					<independentVar lookup="row">/controls/pneumatics/cabin-aft-temp</independentVar> <!-- 0 to 0.85 -->
+					<tableData>
+						0.00   0
+						0.05  65
+						0.85  85
+					</tableData>
+				</table>
+			</function>
+		</fcs_function>
+		
+		<fcs_function name="/systems/pneumatics/hvac/cargo-fwd-target">
+			<function>
+				<table>
+					<independentVar lookup="row">/controls/pneumatics/cargo-fwd-temp</independentVar> <!-- 0 to 1 -->
+					<tableData>
+						0.0   0
+						0.5  40
+						1.0  70
+					</tableData>
+				</table>
+			</function>
+		</fcs_function>
+		
+		<fcs_function name="/systems/pneumatics/hvac/cargo-aft-target">
+			<function>
+				<table>
+					<independentVar lookup="row">/controls/pneumatics/cargo-aft-temp</independentVar> <!-- 0 to 0.75 -->
+					<tableData>
+						0.00   0
+						0.05  40
+						0.75  95
+					</tableData>
+				</table>
+			</function>
+		</fcs_function>
+		
+		<!-- Temperatures -->
+		<summer name="/systems/pneumatics/hvac/cockpit-temp-environment-error">
+			<input>/systems/pneumatics/hvac/cockpit-temp</input>
+			<input>-/environment/temperature-degf</input>
+		</summer>
+		
+		<switch name="/systems/pneumatics/hvac/cockpit-temp-environment-rate">
+			<default value="0"/>
+			<test value="-0.00045">
+				/systems/pneumatics/hvac/cockpit-temp-environment-error gt 0.01
+			</test>
+			<test value="-0.0003">
+				/systems/pneumatics/hvac/cockpit-temp-environment-error lt -0.01
+			</test>
+		</switch>
+		
+		<fcs_function name="/systems/pneumatics/hvac/cockpit-temp-calc">
+			<function>
+				<sum>
+					<property>/systems/pneumatics/hvac/cockpit-temp</property>
+					<product> <!-- Environment Factor -->
+						<property>/systems/pneumatics/hvac/cockpit-temp-environment-error</property>
+						<property>/systems/pneumatics/hvac/cockpit-temp-environment-rate</property>
+						<property>simulation/channel-dt</property>
+					</product>
+				</sum>
+			</function>
+			<output>/systems/pneumatics/hvac/cockpit-temp</output>
+			<clipto> <!-- Keep it reasonable -->
+				<min>32</min>
+				<max>99</max>
+			</clipto>
+		</fcs_function>
+		
+		<summer name="/systems/pneumatics/hvac/cabin-fwd-temp-environment-error">
+			<input>/systems/pneumatics/hvac/cabin-fwd-temp</input>
+			<input>-/environment/temperature-degf</input>
+		</summer>
+		
+		<switch name="/systems/pneumatics/hvac/cabin-fwd-temp-environment-rate">
+			<default value="0"/>
+			<test value="-0.00045">
+				/systems/pneumatics/hvac/cabin-fwd-temp-environment-error gt 0.01
+			</test>
+			<test value="-0.0003">
+				/systems/pneumatics/hvac/cabin-fwd-temp-environment-error lt -0.01
+			</test>
+		</switch>
+		
+		<fcs_function name="/systems/pneumatics/hvac/cabin-fwd-temp-calc">
+			<function>
+				<sum>
+					<property>/systems/pneumatics/hvac/cabin-fwd-temp</property>
+					<product> <!-- Environment Factor -->
+						<property>/systems/pneumatics/hvac/cabin-fwd-temp-environment-error</property>
+						<property>/systems/pneumatics/hvac/cabin-fwd-temp-environment-rate</property>
+						<property>simulation/channel-dt</property>
+					</product>
+				</sum>
+			</function>
+			<output>/systems/pneumatics/hvac/cabin-fwd-temp</output>
+			<clipto> <!-- Keep it reasonable -->
+				<min>32</min>
+				<max>99</max>
+			</clipto>
+		</fcs_function>
+		
+		<summer name="/systems/pneumatics/hvac/cabin-mid-temp-environment-error">
+			<input>/systems/pneumatics/hvac/cabin-mid-temp</input>
+			<input>-/environment/temperature-degf</input>
+		</summer>
+		
+		<switch name="/systems/pneumatics/hvac/cabin-mid-temp-environment-rate">
+			<default value="0"/>
+			<test value="-0.00045">
+				/systems/pneumatics/hvac/cabin-mid-temp-environment-error gt 0.01
+			</test>
+			<test value="-0.0003">
+				/systems/pneumatics/hvac/cabin-mid-temp-environment-error lt -0.01
+			</test>
+		</switch>
+		
+		<fcs_function name="/systems/pneumatics/hvac/cabin-mid-temp-calc">
+			<function>
+				<sum>
+					<property>/systems/pneumatics/hvac/cabin-mid-temp</property>
+					<product> <!-- Environment Factor -->
+						<property>/systems/pneumatics/hvac/cabin-mid-temp-environment-error</property>
+						<property>/systems/pneumatics/hvac/cabin-mid-temp-environment-rate</property>
+						<property>simulation/channel-dt</property>
+					</product>
+				</sum>
+			</function>
+			<output>/systems/pneumatics/hvac/cabin-mid-temp</output>
+			<clipto> <!-- Keep it reasonable -->
+				<min>32</min>
+				<max>99</max>
+			</clipto>
+		</fcs_function>
+		
+		<summer name="/systems/pneumatics/hvac/cabin-aft-temp-environment-error">
+			<input>/systems/pneumatics/hvac/cabin-aft-temp</input>
+			<input>-/environment/temperature-degf</input>
+		</summer>
+		
+		<switch name="/systems/pneumatics/hvac/cabin-aft-temp-environment-rate">
+			<default value="0"/>
+			<test value="-0.00045">
+				/systems/pneumatics/hvac/cabin-aft-temp-environment-error gt 0.01
+			</test>
+			<test value="-0.0003">
+				/systems/pneumatics/hvac/cabin-aft-temp-environment-error lt -0.01
+			</test>
+		</switch>
+		
+		<fcs_function name="/systems/pneumatics/hvac/cabin-aft-temp-calc">
+			<function>
+				<ifthen>
+					<eq>
+						<property>/options/freighter</property>
+						<value>1</value>
+					</eq>
+					<property>/systems/pneumatics/hvac/cabin-mid-temp-calc</property> <!-- Freighter uses mid/aft combined as cargo -->
+					<sum>
+						<property>/systems/pneumatics/hvac/cabin-aft-temp</property>
+						<product> <!-- Environment Factor -->
+							<property>/systems/pneumatics/hvac/cabin-aft-temp-environment-error</property>
+							<property>/systems/pneumatics/hvac/cabin-aft-temp-environment-rate</property>
+							<property>simulation/channel-dt</property>
+						</product>
+					</sum>
+				</ifthen>
+			</function>
+			<output>/systems/pneumatics/hvac/cabin-aft-temp</output>
+			<clipto> <!-- Keep it reasonable -->
+				<min>32</min>
+				<max>99</max>
+			</clipto>
+		</fcs_function>
+		
+		<summer name="/systems/pneumatics/hvac/cargo-fwd-temp-environment-error">
+			<input>/systems/pneumatics/hvac/cargo-fwd-temp</input>
+			<input>-/environment/temperature-degf</input>
+		</summer>
+		
+		<switch name="/systems/pneumatics/hvac/cargo-fwd-temp-environment-rate">
+			<default value="0"/>
+			<test value="-0.00045">
+				/systems/pneumatics/hvac/cargo-fwd-temp-environment-error gt 0.01
+			</test>
+			<test value="-0.0003">
+				/systems/pneumatics/hvac/cargo-fwd-temp-environment-error lt -0.01
+			</test>
+		</switch>
+		
+		<fcs_function name="/systems/pneumatics/hvac/cargo-fwd-temp-calc">
+			<function>
+				<sum>
+					<property>/systems/pneumatics/hvac/cargo-fwd-temp</property>
+					<product> <!-- Environment Factor -->
+						<property>/systems/pneumatics/hvac/cargo-fwd-temp-environment-error</property>
+						<property>/systems/pneumatics/hvac/cargo-fwd-temp-environment-rate</property>
+						<property>simulation/channel-dt</property>
+					</product>
+				</sum>
+			</function>
+			<output>/systems/pneumatics/hvac/cargo-fwd-temp</output>
+			<clipto> <!-- Keep it reasonable -->
+				<min>32</min>
+				<max>99</max>
+			</clipto>
+		</fcs_function>
+		
+		<summer name="/systems/pneumatics/hvac/cargo-mid-temp-environment-error">
+			<input>/systems/pneumatics/hvac/cargo-mid-temp</input>
+			<input>-/environment/temperature-degf</input>
+		</summer>
+		
+		<switch name="/systems/pneumatics/hvac/cargo-mid-temp-environment-rate">
+			<default value="0"/>
+			<test value="-0.00045">
+				/systems/pneumatics/hvac/cargo-mid-temp-environment-error gt 0.01
+			</test>
+			<test value="-0.0003">
+				/systems/pneumatics/hvac/cargo-mid-temp-environment-error lt -0.01
+			</test>
+		</switch>
+		
+		<fcs_function name="/systems/pneumatics/hvac/cargo-mid-temp-calc">
+			<function>
+				<sum>
+					<property>/systems/pneumatics/hvac/cargo-mid-temp</property>
+					<product> <!-- Environment Factor -->
+						<property>/systems/pneumatics/hvac/cargo-mid-temp-environment-error</property>
+						<property>/systems/pneumatics/hvac/cargo-mid-temp-environment-rate</property>
+						<property>simulation/channel-dt</property>
+					</product>
+				</sum>
+			</function>
+			<output>/systems/pneumatics/hvac/cargo-mid-temp</output>
+			<clipto> <!-- Keep it reasonable -->
+				<min>32</min>
+				<max>99</max>
+			</clipto>
+		</fcs_function>
+		
+		<summer name="/systems/pneumatics/hvac/cargo-aft-temp-environment-error">
+			<input>/systems/pneumatics/hvac/cargo-aft-temp</input>
+			<input>-/environment/temperature-degf</input>
+		</summer>
+		
+		<switch name="/systems/pneumatics/hvac/cargo-aft-temp-environment-rate">
+			<default value="0"/>
+			<test value="-0.00045">
+				/systems/pneumatics/hvac/cargo-aft-temp-environment-error gt 0.01
+			</test>
+			<test value="-0.0003">
+				/systems/pneumatics/hvac/cargo-aft-temp-environment-error lt -0.01
+			</test>
+		</switch>
+		
+		<fcs_function name="/systems/pneumatics/hvac/cargo-aft-temp-calc">
+			<function>
+				<sum>
+					<property>/systems/pneumatics/hvac/cargo-aft-temp</property>
+					<product> <!-- Environment Factor -->
+						<property>/systems/pneumatics/hvac/cargo-aft-temp-environment-error</property>
+						<property>/systems/pneumatics/hvac/cargo-aft-temp-environment-rate</property>
+						<property>simulation/channel-dt</property>
+					</product>
+				</sum>
+			</function>
+			<output>/systems/pneumatics/hvac/cargo-aft-temp</output>
+			<clipto> <!-- Keep it reasonable -->
+				<min>32</min>
+				<max>99</max>
+			</clipto>
+		</fcs_function>
+	
+	</channel>
+
+</system>
