@@ -135,6 +135,7 @@ var CanvasAir = {
 		Value.Air.cargoAftTarget = systems.PNEUMATICS.Hvac.cargoAftTarget.getValue();
 		Value.Air.cargoFwdTarget = systems.PNEUMATICS.Hvac.cargoFwdTarget.getValue();
 		
+		me["Cockpit_dtemp"].setText(sprintf("%d", math.round(condF2C(systems.PNEUMATICS.DuctTemp.cockpit.getValue()))) ~ "g");
 		me["Cockpit_temp"].setText(sprintf("%d", math.round(condF2C(systems.PNEUMATICS.Hvac.cockpitTemp.getValue()))) ~ "g");
 		if (Value.Air.cockpitTarget >= 60) {
 			me["Cockpit_set"].setText(sprintf("%d", math.round(condF2C(Value.Air.cockpitTarget))) ~ "g");
@@ -142,6 +143,7 @@ var CanvasAir = {
 			me["Cockpit_set"].setText("OFF");
 		}
 		
+		me["CabinFwd_dtemp"].setText(sprintf("%d", math.round(condF2C(systems.PNEUMATICS.DuctTemp.cabinFwd.getValue()))) ~ "g");
 		me["CabinFwd_temp"].setText(sprintf("%d", math.round(condF2C(systems.PNEUMATICS.Hvac.cabinFwdTemp.getValue()))) ~ "g");
 		if (Value.Air.cabinFwdTarget >= 60) {
 			me["CabinFwd_set"].setText(sprintf("%d", math.round(condF2C(Value.Air.cabinFwdTarget))) ~ "g");
@@ -149,6 +151,7 @@ var CanvasAir = {
 			me["CabinFwd_set"].setText("OFF");
 		}
 		
+		me["CabinMid_dtemp"].setText(sprintf("%d", math.round(condF2C(systems.PNEUMATICS.DuctTemp.cabinMid.getValue()))) ~ "g");
 		me["CabinMid_temp"].setText(sprintf("%d", math.round(condF2C(systems.PNEUMATICS.Hvac.cabinMidTemp.getValue()))) ~ "g");
 		if (Value.Air.cabinMidTarget >= 60) {
 			me["CabinMid_set"].setText(sprintf("%d", math.round(condF2C(Value.Air.cabinMidTarget))) ~ "g");
@@ -157,6 +160,7 @@ var CanvasAir = {
 		}
 		
 		if (!Value.Air.freighter) {
+			me["CabinAft_dtemp"].setText(sprintf("%d", math.round(condF2C(systems.PNEUMATICS.DuctTemp.cabinAft.getValue()))) ~ "g");
 			me["CabinAft_temp"].setText(sprintf("%d", math.round(condF2C(systems.PNEUMATICS.Hvac.cabinAftTemp.getValue()))) ~ "g");
 			if (Value.Air.cabinAftTarget >= 60) {
 				me["CabinAft_set"].setText(sprintf("%d", math.round(condF2C(Value.Air.cabinAftTarget))) ~ "g");
@@ -604,6 +608,7 @@ var KeyListAir = [
 	"CabinAft_line",
 	"CabinAft_set",
 	"CabinAft_set_error",
+	"CabinAft_dtemp",
 	"CabinAft_temp",
 	"CabinAft_temp_error",
 	"CabinAlt",
@@ -616,6 +621,7 @@ var KeyListAir = [
 	"CabinFwd_duct",
 	"CabinFwd_set",
 	"CabinFwd_set_error",
+	"CabinFwd_dtemp",
 	"CabinFwd_temp",
 	"CabinFwd_temp_error",
 	"CabinLand",
@@ -624,6 +630,7 @@ var KeyListAir = [
 	"CabinMid_duct",
 	"CabinMid_set",
 	"CabinMid_set_error",
+	"CabinMid_dtemp",
 	"CabinMid_temp",
 	"CabinMid_temp_error",
 	"CabinRate",
@@ -645,6 +652,7 @@ var KeyListAir = [
 	"Cockpit_duct",
 	"Cockpit_set",
 	"Cockpit_set_error",
+	"Cockpit_dtemp",
 	"Cockpit_temp",
 	"Cockpit_temp_error",
 	"Isol12",

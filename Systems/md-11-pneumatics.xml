@@ -899,7 +899,7 @@
 							<property>/systems/pneumatics/bleed-1-psi</property>
 							<property>/systems/pneumatics/bleed-3-psi</property>
 						</max>
-						<value>12</value> <!-- Guess -->
+						<value>24</value> <!-- Guess -->
 					</min>
 				</product>
 			</function>
@@ -1286,7 +1286,7 @@
 				<interpolate1d>
 					<property>/systems/pneumatics/trim-air-psi</property>
 					<value>0</value><property>propulsion/tat-c</property>
-					<value>12</value><max>
+					<value>20</value><max>
 						<property>/systems/pneumatics/temp/bleed-1-actuator</property>
 						<property>/systems/pneumatics/temp/bleed-3-actuator</property>
 					</max>

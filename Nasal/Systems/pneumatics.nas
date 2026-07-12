@@ -2,6 +2,12 @@
 # Copyright (c) 2026 Josh Davidson (Octal450)
 
 var PNEUMATICS = {
+	DuctTemp: {
+		cabinAft: props.globals.getNode("/systems/pneumatics/hvac/duct-temp/cabin-aft"),
+		cabinFwd: props.globals.getNode("/systems/pneumatics/hvac/duct-temp/cabin-fwd"),
+		cabinMid: props.globals.getNode("/systems/pneumatics/hvac/duct-temp/cabin-mid"),
+		cockpit: props.globals.getNode("/systems/pneumatics/hvac/duct-temp/cockpit"),
+	},
 	Flow: {
 		pack1: props.globals.getNode("/systems/pneumatics/pack-1-flow"),
 		pack2: props.globals.getNode("/systems/pneumatics/pack-2-flow"),
