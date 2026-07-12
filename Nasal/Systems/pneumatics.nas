@@ -21,6 +21,9 @@ var PNEUMATICS = {
 		cargoMidTemp: props.globals.getNode("/systems/pneumatics/hvac/cargo-mid-temp"),
 		cockpitTarget: props.globals.getNode("/systems/pneumatics/hvac/cockpit-target"),
 		cockpitTemp: props.globals.getNode("/systems/pneumatics/hvac/cockpit-temp"),
+		pack1Temp: props.globals.getNode("/systems/pneumatics/hvac/pack-1-temp"),
+		pack2Temp: props.globals.getNode("/systems/pneumatics/hvac/pack-2-temp"),
+		pack3Temp: props.globals.getNode("/systems/pneumatics/hvac/pack-3-temp"),
 	},
 	PackCmd: {
 		pack1: props.globals.getNode("/systems/pneumatics/pack-1-cmd"),

@@ -882,6 +882,35 @@
 			</test>
 		</switch>
 		
+		<!-- Trim Air -->
+		<switch name="/systems/pneumatics/trim-air-cmd">
+			<default value="0"/>
+			<test value="1">
+				/controls/pneumatics/trim-air eq 1
+			</test>
+		</switch>
+		
+		<fcs_function name="/systems/pneumatics/trim-air-psi-cmd">
+			<function>
+				<product>
+					<property>/systems/pneumatics/trim-air-cmd</property>
+					<min>
+						<max> <!-- No bleed 2! -->
+							<property>/systems/pneumatics/bleed-1-psi</property>
+							<property>/systems/pneumatics/bleed-3-psi</property>
+						</max>
+						<value>12</value> <!-- Guess -->
+					</min>
+				</product>
+			</function>
+		</fcs_function>
+		
+		<actuator name="/systems/pneumatics/trim-air-psi">
+			<input>/systems/pneumatics/trim-air-psi-cmd</input>
+			<rate_limit sense="incr">/systems/pneumatics/psi-incr-rate</rate_limit>
+			<rate_limit sense="decr">/systems/pneumatics/psi-decr-rate</rate_limit>
+		</actuator>
+		
 		<!-- Pax Load -->
 		<fcs_function name="/systems/pneumatics/pax-load">
 			<function>
@@ -1248,6 +1277,25 @@
 		
 		<lag_filter name="/systems/pneumatics/temp/bleed-3">
 			<input>/systems/pneumatics/temp/bleed-3-actuator</input>
+			<c1>0.4</c1>
+		</lag_filter>
+		
+		<!-- Trim Air (fast response) -->
+		<fcs_function name="/systems/pneumatics/temp/trim-air-cmd">
+			<function>
+				<interpolate1d>
+					<property>/systems/pneumatics/trim-air-psi</property>
+					<value>0</value><property>propulsion/tat-c</property>
+					<value>12</value><max>
+						<property>/systems/pneumatics/temp/bleed-1-actuator</property>
+						<property>/systems/pneumatics/temp/bleed-3-actuator</property>
+					</max>
+				</interpolate1d>
+			</function>
+		</fcs_function>
+		
+		<lag_filter name="/systems/pneumatics/temp/trim-air">
+			<input>/systems/pneumatics/temp/trim-air-cmd</input>
 			<c1>0.4</c1>
 		</lag_filter>
 	

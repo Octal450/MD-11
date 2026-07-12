@@ -29,6 +29,7 @@ var Value = {
 		bleed3Temp: 0,
 		bleedApu: 0,
 		cabinTempF: 0,
+		cabinTempUnit: "",
 		cabinAftTarget: 0,
 		cabinFwdTarget: 0,
 		cabinMidTarget: 0,

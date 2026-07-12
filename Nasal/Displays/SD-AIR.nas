@@ -34,9 +34,6 @@ var CanvasAir = {
 		me["CabinRate"].setText("0");
 		me["CabinRate_box"].hide();
 		me["CabinRateDn"].hide();
-		me["Pack1_temp"].setText("0gC");
-		me["Pack2_temp"].setText("0gC");
-		me["Pack3_temp"].setText("0gC");
 	},
 	update: func() {
 		Value.Misc.wow = pts.Position.wow.getBoolValue();
@@ -125,8 +122,10 @@ var CanvasAir = {
 		Value.Air.cabinTempF = pts.Systems.Acconfig.Options.cabinTempF.getBoolValue();
 		if (Value.Air.cabinTempF) {
 			me["ZoneUnit"].setText("gF");
+			Value.Air.cabinTempUnit = "F";
 		} else {
 			me["ZoneUnit"].setText("gC");
+			Value.Air.cabinTempUnit = "C";
 		}
 		
 		Value.Air.cockpitTarget = systems.PNEUMATICS.Hvac.cockpitTarget.getValue();
@@ -227,6 +226,10 @@ var CanvasAir = {
 			me["Pack3_circle"].setColor(1, 1, 1);
 			me["Pack3_imp"].hide();
 		}
+		
+		me["Pack1_temp"].setText(sprintf("%d", math.round(condF2C(systems.PNEUMATICS.Hvac.pack1Temp.getValue()))) ~ "g" ~ Value.Air.cabinTempUnit);
+		me["Pack2_temp"].setText(sprintf("%d", math.round(condF2C(systems.PNEUMATICS.Hvac.pack2Temp.getValue()))) ~ "g" ~ Value.Air.cabinTempUnit);
+		me["Pack3_temp"].setText(sprintf("%d", math.round(condF2C(systems.PNEUMATICS.Hvac.pack3Temp.getValue()))) ~ "g" ~ Value.Air.cabinTempUnit);
 		
 		# ISOL Valves
 		if (systems.PNEUMATICS.Controls.isol12.getBoolValue()) {

@@ -27,7 +27,7 @@
 			<input>/systems/pneumatics/pack-3-flow</input>
 		</summer>
 		
-		<!-- HVAC Targets -->
+		<!-- Temperature Targets -->
 		<fcs_function name="/systems/pneumatics/hvac/cockpit-target">
 			<function>
 				<table>
@@ -100,13 +100,254 @@
 					<tableData>
 						0.00   0
 						0.05  40
-						0.75  95
+						0.75  96
 					</tableData>
 				</table>
 			</function>
 		</fcs_function>
 		
-		<!-- Temperatures -->
+		<!-- Switched Temperature Targets -->
+		<switch name="/systems/pneumatics/hvac/cockpit-target-switched">
+			<default value="/systems/pneumatics/hvac/cockpit-temp"/>
+			<test value="/systems/pneumatics/hvac/cockpit-target">
+				/systems/pneumatics/hvac/cockpit-target ge 60
+			</test>
+		</switch>
+		
+		<switch name="/systems/pneumatics/hvac/cabin-fwd-target-switched">
+			<default value="/systems/pneumatics/hvac/cabin-fwd-temp"/>
+			<test value="/systems/pneumatics/hvac/cabin-fwd-target">
+				/systems/pneumatics/hvac/cabin-fwd-target ge 60
+			</test>
+		</switch>
+		
+		<switch name="/systems/pneumatics/hvac/cabin-mid-target-switched">
+			<default value="/systems/pneumatics/hvac/cabin-mid-temp"/>
+			<test value="/systems/pneumatics/hvac/cabin-mid-target">
+				/systems/pneumatics/hvac/cabin-mid-target ge 60
+			</test>
+		</switch>
+		
+		<switch name="/systems/pneumatics/hvac/cabin-aft-target-switched">
+			<default value="/systems/pneumatics/hvac/cabin-aft-temp"/>
+			<test value="/systems/pneumatics/hvac/cabin-aft-target">
+				/systems/pneumatics/hvac/cabin-aft-target ge 60
+			</test>
+		</switch>
+		
+		<switch name="/systems/pneumatics/hvac/cargo-fwd-target-switched">
+			<default value="/systems/pneumatics/hvac/cargo-fwd-temp"/>
+			<test value="/systems/pneumatics/hvac/cargo-fwd-target">
+				/systems/pneumatics/hvac/cargo-fwd-target ge 35
+			</test>
+		</switch>
+		
+		<switch name="/systems/pneumatics/hvac/cargo-aft-target-switched">
+			<default value="/systems/pneumatics/hvac/cargo-aft-temp"/>
+			<test value="/systems/pneumatics/hvac/cargo-aft-target">
+				/systems/pneumatics/hvac/cargo-aft-target ge 35
+			</test>
+		</switch>
+		
+		<!-- Target Temperature Errors -->
+		<summer name="/systems/pneumatics/hvac/cockpit-error">
+			<input>/systems/pneumatics/hvac/cockpit-target-switched</input>
+			<input>-/systems/pneumatics/hvac/cockpit-temp</input>
+		</summer>
+		
+		<summer name="/systems/pneumatics/hvac/cabin-fwd-error">
+			<input>/systems/pneumatics/hvac/cabin-fwd-target-switched</input>
+			<input>-/systems/pneumatics/hvac/cabin-fwd-temp</input>
+		</summer>
+		
+		<summer name="/systems/pneumatics/hvac/cabin-mid-error">
+			<input>/systems/pneumatics/hvac/cabin-mid-target-switched</input>
+			<input>-/systems/pneumatics/hvac/cabin-mid-temp</input>
+		</summer>
+		
+		<summer name="/systems/pneumatics/hvac/cabin-aft-error">
+			<input>/systems/pneumatics/hvac/cabin-aft-target-switched</input>
+			<input>-/systems/pneumatics/hvac/cabin-aft-temp</input>
+		</summer>
+		
+		<summer name="/systems/pneumatics/hvac/cargo-fwd-error">
+			<input>/systems/pneumatics/hvac/cargo-fwd-target-switched</input>
+			<input>-/systems/pneumatics/hvac/cargo-fwd-temp</input>
+		</summer>
+		
+		<summer name="/systems/pneumatics/hvac/cargo-aft-error">
+			<input>/systems/pneumatics/hvac/cargo-aft-target-switched</input>
+			<input>-/systems/pneumatics/hvac/cargo-aft-temp</input>
+		</summer>
+		
+		<fcs_function name="/systems/pneumatics/hvac/coldest-cabin-error">
+			<function>
+				<min>
+					<property>/systems/pneumatics/hvac/cabin-aft-error</property>
+					<property>/systems/pneumatics/hvac/cabin-mid-error</property>
+					<property>/systems/pneumatics/hvac/cabin-fwd-error</property>
+					<property>/systems/pneumatics/hvac/cockpit-error</property>
+				</min>
+			</function>
+		</fcs_function>
+		
+		<fcs_function name="/systems/pneumatics/hvac/pack-temp-target">
+			<function>
+				<sum>
+					<min>
+						<property>/systems/pneumatics/hvac/cabin-aft-target-switched</property>
+						<property>/systems/pneumatics/hvac/cabin-mid-target-switched</property>
+						<property>/systems/pneumatics/hvac/cabin-fwd-target-switched</property>
+						<property>/systems/pneumatics/hvac/cockpit-target-switched</property>
+					</min>
+					<table>
+						<independentVar lookup="row">/systems/pneumatics/hvac/coldest-cabin-error</independentVar>
+						<tableData>
+							-5 -8
+							 0 -1
+						</tableData>
+					</table>
+				</sum>
+			</function>
+		</fcs_function>
+		
+		<!-- Pack Temperatures -->
+		<fcs_function name="/systems/pneumatics/hvac/pack-1-temp-cmd">
+			<function>
+				<interpolate1d>
+					<property>/systems/pneumatics/pack-1-flow</property>
+					<value>0</value><property>propulsion/tat-c</property>
+					<value>10</value><property>/systems/pneumatics/hvac/pack-temp-target</property>
+				</interpolate1d>
+			</function>
+		</fcs_function>
+		
+		<fcs_function name="/systems/pneumatics/hvac/pack-1-temp-incr-rate">
+			<function>
+				<table>
+					<independentVar lookup="row">/systems/pneumatics/pack-1-flow</independentVar>
+					<tableData>
+						 0  0.1
+						10  9.0
+					</tableData>
+				</table>
+			</function>
+		</fcs_function>
+		
+		<fcs_function name="/systems/pneumatics/hvac/pack-1-temp-decr-rate">
+			<function>
+				<table>
+					<independentVar lookup="row">/systems/pneumatics/pack-1-flow</independentVar>
+					<tableData>
+						 0  0.1
+						10  4.0
+					</tableData>
+				</table>
+			</function>
+		</fcs_function>
+		
+		<actuator name="/systems/pneumatics/hvac/pack-1-temp-actuator">
+			<input>/systems/pneumatics/hvac/pack-1-temp-cmd</input>
+			<rate_limit sense="incr">/systems/pneumatics/hvac/pack-1-temp-incr-rate</rate_limit>
+			<rate_limit sense="decr">/systems/pneumatics/hvac/pack-1-temp-decr-rate</rate_limit>
+		</actuator>
+		
+		<lag_filter name="/systems/pneumatics/hvac/pack-1-temp">
+			<input>/systems/pneumatics/hvac/pack-1-temp-actuator</input>
+			<c1>0.4</c1>
+		</lag_filter>
+		
+		<fcs_function name="/systems/pneumatics/hvac/pack-2-temp-cmd">
+			<function>
+				<interpolate1d>
+					<property>/systems/pneumatics/pack-2-flow</property>
+					<value>0</value><property>propulsion/tat-c</property>
+					<value>10</value><property>/systems/pneumatics/hvac/pack-temp-target</property>
+				</interpolate1d>
+			</function>
+		</fcs_function>
+		
+		<fcs_function name="/systems/pneumatics/hvac/pack-2-temp-incr-rate">
+			<function>
+				<table>
+					<independentVar lookup="row">/systems/pneumatics/pack-2-flow</independentVar>
+					<tableData>
+						 0  0.1
+						10  9.0
+					</tableData>
+				</table>
+			</function>
+		</fcs_function>
+		
+		<fcs_function name="/systems/pneumatics/hvac/pack-2-temp-decr-rate">
+			<function>
+				<table>
+					<independentVar lookup="row">/systems/pneumatics/pack-2-flow</independentVar>
+					<tableData>
+						 0  0.1
+						10  4.0
+					</tableData>
+				</table>
+			</function>
+		</fcs_function>
+		
+		<actuator name="/systems/pneumatics/hvac/pack-2-temp-actuator">
+			<input>/systems/pneumatics/hvac/pack-2-temp-cmd</input>
+			<rate_limit sense="incr">/systems/pneumatics/hvac/pack-2-temp-incr-rate</rate_limit>
+			<rate_limit sense="decr">/systems/pneumatics/hvac/pack-2-temp-decr-rate</rate_limit>
+		</actuator>
+		
+		<lag_filter name="/systems/pneumatics/hvac/pack-2-temp">
+			<input>/systems/pneumatics/hvac/pack-2-temp-actuator</input>
+			<c1>0.4</c1>
+		</lag_filter>
+		
+		<fcs_function name="/systems/pneumatics/hvac/pack-3-temp-cmd">
+			<function>
+				<interpolate1d>
+					<property>/systems/pneumatics/pack-3-flow</property>
+					<value>0</value><property>propulsion/tat-c</property>
+					<value>10</value><property>/systems/pneumatics/hvac/pack-temp-target</property>
+				</interpolate1d>
+			</function>
+		</fcs_function>
+		
+		<fcs_function name="/systems/pneumatics/hvac/pack-3-temp-incr-rate">
+			<function>
+				<table>
+					<independentVar lookup="row">/systems/pneumatics/pack-3-flow</independentVar>
+					<tableData>
+						 0  0.1
+						10  9.0
+					</tableData>
+				</table>
+			</function>
+		</fcs_function>
+		
+		<fcs_function name="/systems/pneumatics/hvac/pack-3-temp-decr-rate">
+			<function>
+				<table>
+					<independentVar lookup="row">/systems/pneumatics/pack-3-flow</independentVar>
+					<tableData>
+						 0  0.1
+						10  4.0
+					</tableData>
+				</table>
+			</function>
+		</fcs_function>
+		
+		<actuator name="/systems/pneumatics/hvac/pack-3-temp-actuator">
+			<input>/systems/pneumatics/hvac/pack-3-temp-cmd</input>
+			<rate_limit sense="incr">/systems/pneumatics/hvac/pack-3-temp-incr-rate</rate_limit>
+			<rate_limit sense="decr">/systems/pneumatics/hvac/pack-3-temp-decr-rate</rate_limit>
+		</actuator>
+		
+		<lag_filter name="/systems/pneumatics/hvac/pack-3-temp">
+			<input>/systems/pneumatics/hvac/pack-3-temp-actuator</input>
+			<c1>0.4</c1>
+		</lag_filter>
+		
+		<!-- Cabin Temperature -->
 		<summer name="/systems/pneumatics/hvac/cockpit-temp-environment-error">
 			<input>/systems/pneumatics/hvac/cockpit-temp</input>
 			<input>-/environment/temperature-degf</input>
