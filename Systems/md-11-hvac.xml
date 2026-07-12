@@ -14,7 +14,7 @@
 	<property value="75">/systems/pneumatics/hvac/cockpit-temp</property>
 	
 	<!--
-	Cargo Mid zone is heated but not cooled or ventilated
+	Cargo Mid zone is heated but not ventilated. Cargo Fwd/Aft zones are heated and ventilated.
 	Freighters have different upper zones: Cockpit, Courier, and Cargo. The Courier zone is mapped to Cabin Fwd, and the Cargo zone is mapped to Cabin Mid.
 	Cabin Aft simply mirrors Cabin Mid to "simulate" a larger zone, which corrects how it affects the Courier (Cabin Fwd) zone.
 	-->
@@ -469,9 +469,9 @@
 					<table>
 						<independentVar lookup="row">/systems/pneumatics/hvac/pack-temp/pack-1-error-input</independentVar>
 						<tableData>
-							-4 -9
-							 0 -2
-							 4  5
+							-4 -9.4
+							 0 -2.4
+							 4  4.6
 						</tableData>
 					</table>
 				</sum>
@@ -489,9 +489,9 @@
 					<table>
 						<independentVar lookup="row">/systems/pneumatics/hvac/pack-temp/pack-2-error-input</independentVar>
 						<tableData>
-							-4 -9.6
-							 0 -2.6
-							 4  4.4
+							-4 -9.7
+							 0 -2.7
+							 4  4.3
 						</tableData>
 					</table>
 				</sum>
@@ -509,9 +509,9 @@
 					<table>
 						<independentVar lookup="row">/systems/pneumatics/hvac/pack-temp/pack-3-error-input</independentVar>
 						<tableData>
-							-4 -9.8
-							 0 -2.8
-							 4  4.2
+							-4 -9.9
+							 0 -2.9
+							 4  4.1
 						</tableData>
 					</table>
 				</sum>
@@ -1314,6 +1314,25 @@
 			</test>
 		</switch>
 		
+		<summer name="/systems/pneumatics/hvac/cockpit-temp-coupling-error">
+			<input>/systems/pneumatics/hvac/cockpit-temp</input>
+			<input>-/systems/pneumatics/hvac/cabin-fwd-temp</input>
+			<clipto>
+				<min>-5</min>
+				<max>5</max>
+			</clipto>
+		</summer>
+		
+		<switch name="/systems/pneumatics/hvac/cockpit-temp-coupling-rate">
+			<default value="0"/>
+			<test value="-0.0009">
+				/systems/pneumatics/hvac/cockpit-temp-coupling-error gt 0.001
+			</test>
+			<test value="-0.0006">
+				/systems/pneumatics/hvac/cockpit-temp-coupling-error lt -0.001
+			</test>
+		</switch>
+		
 		<summer name="/systems/pneumatics/hvac/cockpit-temp-duct-error">
 			<input>/systems/pneumatics/hvac/cockpit-temp</input>
 			<input>-/systems/pneumatics/hvac/duct-temp/cockpit</input>
@@ -1351,6 +1370,11 @@
 						<property>/systems/pneumatics/hvac/cockpit-temp-environment-rate</property>
 						<property>simulation/channel-dt</property>
 					</product>
+					<product> <!-- Coupling factor -->
+						<property>/systems/pneumatics/hvac/cockpit-temp-coupling-error</property>
+						<property>/systems/pneumatics/hvac/cockpit-temp-coupling-rate</property>
+						<property>simulation/channel-dt</property>
+					</product>
 					<product> <!-- Duct flow factor -->
 						<property>/systems/pneumatics/hvac/cockpit-temp-duct-error</property>
 						<property>/systems/pneumatics/hvac/cockpit-temp-duct-rate</property>
@@ -1382,6 +1406,34 @@
 			</test>
 			<test value="-0.0003">
 				/systems/pneumatics/hvac/cabin-fwd-temp-environment-error lt -0.001
+			</test>
+		</switch>
+		
+		<fcs_function name="/systems/pneumatics/hvac/cabin-fwd-coupling-input">
+			<function>
+				<avg>
+					<property>/systems/pneumatics/hvac/cockpit-temp</property>
+					<property>/systems/pneumatics/hvac/cabin-mid-temp</property>
+				</avg>
+			</function>
+		</fcs_function>
+		
+		<summer name="/systems/pneumatics/hvac/cabin-fwd-temp-coupling-error">
+			<input>/systems/pneumatics/hvac/cabin-fwd-temp</input>
+			<input>-/systems/pneumatics/hvac/cabin-fwd-coupling-input</input>
+			<clipto>
+				<min>-5</min>
+				<max>5</max>
+			</clipto>
+		</summer>
+		
+		<switch name="/systems/pneumatics/hvac/cabin-fwd-temp-coupling-rate">
+			<default value="0"/>
+			<test value="-0.0009">
+				/systems/pneumatics/hvac/cabin-fwd-temp-coupling-error gt 0.001
+			</test>
+			<test value="-0.0006">
+				/systems/pneumatics/hvac/cabin-fwd-temp-coupling-error lt -0.001
 			</test>
 		</switch>
 		
@@ -1422,6 +1474,11 @@
 						<property>/systems/pneumatics/hvac/cabin-fwd-temp-environment-rate</property>
 						<property>simulation/channel-dt</property>
 					</product>
+					<product> <!-- Coupling factor -->
+						<property>/systems/pneumatics/hvac/cabin-fwd-temp-coupling-error</property>
+						<property>/systems/pneumatics/hvac/cabin-fwd-temp-coupling-rate</property>
+						<property>simulation/channel-dt</property>
+					</product>
 					<product> <!-- Duct flow factor -->
 						<property>/systems/pneumatics/hvac/cabin-fwd-temp-duct-error</property>
 						<property>/systems/pneumatics/hvac/cabin-fwd-temp-duct-rate</property>
@@ -1452,6 +1509,41 @@
 			</test>
 			<test value="-0.0003">
 				/systems/pneumatics/hvac/cabin-mid-temp-environment-error lt -0.001
+			</test>
+		</switch>
+		
+		<fcs_function name="/systems/pneumatics/hvac/cabin-mid-coupling-input">
+			<function>
+				<avg>
+					<property>/systems/pneumatics/hvac/cabin-fwd-temp</property>
+					<ifthen>
+						<eq>
+							<property>/options/freighter</property>
+							<value>1</value>
+						</eq>
+						<property>/systems/pneumatics/hvac/cabin-fwd-temp</property> <!-- Don't average just take fwd -->
+						<property>/systems/pneumatics/hvac/cabin-aft-temp</property>
+					</ifthen>
+				</avg>
+			</function>
+		</fcs_function>
+		
+		<summer name="/systems/pneumatics/hvac/cabin-mid-temp-coupling-error">
+			<input>/systems/pneumatics/hvac/cabin-mid-temp</input>
+			<input>-/systems/pneumatics/hvac/cabin-mid-coupling-input</input>
+			<clipto>
+				<min>-5</min>
+				<max>5</max>
+			</clipto>
+		</summer>
+		
+		<switch name="/systems/pneumatics/hvac/cabin-mid-temp-coupling-rate">
+			<default value="0"/>
+			<test value="-0.0009">
+				/systems/pneumatics/hvac/cabin-mid-temp-coupling-error gt 0.001
+			</test>
+			<test value="-0.0006">
+				/systems/pneumatics/hvac/cabin-mid-temp-coupling-error lt -0.001
 			</test>
 		</switch>
 		
@@ -1492,6 +1584,11 @@
 						<property>/systems/pneumatics/hvac/cabin-mid-temp-environment-rate</property>
 						<property>simulation/channel-dt</property>
 					</product>
+					<product> <!-- Coupling factor -->
+						<property>/systems/pneumatics/hvac/cabin-mid-temp-coupling-error</property>
+						<property>/systems/pneumatics/hvac/cabin-mid-temp-coupling-rate</property>
+						<property>simulation/channel-dt</property>
+					</product>
 					<product> <!-- Duct flow factor -->
 						<property>/systems/pneumatics/hvac/cabin-mid-temp-duct-error</property>
 						<property>/systems/pneumatics/hvac/cabin-mid-temp-duct-rate</property>
@@ -1522,6 +1619,25 @@
 			</test>
 			<test value="-0.0003">
 				/systems/pneumatics/hvac/cabin-aft-temp-environment-error lt -0.001
+			</test>
+		</switch>
+		
+		<summer name="/systems/pneumatics/hvac/cabin-aft-temp-coupling-error">
+			<input>/systems/pneumatics/hvac/cabin-aft-temp</input>
+			<input>-/systems/pneumatics/hvac/cabin-mid-temp</input>
+			<clipto>
+				<min>-5</min>
+				<max>5</max>
+			</clipto>
+		</summer>
+		
+		<switch name="/systems/pneumatics/hvac/cabin-aft-temp-coupling-rate">
+			<default value="0"/>
+			<test value="-0.0009">
+				/systems/pneumatics/hvac/cabin-aft-temp-coupling-error gt 0.001
+			</test>
+			<test value="-0.0006">
+				/systems/pneumatics/hvac/cabin-aft-temp-coupling-error lt -0.001
 			</test>
 		</switch>
 		
@@ -1566,6 +1682,11 @@
 						<product> <!-- Environment factor -->
 							<property>/systems/pneumatics/hvac/cabin-aft-temp-environment-error</property>
 							<property>/systems/pneumatics/hvac/cabin-aft-temp-environment-rate</property>
+							<property>simulation/channel-dt</property>
+						</product>
+						<product> <!-- Coupling factor -->
+							<property>/systems/pneumatics/hvac/cabin-aft-temp-coupling-error</property>
+							<property>/systems/pneumatics/hvac/cabin-aft-temp-coupling-rate</property>
 							<property>simulation/channel-dt</property>
 						</product>
 						<product> <!-- Duct flow factor -->
