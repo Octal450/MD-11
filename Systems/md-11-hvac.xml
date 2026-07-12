@@ -3,7 +3,7 @@
 <!-- McDonnell Douglas MD-11 HVAC -->
 <!-- Copyright (c) 2026 Josh Davidson (Octal450) -->
 
-<system name="MD-11: HVAC">
+<system name="MD-11: HVAC"> <!-- The airplane is calibrated in Fahrenheit since it's American designed, so that's what I'll use here -->
 	
 	<property value="75">/systems/pneumatics/hvac/cabin-aft-temp</property>
 	<property value="75">/systems/pneumatics/hvac/cabin-fwd-temp</property>
@@ -19,13 +19,7 @@
 	Cabin Aft simply mirrors Cabin Mid to "simulate" a larger zone, which corrects how it affects the Courier (Cabin Fwd) zone.
 	-->
 	
-	<channel name="HVAC Logic"> <!-- The airplane is calibrated in Fahrenheit since it's American designed, so that's what I'll use here -->
-		
-		<summer name="/systems/pneumatics/hvac/pack-flow">
-			<input>/systems/pneumatics/pack-1-flow</input>
-			<input>/systems/pneumatics/pack-2-flow</input>
-			<input>/systems/pneumatics/pack-3-flow</input>
-		</summer>
+	<channel name="HVAC Logic">
 		
 		<!-- Temperature Targets -->
 		<fcs_function name="/systems/pneumatics/hvac/cockpit-target">
@@ -69,14 +63,21 @@
 		
 		<fcs_function name="/systems/pneumatics/hvac/cabin-aft-target">
 			<function>
-				<table>
-					<independentVar lookup="row">/controls/pneumatics/cabin-aft-temp</independentVar> <!-- 0 to 0.85 -->
-					<tableData>
-						0.00   0
-						0.05  65
-						0.85  85
-					</tableData>
-				</table>
+				<ifthen>
+					<eq>
+						<property>/options/freighter</property>
+						<value>1</value>
+					</eq>
+					<property>/systems/pneumatics/hvac/cabin-mid-target</property> <!-- Freighter doesn't have aft, this makes it "invisible" -->
+					<table>
+						<independentVar lookup="row">/controls/pneumatics/cabin-aft-temp</independentVar> <!-- 0 to 0.85 -->
+						<tableData>
+							0.00   0
+							0.05  65
+							0.85  85
+						</tableData>
+					</table>
+				</ifthen>
 			</function>
 		</fcs_function>
 		
@@ -149,7 +150,7 @@
 			</test>
 		</switch>
 		
-		<!-- Target Temperature Errors -->
+		<!-- Temperature Error -->
 		<summer name="/systems/pneumatics/hvac/cockpit-error">
 			<input>/systems/pneumatics/hvac/cockpit-target-switched</input>
 			<input>-/systems/pneumatics/hvac/cockpit-temp</input>
@@ -191,50 +192,302 @@
 			</function>
 		</fcs_function>
 		
-		<fcs_function name="/systems/pneumatics/hvac/pack-temp-target">
+		<!-- Pack Temperature Targets -->
+		<!-- This is complex because the ECS controls which packs respond based on which zones have error, and accounts for inoperative packs -->
+		<switch name="/systems/pneumatics/hvac/pack-1-flowing">
+			<default value="1"/>
+			<test value="0">
+				/systems/pneumatics/pack-1-flow lt 10
+			</test>
+		</switch>
+		
+		<switch name="/systems/pneumatics/hvac/pack-2-flowing">
+			<default value="1"/>
+			<test value="0">
+				/systems/pneumatics/pack-2-flow lt 10
+			</test>
+		</switch>
+		
+		<switch name="/systems/pneumatics/hvac/pack-3-flowing">
+			<default value="1"/>
+			<test value="0">
+				/systems/pneumatics/pack-3-flow lt 10
+			</test>
+		</switch>
+		
+		<fcs_function name="/systems/pneumatics/hvac/pack-temp/pack-1-target-input">
+			<function>
+				<min>
+					<property>/systems/pneumatics/hvac/cockpit-target-switched</property>
+					<property>/systems/pneumatics/hvac/cabin-fwd-target-switched</property>
+					<ifthen>
+						<and>
+							<eq>
+								<property>/systems/pneumatics/hvac/pack-2-flowing</property>
+								<value>0</value>
+							</eq>
+							<eq>
+								<property>/systems/pneumatics/hvac/pack-3-flowing</property>
+								<value>0</value>
+							</eq>
+						</and>
+						<property>/systems/pneumatics/hvac/cabin-mid-target-switched</property>
+						<value>1000</value> <!-- Irrelevant -->
+					</ifthen>
+					<ifthen>
+						<and>
+							<eq>
+								<property>/systems/pneumatics/hvac/pack-2-flowing</property>
+								<value>0</value>
+							</eq>
+							<eq>
+								<property>/systems/pneumatics/hvac/pack-3-flowing</property>
+								<value>0</value>
+							</eq>
+						</and>
+						<property>/systems/pneumatics/hvac/cabin-aft-target-switched</property>
+						<value>1000</value> <!-- Irrelevant -->
+					</ifthen>
+				</min>
+			</function>
+		</fcs_function>
+		
+		<fcs_function name="/systems/pneumatics/hvac/pack-temp/pack-1-error-input">
+			<function>
+				<min>
+					<property>/systems/pneumatics/hvac/cockpit-error</property>
+					<property>/systems/pneumatics/hvac/cabin-fwd-error</property>
+					<ifthen>
+						<and>
+							<eq>
+								<property>/systems/pneumatics/hvac/pack-2-flowing</property>
+								<value>0</value>
+							</eq>
+							<eq>
+								<property>/systems/pneumatics/hvac/pack-3-flowing</property>
+								<value>0</value>
+							</eq>
+						</and>
+						<property>/systems/pneumatics/hvac/cabin-mid-error</property>
+						<value>1000</value> <!-- Irrelevant -->
+					</ifthen>
+					<ifthen>
+						<and>
+							<eq>
+								<property>/systems/pneumatics/hvac/pack-2-flowing</property>
+								<value>0</value>
+							</eq>
+							<eq>
+								<property>/systems/pneumatics/hvac/pack-3-flowing</property>
+								<value>0</value>
+							</eq>
+						</and>
+						<property>/systems/pneumatics/hvac/cabin-aft-error</property>
+						<value>1000</value> <!-- Irrelevant -->
+					</ifthen>
+				</min>
+			</function>
+		</fcs_function>
+		
+		<fcs_function name="/systems/pneumatics/hvac/pack-temp/pack-2-target-input">
+			<function>
+				<min>
+					<property>/systems/pneumatics/hvac/cabin-fwd-target-switched</property>
+					<property>/systems/pneumatics/hvac/cabin-mid-target-switched</property>
+					<ifthen>
+						<eq>
+							<property>/systems/pneumatics/hvac/pack-1-flowing</property>
+							<value>0</value>
+						</eq>
+						<property>/systems/pneumatics/hvac/cockpit-target-switched</property>
+						<value>1000</value> <!-- Irrelevant -->
+					</ifthen>
+					<ifthen>
+						<eq>
+							<property>/systems/pneumatics/hvac/pack-3-flowing</property>
+							<value>0</value>
+						</eq>
+						<property>/systems/pneumatics/hvac/cabin-aft-target-switched</property>
+						<value>1000</value> <!-- Irrelevant -->
+					</ifthen>
+				</min>
+			</function>
+		</fcs_function>
+		
+		<fcs_function name="/systems/pneumatics/hvac/pack-temp/pack-2-error-input">
+			<function>
+				<min>
+					<property>/systems/pneumatics/hvac/cabin-fwd-error</property>
+					<property>/systems/pneumatics/hvac/cabin-mid-error</property>
+					<ifthen>
+						<eq>
+							<property>/systems/pneumatics/hvac/pack-1-flowing</property>
+							<value>0</value>
+						</eq>
+						<property>/systems/pneumatics/hvac/cockpit-error</property>
+						<value>1000</value> <!-- Irrelevant -->
+					</ifthen>
+					<ifthen>
+						<eq>
+							<property>/systems/pneumatics/hvac/pack-3-flowing</property>
+							<value>0</value>
+						</eq>
+						<property>/systems/pneumatics/hvac/cabin-aft-error</property>
+						<value>1000</value> <!-- Irrelevant -->
+					</ifthen>
+				</min>
+			</function>
+		</fcs_function>
+		
+		<fcs_function name="/systems/pneumatics/hvac/pack-temp/pack-3-target-input">
+			<function>
+				<min>
+					<property>/systems/pneumatics/hvac/cabin-mid-target-switched</property>
+					<property>/systems/pneumatics/hvac/cabin-aft-target-switched</property>
+					<ifthen>
+						<and>
+							<eq>
+								<property>/systems/pneumatics/hvac/pack-1-flowing</property>
+								<value>0</value>
+							</eq>
+							<eq>
+								<property>/systems/pneumatics/hvac/pack-2-flowing</property>
+								<value>0</value>
+							</eq>
+						</and>
+						<property>/systems/pneumatics/hvac/cockpit-target-switched</property>
+						<value>1000</value> <!-- Irrelevant -->
+					</ifthen>
+					<ifthen>
+						<and>
+							<eq>
+								<property>/systems/pneumatics/hvac/pack-1-flowing</property>
+								<value>0</value>
+							</eq>
+							<eq>
+								<property>/systems/pneumatics/hvac/pack-2-flowing</property>
+								<value>0</value>
+							</eq>
+						</and>
+						<property>/systems/pneumatics/hvac/cabin-fwd-target-switched</property>
+						<value>1000</value> <!-- Irrelevant -->
+					</ifthen>
+				</min>
+			</function>
+		</fcs_function>
+		
+		<fcs_function name="/systems/pneumatics/hvac/pack-temp/pack-3-error-input">
+			<function>
+				<min>
+					<property>/systems/pneumatics/hvac/cabin-mid-error</property>
+					<property>/systems/pneumatics/hvac/cabin-aft-error</property>
+					<ifthen>
+						<and>
+							<eq>
+								<property>/systems/pneumatics/hvac/pack-1-flowing</property>
+								<value>0</value>
+							</eq>
+							<eq>
+								<property>/systems/pneumatics/hvac/pack-2-flowing</property>
+								<value>0</value>
+							</eq>
+						</and>
+						<property>/systems/pneumatics/hvac/cockpit-error</property>
+						<value>1000</value> <!-- Irrelevant -->
+					</ifthen>
+					<ifthen>
+						<and>
+							<eq>
+								<property>/systems/pneumatics/hvac/pack-1-flowing</property>
+								<value>0</value>
+							</eq>
+							<eq>
+								<property>/systems/pneumatics/hvac/pack-2-flowing</property>
+								<value>0</value>
+							</eq>
+						</and>
+						<property>/systems/pneumatics/hvac/cabin-fwd-error</property>
+						<value>1000</value> <!-- Irrelevant -->
+					</ifthen>
+				</min>
+			</function>
+		</fcs_function>
+		
+		<fcs_function name="/systems/pneumatics/hvac/pack-temp/pack-1-target">
 			<function>
 				<sum>
-					<min>
-						<property>/systems/pneumatics/hvac/cabin-aft-target-switched</property>
-						<property>/systems/pneumatics/hvac/cabin-mid-target-switched</property>
-						<property>/systems/pneumatics/hvac/cabin-fwd-target-switched</property>
-						<property>/systems/pneumatics/hvac/cockpit-target-switched</property>
-					</min>
+					<property>/systems/pneumatics/hvac/pack-temp/pack-1-target-input</property>
 					<table>
-						<independentVar lookup="row">/systems/pneumatics/hvac/coldest-cabin-error</independentVar>
+						<independentVar lookup="row">/systems/pneumatics/hvac/pack-temp/pack-1-error-input</independentVar>
 						<tableData>
-							-5 -8
-							 0 -1
+							-5 -9
+							 0 -2
+							 5  5
 						</tableData>
 					</table>
 				</sum>
 			</function>
+			<clipto>
+				<min>55</min>
+				<max>95</max>
+			</clipto>
+		</fcs_function>
+		
+		<fcs_function name="/systems/pneumatics/hvac/pack-temp/pack-2-target">
+			<function>
+				<sum>
+					<property>/systems/pneumatics/hvac/pack-temp/pack-2-target-input</property>
+					<table>
+						<independentVar lookup="row">/systems/pneumatics/hvac/pack-temp/pack-2-error-input</independentVar>
+						<tableData>
+							-5 -9.6
+							 0 -2.6
+							 5  4.4
+						</tableData>
+					</table>
+				</sum>
+			</function>
+			<clipto>
+				<min>55</min>
+				<max>95</max>
+			</clipto>
+		</fcs_function>
+		
+		<fcs_function name="/systems/pneumatics/hvac/pack-temp/pack-3-target">
+			<function>
+				<sum>
+					<property>/systems/pneumatics/hvac/pack-temp/pack-3-target-input</property>
+					<table>
+						<independentVar lookup="row">/systems/pneumatics/hvac/pack-temp/pack-3-error-input</independentVar>
+						<tableData>
+							-5 -9.8
+							 0 -2.8
+							 5  4.2
+						</tableData>
+					</table>
+				</sum>
+			</function>
+			<clipto>
+				<min>55</min>
+				<max>95</max>
+			</clipto>
 		</fcs_function>
 		
 		<!-- Pack Temperatures -->
-		<fcs_function name="/systems/pneumatics/hvac/pack-1-temp-cmd">
+		<fcs_function name="/systems/pneumatics/hvac/pack-temp/pack-1-cmd">
 			<function>
 				<interpolate1d>
 					<property>/systems/pneumatics/pack-1-flow</property>
 					<value>0</value><property>propulsion/tat-c</property>
-					<value>10</value><property>/systems/pneumatics/hvac/pack-temp-target</property>
+					<value>10</value><min>
+						<property>/systems/pneumatics/temp/bleed-1</property>
+						<property>/systems/pneumatics/hvac/pack-temp/pack-1-target</property>
+					</min>
 				</interpolate1d>
 			</function>
 		</fcs_function>
 		
-		<fcs_function name="/systems/pneumatics/hvac/pack-1-temp-incr-rate">
-			<function>
-				<table>
-					<independentVar lookup="row">/systems/pneumatics/pack-1-flow</independentVar>
-					<tableData>
-						 0  0.1
-						10  9.0
-					</tableData>
-				</table>
-			</function>
-		</fcs_function>
-		
-		<fcs_function name="/systems/pneumatics/hvac/pack-1-temp-decr-rate">
+		<fcs_function name="/systems/pneumatics/hvac/pack-temp/pack-1-incr-rate">
 			<function>
 				<table>
 					<independentVar lookup="row">/systems/pneumatics/pack-1-flow</independentVar>
@@ -246,40 +499,43 @@
 			</function>
 		</fcs_function>
 		
-		<actuator name="/systems/pneumatics/hvac/pack-1-temp-actuator">
-			<input>/systems/pneumatics/hvac/pack-1-temp-cmd</input>
-			<rate_limit sense="incr">/systems/pneumatics/hvac/pack-1-temp-incr-rate</rate_limit>
-			<rate_limit sense="decr">/systems/pneumatics/hvac/pack-1-temp-decr-rate</rate_limit>
+		<fcs_function name="/systems/pneumatics/hvac/pack-temp/pack-1-decr-rate">
+			<function>
+				<table>
+					<independentVar lookup="row">/systems/pneumatics/pack-1-flow</independentVar>
+					<tableData>
+						 0  0.1
+						10  3.0
+					</tableData>
+				</table>
+			</function>
+		</fcs_function>
+		
+		<actuator name="/systems/pneumatics/hvac/pack-temp/pack-1-actuator">
+			<input>/systems/pneumatics/hvac/pack-temp/pack-1-cmd</input>
+			<rate_limit sense="incr">/systems/pneumatics/hvac/pack-temp/pack-1-incr-rate</rate_limit>
+			<rate_limit sense="decr">/systems/pneumatics/hvac/pack-temp/pack-1-decr-rate</rate_limit>
 		</actuator>
 		
-		<lag_filter name="/systems/pneumatics/hvac/pack-1-temp">
-			<input>/systems/pneumatics/hvac/pack-1-temp-actuator</input>
+		<lag_filter name="/systems/pneumatics/hvac/pack-temp/pack-1">
+			<input>/systems/pneumatics/hvac/pack-temp/pack-1-actuator</input>
 			<c1>0.4</c1>
 		</lag_filter>
 		
-		<fcs_function name="/systems/pneumatics/hvac/pack-2-temp-cmd">
+		<fcs_function name="/systems/pneumatics/hvac/pack-temp/pack-2-cmd">
 			<function>
 				<interpolate1d>
 					<property>/systems/pneumatics/pack-2-flow</property>
 					<value>0</value><property>propulsion/tat-c</property>
-					<value>10</value><property>/systems/pneumatics/hvac/pack-temp-target</property>
+					<value>10</value><min>
+						<property>/systems/pneumatics/temp/bleed-2</property>
+						<property>/systems/pneumatics/hvac/pack-temp/pack-2-target</property>
+					</min>
 				</interpolate1d>
 			</function>
 		</fcs_function>
 		
-		<fcs_function name="/systems/pneumatics/hvac/pack-2-temp-incr-rate">
-			<function>
-				<table>
-					<independentVar lookup="row">/systems/pneumatics/pack-2-flow</independentVar>
-					<tableData>
-						 0  0.1
-						10  9.0
-					</tableData>
-				</table>
-			</function>
-		</fcs_function>
-		
-		<fcs_function name="/systems/pneumatics/hvac/pack-2-temp-decr-rate">
+		<fcs_function name="/systems/pneumatics/hvac/pack-temp/pack-2-incr-rate">
 			<function>
 				<table>
 					<independentVar lookup="row">/systems/pneumatics/pack-2-flow</independentVar>
@@ -291,40 +547,43 @@
 			</function>
 		</fcs_function>
 		
-		<actuator name="/systems/pneumatics/hvac/pack-2-temp-actuator">
-			<input>/systems/pneumatics/hvac/pack-2-temp-cmd</input>
-			<rate_limit sense="incr">/systems/pneumatics/hvac/pack-2-temp-incr-rate</rate_limit>
-			<rate_limit sense="decr">/systems/pneumatics/hvac/pack-2-temp-decr-rate</rate_limit>
+		<fcs_function name="/systems/pneumatics/hvac/pack-temp/pack-2-decr-rate">
+			<function>
+				<table>
+					<independentVar lookup="row">/systems/pneumatics/pack-2-flow</independentVar>
+					<tableData>
+						 0  0.1
+						10  3.0
+					</tableData>
+				</table>
+			</function>
+		</fcs_function>
+		
+		<actuator name="/systems/pneumatics/hvac/pack-temp/pack-2-actuator">
+			<input>/systems/pneumatics/hvac/pack-temp/pack-2-cmd</input>
+			<rate_limit sense="incr">/systems/pneumatics/hvac/pack-temp/pack-2-incr-rate</rate_limit>
+			<rate_limit sense="decr">/systems/pneumatics/hvac/pack-temp/pack-2-decr-rate</rate_limit>
 		</actuator>
 		
-		<lag_filter name="/systems/pneumatics/hvac/pack-2-temp">
-			<input>/systems/pneumatics/hvac/pack-2-temp-actuator</input>
+		<lag_filter name="/systems/pneumatics/hvac/pack-temp/pack-2">
+			<input>/systems/pneumatics/hvac/pack-temp/pack-2-actuator</input>
 			<c1>0.4</c1>
 		</lag_filter>
 		
-		<fcs_function name="/systems/pneumatics/hvac/pack-3-temp-cmd">
+		<fcs_function name="/systems/pneumatics/hvac/pack-temp/pack-3-cmd">
 			<function>
 				<interpolate1d>
 					<property>/systems/pneumatics/pack-3-flow</property>
 					<value>0</value><property>propulsion/tat-c</property>
-					<value>10</value><property>/systems/pneumatics/hvac/pack-temp-target</property>
+					<value>10</value><min>
+						<property>/systems/pneumatics/temp/bleed-3</property>
+						<property>/systems/pneumatics/hvac/pack-temp/pack-3-target</property>
+					</min>
 				</interpolate1d>
 			</function>
 		</fcs_function>
 		
-		<fcs_function name="/systems/pneumatics/hvac/pack-3-temp-incr-rate">
-			<function>
-				<table>
-					<independentVar lookup="row">/systems/pneumatics/pack-3-flow</independentVar>
-					<tableData>
-						 0  0.1
-						10  9.0
-					</tableData>
-				</table>
-			</function>
-		</fcs_function>
-		
-		<fcs_function name="/systems/pneumatics/hvac/pack-3-temp-decr-rate">
+		<fcs_function name="/systems/pneumatics/hvac/pack-temp/pack-3-incr-rate">
 			<function>
 				<table>
 					<independentVar lookup="row">/systems/pneumatics/pack-3-flow</independentVar>
@@ -336,14 +595,109 @@
 			</function>
 		</fcs_function>
 		
-		<actuator name="/systems/pneumatics/hvac/pack-3-temp-actuator">
-			<input>/systems/pneumatics/hvac/pack-3-temp-cmd</input>
-			<rate_limit sense="incr">/systems/pneumatics/hvac/pack-3-temp-incr-rate</rate_limit>
-			<rate_limit sense="decr">/systems/pneumatics/hvac/pack-3-temp-decr-rate</rate_limit>
+		<fcs_function name="/systems/pneumatics/hvac/pack-temp/pack-3-decr-rate">
+			<function>
+				<table>
+					<independentVar lookup="row">/systems/pneumatics/pack-3-flow</independentVar>
+					<tableData>
+						 0  0.1
+						10  3.0
+					</tableData>
+				</table>
+			</function>
+		</fcs_function>
+		
+		<actuator name="/systems/pneumatics/hvac/pack-temp/pack-3-actuator">
+			<input>/systems/pneumatics/hvac/pack-temp/pack-3-cmd</input>
+			<rate_limit sense="incr">/systems/pneumatics/hvac/pack-temp/pack-3-incr-rate</rate_limit>
+			<rate_limit sense="decr">/systems/pneumatics/hvac/pack-temp/pack-3-decr-rate</rate_limit>
 		</actuator>
 		
-		<lag_filter name="/systems/pneumatics/hvac/pack-3-temp">
-			<input>/systems/pneumatics/hvac/pack-3-temp-actuator</input>
+		<lag_filter name="/systems/pneumatics/hvac/pack-temp/pack-3">
+			<input>/systems/pneumatics/hvac/pack-temp/pack-3-actuator</input>
+			<c1>0.4</c1>
+		</lag_filter>
+		
+		<!-- Conditioned Air Manifold Temperature -->
+		<fcs_function name="/systems/pneumatics/hvac/pack-temp/pack-1-flow-factor">
+			<function>
+				<table>
+					<independentVar lookup="row">/systems/pneumatics/pack-1-flow</independentVar>
+					<tableData>
+						 0  0
+						10  1
+					</tableData>
+				</table>
+			</function>
+		</fcs_function>
+		
+		<fcs_function name="/systems/pneumatics/hvac/pack-temp/pack-2-flow-factor">
+			<function>
+				<table>
+					<independentVar lookup="row">/systems/pneumatics/pack-2-flow</independentVar>
+					<tableData>
+						 0  0
+						10  1
+					</tableData>
+				</table>
+			</function>
+		</fcs_function>
+		
+		<fcs_function name="/systems/pneumatics/hvac/pack-temp/pack-3-flow-factor">
+			<function>
+				<table>
+					<independentVar lookup="row">/systems/pneumatics/pack-3-flow</independentVar>
+					<tableData>
+						 0  0
+						10  1
+					</tableData>
+				</table>
+			</function>
+		</fcs_function>
+		
+		<fcs_function name="/systems/pneumatics/hvac/conditioned-air-temp-cmd">
+			<function>
+				<ifthen>
+					<gt>
+						<sum>
+							<property>/systems/pneumatics/hvac/pack-temp/pack-1-flow-factor</property>
+							<property>/systems/pneumatics/hvac/pack-temp/pack-2-flow-factor</property>
+							<property>/systems/pneumatics/hvac/pack-temp/pack-3-flow-factor</property>
+						</sum>
+						<value>0</value>
+					</gt>
+					<quotient> <!-- Weighted average -->
+						<sum>
+							<product>
+								<property>/systems/pneumatics/hvac/pack-temp/pack-1-actuator</property>
+								<property>/systems/pneumatics/hvac/pack-temp/pack-1-flow-factor</property>
+							</product>
+							<product>
+								<property>/systems/pneumatics/hvac/pack-temp/pack-2-actuator</property>
+								<property>/systems/pneumatics/hvac/pack-temp/pack-2-flow-factor</property>
+							</product>
+							<product>
+								<property>/systems/pneumatics/hvac/pack-temp/pack-3-actuator</property>
+								<property>/systems/pneumatics/hvac/pack-temp/pack-3-flow-factor</property>
+							</product>
+						</sum>
+						<sum>
+							<property>/systems/pneumatics/hvac/pack-temp/pack-1-flow-factor</property>
+							<property>/systems/pneumatics/hvac/pack-temp/pack-2-flow-factor</property>
+							<property>/systems/pneumatics/hvac/pack-temp/pack-3-flow-factor</property>
+						</sum>
+					</quotient>
+					<avg> <!-- There's no flow, so just average the ambiants -->
+						<property>/systems/pneumatics/hvac/pack-temp/pack-1-actuator</property>
+						<property>/systems/pneumatics/hvac/pack-temp/pack-2-actuator</property>
+						<property>/systems/pneumatics/hvac/pack-temp/pack-3-actuator</property>
+					</avg>
+				</ifthen>
+			</function>
+		</fcs_function>
+		
+		<lag_filter name="/systems/pneumatics/hvac/conditioned-air-temp">
+			<input>/systems/pneumatics/hvac/conditioned-air-temp-cmd</input>
 			<c1>0.4</c1>
 		</lag_filter>
 		
@@ -469,7 +823,7 @@
 						<property>/options/freighter</property>
 						<value>1</value>
 					</eq>
-					<property>/systems/pneumatics/hvac/cabin-mid-temp-calc</property> <!-- Freighter uses mid/aft combined as cargo -->
+					<property>/systems/pneumatics/hvac/cabin-mid-temp-calc</property> <!-- Freighter doesn't have aft, this makes it "invisible" -->
 					<sum>
 						<property>/systems/pneumatics/hvac/cabin-aft-temp</property>
 						<product> <!-- Environment Factor -->
