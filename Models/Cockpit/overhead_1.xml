@@ -14,26 +14,34 @@
 	
 	<animation>
 		<type>select</type>
-		<object-name>AirPanel.freighter</object-name>
-		<object-name>CabinAir</object-name>
-		<object-name>CabinAirCover</object-name>
-		<object-name>CabinAirHinge</object-name>
-		<object-name>overhead.freighter.text</object-name>
-		<condition>
-			<property>options/freighter</property>
-		</condition>
-	</animation>
-	<animation>
-		<type>select</type>
 		<object-name>AirPanel.pax</object-name>
 		<object-name>AftTemp</object-name>
 		<object-name>AftTemp.light</object-name>
+		<object-name>Galley1</object-name>
+		<object-name>Galley1.off</object-name>
+		<object-name>Galley2</object-name>
+		<object-name>Galley2.off</object-name>
+		<object-name>Galley3</object-name>
+		<object-name>Galley3.off</object-name>
+		<object-name>GenGalleyPanel.pax</object-name>
 		<object-name>overhead.pax.text</object-name>
 		<object-name>PaxLoadHundreds</object-name>
 		<object-name>PaxLoadOnes</object-name>
 		<object-name>PaxLoadTens</object-name>
 		<condition>
 			<not><property>options/freighter</property></not>
+		</condition>
+	</animation>
+	<animation>
+		<type>select</type>
+		<object-name>AirPanel.freighter</object-name>
+		<object-name>CabinAir</object-name>
+		<object-name>CabinAirCover</object-name>
+		<object-name>CabinAirHinge</object-name>
+		<object-name>GenGalleyPanel.freighter</object-name>
+		<object-name>overhead.freighter.text</object-name>
+		<condition>
+			<property>options/freighter</property>
 		</condition>
 	</animation>
 	
@@ -242,6 +250,9 @@
 		<object-name>Gen2.off</object-name>
 		<object-name>Gen3.arm</object-name>
 		<object-name>Gen3.off</object-name>
+		<object-name>GenBusFaultReset1.fault</object-name>
+		<object-name>GenBusFaultReset2.fault</object-name>
+		<object-name>GenBusFaultReset3.fault</object-name>
 		<object-name>IGN.off</object-name>
 		<object-name>IGN_A.a</object-name>
 		<object-name>IGN_A.manual</object-name>
@@ -427,6 +438,9 @@
 		<object-name>FADEC_MODE2.select</object-name>
 		<object-name>FADEC_MODE3.select</object-name>
 		<object-name>FuelDumpEmerStop.stop</object-name>
+		<object-name>GenBusFaultReset1.fault</object-name>
+		<object-name>GenBusFaultReset2.fault</object-name>
+		<object-name>GenBusFaultReset3.fault</object-name>
 		<object-name>IGN_A.manual</object-name>
 		<object-name>IGN_B.manual</object-name>
 		<object-name>Manf.drain</object-name>
@@ -593,6 +607,121 @@
 				</equals>
 			</or>
 		</condition>
+	</animation>
+	
+	<!-- Gen Bus Reset Buttons -->
+	<animation>
+		<type>pick</type>
+		<object-name>GenBusFaultReset1</object-name>
+		<object-name>GenBusFaultReset1.fault</object-name>
+		<action>
+			<button>0</button>
+			<repeatable>false</repeatable>
+			<binding>
+				<command>property-assign</command>
+				<property>controls/cockpit/overhead/gen-bus-fault-reset-1</property>
+				<value>1</value>
+			</binding>
+			<binding>
+				<command>nasal</command>
+				<script>core.Sound.btn2();</script>
+			</binding>
+			<mod-up>
+				<binding>
+					<command>property-assign</command>
+					<property>controls/cockpit/overhead/gen-bus-fault-reset-1</property>
+					<value>0</value>
+				</binding>
+			</mod-up>
+		</action>
+	</animation>
+	<animation>
+		<type>translate</type>
+		<object-name>GenBusFaultReset1</object-name>
+		<object-name>GenBusFaultReset1.fault</object-name>
+		<property>controls/cockpit/overhead/gen-bus-fault-reset-1</property>
+		<factor>-0.001</factor>
+		<axis>
+			<x>1</x>
+			<y>0</y>
+			<z>0</z>
+		</axis>
+	</animation>
+	
+	<animation>
+		<type>pick</type>
+		<object-name>GenBusFaultReset2</object-name>
+		<object-name>GenBusFaultReset2.fault</object-name>
+		<action>
+			<button>0</button>
+			<repeatable>false</repeatable>
+			<binding>
+				<command>property-assign</command>
+				<property>controls/cockpit/overhead/gen-bus-fault-reset-2</property>
+				<value>1</value>
+			</binding>
+			<binding>
+				<command>nasal</command>
+				<script>core.Sound.btn2();</script>
+			</binding>
+			<mod-up>
+				<binding>
+					<command>property-assign</command>
+					<property>controls/cockpit/overhead/gen-bus-fault-reset-2</property>
+					<value>0</value>
+				</binding>
+			</mod-up>
+		</action>
+	</animation>
+	<animation>
+		<type>translate</type>
+		<object-name>GenBusFaultReset2</object-name>
+		<object-name>GenBusFaultReset2.fault</object-name>
+		<property>controls/cockpit/overhead/gen-bus-fault-reset-2</property>
+		<factor>-0.001</factor>
+		<axis>
+			<x>1</x>
+			<y>0</y>
+			<z>0</z>
+		</axis>
+	</animation>
+	
+	<animation>
+		<type>pick</type>
+		<object-name>GenBusFaultReset3</object-name>
+		<object-name>GenBusFaultReset3.fault</object-name>
+		<action>
+			<button>0</button>
+			<repeatable>false</repeatable>
+			<binding>
+				<command>property-assign</command>
+				<property>controls/cockpit/overhead/gen-bus-fault-reset-3</property>
+				<value>1</value>
+			</binding>
+			<binding>
+				<command>nasal</command>
+				<script>core.Sound.btn2();</script>
+			</binding>
+			<mod-up>
+				<binding>
+					<command>property-assign</command>
+					<property>controls/cockpit/overhead/gen-bus-fault-reset-3</property>
+					<value>0</value>
+				</binding>
+			</mod-up>
+		</action>
+	</animation>
+	<animation>
+		<type>translate</type>
+		<object-name>GenBusFaultReset3</object-name>
+		<object-name>GenBusFaultReset3.fault</object-name>
+		<property>controls/cockpit/overhead/gen-bus-fault-reset-3</property>
+		<factor>-0.001</factor>
+		<axis>
+			<x>1</x>
+			<y>0</y>
+			<z>0</z>
+		</axis>
 	</animation>
 	
 	<!-- Galley Bus Buttons -->
