@@ -875,9 +875,9 @@
 		<object-name>CargoAftTemp.light</object-name>
 		<property>controls/cockpit/overhead/cargo-aft-temp</property>
 		<interpolation>
-			<entry><ind>39</ind><dep>180</dep></entry>
-			<entry><ind>40</ind><dep> 90</dep></entry>
-			<entry><ind>96</ind><dep>-90</dep></entry>
+			<entry><ind>39</ind><dep> 180</dep></entry>
+			<entry><ind>40</ind><dep> 113</dep></entry>
+			<entry><ind>96</ind><dep>-113</dep></entry>
 		</interpolation>
 		<axis>
 			<x>1</x>
@@ -4127,9 +4127,9 @@
 		<object-name>CockpitTemp.light</object-name>
 		<property>controls/cockpit/overhead/cockpit-temp</property>
 		<interpolation>
-			<entry><ind>64</ind><dep>180</dep></entry>
-			<entry><ind>65</ind><dep> 90</dep></entry>
-			<entry><ind>85</ind><dep>-90</dep></entry>
+			<entry><ind>64</ind><dep> 180</dep></entry>
+			<entry><ind>65</ind><dep> 113</dep></entry>
+			<entry><ind>85</ind><dep>-113</dep></entry>
 		</interpolation>
 		<axis>
 			<x>1</x>
@@ -4158,9 +4158,9 @@
 		<object-name>FwdTemp.light</object-name>
 		<property>controls/cockpit/overhead/cabin-fwd-temp</property>
 		<interpolation>
-			<entry><ind>64</ind><dep>180</dep></entry>
-			<entry><ind>65</ind><dep> 90</dep></entry>
-			<entry><ind>85</ind><dep>-90</dep></entry>
+			<entry><ind>64</ind><dep> 180</dep></entry>
+			<entry><ind>65</ind><dep> 113</dep></entry>
+			<entry><ind>85</ind><dep>-113</dep></entry>
 		</interpolation>
 		<axis>
 			<x>1</x>
@@ -4189,9 +4189,9 @@
 		<object-name>MidTemp.light</object-name>
 		<property>controls/cockpit/overhead/cabin-mid-temp</property>
 		<interpolation>
-			<entry><ind>64</ind><dep>180</dep></entry>
-			<entry><ind>65</ind><dep> 90</dep></entry>
-			<entry><ind>85</ind><dep>-90</dep></entry>
+			<entry><ind>64</ind><dep> 180</dep></entry>
+			<entry><ind>65</ind><dep> 113</dep></entry>
+			<entry><ind>85</ind><dep>-113</dep></entry>
 		</interpolation>
 		<axis>
 			<x>1</x>
@@ -4220,9 +4220,9 @@
 		<object-name>AftTemp.light</object-name>
 		<property>controls/cockpit/overhead/cabin-aft-temp</property>
 		<interpolation>
-			<entry><ind>64</ind><dep>180</dep></entry>
-			<entry><ind>65</ind><dep> 90</dep></entry>
-			<entry><ind>85</ind><dep>-90</dep></entry>
+			<entry><ind>64</ind><dep> 180</dep></entry>
+			<entry><ind>65</ind><dep> 113</dep></entry>
+			<entry><ind>85</ind><dep>-113</dep></entry>
 		</interpolation>
 		<axis>
 			<x>1</x>
