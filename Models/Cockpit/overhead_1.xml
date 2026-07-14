@@ -844,9 +844,9 @@
 		<property>controls/cockpit/overhead/cargo-fwd-temp</property>
 		<drag-scale-px>15</drag-scale-px>
 		<interpolation>
-			<entry><ind>0.0</ind><dep>180</dep></entry>
-			<entry><ind>0.5</ind><dep> 66</dep></entry>
-			<entry><ind>1.0</ind><dep>-66</dep></entry>
+			<entry><ind>10</ind><dep>180</dep></entry>
+			<entry><ind>40</ind><dep> 66</dep></entry>
+			<entry><ind>70</ind><dep>-66</dep></entry>
 		</interpolation>
 		<axis>
 			<x>1</x>
@@ -862,9 +862,9 @@
 			<binding>
 				<command>property-adjust</command>
 				<property>controls/pneumatics/cargo-fwd-temp</property>
-				<factor>0.5</factor>
-				<min>0</min>
-				<max>1</max>
+				<factor>30</factor>
+				<min>10</min>
+				<max>70</max>
 			</binding>
 		</action>
 	</animation>
@@ -875,9 +875,9 @@
 		<object-name>CargoAftTemp.light</object-name>
 		<property>controls/cockpit/overhead/cargo-aft-temp</property>
 		<interpolation>
-			<entry><ind>0.00</ind><dep> 180</dep></entry>
-			<entry><ind>0.05</ind><dep> 113</dep></entry>
-			<entry><ind>0.75</ind><dep>-113</dep></entry>
+			<entry><ind>39</ind><dep>180</dep></entry>
+			<entry><ind>40</ind><dep> 90</dep></entry>
+			<entry><ind>96</ind><dep>-90</dep></entry>
 		</interpolation>
 		<axis>
 			<x>1</x>
@@ -893,9 +893,9 @@
 			<binding>
 				<command>property-adjust</command>
 				<property>controls/pneumatics/cargo-aft-temp</property>
-				<factor>0.05</factor>
-				<min>0</min>
-				<max>0.85</max>
+				<factor>1</factor>
+				<min>39</min>
+				<max>96</max>
 			</binding>
 		</action>
 	</animation>
@@ -4127,9 +4127,9 @@
 		<object-name>CockpitTemp.light</object-name>
 		<property>controls/cockpit/overhead/cockpit-temp</property>
 		<interpolation>
-			<entry><ind>0.00</ind><dep> 180</dep></entry>
-			<entry><ind>0.05</ind><dep> 113</dep></entry>
-			<entry><ind>0.85</ind><dep>-113</dep></entry>
+			<entry><ind>64</ind><dep>180</dep></entry>
+			<entry><ind>65</ind><dep> 90</dep></entry>
+			<entry><ind>85</ind><dep>-90</dep></entry>
 		</interpolation>
 		<axis>
 			<x>1</x>
@@ -4145,9 +4145,9 @@
 			<binding>
 				<command>property-adjust</command>
 				<property>controls/pneumatics/cockpit-temp</property>
-				<factor>0.05</factor>
-				<min>0</min>
-				<max>0.85</max>
+				<factor>1</factor>
+				<min>64</min>
+				<max>85</max>
 			</binding>
 		</action>
 	</animation>
@@ -4158,9 +4158,9 @@
 		<object-name>FwdTemp.light</object-name>
 		<property>controls/cockpit/overhead/cabin-fwd-temp</property>
 		<interpolation>
-			<entry><ind>0.00</ind><dep> 180</dep></entry>
-			<entry><ind>0.05</ind><dep> 113</dep></entry>
-			<entry><ind>0.85</ind><dep>-113</dep></entry>
+			<entry><ind>64</ind><dep>180</dep></entry>
+			<entry><ind>65</ind><dep> 90</dep></entry>
+			<entry><ind>85</ind><dep>-90</dep></entry>
 		</interpolation>
 		<axis>
 			<x>1</x>
@@ -4176,9 +4176,9 @@
 			<binding>
 				<command>property-adjust</command>
 				<property>controls/pneumatics/cabin-fwd-temp</property>
-				<factor>0.05</factor>
-				<min>0</min>
-				<max>0.85</max>
+				<factor>1</factor>
+				<min>64</min>
+				<max>85</max>
 			</binding>
 		</action>
 	</animation>
@@ -4189,9 +4189,9 @@
 		<object-name>MidTemp.light</object-name>
 		<property>controls/cockpit/overhead/cabin-mid-temp</property>
 		<interpolation>
-			<entry><ind>0.00</ind><dep> 180</dep></entry>
-			<entry><ind>0.05</ind><dep> 113</dep></entry>
-			<entry><ind>0.85</ind><dep>-113</dep></entry>
+			<entry><ind>64</ind><dep>180</dep></entry>
+			<entry><ind>65</ind><dep> 90</dep></entry>
+			<entry><ind>85</ind><dep>-90</dep></entry>
 		</interpolation>
 		<axis>
 			<x>1</x>
@@ -4207,9 +4207,9 @@
 			<binding>
 				<command>property-adjust</command>
 				<property>controls/pneumatics/cabin-mid-temp</property>
-				<factor>0.05</factor>
-				<min>0</min>
-				<max>0.85</max>
+				<factor>1</factor>
+				<min>64</min>
+				<max>85</max>
 			</binding>
 		</action>
 	</animation>
@@ -4220,9 +4220,9 @@
 		<object-name>AftTemp.light</object-name>
 		<property>controls/cockpit/overhead/cabin-aft-temp</property>
 		<interpolation>
-			<entry><ind>0.00</ind><dep> 180</dep></entry>
-			<entry><ind>0.05</ind><dep> 113</dep></entry>
-			<entry><ind>0.85</ind><dep>-113</dep></entry>
+			<entry><ind>64</ind><dep>180</dep></entry>
+			<entry><ind>65</ind><dep> 90</dep></entry>
+			<entry><ind>85</ind><dep>-90</dep></entry>
 		</interpolation>
 		<axis>
 			<x>1</x>
@@ -4238,9 +4238,9 @@
 			<binding>
 				<command>property-adjust</command>
 				<property>controls/pneumatics/cabin-aft-temp</property>
-				<factor>0.05</factor>
-				<min>0</min>
-				<max>0.85</max>
+				<factor>1</factor>
+				<min>64</min>
+				<max>85</max>
 			</binding>
 		</action>
 	</animation>

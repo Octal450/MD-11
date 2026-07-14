@@ -111,14 +111,14 @@ var PNEUMATICS = {
 		me.Controls.bleed1.setBoolValue(1);
 		me.Controls.bleed2.setBoolValue(1);
 		me.Controls.bleed3.setBoolValue(1);
-		me.Controls.cabinAftTemp.setValue(0.45);
-		me.Controls.cabinFwdTemp.setValue(0.45);
-		me.Controls.cabinMidTemp.setValue(0.45);
-		me.Controls.cargoAftTemp.setValue(0.05); # Only turned up if needed
+		me.Controls.cabinAftTemp.setValue(72);
+		me.Controls.cabinFwdTemp.setValue(72);
+		me.Controls.cabinMidTemp.setValue(72);
+		me.Controls.cargoAftTemp.setValue(40); # Only turned up if needed
 		me.Controls.cargoAftVentilation.setBoolValue(1);
-		me.Controls.cargoFwdTemp.setValue(0.5); # Only turned to HI if needed
+		me.Controls.cargoFwdTemp.setValue(40); # Only turned to HI if needed
 		me.Controls.cargoFwdVentilation.setBoolValue(1);
-		me.Controls.cockpitTemp.setValue(0.45);
+		me.Controls.cockpitTemp.setValue(72);
 		me.Controls.econ.setBoolValue(1);
 		me.Controls.groundAir.setBoolValue(0);
 		me.Controls.isol12.setBoolValue(0);
