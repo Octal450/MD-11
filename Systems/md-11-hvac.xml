@@ -5,13 +5,13 @@
 
 <system name="MD-11: HVAC"> <!-- The airplane is calibrated in Fahrenheit since it's American designed, so that's what I'll use here -->
 	
-	<property value="75">/systems/pneumatics/hvac/cabin-aft-temp</property>
-	<property value="75">/systems/pneumatics/hvac/cabin-fwd-temp</property>
-	<property value="75">/systems/pneumatics/hvac/cabin-mid-temp</property>
+	<property value="72">/systems/pneumatics/hvac/cabin-aft-temp</property>
+	<property value="72">/systems/pneumatics/hvac/cabin-fwd-temp</property>
+	<property value="72">/systems/pneumatics/hvac/cabin-mid-temp</property>
 	<property value="68">/systems/pneumatics/hvac/cargo-aft-temp</property>
 	<property value="68">/systems/pneumatics/hvac/cargo-fwd-temp</property>
 	<property value="68">/systems/pneumatics/hvac/cargo-mid-temp</property>
-	<property value="75">/systems/pneumatics/hvac/cockpit-temp</property>
+	<property value="72">/systems/pneumatics/hvac/cockpit-temp</property>
 	
 	<!--
 	Cargo Mid zone is heated but not ventilated. Cargo Fwd/Aft zones are heated and ventilated.
@@ -498,8 +498,8 @@
 						<independentVar lookup="row">/systems/pneumatics/hvac/pack-temp/pack-1-error-input</independentVar>
 						<tableData>
 							-4 -9.4
-							 0 -2.4
-							 4  4.6
+							 0 -0.4
+							 4  5.6
 						</tableData>
 					</table>
 				</sum>
@@ -518,8 +518,8 @@
 						<independentVar lookup="row">/systems/pneumatics/hvac/pack-temp/pack-2-error-input</independentVar>
 						<tableData>
 							-4 -9.7
-							 0 -2.7
-							 4  4.3
+							 0 -0.7
+							 4  5.3
 						</tableData>
 					</table>
 				</sum>
@@ -538,8 +538,8 @@
 						<independentVar lookup="row">/systems/pneumatics/hvac/pack-temp/pack-3-error-input</independentVar>
 						<tableData>
 							-4 -9.9
-							 0 -2.9
-							 4  4.1
+							 0 -0.9
+							 4  5.1
 						</tableData>
 					</table>
 				</sum>
