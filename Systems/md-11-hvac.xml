@@ -9,7 +9,7 @@
 	<property value="75">/systems/pneumatics/hvac/cabin-fwd-temp</property>
 	<property value="75">/systems/pneumatics/hvac/cabin-mid-temp</property>
 	<property value="68">/systems/pneumatics/hvac/cargo-aft-temp</property>
-	<property value="70">/systems/pneumatics/hvac/cargo-fwd-temp</property>
+	<property value="68">/systems/pneumatics/hvac/cargo-fwd-temp</property>
 	<property value="68">/systems/pneumatics/hvac/cargo-mid-temp</property>
 	<property value="75">/systems/pneumatics/hvac/cockpit-temp</property>
 	
@@ -19,13 +19,37 @@
 	Cabin Aft simply mirrors Cabin Mid to "simulate" a larger zone, which corrects how it affects the Courier (Cabin Fwd) zone.
 	-->
 	
-	<channel name="HVAC Logic">
+	<channel name="General" execrate="8">
 		
 		<fcs_function name="/systems/pneumatics/hvac/tat-f">
 			<function>
 				<sum>
 					<product>
 						<property>propulsion/tat-c</property>
+						<value>1.8</value>
+					</product>
+					<value>32</value>
+				</sum>
+			</function>
+		</fcs_function>
+		
+		<fcs_function name="/systems/pneumatics/hvac/bleed-2-f">
+			<function>
+				<sum>
+					<product>
+						<property>/systems/pneumatics/temp/bleed-2</property>
+						<value>1.8</value>
+					</product>
+					<value>32</value>
+				</sum>
+			</function>
+		</fcs_function>
+		
+		<fcs_function name="/systems/pneumatics/hvac/bleed-3-f">
+			<function>
+				<sum>
+					<product>
+						<property>/systems/pneumatics/temp/bleed-3</property>
 						<value>1.8</value>
 					</product>
 					<value>32</value>
@@ -149,6 +173,23 @@
 			</function>
 		</fcs_function>
 		
+		<fcs_function name="/systems/pneumatics/hvac/cargo-mid-target"> <!-- Cannot be controlled by the crew -->
+			<function>
+				<floor>
+					<sum>
+						<table>
+							<independentVar lookup="row">/systems/pneumatics/hvac/tat-f</independentVar>
+							<tableData> <!-- Guess -->
+								20  55
+								40  65
+							</tableData>
+						</table>
+						<value>0.5</value>
+					</sum>
+				</floor>
+			</function>
+		</fcs_function>
+		
 		<fcs_function name="/systems/pneumatics/hvac/cargo-aft-target">
 			<function>
 				<floor>
@@ -203,6 +244,14 @@
 			</test>
 		</switch>
 		
+		<switch name="/systems/pneumatics/hvac/cargo-mid-target-switched"> <!-- On unless fire -->
+			<default value="/systems/pneumatics/hvac/cargo-mid-target"/>
+			<!--default value="/systems/pneumatics/hvac/cargo-mid-temp"/>
+			<test value="/systems/pneumatics/hvac/cargo-mid-target">
+				not on fire
+			</test-->
+		</switch>
+		
 		<switch name="/systems/pneumatics/hvac/cargo-aft-target-switched">
 			<default value="/systems/pneumatics/hvac/cargo-aft-temp"/>
 			<test value="/systems/pneumatics/hvac/cargo-aft-target">
@@ -236,10 +285,19 @@
 			<input>-/systems/pneumatics/hvac/cargo-fwd-temp</input>
 		</summer>
 		
+		<summer name="/systems/pneumatics/hvac/cargo-mid-error">
+			<input>/systems/pneumatics/hvac/cargo-mid-target-switched</input>
+			<input>-/systems/pneumatics/hvac/cargo-mid-temp</input>
+		</summer>
+		
 		<summer name="/systems/pneumatics/hvac/cargo-aft-error">
 			<input>/systems/pneumatics/hvac/cargo-aft-target-switched</input>
 			<input>-/systems/pneumatics/hvac/cargo-aft-temp</input>
 		</summer>
+	
+	</channel>
+	
+	<channel name="Pack Temperature" execrate="8">
 		
 		<!-- Pack Temperature Targets -->
 		<!-- This is complex because the ECS controls which packs respond based on which zones have error, and accounts for inoperative packs -->
@@ -756,12 +814,16 @@
 			<input>/systems/pneumatics/hvac/conditioned-air-temp-cmd</input>
 			<c1>0.4</c1>
 		</lag_filter>
+	
+	</channel>
+	
+	<channel name="Duct Temperature/Trim Air Mixing" execrate="8">
 		
 		<!-- Duct Temperature Targets -->
 		<fcs_function name="/systems/pneumatics/hvac/duct-temp/cockpit-target">
 			<function>
 				<sum>
-					<property>/systems/pneumatics/hvac/cockpit-target</property>
+					<property>/systems/pneumatics/hvac/cockpit-target-switched</property>
 					<table>
 						<independentVar lookup="row">/systems/pneumatics/hvac/cockpit-error</independentVar>
 						<tableData>
@@ -777,7 +839,7 @@
 		<fcs_function name="/systems/pneumatics/hvac/duct-temp/cabin-fwd-target">
 			<function>
 				<sum>
-					<property>/systems/pneumatics/hvac/cabin-fwd-target</property>
+					<property>/systems/pneumatics/hvac/cabin-fwd-target-switched</property>
 					<table>
 						<independentVar lookup="row">/systems/pneumatics/hvac/cabin-fwd-error</independentVar>
 						<tableData>
@@ -793,7 +855,7 @@
 		<fcs_function name="/systems/pneumatics/hvac/duct-temp/cabin-mid-target">
 			<function>
 				<sum>
-					<property>/systems/pneumatics/hvac/cabin-mid-target</property>
+					<property>/systems/pneumatics/hvac/cabin-mid-target-switched</property>
 					<table>
 						<independentVar lookup="row">/systems/pneumatics/hvac/cabin-mid-error</independentVar>
 						<tableData>
@@ -809,7 +871,7 @@
 		<fcs_function name="/systems/pneumatics/hvac/duct-temp/cabin-aft-target">
 			<function>
 				<sum>
-					<property>/systems/pneumatics/hvac/cabin-aft-target</property>
+					<property>/systems/pneumatics/hvac/cabin-aft-target-switched</property>
 					<table>
 						<independentVar lookup="row">/systems/pneumatics/hvac/cabin-aft-error</independentVar>
 						<tableData>
@@ -1293,14 +1355,605 @@
 			<input>/systems/pneumatics/hvac/duct-temp/cabin-aft-actuator</input>
 			<c1>0.4</c1>
 		</lag_filter>
+	
+	</channel>
+		
+	<channel name="Cargo Heat" execrate="8">
+		
+		<!-- Cargo Heat Temperature Targets -->
+		<fcs_function name="/systems/pneumatics/hvac/cargo-heat-temp/fwd-target">
+			<function>
+				<sum>
+					<property>/systems/pneumatics/hvac/cargo-fwd-target-switched</property>
+					<table>
+						<independentVar lookup="row">/systems/pneumatics/hvac/cargo-fwd-error</independentVar>
+						<tableData>
+							0  0
+							4  9
+						</tableData>
+					</table>
+				</sum>
+			</function>
+		</fcs_function>
+		
+		<fcs_function name="/systems/pneumatics/hvac/cargo-heat-temp/mid-target">
+			<function>
+				<sum>
+					<property>/systems/pneumatics/hvac/cargo-mid-target-switched</property>
+					<table>
+						<independentVar lookup="row">/systems/pneumatics/hvac/cargo-mid-error</independentVar>
+						<tableData>
+							0  0
+							4  9
+						</tableData>
+					</table>
+				</sum>
+			</function>
+		</fcs_function>
+		
+		<fcs_function name="/systems/pneumatics/hvac/cargo-heat-temp/aft-target">
+			<function>
+				<sum>
+					<property>/systems/pneumatics/hvac/cargo-aft-target-switched</property>
+					<table>
+						<independentVar lookup="row">/systems/pneumatics/hvac/cargo-aft-error</independentVar>
+						<tableData>
+							0  0
+							4  9
+						</tableData>
+					</table>
+				</sum>
+			</function>
+		</fcs_function>
+		
+		<!-- Fwd Cargo Heat -->
+		<fcs_function name="/systems/pneumatics/hvac/cargo-heat-temp/fwd-bleed-air">
+			<function>
+				<interpolate1d>
+					<property>/systems/pneumatics/bleed-3-psi</property>
+					<value>0</value><property>/systems/pneumatics/hvac/cargo-fwd-temp</property>
+					<value>20</value><property>/systems/pneumatics/hvac/bleed-3-f</property>
+				</interpolate1d>
+			</function>
+		</fcs_function>
+		
+		<fcs_function name="/systems/pneumatics/hvac/cargo-heat-temp/fwd-regulator-cmd">
+			<function>
+				<product>
+					<quotient>
+						<difference>
+							<property>/systems/pneumatics/hvac/cargo-heat-temp/fwd-target</property>
+							<property>/systems/pneumatics/hvac/cargo-fwd-temp</property>
+						</difference>
+						<difference>
+							<property>/systems/pneumatics/hvac/cargo-heat-temp/fwd-bleed-air</property>
+							<property>/systems/pneumatics/hvac/cargo-heat-temp/fwd-target</property>
+						</difference>
+					</quotient>
+					<value>10</value> <!-- Compensate for the 0.1 gain in actual regulator -->
+				</product>
+			</function>
+			<clipto>
+				<min>0</min>
+				<max>1</max>
+			</clipto>
+		</fcs_function>
+		
+		<lag_filter name="/systems/pneumatics/hvac/cargo-heat-temp/fwd-regulator-lag">
+			<input>/systems/pneumatics/hvac/cargo-heat-temp/fwd-regulator-cmd</input>
+			<c1>5.0</c1>
+		</lag_filter>
+		
+		<pure_gain name="/systems/pneumatics/hvac/cargo-heat-temp/fwd-regulator-valve">
+			<input>/systems/pneumatics/hvac/cargo-heat-temp/fwd-regulator-lag</input>
+			<gain>0.1</gain> <!-- 0.1 max authority -->
+		</pure_gain>
+		
+		<fcs_function name="/systems/pneumatics/hvac/cargo-heat-temp/fwd-cmd">
+			<function>
+				<quotient>
+					<sum>
+						<property>/systems/pneumatics/hvac/cargo-fwd-temp</property>
+						<product>
+							<property>/systems/pneumatics/hvac/cargo-heat-temp/fwd-bleed-air</property>
+							<property>/systems/pneumatics/hvac/cargo-heat-temp/fwd-regulator-valve</property>
+						</product>
+					</sum>
+					<sum>
+						<value>1</value>
+						<property>/systems/pneumatics/hvac/cargo-heat-temp/fwd-regulator-valve</property>
+					</sum>
+				</quotient>
+			</function>
+		</fcs_function>
+		
+		<switch name="/systems/pneumatics/hvac/cargo-heat-temp/fwd-flow-cmd">
+			<default value="0"/>
+			<test logic="AND" value="28">
+				/systems/electrical/bus/dc-1 ge 24
+				/systems/pneumatics/hvac/cargo-fwd-target ge 35
+			</test>
+		</switch>
+		
+		<actuator name="/systems/pneumatics/hvac/cargo-heat-temp/fwd-flow">
+			<input>/systems/pneumatics/hvac/cargo-heat-temp/fwd-flow-cmd</input>
+			<rate_limit sense="incr">4.1</rate_limit>
+			<rate_limit sense="decr">4.3</rate_limit>
+		</actuator>
+		
+		<fcs_function name="/systems/pneumatics/hvac/cargo-heat-temp/fwd-incr-rate">
+			<function>
+				<table>
+					<independentVar lookup="row">/systems/pneumatics/hvac/cargo-heat-temp/fwd-flow</independentVar>
+					<tableData>
+						 0  0.1
+						10  2.5
+					</tableData>
+				</table>
+			</function>
+		</fcs_function>
+		
+		<fcs_function name="/systems/pneumatics/hvac/cargo-heat-temp/fwd-decr-rate">
+			<function>
+				<table>
+					<independentVar lookup="row">/systems/pneumatics/hvac/cargo-heat-temp/fwd-flow</independentVar>
+					<tableData>
+						 0  0.1
+						10  2.0
+					</tableData>
+				</table>
+			</function>
+		</fcs_function>
+		
+		<actuator name="/systems/pneumatics/hvac/cargo-heat-temp/fwd-actuator">
+			<input>/systems/pneumatics/hvac/cargo-heat-temp/fwd-cmd</input>
+			<rate_limit sense="incr">/systems/pneumatics/hvac/cargo-heat-temp/fwd-incr-rate</rate_limit>
+			<rate_limit sense="decr">/systems/pneumatics/hvac/cargo-heat-temp/fwd-decr-rate</rate_limit>
+		</actuator>
+		
+		<lag_filter name="/systems/pneumatics/hvac/cargo-heat-temp/fwd">
+			<input>/systems/pneumatics/hvac/cargo-heat-temp/fwd-actuator</input>
+			<c1>0.4</c1>
+		</lag_filter>
+		
+		<!-- Mid Cargo Heat -->
+		<fcs_function name="/systems/pneumatics/hvac/cargo-heat-temp/mid-bleed-air">
+			<function>
+				<interpolate1d>
+					<property>/systems/pneumatics/bleed-2-psi</property>
+					<value>0</value><property>/systems/pneumatics/hvac/cargo-mid-temp</property>
+					<value>20</value><property>/systems/pneumatics/hvac/bleed-2-f</property>
+				</interpolate1d>
+			</function>
+		</fcs_function>
+		
+		<fcs_function name="/systems/pneumatics/hvac/cargo-heat-temp/mid-regulator-cmd">
+			<function>
+				<product>
+					<quotient>
+						<difference>
+							<property>/systems/pneumatics/hvac/cargo-heat-temp/mid-target</property>
+							<property>/systems/pneumatics/hvac/cargo-mid-temp</property>
+						</difference>
+						<difference>
+							<property>/systems/pneumatics/hvac/cargo-heat-temp/mid-bleed-air</property>
+							<property>/systems/pneumatics/hvac/cargo-heat-temp/mid-target</property>
+						</difference>
+					</quotient>
+					<value>10</value> <!-- Compensate for the 0.1 gain in actual regulator -->
+				</product>
+			</function>
+			<clipto>
+				<min>0</min>
+				<max>1</max>
+			</clipto>
+		</fcs_function>
+		
+		<lag_filter name="/systems/pneumatics/hvac/cargo-heat-temp/mid-regulator-lag">
+			<input>/systems/pneumatics/hvac/cargo-heat-temp/mid-regulator-cmd</input>
+			<c1>5.0</c1>
+		</lag_filter>
+		
+		<pure_gain name="/systems/pneumatics/hvac/cargo-heat-temp/mid-regulator-valve">
+			<input>/systems/pneumatics/hvac/cargo-heat-temp/mid-regulator-lag</input>
+			<gain>0.1</gain> <!-- 0.1 max authority -->
+		</pure_gain>
+		
+		<fcs_function name="/systems/pneumatics/hvac/cargo-heat-temp/mid-cmd">
+			<function>
+				<quotient>
+					<sum>
+						<property>/systems/pneumatics/hvac/cargo-mid-temp</property>
+						<product>
+							<property>/systems/pneumatics/hvac/cargo-heat-temp/mid-bleed-air</property>
+							<property>/systems/pneumatics/hvac/cargo-heat-temp/mid-regulator-valve</property>
+						</product>
+					</sum>
+					<sum>
+						<value>1</value>
+						<property>/systems/pneumatics/hvac/cargo-heat-temp/mid-regulator-valve</property>
+					</sum>
+				</quotient>
+			</function>
+		</fcs_function>
+		
+		<switch name="/systems/pneumatics/hvac/cargo-heat-temp/mid-flow-cmd">
+			<default value="0"/>
+			<test logic="AND" value="28">
+				/systems/electrical/bus/dc-2 ge 24
+				/systems/pneumatics/hvac/cargo-mid-target ge 35
+			</test>
+		</switch>
+		
+		<actuator name="/systems/pneumatics/hvac/cargo-heat-temp/mid-flow">
+			<input>/systems/pneumatics/hvac/cargo-heat-temp/mid-flow-cmd</input>
+			<rate_limit sense="incr">4.1</rate_limit>
+			<rate_limit sense="decr">4.3</rate_limit>
+		</actuator>
+		
+		<fcs_function name="/systems/pneumatics/hvac/cargo-heat-temp/mid-incr-rate">
+			<function>
+				<table>
+					<independentVar lookup="row">/systems/pneumatics/hvac/cargo-heat-temp/mid-flow</independentVar>
+					<tableData>
+						 0  0.1
+						10  2.5
+					</tableData>
+				</table>
+			</function>
+		</fcs_function>
+		
+		<fcs_function name="/systems/pneumatics/hvac/cargo-heat-temp/mid-decr-rate">
+			<function>
+				<table>
+					<independentVar lookup="row">/systems/pneumatics/hvac/cargo-heat-temp/mid-flow</independentVar>
+					<tableData>
+						 0  0.1
+						10  2.0
+					</tableData>
+				</table>
+			</function>
+		</fcs_function>
+		
+		<actuator name="/systems/pneumatics/hvac/cargo-heat-temp/mid-actuator">
+			<input>/systems/pneumatics/hvac/cargo-heat-temp/mid-cmd</input>
+			<rate_limit sense="incr">/systems/pneumatics/hvac/cargo-heat-temp/mid-incr-rate</rate_limit>
+			<rate_limit sense="decr">/systems/pneumatics/hvac/cargo-heat-temp/mid-decr-rate</rate_limit>
+		</actuator>
+		
+		<lag_filter name="/systems/pneumatics/hvac/cargo-heat-temp/mid">
+			<input>/systems/pneumatics/hvac/cargo-heat-temp/mid-actuator</input>
+			<c1>0.4</c1>
+		</lag_filter>
+		
+		<!-- Aft Cargo Heat -->
+		<fcs_function name="/systems/pneumatics/hvac/cargo-heat-temp/aft-bleed-air">
+			<function>
+				<interpolate1d>
+					<property>/systems/pneumatics/bleed-2-psi</property>
+					<value>0</value><property>/systems/pneumatics/hvac/cargo-aft-temp</property>
+					<value>20</value><property>/systems/pneumatics/hvac/bleed-2-f</property>
+				</interpolate1d>
+			</function>
+		</fcs_function>
+		
+		<fcs_function name="/systems/pneumatics/hvac/cargo-heat-temp/aft-regulator-cmd">
+			<function>
+				<product>
+					<quotient>
+						<difference>
+							<property>/systems/pneumatics/hvac/cargo-heat-temp/aft-target</property>
+							<property>/systems/pneumatics/hvac/cargo-aft-temp</property>
+						</difference>
+						<difference>
+							<property>/systems/pneumatics/hvac/cargo-heat-temp/aft-bleed-air</property>
+							<property>/systems/pneumatics/hvac/cargo-heat-temp/aft-target</property>
+						</difference>
+					</quotient>
+					<value>10</value> <!-- Compensate for the 0.1 gain in actual regulator -->
+				</product>
+			</function>
+			<clipto>
+				<min>0</min>
+				<max>1</max>
+			</clipto>
+		</fcs_function>
+		
+		<lag_filter name="/systems/pneumatics/hvac/cargo-heat-temp/aft-regulator-lag">
+			<input>/systems/pneumatics/hvac/cargo-heat-temp/aft-regulator-cmd</input>
+			<c1>5.0</c1>
+		</lag_filter>
+		
+		<pure_gain name="/systems/pneumatics/hvac/cargo-heat-temp/aft-regulator-valve">
+			<input>/systems/pneumatics/hvac/cargo-heat-temp/aft-regulator-lag</input>
+			<gain>0.1</gain> <!-- 0.1 max authority -->
+		</pure_gain>
+		
+		<fcs_function name="/systems/pneumatics/hvac/cargo-heat-temp/aft-cmd">
+			<function>
+				<quotient>
+					<sum>
+						<property>/systems/pneumatics/hvac/cargo-aft-temp</property>
+						<product>
+							<property>/systems/pneumatics/hvac/cargo-heat-temp/aft-bleed-air</property>
+							<property>/systems/pneumatics/hvac/cargo-heat-temp/aft-regulator-valve</property>
+						</product>
+					</sum>
+					<sum>
+						<value>1</value>
+						<property>/systems/pneumatics/hvac/cargo-heat-temp/aft-regulator-valve</property>
+					</sum>
+				</quotient>
+			</function>
+		</fcs_function>
+		
+		<switch name="/systems/pneumatics/hvac/cargo-heat-temp/aft-flow-cmd">
+			<default value="0"/>
+			<test logic="AND" value="28">
+				/systems/electrical/bus/dc-3 ge 24
+				/systems/pneumatics/hvac/cargo-aft-target ge 35
+			</test>
+		</switch>
+		
+		<actuator name="/systems/pneumatics/hvac/cargo-heat-temp/aft-flow">
+			<input>/systems/pneumatics/hvac/cargo-heat-temp/aft-flow-cmd</input>
+			<rate_limit sense="incr">4.1</rate_limit>
+			<rate_limit sense="decr">4.3</rate_limit>
+		</actuator>
+		
+		<fcs_function name="/systems/pneumatics/hvac/cargo-heat-temp/aft-incr-rate">
+			<function>
+				<table>
+					<independentVar lookup="row">/systems/pneumatics/hvac/cargo-heat-temp/aft-flow</independentVar>
+					<tableData>
+						 0  0.1
+						10  2.5
+					</tableData>
+				</table>
+			</function>
+		</fcs_function>
+		
+		<fcs_function name="/systems/pneumatics/hvac/cargo-heat-temp/aft-decr-rate">
+			<function>
+				<table>
+					<independentVar lookup="row">/systems/pneumatics/hvac/cargo-heat-temp/aft-flow</independentVar>
+					<tableData>
+						 0  0.1
+						10  2.0
+					</tableData>
+				</table>
+			</function>
+		</fcs_function>
+		
+		<actuator name="/systems/pneumatics/hvac/cargo-heat-temp/aft-actuator">
+			<input>/systems/pneumatics/hvac/cargo-heat-temp/aft-cmd</input>
+			<rate_limit sense="incr">/systems/pneumatics/hvac/cargo-heat-temp/aft-incr-rate</rate_limit>
+			<rate_limit sense="decr">/systems/pneumatics/hvac/cargo-heat-temp/aft-decr-rate</rate_limit>
+		</actuator>
+		
+		<lag_filter name="/systems/pneumatics/hvac/cargo-heat-temp/aft">
+			<input>/systems/pneumatics/hvac/cargo-heat-temp/aft-actuator</input>
+			<c1>0.4</c1>
+		</lag_filter>
+		
+	</channel>
+	
+	<channel name="Cargo Ventilation" execrate="8">
+		
+		<!-- Cargo Ventilation Temperature Targets -->
+		<pure_gain name="/systems/pneumatics/hvac/cargo-vent-temp/fwd-target">
+			<input>/systems/pneumatics/hvac/cargo-fwd-target-switched</input>
+			<gain>1.0</gain>
+		</pure_gain>
+		
+		<pure_gain name="/systems/pneumatics/hvac/cargo-vent-temp/aft-target">
+			<input>/systems/pneumatics/hvac/cargo-aft-target-switched</input>
+			<gain>1.0</gain>
+		</pure_gain>
+		
+		<!-- Fwd Cargo Ventilation -->
+		<switch name="/systems/pneumatics/hvac/cargo-vent-temp/fwd-fan">
+			<default value="0"/>
+			<test logic="AND" value="1">
+				/systems/electrical/bus/ac-gndsvc ge 112
+				/controls/pneumatics/cargo-fwd-ventilation eq 1
+			</test>
+		</switch>
+		
+		<pure_gain name="/systems/pneumatics/hvac/cargo-vent-temp/fwd-flow-cmd">
+			<input>/systems/pneumatics/hvac/cargo-vent-temp/fwd-fan</input>
+			<gain>28</gain>
+		</pure_gain>
+		
+		<actuator name="/systems/pneumatics/hvac/cargo-vent-temp/fwd-flow">
+			<input>/systems/pneumatics/hvac/cargo-vent-temp/fwd-flow-cmd</input>
+			<rate_limit sense="incr">4.1</rate_limit>
+			<rate_limit sense="decr">4.3</rate_limit>
+		</actuator>
+		
+		<fcs_function name="/systems/pneumatics/hvac/cargo-vent-temp/fwd-vent-air">
+			<function>
+				<interpolate1d>
+					<property>/systems/pneumatics/hvac/cargo-vent-temp/fwd-flow</property>
+					<value>0</value><property>/systems/pneumatics/hvac/cargo-fwd-temp</property>
+					<value>20</value><property>/systems/pneumatics/hvac/tat-f</property>
+				</interpolate1d>
+			</function>
+		</fcs_function>
+		
+		<fcs_function name="/systems/pneumatics/hvac/cargo-vent-temp/fwd-regulator-cmd">
+			<function>
+				<quotient>
+					<difference>
+						<property>/systems/pneumatics/hvac/cargo-fwd-temp</property>
+						<property>/systems/pneumatics/hvac/cargo-vent-temp/fwd-target</property>
+					</difference>
+					<value>5</value> <!-- Full vent authority is 5F error -->
+				</quotient>
+			</function>
+			<clipto>
+				<min>0</min>
+				<max>1</max>
+			</clipto>
+		</fcs_function>
+		
+		<lag_filter name="/systems/pneumatics/hvac/cargo-vent-temp/fwd-regulator-valve">
+			<input>/systems/pneumatics/hvac/cargo-vent-temp/fwd-regulator-cmd</input>
+			<c1>5.0</c1>
+		</lag_filter>
+		
+		<fcs_function name="/systems/pneumatics/hvac/cargo-vent-temp/fwd-cmd">
+			<function>
+				<interpolate1d>
+					<property>/systems/pneumatics/hvac/cargo-vent-temp/fwd-regulator-valve</property>
+					<value>0</value><property>/systems/pneumatics/hvac/cargo-fwd-temp</property>
+					<value>1</value><property>/systems/pneumatics/hvac/tat-f</property>
+				</interpolate1d>
+			</function>
+		</fcs_function>
+		
+		<fcs_function name="/systems/pneumatics/hvac/cargo-vent-temp/fwd-incr-rate">
+			<function>
+				<table>
+					<independentVar lookup="row">/systems/pneumatics/hvac/cargo-vent-temp/fwd-flow</independentVar>
+					<tableData>
+						 0  0.1
+						10  2.5
+					</tableData>
+				</table>
+			</function>
+		</fcs_function>
+		
+		<fcs_function name="/systems/pneumatics/hvac/cargo-vent-temp/fwd-decr-rate">
+			<function>
+				<table>
+					<independentVar lookup="row">/systems/pneumatics/hvac/cargo-vent-temp/fwd-flow</independentVar>
+					<tableData>
+						 0  0.1
+						10  2.0
+					</tableData>
+				</table>
+			</function>
+		</fcs_function>
+		
+		<actuator name="/systems/pneumatics/hvac/cargo-vent-temp/fwd-actuator">
+			<input>/systems/pneumatics/hvac/cargo-vent-temp/fwd-cmd</input>
+			<rate_limit sense="incr">/systems/pneumatics/hvac/cargo-vent-temp/fwd-incr-rate</rate_limit>
+			<rate_limit sense="decr">/systems/pneumatics/hvac/cargo-vent-temp/fwd-decr-rate</rate_limit>
+		</actuator>
+		
+		<lag_filter name="/systems/pneumatics/hvac/cargo-vent-temp/fwd">
+			<input>/systems/pneumatics/hvac/cargo-vent-temp/fwd-actuator</input>
+			<c1>0.4</c1>
+		</lag_filter>
+		
+		<!-- Aft Cargo Ventilation -->
+		<switch name="/systems/pneumatics/hvac/cargo-vent-temp/aft-fan">
+			<default value="0"/>
+			<test logic="AND" value="1">
+				/systems/electrical/bus/ac-gndsvc ge 112
+				/controls/pneumatics/cargo-aft-ventilation eq 1
+			</test>
+		</switch>
+		
+		<pure_gain name="/systems/pneumatics/hvac/cargo-vent-temp/aft-flow-cmd">
+			<input>/systems/pneumatics/hvac/cargo-vent-temp/aft-fan</input>
+			<gain>28</gain>
+		</pure_gain>
+		
+		<actuator name="/systems/pneumatics/hvac/cargo-vent-temp/aft-flow">
+			<input>/systems/pneumatics/hvac/cargo-vent-temp/aft-flow-cmd</input>
+			<rate_limit sense="incr">4.1</rate_limit>
+			<rate_limit sense="decr">4.3</rate_limit>
+		</actuator>
+		
+		<fcs_function name="/systems/pneumatics/hvac/cargo-vent-temp/aft-vent-air">
+			<function>
+				<interpolate1d>
+					<property>/systems/pneumatics/hvac/cargo-vent-temp/aft-flow</property>
+					<value>0</value><property>/systems/pneumatics/hvac/cargo-aft-temp</property>
+					<value>20</value><property>/systems/pneumatics/hvac/tat-f</property>
+				</interpolate1d>
+			</function>
+		</fcs_function>
+		
+		<fcs_function name="/systems/pneumatics/hvac/cargo-vent-temp/aft-regulator-cmd">
+			<function>
+				<quotient>
+					<difference>
+						<property>/systems/pneumatics/hvac/cargo-aft-temp</property>
+						<property>/systems/pneumatics/hvac/cargo-vent-temp/aft-target</property>
+					</difference>
+					<value>5</value> <!-- Full vent authority is 5F error -->
+				</quotient>
+			</function>
+			<clipto>
+				<min>0</min>
+				<max>1</max>
+			</clipto>
+		</fcs_function>
+		
+		<lag_filter name="/systems/pneumatics/hvac/cargo-vent-temp/aft-regulator-valve">
+			<input>/systems/pneumatics/hvac/cargo-vent-temp/aft-regulator-cmd</input>
+			<c1>5.0</c1>
+		</lag_filter>
+		
+		<fcs_function name="/systems/pneumatics/hvac/cargo-vent-temp/aft-cmd">
+			<function>
+				<interpolate1d>
+					<property>/systems/pneumatics/hvac/cargo-vent-temp/aft-regulator-valve</property>
+					<value>0</value><property>/systems/pneumatics/hvac/cargo-aft-temp</property>
+					<value>1</value><property>/systems/pneumatics/hvac/tat-f</property>
+				</interpolate1d>
+			</function>
+		</fcs_function>
+		
+		<fcs_function name="/systems/pneumatics/hvac/cargo-vent-temp/aft-incr-rate">
+			<function>
+				<table>
+					<independentVar lookup="row">/systems/pneumatics/hvac/cargo-vent-temp/aft-flow</independentVar>
+					<tableData>
+						 0  0.1
+						10  2.5
+					</tableData>
+				</table>
+			</function>
+		</fcs_function>
+		
+		<fcs_function name="/systems/pneumatics/hvac/cargo-vent-temp/aft-decr-rate">
+			<function>
+				<table>
+					<independentVar lookup="row">/systems/pneumatics/hvac/cargo-vent-temp/aft-flow</independentVar>
+					<tableData>
+						 0  0.1
+						10  2.0
+					</tableData>
+				</table>
+			</function>
+		</fcs_function>
+		
+		<actuator name="/systems/pneumatics/hvac/cargo-vent-temp/aft-actuator">
+			<input>/systems/pneumatics/hvac/cargo-vent-temp/aft-cmd</input>
+			<rate_limit sense="incr">/systems/pneumatics/hvac/cargo-vent-temp/aft-incr-rate</rate_limit>
+			<rate_limit sense="decr">/systems/pneumatics/hvac/cargo-vent-temp/aft-decr-rate</rate_limit>
+		</actuator>
+		
+		<lag_filter name="/systems/pneumatics/hvac/cargo-vent-temp/aft">
+			<input>/systems/pneumatics/hvac/cargo-vent-temp/aft-actuator</input>
+			<c1>0.4</c1>
+		</lag_filter>
+	
+	</channel>
+	
+	<channel name="Compartment Temperatures" execrate="8">
 		
 		<!-- Cockpit Temperature -->
 		<summer name="/systems/pneumatics/hvac/cockpit-temp-environment-error">
 			<input>/systems/pneumatics/hvac/cockpit-temp</input>
 			<input>-/systems/pneumatics/hvac/tat-f</input>
 			<clipto>
-				<min>-20</min>
-				<max>20</max>
+				<min>-15</min>
+				<max>15</max>
 			</clipto>
 		</summer>
 		
@@ -1389,13 +2042,13 @@
 			</clipto>
 		</fcs_function>
 		
-		<!-- Cabin Temperature -->
+		<!-- Fwd Cabin Temperature -->
 		<summer name="/systems/pneumatics/hvac/cabin-fwd-temp-environment-error">
 			<input>/systems/pneumatics/hvac/cabin-fwd-temp</input>
 			<input>-/systems/pneumatics/hvac/tat-f</input>
 			<clipto>
-				<min>-20</min>
-				<max>20</max>
+				<min>-15</min>
+				<max>15</max>
 			</clipto>
 		</summer>
 		
@@ -1493,12 +2146,13 @@
 			</clipto>
 		</fcs_function>
 		
+		<!-- Mid Cabin Temperature -->
 		<summer name="/systems/pneumatics/hvac/cabin-mid-temp-environment-error">
 			<input>/systems/pneumatics/hvac/cabin-mid-temp</input>
 			<input>-/systems/pneumatics/hvac/tat-f</input>
 			<clipto>
-				<min>-20</min>
-				<max>20</max>
+				<min>-15</min>
+				<max>15</max>
 			</clipto>
 		</summer>
 		
@@ -1603,12 +2257,13 @@
 			</clipto>
 		</fcs_function>
 		
+		<!-- Aft Cabin Temperature -->
 		<summer name="/systems/pneumatics/hvac/cabin-aft-temp-environment-error">
 			<input>/systems/pneumatics/hvac/cabin-aft-temp</input>
 			<input>-/systems/pneumatics/hvac/tat-f</input>
 			<clipto>
-				<min>-20</min>
-				<max>20</max>
+				<min>-15</min>
+				<max>15</max>
 			</clipto>
 		</summer>
 		
@@ -1704,13 +2359,13 @@
 			</clipto>
 		</fcs_function>
 		
-		<!-- Cargo Temperature -->
+		<!-- Fwd Cargo Temperature -->
 		<summer name="/systems/pneumatics/hvac/cargo-fwd-temp-environment-error">
 			<input>/systems/pneumatics/hvac/cargo-fwd-temp</input>
 			<input>-/systems/pneumatics/hvac/tat-f</input>
 			<clipto>
-				<min>-20</min>
-				<max>20</max>
+				<min>-15</min>
+				<max>15</max>
 			</clipto>
 		</summer>
 		
@@ -1724,6 +2379,81 @@
 			</test>
 		</switch>
 		
+		<summer name="/systems/pneumatics/hvac/cargo-fwd-temp-coupling-error">
+			<input>/systems/pneumatics/hvac/cargo-fwd-temp</input>
+			<input>-/systems/pneumatics/hvac/cargo-mid-temp</input>
+			<clipto>
+				<min>-5</min>
+				<max>5</max>
+			</clipto>
+		</summer>
+		
+		<switch name="/systems/pneumatics/hvac/cargo-fwd-temp-coupling-rate">
+			<default value="0"/>
+			<test value="-0.0009">
+				/systems/pneumatics/hvac/cargo-fwd-temp-coupling-error gt 0.001
+			</test>
+			<test value="-0.0006">
+				/systems/pneumatics/hvac/cargo-fwd-temp-coupling-error lt -0.001
+			</test>
+		</switch>
+		
+		<summer name="/systems/pneumatics/hvac/cargo-fwd-temp-heat-error">
+			<input>/systems/pneumatics/hvac/cargo-fwd-temp</input>
+			<input>-/systems/pneumatics/hvac/cargo-heat-temp/fwd</input>
+			<clipto>
+				<min>-10</min>
+				<max>10</max>
+			</clipto>
+		</summer>
+		
+		<fcs_function name="/systems/pneumatics/hvac/cargo-fwd-temp-heat-rate">
+			<function>
+				<ifthen>
+					<ge>
+						<property>/systems/pneumatics/hvac/cargo-fwd-temp-heat-error</property>
+						<value>0</value>
+					</ge>
+					<product>
+						<property>/systems/pneumatics/hvac/cargo-heat-temp/fwd-flow</property>
+						<value>-0.0004</value>
+					</product>
+					<product>
+						<property>/systems/pneumatics/hvac/cargo-heat-temp/fwd-flow</property>
+						<value>-0.00035</value>
+					</product>
+				</ifthen>
+			</function>
+		</fcs_function>
+		
+		<summer name="/systems/pneumatics/hvac/cargo-fwd-temp-vent-error">
+			<input>/systems/pneumatics/hvac/cargo-fwd-temp</input>
+			<input>-/systems/pneumatics/hvac/cargo-vent-temp/fwd</input>
+			<clipto>
+				<min>-10</min>
+				<max>10</max>
+			</clipto>
+		</summer>
+		
+		<fcs_function name="/systems/pneumatics/hvac/cargo-fwd-temp-vent-rate">
+			<function>
+				<ifthen>
+					<ge>
+						<property>/systems/pneumatics/hvac/cargo-fwd-temp-vent-error</property>
+						<value>0</value>
+					</ge>
+					<product>
+						<property>/systems/pneumatics/hvac/cargo-vent-temp/fwd-flow</property>
+						<value>-0.0004</value>
+					</product>
+					<product>
+						<property>/systems/pneumatics/hvac/cargo-vent-temp/fwd-flow</property>
+						<value>-0.00035</value>
+					</product>
+				</ifthen>
+			</function>
+		</fcs_function>
+		
 		<fcs_function name="/systems/pneumatics/hvac/cargo-fwd-temp-calc">
 			<function>
 				<sum>
@@ -1731,6 +2461,21 @@
 					<product> <!-- Environment factor -->
 						<property>/systems/pneumatics/hvac/cargo-fwd-temp-environment-error</property>
 						<property>/systems/pneumatics/hvac/cargo-fwd-temp-environment-rate</property>
+						<property>simulation/channel-dt</property>
+					</product>
+					<product> <!-- Coupling factor -->
+						<property>/systems/pneumatics/hvac/cargo-fwd-temp-coupling-error</property>
+						<property>/systems/pneumatics/hvac/cargo-fwd-temp-coupling-rate</property>
+						<property>simulation/channel-dt</property>
+					</product>
+					<product> <!-- Cargo heat flow factor -->
+						<property>/systems/pneumatics/hvac/cargo-fwd-temp-heat-error</property>
+						<property>/systems/pneumatics/hvac/cargo-fwd-temp-heat-rate</property>
+						<property>simulation/channel-dt</property>
+					</product>
+					<product> <!-- Cargo vent flow factor -->
+						<property>/systems/pneumatics/hvac/cargo-fwd-temp-vent-error</property>
+						<property>/systems/pneumatics/hvac/cargo-fwd-temp-vent-rate</property>
 						<property>simulation/channel-dt</property>
 					</product>
 				</sum>
@@ -1742,12 +2487,13 @@
 			</clipto>
 		</fcs_function>
 		
+		<!-- Mid Cargo Temperature -->
 		<summer name="/systems/pneumatics/hvac/cargo-mid-temp-environment-error">
 			<input>/systems/pneumatics/hvac/cargo-mid-temp</input>
 			<input>-/systems/pneumatics/hvac/tat-f</input>
 			<clipto>
-				<min>-20</min>
-				<max>20</max>
+				<min>-15</min>
+				<max>15</max>
 			</clipto>
 		</summer>
 		
@@ -1761,6 +2507,62 @@
 			</test>
 		</switch>
 		
+		<fcs_function name="/systems/pneumatics/hvac/cargo-mid-coupling-input">
+			<function>
+				<avg>
+					<property>/systems/pneumatics/hvac/cargo-fwd-temp</property>
+					<property>/systems/pneumatics/hvac/cargo-aft-temp</property>
+				</avg>
+			</function>
+		</fcs_function>
+		
+		<summer name="/systems/pneumatics/hvac/cargo-mid-temp-coupling-error">
+			<input>/systems/pneumatics/hvac/cargo-mid-temp</input>
+			<input>-/systems/pneumatics/hvac/cargo-mid-coupling-input</input>
+			<clipto>
+				<min>-5</min>
+				<max>5</max>
+			</clipto>
+		</summer>
+		
+		<switch name="/systems/pneumatics/hvac/cargo-mid-temp-coupling-rate">
+			<default value="0"/>
+			<test value="-0.0009">
+				/systems/pneumatics/hvac/cargo-mid-temp-coupling-error gt 0.001
+			</test>
+			<test value="-0.0006">
+				/systems/pneumatics/hvac/cargo-mid-temp-coupling-error lt -0.001
+			</test>
+		</switch>
+		
+		<summer name="/systems/pneumatics/hvac/cargo-mid-temp-heat-error">
+			<input>/systems/pneumatics/hvac/cargo-mid-temp</input>
+			<input>-/systems/pneumatics/hvac/cargo-heat-temp/mid</input>
+			<clipto>
+				<min>-10</min>
+				<max>10</max>
+			</clipto>
+		</summer>
+		
+		<fcs_function name="/systems/pneumatics/hvac/cargo-mid-temp-heat-rate">
+			<function>
+				<ifthen>
+					<ge>
+						<property>/systems/pneumatics/hvac/cargo-mid-temp-heat-error</property>
+						<value>0</value>
+					</ge>
+					<product>
+						<property>/systems/pneumatics/hvac/cargo-heat-temp/mid-flow</property>
+						<value>-0.0004</value>
+					</product>
+					<product>
+						<property>/systems/pneumatics/hvac/cargo-heat-temp/mid-flow</property>
+						<value>-0.00035</value>
+					</product>
+				</ifthen>
+			</function>
+		</fcs_function>
+		
 		<fcs_function name="/systems/pneumatics/hvac/cargo-mid-temp-calc">
 			<function>
 				<sum>
@@ -1768,6 +2570,16 @@
 					<product> <!-- Environment factor -->
 						<property>/systems/pneumatics/hvac/cargo-mid-temp-environment-error</property>
 						<property>/systems/pneumatics/hvac/cargo-mid-temp-environment-rate</property>
+						<property>simulation/channel-dt</property>
+					</product>
+					<product> <!-- Coupling factor -->
+						<property>/systems/pneumatics/hvac/cargo-mid-temp-coupling-error</property>
+						<property>/systems/pneumatics/hvac/cargo-mid-temp-coupling-rate</property>
+						<property>simulation/channel-dt</property>
+					</product>
+					<product> <!-- Cargo heat flow factor -->
+						<property>/systems/pneumatics/hvac/cargo-mid-temp-heat-error</property>
+						<property>/systems/pneumatics/hvac/cargo-mid-temp-heat-rate</property>
 						<property>simulation/channel-dt</property>
 					</product>
 				</sum>
@@ -1779,12 +2591,13 @@
 			</clipto>
 		</fcs_function>
 		
+		<!-- Aft Cargo Temperature -->
 		<summer name="/systems/pneumatics/hvac/cargo-aft-temp-environment-error">
 			<input>/systems/pneumatics/hvac/cargo-aft-temp</input>
 			<input>-/systems/pneumatics/hvac/tat-f</input>
 			<clipto>
-				<min>-20</min>
-				<max>20</max>
+				<min>-15</min>
+				<max>15</max>
 			</clipto>
 		</summer>
 		
@@ -1798,6 +2611,81 @@
 			</test>
 		</switch>
 		
+		<summer name="/systems/pneumatics/hvac/cargo-aft-temp-coupling-error">
+			<input>/systems/pneumatics/hvac/cargo-aft-temp</input>
+			<input>-/systems/pneumatics/hvac/cargo-mid-temp</input>
+			<clipto>
+				<min>-5</min>
+				<max>5</max>
+			</clipto>
+		</summer>
+		
+		<switch name="/systems/pneumatics/hvac/cargo-aft-temp-coupling-rate">
+			<default value="0"/>
+			<test value="-0.0009">
+				/systems/pneumatics/hvac/cargo-aft-temp-coupling-error gt 0.001
+			</test>
+			<test value="-0.0006">
+				/systems/pneumatics/hvac/cargo-aft-temp-coupling-error lt -0.001
+			</test>
+		</switch>
+		
+		<summer name="/systems/pneumatics/hvac/cargo-aft-temp-heat-error">
+			<input>/systems/pneumatics/hvac/cargo-aft-temp</input>
+			<input>-/systems/pneumatics/hvac/cargo-heat-temp/aft</input>
+			<clipto>
+				<min>-10</min>
+				<max>10</max>
+			</clipto>
+		</summer>
+		
+		<fcs_function name="/systems/pneumatics/hvac/cargo-aft-temp-heat-rate">
+			<function>
+				<ifthen>
+					<ge>
+						<property>/systems/pneumatics/hvac/cargo-aft-temp-heat-error</property>
+						<value>0</value>
+					</ge>
+					<product>
+						<property>/systems/pneumatics/hvac/cargo-heat-temp/aft-flow</property>
+						<value>-0.0004</value>
+					</product>
+					<product>
+						<property>/systems/pneumatics/hvac/cargo-heat-temp/aft-flow</property>
+						<value>-0.00035</value>
+					</product>
+				</ifthen>
+			</function>
+		</fcs_function>
+		
+		<summer name="/systems/pneumatics/hvac/cargo-aft-temp-vent-error">
+			<input>/systems/pneumatics/hvac/cargo-aft-temp</input>
+			<input>-/systems/pneumatics/hvac/cargo-vent-temp/aft</input>
+			<clipto>
+				<min>-10</min>
+				<max>10</max>
+			</clipto>
+		</summer>
+		
+		<fcs_function name="/systems/pneumatics/hvac/cargo-aft-temp-vent-rate">
+			<function>
+				<ifthen>
+					<ge>
+						<property>/systems/pneumatics/hvac/cargo-aft-temp-vent-error</property>
+						<value>0</value>
+					</ge>
+					<product>
+						<property>/systems/pneumatics/hvac/cargo-vent-temp/aft-flow</property>
+						<value>-0.0004</value>
+					</product>
+					<product>
+						<property>/systems/pneumatics/hvac/cargo-vent-temp/aft-flow</property>
+						<value>-0.00035</value>
+					</product>
+				</ifthen>
+			</function>
+		</fcs_function>
+		
 		<fcs_function name="/systems/pneumatics/hvac/cargo-aft-temp-calc">
 			<function>
 				<sum>
@@ -1805,6 +2693,21 @@
 					<product> <!-- Environment factor -->
 						<property>/systems/pneumatics/hvac/cargo-aft-temp-environment-error</property>
 						<property>/systems/pneumatics/hvac/cargo-aft-temp-environment-rate</property>
+						<property>simulation/channel-dt</property>
+					</product>
+					<product> <!-- Coupling factor -->
+						<property>/systems/pneumatics/hvac/cargo-aft-temp-coupling-error</property>
+						<property>/systems/pneumatics/hvac/cargo-aft-temp-coupling-rate</property>
+						<property>simulation/channel-dt</property>
+					</product>
+					<product> <!-- Cargo heat flow factor -->
+						<property>/systems/pneumatics/hvac/cargo-aft-temp-heat-error</property>
+						<property>/systems/pneumatics/hvac/cargo-aft-temp-heat-rate</property>
+						<property>simulation/channel-dt</property>
+					</product>
+					<product> <!-- Cargo vent flow factor -->
+						<property>/systems/pneumatics/hvac/cargo-aft-temp-vent-error</property>
+						<property>/systems/pneumatics/hvac/cargo-aft-temp-vent-rate</property>
 						<property>simulation/channel-dt</property>
 					</product>
 				</sum>

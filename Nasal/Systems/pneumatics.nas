@@ -68,7 +68,9 @@ var PNEUMATICS = {
 		cabinFwdTemp: props.globals.getNode("/controls/pneumatics/cabin-fwd-temp"),
 		cabinMidTemp: props.globals.getNode("/controls/pneumatics/cabin-mid-temp"),
 		cargoAftTemp: props.globals.getNode("/controls/pneumatics/cargo-aft-temp"),
+		cargoAftVentilation: props.globals.getNode("/controls/pneumatics/cargo-aft-ventilation"),
 		cargoFwdTemp: props.globals.getNode("/controls/pneumatics/cargo-fwd-temp"),
+		cargoFwdVentilation: props.globals.getNode("/controls/pneumatics/cargo-fwd-ventilation"),
 		cockpitTemp: props.globals.getNode("/controls/pneumatics/cockpit-temp"),
 		econ: props.globals.getNode("/controls/pneumatics/econ"),
 		groundAir: props.globals.getNode("/controls/pneumatics/ground-air"), # No switch in cockpit
@@ -112,8 +114,10 @@ var PNEUMATICS = {
 		me.Controls.cabinAftTemp.setValue(0.45);
 		me.Controls.cabinFwdTemp.setValue(0.45);
 		me.Controls.cabinMidTemp.setValue(0.45);
-		me.Controls.cargoFwdTemp.setValue(1);
-		me.Controls.cargoAftTemp.setValue(0.4);
+		me.Controls.cargoAftTemp.setValue(0.05); # Only turned up if needed
+		me.Controls.cargoAftVentilation.setBoolValue(1);
+		me.Controls.cargoFwdTemp.setValue(0.5); # Only turned to HI if needed
+		me.Controls.cargoFwdVentilation.setBoolValue(1);
 		me.Controls.cockpitTemp.setValue(0.45);
 		me.Controls.econ.setBoolValue(1);
 		me.Controls.groundAir.setBoolValue(0);

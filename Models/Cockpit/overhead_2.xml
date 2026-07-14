@@ -65,6 +65,46 @@
 		</condition>
 	</animation>
 	
+	<animation>
+		<type>select</type>
+		<object-name>CargoAftFlow.disag</object-name>
+		<object-name>CargoAftFlow.off</object-name>
+		<object-name>CargoFwdFlow.disag</object-name>
+		<object-name>CargoFwdFlow.off</object-name>
+		<condition>
+			<or>
+				<greater-than-equals>
+					<property>systems/electrical/bus/dc-1</property>
+					<value>24</value>
+				</greater-than-equals>
+				<greater-than-equals>
+					<property>systems/electrical/bus/dc-2</property>
+					<value>24</value>
+				</greater-than-equals>
+				<greater-than-equals>
+					<property>systems/electrical/bus/dc-3</property>
+					<value>24</value>
+				</greater-than-equals>
+			</or>
+		</condition>
+	</animation>
+	
+	<!-- These are not simulated yet, so they only illuminate when the test is on. Remove each light/button once you add its select animation. -JD -->
+	<animation>
+		<type>select</type>
+		<object-name>CargoAftFlow.disag</object-name>
+		<object-name>CargoFwdFlow.disag</object-name>
+		<condition>
+			<equals>
+				<property>controls/switches/annun-test</property>
+				<value>1</value>
+			</equals>
+		</condition>
+	</animation>
+	
+	<!-- Cargo Fire -->
+	
+	
 	<!-- APU -->
 	<animation>
 		<type>pick</type>
