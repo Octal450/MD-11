@@ -33,6 +33,18 @@
 			</function>
 		</fcs_function>
 		
+		<fcs_function name="/systems/pneumatics/hvac/bleed-1-f">
+			<function>
+				<sum>
+					<product>
+						<property>/systems/pneumatics/temp/bleed-1</property>
+						<value>1.8</value>
+					</product>
+					<value>32</value>
+				</sum>
+			</function>
+		</fcs_function>
+		
 		<fcs_function name="/systems/pneumatics/hvac/bleed-2-f">
 			<function>
 				<sum>
@@ -557,7 +569,7 @@
 					<property>/systems/pneumatics/pack-1-flow</property>
 					<value>0</value><property>/systems/pneumatics/hvac/tat-f</property>
 					<value>10</value><min>
-						<property>/systems/pneumatics/temp/bleed-1</property>
+						<property>/systems/pneumatics/hvac/bleed-1-f</property>
 						<property>/systems/pneumatics/hvac/pack-temp/pack-1-target</property>
 					</min>
 				</interpolate1d>
@@ -606,7 +618,7 @@
 					<property>/systems/pneumatics/pack-2-flow</property>
 					<value>0</value><property>/systems/pneumatics/hvac/tat-f</property>
 					<value>10</value><min>
-						<property>/systems/pneumatics/temp/bleed-2</property>
+						<property>/systems/pneumatics/hvac/bleed-2-f</property>
 						<property>/systems/pneumatics/hvac/pack-temp/pack-2-target</property>
 					</min>
 				</interpolate1d>
@@ -655,7 +667,7 @@
 					<property>/systems/pneumatics/pack-3-flow</property>
 					<value>0</value><property>/systems/pneumatics/hvac/tat-f</property>
 					<value>10</value><min>
-						<property>/systems/pneumatics/temp/bleed-3</property>
+						<property>/systems/pneumatics/hvac/bleed-3-f</property>
 						<property>/systems/pneumatics/hvac/pack-temp/pack-3-target</property>
 					</min>
 				</interpolate1d>
