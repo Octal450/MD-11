@@ -1455,7 +1455,7 @@
 		
 		<switch name="/systems/pneumatics/hvac/cargo-heat-temp/fwd-flow-cmd">
 			<default value="0"/>
-			<test logic="AND" value="22">
+			<test logic="AND" value="24">
 				/systems/electrical/bus/dc-1 ge 24
 				/systems/pneumatics/hvac/cargo-fwd-target ge 35
 			</test>
@@ -1565,7 +1565,7 @@
 		
 		<switch name="/systems/pneumatics/hvac/cargo-heat-temp/mid-flow-cmd">
 			<default value="0"/>
-			<test logic="AND" value="22">
+			<test logic="AND" value="24">
 				/systems/electrical/bus/dc-2 ge 24
 				/systems/pneumatics/hvac/cargo-mid-target ge 35
 			</test>
@@ -1675,7 +1675,7 @@
 		
 		<switch name="/systems/pneumatics/hvac/cargo-heat-temp/aft-flow-cmd">
 			<default value="0"/>
-			<test logic="AND" value="22">
+			<test logic="AND" value="24">
 				/systems/electrical/bus/dc-3 ge 24
 				/systems/pneumatics/hvac/cargo-aft-target ge 35
 			</test>
@@ -1748,7 +1748,7 @@
 		
 		<pure_gain name="/systems/pneumatics/hvac/cargo-vent-temp/fwd-flow-cmd">
 			<input>/systems/pneumatics/hvac/cargo-vent-temp/fwd-fan</input>
-			<gain>22</gain>
+			<gain>24</gain>
 		</pure_gain>
 		
 		<actuator name="/systems/pneumatics/hvac/cargo-vent-temp/fwd-flow">
@@ -1844,7 +1844,7 @@
 		
 		<pure_gain name="/systems/pneumatics/hvac/cargo-vent-temp/aft-flow-cmd">
 			<input>/systems/pneumatics/hvac/cargo-vent-temp/aft-fan</input>
-			<gain>22</gain>
+			<gain>24</gain>
 		</pure_gain>
 		
 		<actuator name="/systems/pneumatics/hvac/cargo-vent-temp/aft-flow">
