@@ -363,14 +363,6 @@ var setup = func() {
 	
 	CanvasBase.setup();
 	update.start();
-	
-	if (pts.Systems.Acconfig.Options.Du.isfdFps.getValue() != 20) {
-		rateApply();
-	}
-}
-
-var rateApply = func() {
-	update.restart(1 / pts.Systems.Acconfig.Options.Du.isfdFps.getValue());
 }
 
 var update = maketimer(0.05, func() { # 20FPS

@@ -330,14 +330,6 @@ var Systems = {
 		Options: {
 			cabinTempF: props.globals.getNode("/systems/acconfig/options/cabin-temp-f"),
 			deflectedAileron: props.globals.getNode("/systems/acconfig/options/deflected-aileron"),
-			Du: {
-				eadFps: props.globals.getNode("/systems/acconfig/options/du/ead-fps"),
-				isfdFps: props.globals.getNode("/systems/acconfig/options/du/isfd-fps"),
-				mcduFps: props.globals.getNode("/systems/acconfig/options/du/mcdu-fps"),
-				ndFps: props.globals.getNode("/systems/acconfig/options/du/nd-fps"),
-				pfdFps: props.globals.getNode("/systems/acconfig/options/du/pfd-fps"),
-				sdFps: props.globals.getNode("/systems/acconfig/options/du/sd-fps"),
-			},
 			engTapes: props.globals.getNode("/systems/acconfig/options/eng-tapes"),
 			isfd: props.globals.getNode("/systems/acconfig/options/isfd"),
 			n1BelowEpr: props.globals.getNode("/systems/acconfig/options/n1-below-epr"),

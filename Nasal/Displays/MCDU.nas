@@ -430,10 +430,6 @@ var setup = func() {
 	mcdu3.update();
 	
 	update.start();
-	
-	if (pts.Systems.Acconfig.Options.Du.mcduFps.getValue() != 10) {
-		rateApply();
-	}
 }
 
 var updateMcdu = func(n) {
@@ -444,10 +440,6 @@ var updateMcdu = func(n) {
 	} else if (n == 2) {
 		mcdu3.update();
 	}
-}
-
-var rateApply = func() {
-	update.restart(1 / pts.Systems.Acconfig.Options.Du.mcduFps.getValue());
 }
 
 var update = maketimer(0.1, func() { # 10FPS

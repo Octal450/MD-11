@@ -1709,14 +1709,6 @@
 				</autopush>
 				<cabin-temp-f type="bool">1</cabin-temp-f>
 				<deflected-aileron type="bool">1</deflected-aileron>
-				<du n="0">
-					<ead-fps type="double">20</ead-fps>
-					<isfd-fps type="double">20</isfd-fps>
-					<mcdu-fps type="double">10</mcdu-fps>
-					<nd-fps type="double">20</nd-fps>
-					<pfd-fps type="double">20</pfd-fps>
-					<sd-fps type="double">20</sd-fps>
-				</du>
 				<eight-three-three-radios type="bool">0</eight-three-three-radios>
 				<eng-tapes type="bool">0</eng-tapes>
 				<isfd type="bool">0</isfd>
