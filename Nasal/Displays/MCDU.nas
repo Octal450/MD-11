@@ -36,23 +36,6 @@ var CanvasBase = {
 		foreach(var key; svgKeys) {
 			me[key] = canvasGroup.getElementById(key);
 			if (find("_L", key) != -1 or key == "Arrow" or key == "PageNum") me[key].setFont(mcdu.FONT.small);
-			
-			var clip_el = canvasGroup.getElementById(key ~ "_clip");
-			if (clip_el != nil) {
-				clip_el.setVisible(0);
-				var tranRect = clip_el.getTransformedBounds();
-				
-				var clip_rect = sprintf("rect(%d, %d, %d, %d)", 
-					tranRect[1], # 0 ys
-					tranRect[2], # 1 xe
-					tranRect[3], # 2 ye
-					tranRect[0] # 3 xs
-				);
-				
-				# Coordinates are top, right, bottom, left (ys, xe, ye, xs) ref: l621 of simgear/canvas/CanvasElement.cxx
-				me[key].set("clip", clip_rect);
-				me[key].set("clip-frame", canvas.Element.PARENT);
-			}
 		}
 		
 		me.page = canvasGroup;

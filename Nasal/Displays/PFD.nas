@@ -233,7 +233,7 @@ var CanvasBase = {
 				clip_el.setVisible(0);
 				var tranRect = clip_el.getTransformedBounds();
 				
-				var clip_rect = sprintf("rect(%d, %d, %d, %d)", 
+				var clip_rect = sprintf("rect(%d, %d, %d, %d)",
 					tranRect[1], # 0 ys
 					tranRect[2], # 1 xe
 					tranRect[3], # 2 ye
