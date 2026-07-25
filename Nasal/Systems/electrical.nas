@@ -188,7 +188,7 @@ var ELECTRICAL = {
 		lEmerDc: props.globals.getNode("/systems/electrical/lights/l-emer-dc"),
 		rEmerAc: props.globals.getNode("/systems/electrical/lights/r-emer-ac"),
 		rEmerDc: props.globals.getNode("/systems/electrical/lights/r-emer-dc"),
-		manualFlash: props.globals.initNode("/systems/electrical/lights/manual-flash", 0, "INT"),
+		manualFlash: props.globals.getNode("/systems/electrical/lights/manual-flash"),
 		manualFlashTemp: 0,
 	},
 	init: func() {

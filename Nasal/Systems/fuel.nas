@@ -113,7 +113,7 @@ var FUEL = {
 		fwdPump1PsiLow: props.globals.getNode("/systems/fuel/lights/fwd-pump-1-psi-low"),
 		fwdPump2PsiLow: props.globals.getNode("/systems/fuel/lights/fwd-pump-2-psi-low"),
 		fwdPump3PsiLow: props.globals.getNode("/systems/fuel/lights/fwd-pump-3-psi-low"),
-		manualFlash: props.globals.initNode("/systems/fuel/lights/manual-flash", 0, "INT"),
+		manualFlash: props.globals.getNode("/systems/fuel/lights/manual-flash"),
 		manualFlashTemp: 0,
 		tipLow1: props.globals.getNode("/systems/fuel/lights/tip-low-1"),
 		tipLow3: props.globals.getNode("/systems/fuel/lights/tip-low-3"),

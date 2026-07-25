@@ -1759,6 +1759,9 @@
 			<epcu n="0">
 				<split-buses type="bool">0</split-buses>
 			</epcu>
+			<lights n="0">
+				<manual-flash type="int">0</manual-flash>
+			</lights>
 		</electrical>
 		<fadec n="0">
 			<ats-cmd-1 type="double">0</ats-cmd-1>
@@ -1940,6 +1943,9 @@
 			</internal>
 		</fms>
 		<fuel n="0">
+			<lights n="0">
+				<manual-flash type="int">0</manual-flash>
+			</lights>
 			<tail-fuel-management type="bool">0</tail-fuel-management>
 		</fuel>
 		<gear n="0">
@@ -1965,6 +1971,9 @@
 			</unit>
 		</gear>
 		<hydraulics n="0">
+			<lights n="0">
+				<manual-flash type="int">0</manual-flash>
+			</lights>
 			<sys-1-qty-input type="double">8</sys-1-qty-input> <!-- Randomized later in sim init -->
 			<sys-2-qty-input type="double">8</sys-2-qty-input> <!-- Randomized later in sim init -->
 			<sys-3-qty-input type="double">8</sys-3-qty-input> <!-- Randomized later in sim init -->
@@ -1992,6 +2001,11 @@
 			<weight-p n="1" type="int">0</weight-p>
 			<weight-p n="2" type="int">0</weight-p>
 		</load-manager>
+		<pneumatics n="0">
+			<lights n="0">
+				<manual-flash type="int">0</manual-flash>
+			</lights>
+		</pneumatics>
 		<misc n="0">
 			<minimums-ref-alt type="double">0</minimums-ref-alt>
 		</misc>

@@ -98,7 +98,7 @@ var PNEUMATICS = {
 		apuDisag: props.globals.getNode("/systems/pneumatics/lights/apu-disag"),
 		isol12Disag: props.globals.getNode("/systems/pneumatics/lights/isol-1-2-disag"),
 		isol13Disag: props.globals.getNode("/systems/pneumatics/lights/isol-1-3-disag"),
-		manualFlash: props.globals.initNode("/systems/pneumatics/lights/manual-flash", 0, "INT"),
+		manualFlash: props.globals.getNode("/systems/pneumatics/lights/manual-flash"),
 		manualFlashTemp: 0,
 		pack1Flow: props.globals.getNode("/systems/pneumatics/lights/pack-1-flow"),
 		pack2Flow: props.globals.getNode("/systems/pneumatics/lights/pack-2-flow"),
