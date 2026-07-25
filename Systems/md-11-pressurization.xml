@@ -5,6 +5,8 @@
 
 <system name="MD-11: Pressurization">
 	
+	<property value="14.7">/systems/pressurization/cabin-psi</property> <!-- Should this be set to environment pressure? -->
+	
 	<channel name="CPCS Switches/Logic" execrate="8">
 		
 		<switch name="/systems/pressurization/system">
@@ -13,6 +15,78 @@
 				/systems/failures/pressurization/system eq 1
 			</test>
 		</switch>
+	
+	</channel>
+	
+	<channel name="General" execrate="8">
+		
+		<pure_gain name="/systems/pressurization/environment-psi">
+			<input>/environment/pressure-inhg</input>
+			<gain>0.491154</gain>
+		</pure_gain>
+	
+	</channel>
+	
+	<channel name="Cabin Pressure" execrate="8">
+		
+		<fcs_function name="/systems/pressurization/cabin-psi-calc">
+			<function>
+				<sum>
+					<property>/systems/pressurization/cabin-psi</property>
+					<value>0</value> <!-- Temporary -->
+				</sum>
+			</function>
+			<output>/systems/pressurization/cabin-psi</output>
+			<clipto> <!-- Keep it reasonable -->
+				<min>1</min>
+				<max>30</max>
+			</clipto>
+		</fcs_function>
+		
+		<fcs_function name="/systems/pressurization/cabin-alt-ft">
+			<function>
+				<product>
+					<value>145366.45</value>
+					<difference>
+						<value>1</value>
+						<pow>
+							<quotient>
+								<property>/systems/pressurization/cabin-psi</property>
+								<value>14.6959</value>
+							</quotient>
+							<value>0.190284</value>
+						</pow>
+					</difference>
+				</product>
+			</function>
+		</fcs_function>
+		
+		<pid name="/systems/pressurization/cabin-rate-fps">
+			<descripton>Use D only to calculate rate</descripton>
+			<input>/systems/pressurization/cabin-alt-ft</input>
+			<kp>0.0</kp>
+			<ki>0.0</ki>
+			<kd>1.0</kd>
+		</pid>
+		
+		<pure_gain name="/systems/pressurization/cabin-rate-fpm-raw">
+			<input>/systems/pressurization/cabin-rate-fps</input>
+			<gain>60</gain>
+			<clipto> <!-- Keep it sane -->
+				<min>-9999</min>
+				<max>9999</max>
+			</clipto>
+		</pure_gain>
+		
+		<lag_filter name="/systems/pressurization/cabin-rate-fpm">
+			<input>/systems/pressurization/cabin-rate-fpm-raw</input>
+			<c1>5.0</c1>
+		</lag_filter>
+		
+		<summer name="/systems/pressurization/cabin-diff-psi">
+			<input>/systems/pressurization/cabin-psi</input>
+			<input>-/systems/pressurization/environment-psi</input>
+		</summer>
 	
 	</channel>
 

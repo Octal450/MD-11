@@ -27,13 +27,7 @@ var CanvasAir = {
 		me["AI_tail_group"].hide();
 		me["AI_wing_L_group"].hide();
 		me["AI_wing_R_group"].hide();
-		me["CabinAlt"].setText("0");
-		me["CabinAlt_box"].hide();
-		me["CabinDP"].setText("0.0");
-		me["CabinDP_box"].hide();
-		me["CabinRate"].setText("0");
 		me["CabinRate_box"].hide();
-		me["CabinRateDn"].hide();
 	},
 	update: func() {
 		Value.Misc.wow = pts.Position.wow.getBoolValue();
@@ -368,6 +362,37 @@ var CanvasAir = {
 		me["Bleed3_temp"].setText(sprintf("%d", Value.Air.bleed3Temp) ~ "gC");
 		
 		# Cabin Pressurization
+		Value.Air.cabinAlt = math.round(systems.PRESSURIZATION.Cabin.altFt.getValue(), 100);
+		Value.Air.cabinDp = math.round(systems.PRESSURIZATION.Cabin.diffPsi.getValue(), 0.1);
+		Value.Air.cabinRate = math.round(systems.PRESSURIZATION.Cabin.rateFpm.getValue(), 10);
+		
+		if (Value.Air.cabinAlt > 10000) {
+			me["CabinAlt"].setColor(1, 0, 0);
+			me["CabinAlt_box"].show();
+		} else {
+			me["CabinAlt"].setColor(1, 1, 1);
+			me["CabinAlt_box"].hide();
+		}
+		me["CabinAlt"].setText(sprintf("%d", Value.Air.cabinAlt));
+		
+		if (Value.Air.cabinDp > 9.1) {
+			me["CabinDP"].setColor(1, 0, 0);
+			me["CabinDP_box"].show();
+		} else {
+			me["CabinDP"].setColor(1, 1, 1);
+			me["CabinDP_box"].hide();
+		}
+		me["CabinDP"].setText(sprintf("%3.1f", Value.Air.cabinDp));
+		
+		if (Value.Air.cabinRate < 0) {
+			me["CabinRateDn"].show();
+			me["CabinRateUp"].hide();
+		} else {
+			me["CabinRateDn"].hide();
+			me["CabinRateUp"].show();
+		}
+		me["CabinRate"].setText(sprintf("%d", Value.Air.cabinRate));
+		
 		if (fms.flightData.airportToAlt > -2000) {
 			me["CabinLand"].setText(sprintf("%d", fms.flightData.airportToAlt));
 			me["CabinLand"].setColor(0.9608, 0, 0.7765);

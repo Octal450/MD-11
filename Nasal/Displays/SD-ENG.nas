@@ -154,6 +154,28 @@ var CanvasEngBase = {
 			me["StabUnit"].setText("ANU");
 		}
 		
+		# Cabin Alt/Rate
+		Value.Air.cabinAlt = math.round(systems.PRESSURIZATION.Cabin.altFt.getValue(), 100);
+		Value.Air.cabinRate = math.round(systems.PRESSURIZATION.Cabin.rateFpm.getValue(), 10);
+		
+		if (Value.Air.cabinAlt > 10000) {
+			me["CabinAlt"].setColor(1, 0, 0);
+			me["CabinAlt_box"].show();
+		} else {
+			me["CabinAlt"].setColor(1, 1, 1);
+			me["CabinAlt_box"].hide();
+		}
+		me["CabinAlt"].setText(sprintf("%d", Value.Air.cabinAlt));
+		
+		if (Value.Air.cabinRate < 0) {
+			me["CabinRateDn"].show();
+			me["CabinRateUp"].hide();
+		} else {
+			me["CabinRateDn"].hide();
+			me["CabinRateUp"].show();
+		}
+		me["CabinRate"].setText(sprintf("%d", Value.Air.cabinRate));
+		
 		# Nacelle Temp
 		me["NacelleTemp1"].setText(sprintf("%d", math.round(systems.ENGINES.nacelleTemp[0].getValue())));
 		me["NacelleTemp2"].setText(sprintf("%d", math.round(systems.ENGINES.nacelleTemp[1].getValue())));
@@ -224,11 +246,7 @@ var CanvasEngDials = {
 		}
 		
 		# Hide unimplemented objects
-		me["CabinAlt"].setText("0");
-		me["CabinAlt_box"].hide();
-		me["CabinRate"].setText("0");
 		me["CabinRate_box"].hide();
-		me["CabinRateDn"].hide();
 	},
 	update: func() {
 		me.updateEngBase();
@@ -429,11 +447,7 @@ var CanvasEngTapes = {
 		}
 		
 		# Hide unimplemented objects
-		me["CabinAlt"].setText("0");
-		me["CabinAlt_box"].hide();
-		me["CabinRate"].setText("0");
 		me["CabinRate_box"].hide();
-		me["CabinRateDn"].hide();
 	},
 	update: func() {
 		me.updateEngBase();

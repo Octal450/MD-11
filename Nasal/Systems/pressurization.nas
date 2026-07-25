@@ -2,6 +2,11 @@
 # Copyright (c) 2026 Josh Davidson (Octal450)
 
 var PRESSURIZATION = {
+	Cabin: {
+		altFt: props.globals.getNode("/systems/pressurization/cabin-alt-ft"),
+		diffPsi: props.globals.getNode("/systems/pressurization/cabin-diff-psi"),
+		rateFpm: props.globals.getNode("/systems/pressurization/cabin-rate-fpm"),
+	},
 	system: props.globals.getNode("/systems/pressurization/system"),
 	Controls: {
 		system: props.globals.getNode("/controls/pressurization/system"),
