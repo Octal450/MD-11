@@ -12,6 +12,7 @@ var PRESSURIZATION = {
 	},
 	system: props.globals.getNode("/systems/pressurization/system"),
 	Controls: {
+		cabinManual: props.globals.getNode("/controls/pressurization/cabin-manual"),
 		system: props.globals.getNode("/controls/pressurization/system"),
 	},
 	Failures: {
@@ -24,6 +25,7 @@ var PRESSURIZATION = {
 	},
 	init: func() {
 		me.resetFailures();
+		me.Controls.cabinManual.setValue(0);
 		me.Controls.system.setBoolValue(1);
 		manualPressLightt.stop();
 		me.Lights.manualFlash.setValue(0);

@@ -335,6 +335,11 @@
 			<c1>20</c1>
 		</lag_filter>
 		
+		<lag_filter name="/controls/cockpit/overhead/cabin-manual">
+			<input>/controls/pressurization/cabin-manual</input>
+			<c1>20</c1>
+		</lag_filter>
+		
 		<lag_filter name="/controls/cockpit/overhead/cabin-mid-temp">
 			<input>/controls/pneumatics/cabin-mid-temp</input>
 			<c1>20</c1>

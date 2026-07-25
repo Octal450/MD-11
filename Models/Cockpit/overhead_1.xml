@@ -8057,7 +8057,6 @@
 					<command>nasal</command>
 					<script>
 						setprop("/controls/fcc/elevator-feel", 0);
-						core.Sound.knb1();
 					</script>
 				</binding>
 			</mod-up>
@@ -8084,7 +8083,6 @@
 					<command>nasal</command>
 					<script>
 						setprop("/controls/fcc/elevator-feel", 0);
-						core.Sound.knb1();
 					</script>
 				</binding>
 			</mod-up>
@@ -8111,7 +8109,6 @@
 					<command>nasal</command>
 					<script>
 						setprop("/controls/fcc/elevator-feel", 0);
-						core.Sound.knb1();
 					</script>
 				</binding>
 			</mod-up>
@@ -8138,7 +8135,6 @@
 					<command>nasal</command>
 					<script>
 						setprop("/controls/fcc/elevator-feel", 0);
-						core.Sound.knb1();
 					</script>
 				</binding>
 			</mod-up>
@@ -8886,7 +8882,76 @@
 		</condition>
 	</animation>
 	
-	<!-- Pressurzation System Control Button -->
+	<!-- Pressurization Manual Knob -->
+	<animation>
+		<type>rotate</type>
+		<object-name>CabinPress</object-name>
+		<object-name>CabinPress.light</object-name>
+		<property>controls/cockpit/overhead/cabin-manual</property>
+		<factor>-45</factor>
+		<axis>
+			<x>1</x>
+			<y>0</y>
+			<z>0</z>
+		</axis>
+		<center>
+			<x-m>0</x-m>
+			<y-m>0.21454</y-m>
+			<z-m>-17.8755</z-m>
+		</center>
+	</animation>
+	<animation>
+		<type>pick</type>
+		<object-name>CabinPress.climb</object-name>
+		<visible>false</visible>
+		<action>
+			<button>0</button>
+			<repeatable>false</repeatable>
+			<binding>
+				<command>property-assign</command>
+				<property>controls/pressurization/cabin-manual</property>
+				<value>1</value>
+			</binding>
+			<binding>
+				<command>nasal</command>
+				<script>core.Sound.knb1();</script>
+			</binding>
+			<mod-up>
+				<binding>
+					<command>property-assign</command>
+					<property>controls/pressurization/cabin-manual</property>
+					<value>0</value>
+				</binding>
+			</mod-up>
+		</action>
+	</animation>
+	<animation>
+		<type>pick</type>
+		<object-name>CabinPress.descend</object-name>
+		<visible>false</visible>
+		<action>
+			<button>0</button>
+			<repeatable>false</repeatable>
+			<binding>
+				<command>property-assign</command>
+				<property>controls/pressurization/cabin-manual</property>
+				<value>-1</value>
+			</binding>
+			<binding>
+				<command>nasal</command>
+				<script>core.Sound.knb1();</script>
+			</binding>
+			<mod-up>
+				<binding>
+					<command>property-assign</command>
+					<property>controls/pressurization/cabin-manual</property>
+					<value>0</value>
+				</binding>
+			</mod-up>
+		</action>
+	</animation>
+	
+	<!-- Pressurization System Control Button -->
 	<animation>
 		<type>pick</type>
 		<object-name>SystemPress</object-name>

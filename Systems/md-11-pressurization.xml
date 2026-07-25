@@ -6,7 +6,7 @@
 <system name="MD-11: Pressurization">
 	
 	<property value="14.7">/systems/pressurization/cabin-psi</property> <!-- Should this be set to environment pressure on simload? -->
-	<property value="1">/systems/pressurization/outflow-valve/cmd</property>
+	<property value="1">/systems/pressurization/outflow-valve/auto-cmd</property>
 	
 	<channel name="CPCS Switches/Logic" execrate="8">
 		
@@ -20,6 +20,29 @@
 	</channel>
 	
 	<channel name="Outflow Valve" execrate="8">
+		
+		<fcs_function name="/systems/pressurization/outflow-valve/cmd">
+			<function>
+				<ifthen>
+					<eq>
+						<property>/systems/pressurization/system</property>
+						<value>1</value>
+					</eq>
+					<property>/systems/pressurization/outflow-valve/auto-cmd</property>
+					<sum>
+						<property>/systems/pressurization/outflow-valve/cmd</property>
+						<product>
+							<property>/controls/pressurization/cabin-manual</property>
+							<value>0.01</value>
+						</product>
+					</sum>
+				</ifthen>
+			</function>
+			<clipto>
+				<min>0.0</min>
+				<max>1.0</max>
+			</clipto>
+		</fcs_function>
 		
 		<actuator name="/systems/pressurization/outflow-valve/pos">
 			<input>/systems/pressurization/outflow-valve/cmd</input>
@@ -84,7 +107,7 @@
 			<input>-/systems/pressurization/pack-psi</input>
 			<clipto> <!-- It can never depressurize -->
 				<min>-100</min>
-				<max>0</max>
+				<max>0.0</max>
 			</clipto>
 		</summer>
 		
@@ -128,7 +151,7 @@
 			</function>
 			<output>/systems/pressurization/cabin-psi</output>
 			<clipto> <!-- Keep it reasonable -->
-				<min>1</min>
+				<min>1.0</min>
 				<max>30</max>
 			</clipto>
 		</fcs_function>

@@ -823,6 +823,10 @@
 			<system type="bool">1</system>
 			<trim-air type="bool">1</trim-air>
 		</pneumatics>
+		<pressurization n="0">
+			<cabin-manual type="int">0</cabin-manual>
+			<system type="bool">1</system>
+		</pressurization>
 		<switches n="0">
 			<adg-handle type="double">0</adg-handle>
 			<annun-test type="bool">0</annun-test>
