@@ -11,22 +11,22 @@
 		<!-- Copy the value from ITAF first to ensure everything updates in sync -->
 		<pure_gain name="/instrumentation/pfd/kts-mach-pre-sel">
 			<input>/it-autoflight/input/kts-mach</input>
-			<gain>1.0</gain>
+			<gain>1</gain>
 		</pure_gain>
 		
 		<pure_gain name="/instrumentation/pfd/kts-mach-sel">
 			<input>/it-autoflight/internal/kts-mach</input>
-			<gain>1.0</gain>
+			<gain>1</gain>
 		</pure_gain>
 		
 		<pure_gain name="/instrumentation/pfd/kts-mach-fms">
 			<input>/systems/fms/fms-spd/kts-mach</input>
-			<gain>1.0</gain>
+			<gain>1</gain>
 		</pure_gain>
 		
 		<pure_gain name="/instrumentation/pfd/kts-mach-fms-econ">
 			<input>/systems/fms/fms-spd/econ-kts-mach</input>
-			<gain>1.0</gain>
+			<gain>1</gain>
 		</pure_gain>
 		
 		<fcs_function name="/instrumentation/pfd/spd-pre-sel">
@@ -150,7 +150,7 @@
 		
 		<lag_filter name="/instrumentation/pfd/slip-skid">
 			<input>/instrumentation/pfd/slip-skid-cmd</input>
-			<c1>5.0</c1>
+			<c1>5</c1>
 		</lag_filter>
 		
 		<!-- Vertical Speed -->
@@ -371,7 +371,7 @@
 		<actuator name="/instrumentation/ead/egt-yellow-timer[0]">
 			<input>/instrumentation/ead/egt-yellow-timer-cmd[0]</input>
 			<rate_limit sense="incr">0.00333333333333333333333333333333</rate_limit> <!-- 5 minutes -->
-			<rate_limit sense="decr">1.0</rate_limit> <!-- 1 second -->
+			<rate_limit sense="decr">1</rate_limit> <!-- 1 second -->
 		</actuator>
 		
 		<switch name="/instrumentation/ead/egt-yellow-timer-cmd[1]">
@@ -384,7 +384,7 @@
 		<actuator name="/instrumentation/ead/egt-yellow-timer[1]">
 			<input>/instrumentation/ead/egt-yellow-timer-cmd[1]</input>
 			<rate_limit sense="incr">0.00333333333333333333333333333333</rate_limit> <!-- 5 minutes -->
-			<rate_limit sense="decr">1.0</rate_limit> <!-- 1 second -->
+			<rate_limit sense="decr">1</rate_limit> <!-- 1 second -->
 		</actuator>
 		
 		<switch name="/instrumentation/ead/egt-yellow-timer-cmd[2]">
@@ -397,7 +397,7 @@
 		<actuator name="/instrumentation/ead/egt-yellow-timer[2]">
 			<input>/instrumentation/ead/egt-yellow-timer-cmd[2]</input>
 			<rate_limit sense="incr">0.00333333333333333333333333333333</rate_limit> <!-- 5 minutes -->
-			<rate_limit sense="decr">1.0</rate_limit> <!-- 1 second -->
+			<rate_limit sense="decr">1</rate_limit> <!-- 1 second -->
 		</actuator>
 		
 		<switch name="/instrumentation/ead/egt-max[0]">
@@ -596,7 +596,7 @@
 		<!-- Slip Skid -->
 		<pure_gain name="/instrumentation/isfd/slip-skid-cmd">
 			<input>/instrumentation/pfd/slip-skid-cmd</input> <!-- Take from PFD -->
-			<gain>1.0</gain>
+			<gain>1</gain>
 			<clipto>
 				<min>-12</min>
 				<max>12</max>
@@ -605,7 +605,7 @@
 		
 		<lag_filter name="/instrumentation/isfd/slip-skid">
 			<input>/instrumentation/isfd/slip-skid-cmd</input>
-			<c1>5.0</c1>
+			<c1>5</c1>
 		</lag_filter>
 	
 	</channel>

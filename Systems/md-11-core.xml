@@ -298,7 +298,7 @@
 		
 		<pure_gain name="/systems/load-manager/fuel/total-fuel"> <!-- Keep synchronized -->
 			<input>/systems/load-manager/total-fuel</input>
-			<gain>1.0</gain>
+			<gain>1</gain>
 		</pure_gain>
 		
 		<fcs_function name="/systems/load-manager/fuel/tank[0]"> <!-- Tank 1 Outboard -->

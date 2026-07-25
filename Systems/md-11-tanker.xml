@@ -23,7 +23,7 @@
 		
 		<lag_filter name="/systems/fcs/boom-lag">
 			<input>/systems/fcs/boom-pos</input>
-			<c1>5.0</c1>
+			<c1>5</c1>
 			<output>/systems/fcs/boom-final</output> <!-- So it can be overidden by flight recorder -->
 		</lag_filter>
 		

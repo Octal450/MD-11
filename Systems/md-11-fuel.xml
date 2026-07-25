@@ -26,7 +26,7 @@
 		
 		<pure_gain name="/systems/fuel/fsc/tank-2-lbs">
 			<input>propulsion/tank[2]/contents-lbs</input>
-			<gain>1.0</gain>
+			<gain>1</gain>
 		</pure_gain>
 		
 		<summer name="/systems/fuel/fsc/tank-3-lbs">

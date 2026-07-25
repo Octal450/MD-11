@@ -1012,7 +1012,7 @@
 		
 		<pure_gain name="/systems/electrical/bus/ac-1">
 			<input>/systems/electrical/bus/ac-gen-1</input>
-			<gain>1.0</gain>
+			<gain>1</gain>
 		</pure_gain>
 		
 		<!-- AC 2 Bus/AC Gen 2 Bus -->
@@ -1049,7 +1049,7 @@
 		
 		<pure_gain name="/systems/electrical/bus/ac-2">
 			<input>/systems/electrical/bus/ac-gen-2</input>
-			<gain>1.0</gain>
+			<gain>1</gain>
 		</pure_gain>
 		
 		<!-- AC 3 Bus/AC Gen 3 Bus -->
@@ -1086,7 +1086,7 @@
 		
 		<pure_gain name="/systems/electrical/bus/ac-3">
 			<input>/systems/electrical/bus/ac-gen-3</input>
-			<gain>1.0</gain>
+			<gain>1</gain>
 		</pure_gain>
 		
 		<!-- External Power Relays -->
@@ -1249,39 +1249,39 @@
 		<!-- Cabin AC Buses Passenger Varient -->
 		<pure_gain name="/systems/electrical/bus/cabin-ac-1">
 			<input>/systems/electrical/bus/ac-gen-1</input>
-			<gain>1.0</gain>
+			<gain>1</gain>
 		</pure_gain>
 		
 		<pure_gain name="/systems/electrical/bus/fwd-mid-cabin">
 			<input>/systems/electrical/bus/ac-gndsvc</input>
-			<gain>1.0</gain>
+			<gain>1</gain>
 		</pure_gain>
 		
 		<pure_gain name="/systems/electrical/bus/overwing-aft-cabin">
 			<input>/systems/electrical/bus/ac-gndsvc</input>
-			<gain>1.0</gain>
+			<gain>1</gain>
 		</pure_gain>
 		
 		<pure_gain name="/systems/electrical/bus/cabin-ac-3">
 			<input>/systems/electrical/bus/ac-gen-3</input>
-			<gain>1.0</gain>
+			<gain>1</gain>
 		</pure_gain>
 		
 		<!-- Cabin AC Buses Freighter Varient -->
 		<pure_gain name="/systems/electrical/bus/cabin-ac-f">
 			<input>/systems/electrical/bus/ac-gndsvc</input>
-			<gain>1.0</gain>
+			<gain>1</gain>
 		</pure_gain>
 		
 		<pure_gain name="/systems/electrical/bus/cargo-loading">
 			<input>/systems/electrical/bus/ac-gndsvc</input>
-			<gain>1.0</gain>
+			<gain>1</gain>
 		</pure_gain>
 		
 		<!-- Cabin AC Buses Common -->
 		<pure_gain name="/systems/electrical/bus/flt-comp-ac-gndsvc">
 			<input>/systems/electrical/bus/ac-gndsvc</input>
-			<gain>1.0</gain>
+			<gain>1</gain>
 		</pure_gain>
 		
 		<!-- Right Emergency AC Bus Relays -->
@@ -1499,7 +1499,7 @@
 		<!-- Cabin DC Bus -->
 		<pure_gain name="/systems/electrical/bus/cabin-dc">
 			<input>/systems/electrical/sources/tr-3/output-volt</input>
-			<gain>1.0</gain>
+			<gain>1</gain>
 		</pure_gain>
 		
 		<!-- DC Tie Bus DC Bus Remote Circuit Breakers -->
@@ -1595,7 +1595,7 @@
 		
 		<pure_gain name="/systems/electrical/bus/dc-1-pre">
 			<input>/systems/electrical/sources/tr-1/output-volt</input>
-			<gain>1.0</gain>
+			<gain>1</gain>
 		</pure_gain>
 		
 		<fcs_function name="/systems/electrical/bus/dc-1">
@@ -1620,7 +1620,7 @@
 		
 		<pure_gain name="/systems/electrical/bus/dc-2-pre">
 			<input>/systems/electrical/sources/tr-2a/output-volt</input>
-			<gain>1.0</gain>
+			<gain>1</gain>
 		</pure_gain>
 		
 		<fcs_function name="/systems/electrical/bus/dc-2">
@@ -1645,7 +1645,7 @@
 		
 		<pure_gain name="/systems/electrical/bus/dc-gndsvc-pre">
 			<input>/systems/electrical/sources/tr-2b/output-volt</input>
-			<gain>1.0</gain>
+			<gain>1</gain>
 		</pure_gain>
 		
 		<fcs_function name="/systems/electrical/bus/dc-gndsvc">
@@ -1670,7 +1670,7 @@
 		
 		<pure_gain name="/systems/electrical/bus/dc-3-pre">
 			<input>/systems/electrical/rcb/tr-3-dc-3/output</input>
-			<gain>1.0</gain>
+			<gain>1</gain>
 		</pure_gain>
 		
 		<fcs_function name="/systems/electrical/bus/dc-3">
@@ -2106,22 +2106,22 @@
 		<!-- Galley Buses -->
 		<pure_gain name="/systems/electrical/bus/galley-1">
 			<input>/systems/electrical/relay/galley-1/output</input>
-			<gain>1.0</gain>
+			<gain>1</gain>
 		</pure_gain>
 		
 		<pure_gain name="/systems/electrical/bus/galley-2">
 			<input>/systems/electrical/relay/galley-2/output</input>
-			<gain>1.0</gain>
+			<gain>1</gain>
 		</pure_gain>
 		
 		<pure_gain name="/systems/electrical/bus/galley-3">
 			<input>/systems/electrical/relay/galley-3/output</input>
-			<gain>1.0</gain>
+			<gain>1</gain>
 		</pure_gain>
 		
 		<pure_gain name="/systems/electrical/bus/galley-4">
 			<input>/systems/electrical/bus/ac-gen-3</input>
-			<gain>1.0</gain>
+			<gain>1</gain>
 		</pure_gain>
 		
 		<!-- Power Instrumentation -->

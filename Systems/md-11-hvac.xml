@@ -915,7 +915,7 @@
 		
 		<lag_filter name="/systems/pneumatics/hvac/duct-temp/cockpit-regulator-lag">
 			<input>/systems/pneumatics/hvac/duct-temp/cockpit-regulator-cmd</input>
-			<c1>5.0</c1>
+			<c1>5</c1>
 		</lag_filter>
 		
 		<pure_gain name="/systems/pneumatics/hvac/duct-temp/cockpit-regulator-valve">
@@ -1033,7 +1033,7 @@
 		
 		<lag_filter name="/systems/pneumatics/hvac/duct-temp/cabin-fwd-regulator-lag">
 			<input>/systems/pneumatics/hvac/duct-temp/cabin-fwd-regulator-cmd</input>
-			<c1>5.0</c1>
+			<c1>5</c1>
 		</lag_filter>
 		
 		<pure_gain name="/systems/pneumatics/hvac/duct-temp/cabin-fwd-regulator-valve">
@@ -1151,7 +1151,7 @@
 		
 		<lag_filter name="/systems/pneumatics/hvac/duct-temp/cabin-mid-regulator-lag">
 			<input>/systems/pneumatics/hvac/duct-temp/cabin-mid-regulator-cmd</input>
-			<c1>5.0</c1>
+			<c1>5</c1>
 		</lag_filter>
 		
 		<pure_gain name="/systems/pneumatics/hvac/duct-temp/cabin-mid-regulator-valve">
@@ -1269,7 +1269,7 @@
 		
 		<lag_filter name="/systems/pneumatics/hvac/duct-temp/cabin-aft-regulator-lag">
 			<input>/systems/pneumatics/hvac/duct-temp/cabin-aft-regulator-cmd</input>
-			<c1>5.0</c1>
+			<c1>5</c1>
 		</lag_filter>
 		
 		<pure_gain name="/systems/pneumatics/hvac/duct-temp/cabin-aft-regulator-valve">
@@ -1427,7 +1427,7 @@
 		
 		<lag_filter name="/systems/pneumatics/hvac/cargo-heat-temp/fwd-regulator-lag">
 			<input>/systems/pneumatics/hvac/cargo-heat-temp/fwd-regulator-cmd</input>
-			<c1>5.0</c1>
+			<c1>5</c1>
 		</lag_filter>
 		
 		<pure_gain name="/systems/pneumatics/hvac/cargo-heat-temp/fwd-regulator-valve">
@@ -1537,7 +1537,7 @@
 		
 		<lag_filter name="/systems/pneumatics/hvac/cargo-heat-temp/mid-regulator-lag">
 			<input>/systems/pneumatics/hvac/cargo-heat-temp/mid-regulator-cmd</input>
-			<c1>5.0</c1>
+			<c1>5</c1>
 		</lag_filter>
 		
 		<pure_gain name="/systems/pneumatics/hvac/cargo-heat-temp/mid-regulator-valve">
@@ -1647,7 +1647,7 @@
 		
 		<lag_filter name="/systems/pneumatics/hvac/cargo-heat-temp/aft-regulator-lag">
 			<input>/systems/pneumatics/hvac/cargo-heat-temp/aft-regulator-cmd</input>
-			<c1>5.0</c1>
+			<c1>5</c1>
 		</lag_filter>
 		
 		<pure_gain name="/systems/pneumatics/hvac/cargo-heat-temp/aft-regulator-valve">
@@ -1729,12 +1729,12 @@
 		<!-- Cargo Ventilation Temperature Targets -->
 		<pure_gain name="/systems/pneumatics/hvac/cargo-vent-temp/fwd-target">
 			<input>/systems/pneumatics/hvac/cargo-fwd-target-switched</input>
-			<gain>1.0</gain>
+			<gain>1</gain>
 		</pure_gain>
 		
 		<pure_gain name="/systems/pneumatics/hvac/cargo-vent-temp/aft-target">
 			<input>/systems/pneumatics/hvac/cargo-aft-target-switched</input>
-			<gain>1.0</gain>
+			<gain>1</gain>
 		</pure_gain>
 		
 		<!-- Fwd Cargo Ventilation -->
@@ -1785,7 +1785,7 @@
 		
 		<lag_filter name="/systems/pneumatics/hvac/cargo-vent-temp/fwd-regulator-valve">
 			<input>/systems/pneumatics/hvac/cargo-vent-temp/fwd-regulator-cmd</input>
-			<c1>5.0</c1>
+			<c1>5</c1>
 		</lag_filter>
 		
 		<fcs_function name="/systems/pneumatics/hvac/cargo-vent-temp/fwd-cmd">
@@ -1881,7 +1881,7 @@
 		
 		<lag_filter name="/systems/pneumatics/hvac/cargo-vent-temp/aft-regulator-valve">
 			<input>/systems/pneumatics/hvac/cargo-vent-temp/aft-regulator-cmd</input>
-			<c1>5.0</c1>
+			<c1>5</c1>
 		</lag_filter>
 		
 		<fcs_function name="/systems/pneumatics/hvac/cargo-vent-temp/aft-cmd">

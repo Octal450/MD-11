@@ -233,19 +233,19 @@
 		
 		<pure_gain name="/systems/fcs/spoilers/aileron-left">
 			<input>/systems/fcs/spoilers/aileron</input>
-			<gain>1.0</gain>
+			<gain>1</gain>
 			<clipto>
-				<min>-1.0</min>
-				<max>0.0</max>
+				<min>-1</min>
+				<max>0</max>
 			</clipto>
 		</pure_gain>
 		
 		<pure_gain name="/systems/fcs/spoilers/aileron-right">
 			<input>/systems/fcs/spoilers/aileron</input>
-			<gain>1.0</gain>
+			<gain>1</gain>
 			<clipto>
-				<min>0.0</min>
-				<max>1.0</max>
+				<min>0</min>
+				<max>1</max>
 			</clipto>
 		</pure_gain>
 		
@@ -287,8 +287,8 @@
 				<max>60</max>
 			</domain>
 			<range>
-				<min>0.0</min>
-				<max>1.0</max>
+				<min>0</min>
+				<max>1</max>
 			</range>
 		</aerosurface_scale>
 		
@@ -337,8 +337,8 @@
 			<input>-/systems/fcs/spoilers/trim-aileron</input>
 			<input>/systems/fcs/spoilers/main-left-cmd</input>
 			<clipto>
-				<min>0.0</min>
-				<max>1.0</max>
+				<min>0</min>
+				<max>1</max>
 			</clipto>
 		</summer>
 		
@@ -380,8 +380,8 @@
 			<input>-/systems/fcs/spoilers/trim-aileron</input>
 			<input>/systems/fcs/spoilers/main-left-cmd</input>
 			<clipto>
-				<min>0.0</min>
-				<max>1.0</max>
+				<min>0</min>
+				<max>1</max>
 			</clipto>
 		</summer>
 		
@@ -423,8 +423,8 @@
 			<input>-/systems/fcs/spoilers/trim-aileron</input>
 			<input>/systems/fcs/spoilers/main-left-cmd</input>
 			<clipto>
-				<min>0.0</min>
-				<max>1.0</max>
+				<min>0</min>
+				<max>1</max>
 			</clipto>
 		</summer>
 		
@@ -466,8 +466,8 @@
 			<input>-/systems/fcs/spoilers/trim-aileron</input>
 			<input>/systems/fcs/spoilers/main-left-cmd</input>
 			<clipto>
-				<min>0.0</min>
-				<max>1.0</max>
+				<min>0</min>
+				<max>1</max>
 			</clipto>
 		</summer>
 		
@@ -509,8 +509,8 @@
 			<input>-/systems/fcs/spoilers/trim-aileron</input>
 			<input>/systems/fcs/spoilers/main-left-cmd</input>
 			<clipto>
-				<min>0.0</min>
-				<max>1.0</max>
+				<min>0</min>
+				<max>1</max>
 			</clipto>
 		</summer>
 		
@@ -552,8 +552,8 @@
 			<input>/systems/fcs/spoilers/trim-aileron</input>
 			<input>/systems/fcs/spoilers/main-right-cmd</input>
 			<clipto>
-				<min>0.0</min>
-				<max>1.0</max>
+				<min>0</min>
+				<max>1</max>
 			</clipto>
 		</summer>
 		
@@ -595,8 +595,8 @@
 			<input>/systems/fcs/spoilers/trim-aileron</input>
 			<input>/systems/fcs/spoilers/main-right-cmd</input>
 			<clipto>
-				<min>0.0</min>
-				<max>1.0</max>
+				<min>0</min>
+				<max>1</max>
 			</clipto>
 		</summer>
 		
@@ -638,8 +638,8 @@
 			<input>/systems/fcs/spoilers/trim-aileron</input>
 			<input>/systems/fcs/spoilers/main-right-cmd</input>
 			<clipto>
-				<min>0.0</min>
-				<max>1.0</max>
+				<min>0</min>
+				<max>1</max>
 			</clipto>
 		</summer>
 		
@@ -681,8 +681,8 @@
 			<input>/systems/fcs/spoilers/trim-aileron</input>
 			<input>/systems/fcs/spoilers/main-right-cmd</input>
 			<clipto>
-				<min>0.0</min>
-				<max>1.0</max>
+				<min>0</min>
+				<max>1</max>
 			</clipto>
 		</summer>
 		
@@ -724,8 +724,8 @@
 			<input>/systems/fcs/spoilers/trim-aileron</input>
 			<input>/systems/fcs/spoilers/main-right-cmd</input>
 			<clipto>
-				<min>0.0</min>
-				<max>1.0</max>
+				<min>0</min>
+				<max>1</max>
 			</clipto>
 		</summer>
 		
