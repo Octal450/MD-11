@@ -1054,7 +1054,7 @@
 		<object-name>SystemHyd</object-name>
 		<object-name>SystemHyd.manual</object-name>
 		<object-name>SystemHyd.select</object-name>
-		<property>systems/hydraulics/system</property>
+		<property>controls/hydraulics/system</property>
 		<interpolation>
 			<entry><ind>0</ind><dep>-0.001</dep></entry>
 			<entry><ind>1</ind><dep> 0.000</dep></entry>
@@ -2156,7 +2156,7 @@
 		<object-name>SystemElec</object-name>
 		<object-name>SystemElec.manual</object-name>
 		<object-name>SystemElec.select</object-name>
-		<property>systems/electrical/system</property>
+		<property>controls/electrical/system</property>
 		<interpolation>
 			<entry><ind>0</ind><dep>-0.001</dep></entry>
 			<entry><ind>1</ind><dep> 0.000</dep></entry>
@@ -4193,7 +4193,7 @@
 		<object-name>SystemPneu</object-name>
 		<object-name>SystemPneu.manual</object-name>
 		<object-name>SystemPneu.select</object-name>
-		<property>systems/pneumatics/system</property>
+		<property>controls/pneumatics/system</property>
 		<interpolation>
 			<entry><ind>0</ind><dep>-0.001</dep></entry>
 			<entry><ind>1</ind><dep> 0.000</dep></entry>
@@ -5656,7 +5656,7 @@
 		<object-name>SystemFuel</object-name>
 		<object-name>SystemFuel.manual</object-name>
 		<object-name>SystemFuel.select</object-name>
-		<property>systems/fuel/system</property>
+		<property>controls/fuel/system</property>
 		<interpolation>
 			<entry><ind>0</ind><dep>-0.001</dep></entry>
 			<entry><ind>1</ind><dep> 0.000</dep></entry>
