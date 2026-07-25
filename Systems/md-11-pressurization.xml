@@ -19,25 +19,21 @@
 	
 	</channel>
 	
-	<channel name="General" execrate="8">
-		
-		<pure_gain name="/systems/pressurization/environment-psi">
-			<input>/environment/pressure-inhg</input>
-			<gain>0.491154</gain>
-		</pure_gain>
-	
-	</channel>
-	
 	<channel name="Outflow Valve" execrate="8">
 		
 		<actuator name="/systems/pressurization/outflow-valve/pos">
 			<input>/systems/pressurization/outflow-valve/cmd</input>
-			<rate_limit>0.5</rate_limit>
+			<rate_limit>0.25</rate_limit>
 		</actuator>
 	
 	</channel>
 	
 	<channel name="Cabin Pressure" execrate="8">
+		
+		<pure_gain name="/systems/pressurization/environment-psi">
+			<input>/environment/pressure-inhg</input>
+			<gain>0.491154</gain>
+		</pure_gain>
 		
 		<summer name="/systems/pressurization/cabin-diff-psi">
 			<input>/systems/pressurization/cabin-psi</input>
@@ -46,7 +42,7 @@
 		
 		<pure_gain name="/systems/pressurization/outflow-psi-error">
 			<input>/systems/pressurization/cabin-diff-psi</input>
-			<value>1.0</value>
+			<gain>1.0</gain>
 		</pure_gain>
 		
 		<fcs_function name="/systems/pressurization/outflow-psi-rate">
@@ -61,6 +57,59 @@
 			</function>
 		</fcs_function>
 		
+		<fcs_function name="/systems/pressurization/pack-psi">
+			<function>
+				<sum>
+					<min>
+						<property>/systems/pressurization/cabin-psi</property>
+						<value>15.82</value>
+					</min>
+					<value>4</value>
+				</sum>
+			</function>
+		</fcs_function>
+		
+		<summer name="/systems/pressurization/pack-flow-sum">
+			<input>/systems/pneumatics/pack-1-flow</input>
+			<input>/systems/pneumatics/pack-2-flow</input>
+			<input>/systems/pneumatics/pack-3-flow</input>
+			<clipto>
+				<min>0</min>
+				<max>24</max>
+			</clipto>
+		</summer>
+		
+		<summer name="/systems/pressurization/pack-psi-error">
+			<input>/systems/pressurization/cabin-psi</input>
+			<input>-/systems/pressurization/pack-psi</input>
+			<clipto> <!-- It can never depressurize -->
+				<min>-100</min>
+				<max>0</max>
+			</clipto>
+		</summer>
+		
+		<fcs_function name="/systems/pressurization/pack-psi-rate">
+			<function>
+				<product>
+					<difference>
+						<value>1</value>
+						<pow> <!-- Flow isn't linear -->
+							<property>/systems/pressurization/outflow-valve/pos</property>
+							<value>2</value>
+						</pow>
+					</difference>
+					<table>
+						<independentVar lookup="row">/systems/pressurization/pack-flow-sum</independentVar>
+						<tableData>
+							 0  0
+							24  1
+						</tableData>
+					</table>
+					<value>-0.004</value>
+				</product>
+			</function>
+		</fcs_function>
+		
 		<fcs_function name="/systems/pressurization/cabin-psi-calc">
 			<function>
 				<sum>
@@ -68,6 +117,11 @@
 					<product> <!-- Outflow factor -->
 						<property>/systems/pressurization/outflow-psi-error</property>
 						<property>/systems/pressurization/outflow-psi-rate</property>
+						<property>simulation/channel-dt</property>
+					</product>
+					<product> <!-- Packs factor -->
+						<property>/systems/pressurization/pack-psi-error</property>
+						<property>/systems/pressurization/pack-psi-rate</property>
 						<property>simulation/channel-dt</property>
 					</product>
 				</sum>
