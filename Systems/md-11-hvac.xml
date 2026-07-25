@@ -893,19 +893,26 @@
 		
 		<fcs_function name="/systems/pneumatics/hvac/duct-temp/cockpit-regulator-cmd">
 			<function>
-				<product>
-					<quotient>
-						<difference>
-							<property>/systems/pneumatics/hvac/duct-temp/cockpit-target</property>
-							<property>/systems/pneumatics/hvac/duct-temp/cockpit-cond-air</property>
-						</difference>
-						<difference>
-							<property>/systems/pneumatics/hvac/duct-temp/cockpit-trim-air</property>
-							<property>/systems/pneumatics/hvac/duct-temp/cockpit-target</property>
-						</difference>
-					</quotient>
-					<value>10</value> <!-- Compensate for the 0.1 gain in actual trim -->
-				</product>
+				<ifthen>
+					<lt>
+						<property>/systems/electrical/bus/dc-2</property>
+						<value>24</value>
+					</lt>
+					<property>/systems/pneumatics/hvac/duct-temp/cockpit-regulator-cmd</property>
+					<product>
+						<quotient>
+							<difference>
+								<property>/systems/pneumatics/hvac/duct-temp/cockpit-target</property>
+								<property>/systems/pneumatics/hvac/duct-temp/cockpit-cond-air</property>
+							</difference>
+							<difference>
+								<property>/systems/pneumatics/hvac/duct-temp/cockpit-trim-air</property>
+								<property>/systems/pneumatics/hvac/duct-temp/cockpit-target</property>
+							</difference>
+						</quotient>
+						<value>10</value> <!-- Compensate for the 0.1 gain in actual trim -->
+					</product>
+				</ifthen>
 			</function>
 			<clipto>
 				<min>0</min>
@@ -1011,19 +1018,26 @@
 		
 		<fcs_function name="/systems/pneumatics/hvac/duct-temp/cabin-fwd-regulator-cmd">
 			<function>
-				<product>
-					<quotient>
-						<difference>
-							<property>/systems/pneumatics/hvac/duct-temp/cabin-fwd-target</property>
-							<property>/systems/pneumatics/hvac/duct-temp/cabin-fwd-cond-air</property>
-						</difference>
-						<difference>
-							<property>/systems/pneumatics/hvac/duct-temp/cabin-fwd-trim-air</property>
-							<property>/systems/pneumatics/hvac/duct-temp/cabin-fwd-target</property>
-						</difference>
-					</quotient>
-					<value>10</value> <!-- Compensate for the 0.1 gain in actual trim -->
-				</product>
+				<ifthen>
+					<lt>
+						<property>/systems/electrical/bus/dc-3</property>
+						<value>24</value>
+					</lt>
+					<property>/systems/pneumatics/hvac/duct-temp/cabin-fwd-regulator-cmd</property>
+					<product>
+						<quotient>
+							<difference>
+								<property>/systems/pneumatics/hvac/duct-temp/cabin-fwd-target</property>
+								<property>/systems/pneumatics/hvac/duct-temp/cabin-fwd-cond-air</property>
+							</difference>
+							<difference>
+								<property>/systems/pneumatics/hvac/duct-temp/cabin-fwd-trim-air</property>
+								<property>/systems/pneumatics/hvac/duct-temp/cabin-fwd-target</property>
+							</difference>
+						</quotient>
+						<value>10</value> <!-- Compensate for the 0.1 gain in actual trim -->
+					</product>
+				</ifthen>
 			</function>
 			<clipto>
 				<min>0</min>
@@ -1129,19 +1143,26 @@
 		
 		<fcs_function name="/systems/pneumatics/hvac/duct-temp/cabin-mid-regulator-cmd">
 			<function>
-				<product>
-					<quotient>
-						<difference>
-							<property>/systems/pneumatics/hvac/duct-temp/cabin-mid-target</property>
-							<property>/systems/pneumatics/hvac/duct-temp/cabin-mid-cond-air</property>
-						</difference>
-						<difference>
-							<property>/systems/pneumatics/hvac/duct-temp/cabin-mid-trim-air</property>
-							<property>/systems/pneumatics/hvac/duct-temp/cabin-mid-target</property>
-						</difference>
-					</quotient>
-					<value>10</value> <!-- Compensate for the 0.1 gain in actual trim -->
-				</product>
+				<ifthen>
+					<lt>
+						<property>/systems/electrical/bus/dc-1</property>
+						<value>24</value>
+					</lt>
+					<property>/systems/pneumatics/hvac/duct-temp/cabin-mid-regulator-cmd</property>
+					<product>
+						<quotient>
+							<difference>
+								<property>/systems/pneumatics/hvac/duct-temp/cabin-mid-target</property>
+								<property>/systems/pneumatics/hvac/duct-temp/cabin-mid-cond-air</property>
+							</difference>
+							<difference>
+								<property>/systems/pneumatics/hvac/duct-temp/cabin-mid-trim-air</property>
+								<property>/systems/pneumatics/hvac/duct-temp/cabin-mid-target</property>
+							</difference>
+						</quotient>
+						<value>10</value> <!-- Compensate for the 0.1 gain in actual trim -->
+					</product>
+				</ifthen>
 			</function>
 			<clipto>
 				<min>0</min>
@@ -1247,19 +1268,26 @@
 		
 		<fcs_function name="/systems/pneumatics/hvac/duct-temp/cabin-aft-regulator-cmd">
 			<function>
-				<product>
-					<quotient>
-						<difference>
-							<property>/systems/pneumatics/hvac/duct-temp/cabin-aft-target</property>
-							<property>/systems/pneumatics/hvac/duct-temp/cabin-aft-cond-air</property>
-						</difference>
-						<difference>
-							<property>/systems/pneumatics/hvac/duct-temp/cabin-aft-trim-air</property>
-							<property>/systems/pneumatics/hvac/duct-temp/cabin-aft-target</property>
-						</difference>
-					</quotient>
-					<value>10</value> <!-- Compensate for the 0.1 gain in actual trim -->
-				</product>
+				<ifthen>
+					<lt>
+						<property>/systems/electrical/bus/dc-2</property>
+						<value>24</value>
+					</lt>
+					<property>/systems/pneumatics/hvac/duct-temp/cabin-aft-regulator-cmd</property>
+					<product>
+						<quotient>
+							<difference>
+								<property>/systems/pneumatics/hvac/duct-temp/cabin-aft-target</property>
+								<property>/systems/pneumatics/hvac/duct-temp/cabin-aft-cond-air</property>
+							</difference>
+							<difference>
+								<property>/systems/pneumatics/hvac/duct-temp/cabin-aft-trim-air</property>
+								<property>/systems/pneumatics/hvac/duct-temp/cabin-aft-target</property>
+							</difference>
+						</quotient>
+						<value>10</value> <!-- Compensate for the 0.1 gain in actual trim -->
+					</product>
+				</ifthen>
 			</function>
 			<clipto>
 				<min>0</min>
