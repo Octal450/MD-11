@@ -696,7 +696,7 @@
 			<input>/systems/fms/speeds/vss-kts</input>
 			<gain>/systems/fms/speeds/vss-roll-factor</gain>
 			<clipto>
-				<min>0</min>
+				<min>0.0</min>
 				<max>/systems/fms/speeds/vmax</max>
 			</clipto>
 		</pure_gain>
@@ -1129,7 +1129,7 @@
 				</sum>
 			</function>
 			<clipto>
-				<min>0</min>
+				<min>0.0</min>
 				<max>21</max>
 			</clipto>
 		</fcs_function>
@@ -1232,7 +1232,7 @@
 				</sum>
 			</function>
 			<clipto>
-				<min>0</min>
+				<min>0.0</min>
 				<max>10</max>
 			</clipto>
 		</fcs_function>

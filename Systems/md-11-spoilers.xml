@@ -76,7 +76,7 @@
 				/controls/flight/speedbrake-fixed ge 0.8
 			</test>
 			<clipto>
-				<min>0</min>
+				<min>0.0</min>
 				<max>/systems/fcs/spoilers/max-lever</max>
 			</clipto>
 		</switch>
@@ -186,7 +186,7 @@
 			</test>
 			<output>/systems/fcs/spoilers/auto-speedbrake-feedback</output>
 			<clipto>
-				<min>0</min>
+				<min>0.0</min>
 				<max>/systems/fcs/spoilers/auto-speedbrake-max</max>
 			</clipto>
 		</switch>
@@ -283,7 +283,7 @@
 		<aerosurface_scale name="/systems/fcs/spoilers/main-cmd">
 			<input>/systems/fcs/spoilers/main-cmd-deg</input>
 			<domain>
-				<min>0</min>
+				<min>0.0</min>
 				<max>60</max>
 			</domain>
 			<range>
