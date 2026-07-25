@@ -5,7 +5,8 @@
 
 <system name="MD-11: Pressurization">
 	
-	<property value="14.7">/systems/pressurization/cabin-psi</property> <!-- Should this be set to environment pressure? -->
+	<property value="14.7">/systems/pressurization/cabin-psi</property> <!-- Should this be set to environment pressure on simload? -->
+	<property value="1">/systems/pressurization/outflow-valve/cmd</property>
 	
 	<channel name="CPCS Switches/Logic" execrate="8">
 		
@@ -24,6 +25,15 @@
 			<input>/environment/pressure-inhg</input>
 			<gain>0.491154</gain>
 		</pure_gain>
+	
+	</channel>
+	
+	<channel name="Outflow Valve" execrate="8">
+		
+		<actuator name="/systems/pressurization/outflow-valve/pos">
+			<input>/systems/pressurization/outflow-valve/cmd</input>
+			<rate_limit>0.5</rate_limit>
+		</actuator>
 	
 	</channel>
 	
@@ -87,6 +97,17 @@
 			<input>/systems/pressurization/cabin-psi</input>
 			<input>-/systems/pressurization/environment-psi</input>
 		</summer>
+	
+	</channel>
+	
+	<channel name="Overhead/Synoptic Lights">
+		
+		<switch name="/systems/pressurization/lights/outflow-closed">
+			<default value="0"/>
+			<test value="1">
+				/systems/pressurization/outflow-valve/pos lt 0.001
+			</test>
+		</switch>
 	
 	</channel>
 

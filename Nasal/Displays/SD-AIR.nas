@@ -393,6 +393,13 @@ var CanvasAir = {
 		}
 		me["CabinRate"].setText(sprintf("%d", Value.Air.cabinRate));
 		
+		if (systems.PRESSURIZATION.Lights.outflowClosed.getBoolValue()) {
+			me["Outflo_clsd"].setColor(0.9412, 0.7255, 0);
+		} else {
+			me["Outflo_clsd"].setColor(1, 1, 1);
+		}
+		me["Outflo_needle"].setRotation(((systems.PRESSURIZATION.OutflowValve.pos.getValue() * 180) - 90) * D2R);
+		
 		if (fms.flightData.airportToAlt > -2000) {
 			me["CabinLand"].setText(sprintf("%d", fms.flightData.airportToAlt));
 			me["CabinLand"].setColor(0.9608, 0, 0.7765);
@@ -685,6 +692,8 @@ var KeyListAir = [
 	"Isol13",
 	"Isol13_disag",
 	"Isol13_line",
+	"Outflo_clsd",
+	"Outflo_needle",
 	"Pack_line",
 	"Pack1_circle",
 	"Pack1_imp",

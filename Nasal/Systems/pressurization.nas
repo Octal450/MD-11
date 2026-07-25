@@ -7,6 +7,9 @@ var PRESSURIZATION = {
 		diffPsi: props.globals.getNode("/systems/pressurization/cabin-diff-psi"),
 		rateFpm: props.globals.getNode("/systems/pressurization/cabin-rate-fpm"),
 	},
+	OutflowValve: {
+		pos: props.globals.getNode("/systems/pressurization/outflow-valve/pos"),
+	},
 	system: props.globals.getNode("/systems/pressurization/system"),
 	Controls: {
 		system: props.globals.getNode("/controls/pressurization/system"),
@@ -17,6 +20,7 @@ var PRESSURIZATION = {
 	Lights: {
 		manualFlash: props.globals.getNode("/systems/pressurization/lights/manual-flash"),
 		manualFlashTemp: 0,
+		outflowClosed: props.globals.getNode("/systems/pressurization/lights/outflow-closed"),
 	},
 	init: func() {
 		me.resetFailures();

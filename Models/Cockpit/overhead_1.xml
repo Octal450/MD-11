@@ -51,7 +51,6 @@
 		<object-name>CargoAftTemp.light</object-name>
 		<object-name>CargoFwdTemp.light</object-name>
 		<object-name>CabinPress.light</object-name>
-		<object-name>CabinPressNeedle</object-name>
 		<object-name>CockpitTemp.light</object-name>
 		<object-name>CVRNeedle</object-name>
 		<object-name>ElevFeel.light</object-name>
@@ -64,6 +63,7 @@
 		<object-name>mainflood.indicator</object-name>
 		<object-name>maininteg.indicator</object-name>
 		<object-name>MidTemp.light</object-name>
+		<object-name>OutflowValveNeedle</object-name>
 		<object-name>overhead.text</object-name>
 		<object-name>overhead.freighter.text</object-name>
 		<object-name>overhead.pax.text</object-name>
@@ -264,6 +264,7 @@
 		<object-name>IRSNavOffAux.navoff</object-name>
 		<object-name>LEmerAC.off</object-name>
 		<object-name>LEmerDC.off</object-name>
+		<object-name>OutflowValve.closed</object-name>
 		<object-name>REmerAC.off</object-name>
 		<object-name>REmerDC.off</object-name>
 		<object-name>SystemElec.manual</object-name>
@@ -7949,25 +7950,6 @@
 		</condition>
 	</animation>
 	
-	<!-- Valve needle -->
-	<!--animation>
-		<type>rotate</type>
-		<object-name>Air.pres.needle</object-name>
-		<property>controls/pressurization/outflow-valve-pos[0]</property>
-		<factor>-170</factor>
-		<offset-deg>85</offset-deg>
-		<center>
-			<x-m>-21.7988</x-m>
-			<y-m>  0.1823</y-m>
-			<z-m>-17.8751</z-m>
-		</center>
-		<axis>
-			<x>1</x>
-			<y>0</y>
-			<z>0</z>
-		</axis>
-	</animation-->
-	
 	<!-- FCTL Panel -->
 	<animation>
 		<type>select</type>
@@ -8975,6 +8957,41 @@
 				<equals>
 					<property>systems/pressurization/lights/manual-flash</property>
 					<value>5</value>
+				</equals>
+				<equals>
+					<property>controls/switches/annun-test</property>
+					<value>1</value>
+				</equals>
+			</or>
+		</condition>
+	</animation>
+	
+	<!-- Outflow Valve -->
+	<animation>
+		<type>rotate</type>
+		<object-name>OutflowValveNeedle</object-name>
+		<property>instrumentation/misc/outflow-valve</property>
+		<factor>180</factor>
+		<offset-deg>-90</offset-deg>
+		<axis>
+			<x>-1</x>
+			<y>0</y>
+			<z>0</z>
+		</axis>
+		<center>
+			<x-m>0</x-m>
+			<y-m>0.18218</y-m>
+			<z-m>-17.8751</z-m>
+		</center>
+	</animation>
+	<animation>
+		<type>select</type>
+		<object-name>OutflowValve.closed</object-name>
+		<condition>
+			<or>
+				<equals>
+					<property>systems/pressurization/lights/outflow-closed</property>
+					<value>1</value>
 				</equals>
 				<equals>
 					<property>controls/switches/annun-test</property>

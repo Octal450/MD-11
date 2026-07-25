@@ -1178,5 +1178,14 @@
 		</switch>
 	
 	</channel>
+	
+	<channel name="Misc" execrate="2">
+		
+		<lag_filter name="/instrumentation/misc/outflow-valve">
+			<input>/systems/pressurization/outflow-valve/pos</input>
+			<c1>20</c1>
+		</lag_filter>
+	
+	</channel>
 
 </system>
