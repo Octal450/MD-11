@@ -39,8 +39,8 @@
 				</ifthen>
 			</function>
 			<clipto>
-				<min>0.0</min>
-				<max>1.0</max>
+				<min>0</min>
+				<max>1</max>
 			</clipto>
 		</fcs_function>
 		
@@ -65,7 +65,7 @@
 		
 		<pure_gain name="/systems/pressurization/outflow-psi-error">
 			<input>/systems/pressurization/cabin-diff-psi</input>
-			<gain>1.0</gain>
+			<gain>1</gain>
 		</pure_gain>
 		
 		<fcs_function name="/systems/pressurization/outflow-psi-rate">
@@ -97,7 +97,7 @@
 			<input>/systems/pneumatics/pack-2-flow</input>
 			<input>/systems/pneumatics/pack-3-flow</input>
 			<clipto>
-				<min>0.0</min>
+				<min>0</min>
 				<max>24</max>
 			</clipto>
 		</summer>
@@ -107,7 +107,7 @@
 			<input>-/systems/pressurization/pack-psi</input>
 			<clipto> <!-- It can never depressurize -->
 				<min>-100</min>
-				<max>0.0</max>
+				<max>0</max>
 			</clipto>
 		</summer>
 		
@@ -151,7 +151,7 @@
 			</function>
 			<output>/systems/pressurization/cabin-psi</output>
 			<clipto> <!-- Keep it reasonable -->
-				<min>1.0</min>
+				<min>1</min>
 				<max>30</max>
 			</clipto>
 		</fcs_function>
@@ -177,9 +177,9 @@
 		<pid name="/systems/pressurization/cabin-rate-fps">
 			<descripton>Use D only to calculate rate</descripton>
 			<input>/systems/pressurization/cabin-alt-ft</input>
-			<kp>0.0</kp>
-			<ki>0.0</ki>
-			<kd>1.0</kd>
+			<kp>0</kp>
+			<ki>0</ki>
+			<kd>1</kd>
 		</pid>
 		
 		<pure_gain name="/systems/pressurization/cabin-rate-fpm-raw">
@@ -193,7 +193,7 @@
 		
 		<lag_filter name="/systems/pressurization/cabin-rate-fpm">
 			<input>/systems/pressurization/cabin-rate-fpm-raw</input>
-			<c1>5.0</c1>
+			<c1>5</c1>
 		</lag_filter>
 	
 	</channel>
