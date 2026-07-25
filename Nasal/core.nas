@@ -30,6 +30,7 @@ var systemsInit = func() {
 	systems.IGNITION.init();
 	systems.IRS.init();
 	systems.PNEUMATICS.init();
+	systems.PRESSURIZATION.init();
 	afs.ITAF.init();
 	fms.CORE.init();
 	instruments.EFIS.init();

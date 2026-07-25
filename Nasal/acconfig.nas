@@ -100,6 +100,7 @@ var SYSTEM = {
 		systems.GEAR.resetFailures();
 		systems.HYDRAULICS.resetFailures();
 		systems.PNEUMATICS.resetFailures();
+		systems.PRESSURIZATION.resetFailures();
 	},
 	showError: func() {
 		core.systemsLoop.stop();

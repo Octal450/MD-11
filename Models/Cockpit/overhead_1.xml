@@ -268,6 +268,8 @@
 		<object-name>REmerDC.off</object-name>
 		<object-name>SystemElec.manual</object-name>
 		<object-name>SystemElec.select</object-name>
+		<object-name>SystemPress.manual</object-name>
+		<object-name>SystemPress.select</object-name>
 		<condition>
 			<greater-than-equals>
 				<property>systems/electrical/bus/dc-bat</property>
@@ -8893,6 +8895,86 @@
 				<equals>
 					<property>controls/fcc/yd-lower-b</property>
 					<value>0</value>
+				</equals>
+				<equals>
+					<property>controls/switches/annun-test</property>
+					<value>1</value>
+				</equals>
+			</or>
+		</condition>
+	</animation>
+	
+	<!-- Pressurzation System Control Button -->
+	<animation>
+		<type>pick</type>
+		<object-name>SystemPress</object-name>
+		<object-name>SystemPress.manual</object-name>
+		<object-name>SystemPress.select</object-name>
+		<action>
+			<button>0</button>
+			<repeatable>false</repeatable>
+			<binding>
+				<command>nasal</command>
+				<script>systems.PRESSURIZATION.systemMode();</script>
+			</binding>
+			<binding>
+				<command>nasal</command>
+				<script>core.Sound.btn2();</script>
+			</binding>
+		</action>
+	</animation>
+	<animation>
+		<type>translate</type>
+		<object-name>SystemPress</object-name>
+		<object-name>SystemPress.manual</object-name>
+		<object-name>SystemPress.select</object-name>
+		<property>controls/pressurization/system</property>
+		<interpolation>
+			<entry><ind>0</ind><dep>-0.001</dep></entry>
+			<entry><ind>1</ind><dep> 0.000</dep></entry>
+		</interpolation>
+		<axis>
+			<x>1</x>
+			<y>0</y>
+			<z>0</z>
+		</axis>
+	</animation>
+	<animation>
+		<type>select</type>
+		<object-name>SystemPress.select</object-name>
+		<condition>
+			<or>
+				<equals>
+					<property>systems/pressurization/lights/select-manual</property>
+					<value>1</value>
+				</equals>
+				<equals>
+					<property>controls/switches/annun-test</property>
+					<value>1</value>
+				</equals>
+			</or>
+		</condition>
+	</animation>
+	<animation>
+		<type>select</type>
+		<object-name>SystemPress.manual</object-name>
+		<condition>
+			<or>
+				<equals>
+					<property>systems/pressurization/system</property>
+					<value>0</value>
+				</equals>
+				<equals>
+					<property>systems/pressurization/lights/manual-flash</property>
+					<value>1</value>
+				</equals>
+				<equals>
+					<property>systems/pressurization/lights/manual-flash</property>
+					<value>3</value>
+				</equals>
+				<equals>
+					<property>systems/pressurization/lights/manual-flash</property>
+					<value>5</value>
 				</equals>
 				<equals>
 					<property>controls/switches/annun-test</property>

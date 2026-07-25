@@ -1892,6 +1892,9 @@
 				<pack-3 type="bool">0</pack-3>
 				<system type="bool">0</system>
 			</pneumatics>
+			<pressurization n="0">
+				<system type="bool">0</system>
+			</pressurization>
 		</failures>
 		<fcc n="0">
 			<afs n="0">
@@ -2006,6 +2009,11 @@
 				<manual-flash type="int">0</manual-flash>
 			</lights>
 		</pneumatics>
+		<pressurization n="0">
+			<lights n="0">
+				<manual-flash type="int">0</manual-flash>
+			</lights>
+		</pressurization>
 		<misc n="0">
 			<minimums-ref-alt type="double">0</minimums-ref-alt>
 		</misc>
@@ -2043,6 +2051,7 @@
 			<file>Aircraft/MD-11/Nasal/Systems/ignition.nas</file>
 			<file>Aircraft/MD-11/Nasal/Systems/irs.nas</file>
 			<file>Aircraft/MD-11/Nasal/Systems/pneumatics.nas</file>
+			<file>Aircraft/MD-11/Nasal/Systems/pressurization.nas</file>
 			<file>Aircraft/MD-11/Nasal/Systems/warnings.nas</file>
 			<file>Aircraft/MD-11/Nasal/Displays/DU-controller.nas</file>
 		</systems>

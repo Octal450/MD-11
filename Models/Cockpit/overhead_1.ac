@@ -13756,7 +13756,7 @@ refs 4
 31 0.001735 0.02928
 kids 0
 OBJECT poly
-name "SystemCabin"
+name "SystemPress"
 loc -21.8013 -17.8725 -0.245656
 data 18
 EXT_P.btn.007.mesh
@@ -26115,7 +26115,7 @@ refs 4
 33 0.000251 0.062427
 kids 0
 OBJECT poly
-name "Air.alt.knob"
+name "ManualLdgAlt"
 loc -21.7908 -17.8732 -0.272773
 data 17
 Cylinder.976.mesh
@@ -142749,7 +142749,45 @@ kids 0
 OBJECT group
 name "Lights"
 loc -21.7944 -17.7202 -0.0627433
-kids 182
+kids 184
+OBJECT poly
+name "SystemPress.select"
+loc 0.0019989 -0.0445843 -0.243732
+texture "lights2.png"
+crease 45.000000
+numvert 4
+0 -0.100201 0.0687171
+0 -0.100201 0.052921
+0 -0.106428 0.0687171
+0 -0.106428 0.052921
+numsurf 1
+SURF 0x10
+mat 4
+refs 4
+0 0.177169 0.0292568
+2 0.177169 0
+3 0.251379 0
+1 0.251379 0.0292568
+kids 0
+OBJECT poly
+name "SystemPress.manual"
+loc 0.0019989 -0.0521202 -0.281234
+texture "lights.png"
+crease 45.000000
+numvert 4
+0 -0.102734 0.106429
+0 -0.102734 0.0902139
+0 -0.106428 0.106429
+0 -0.106428 0.0902139
+numsurf 1
+SURF 0x10
+mat 4
+refs 4
+0 0 0.0173569
+2 0 0
+3 0.0761792 0
+1 0.0761792 0.0173569
+kids 0
 OBJECT poly
 name "GenBusFaultReset1.fault"
 loc -0.00240135 -0.174236 0.2175

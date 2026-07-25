@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+
+<!-- McDonnell Douglas MD-11 Pressurization -->
+<!-- Copyright (c) 2026 Josh Davidson (Octal450) -->
+
+<system name="MD-11: Pressurization">
+	
+	<channel name="CPCS Switches/Logic" execrate="8">
+		
+		<switch name="/systems/pressurization/system">
+			<default value="/controls/pressurization/system"/>
+			<test value="0">
+				/systems/failures/pressurization/system eq 1
+			</test>
+		</switch>
+	
+	</channel>
+
+</system>
