@@ -97,7 +97,7 @@
 			<input>/systems/pneumatics/pack-2-flow</input>
 			<input>/systems/pneumatics/pack-3-flow</input>
 			<clipto>
-				<min>0</min>
+				<min>0.0</min>
 				<max>24</max>
 			</clipto>
 		</summer>
