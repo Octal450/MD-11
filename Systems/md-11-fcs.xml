@@ -1084,7 +1084,7 @@
 			</domain>
 			<range>
 				<min>0.0</min>
-				<max>1</max>
+				<max>1.0</max>
 			</range>
 			<output>fcs/flap-pos-norm</output>
 		</aerosurface_scale>
@@ -1118,7 +1118,7 @@
 			</domain>
 			<range>
 				<min>0.0</min>
-				<max>1</max>
+				<max>1.0</max>
 			</range>
 			<output>fcs/slat-pos-norm</output>
 		</aerosurface_scale>
