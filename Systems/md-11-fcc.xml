@@ -856,9 +856,9 @@
 		<lead_lag_filter name="/systems/fcc/rcws/phidot-leadlag">
 			<input>/systems/fcc/rcws/phidot-switched</input>
 			<c1>1.05</c1>
-			<c2>1.0</c2>
+			<c2>1</c2>
 			<c3>0.97</c3>
-			<c4>1.0</c4>
+			<c4>1</c4>
 		</lead_lag_filter>
 		
 		<fcs_function name="/systems/fcc/rcws/input">
@@ -973,8 +973,8 @@
 			<kd>/systems/fcc/rcws/d-gain-scheduled</kd>
 			<trigger>/systems/fcc/rcws/trigger</trigger>
 			<clipto>
-				<min>-1.0</min>
-				<max>1.0</max>
+				<min>-1</min>
+				<max>1</max>
 			</clipto>
 		</pid>
 		
@@ -1007,9 +1007,9 @@
 		<lead_lag_filter name="/systems/fcc/lsas/pah/thetadot-leadlag">
 			<input>/systems/fcc/lsas/thetadot-switched</input>
 			<c1>1.5</c1>
-			<c2>1.0</c2>
+			<c2>1</c2>
 			<c3>0.9</c3>
-			<c4>1.0</c4>
+			<c4>1</c4>
 		</lead_lag_filter>
 		
 		<scheduled_gain name="/systems/fcc/lsas/pah/p-gain-scheduled"> <!-- Schedule gain to compensate for inactive channels -->
@@ -1178,14 +1178,14 @@
 		<pid name="/systems/fcc/lsas/spd-prot/vc-kts-rate">
 			<descripton>Use D only to calculate rate of IAS</descripton>
 			<input>velocities/vc-kts</input>
-			<kp>0.0</kp>
-			<ki>0.0</ki>
-			<kd>1.0</kd>
+			<kp>0</kp>
+			<ki>0</ki>
+			<kd>1</kd>
 		</pid>
 		
 		<lag_filter name="/systems/fcc/lsas/spd-prot/vc-kts-rate-lag">
 			<input>/systems/fcc/lsas/spd-prot/vc-kts-rate</input>
-			<c1>2.0</c1>
+			<c1>2</c1>
 		</lag_filter>
 		
 		<fcs_function name="/systems/fcc/lsas/spd-prot/kts-error">
@@ -1345,8 +1345,8 @@
 			<input>/systems/fcc/elevator-feel/output-no-pah</input>
 			<input>/systems/fcc/lsas/output-sum</input>
 			<clipto>
-				<min>-1.0</min>
-				<max>1.0</max>
+				<min>-1</min>
+				<max>1</max>
 			</clipto>
 		</summer>
 		
@@ -1488,7 +1488,7 @@
 								0.2273  0.00010
 							</tableData>
 						</table>
-						<value>0.0</value>
+						<value>0</value>
 					</ifthen>
 					<ifthen>
 						<eq>
@@ -1502,7 +1502,7 @@
 								-0.0100 -0.00002
 							</tableData>
 						</table>
-						<value>0.0</value>
+						<value>0</value>
 					</ifthen>
 				</sum>
 			</function>
@@ -1625,7 +1625,7 @@
 		<pid name="/systems/fcc/yaw/tc-pd">
 			<input>/systems/fcc/yaw/slip-skid</input>
 			<kp>/systems/fcc/yaw/tc-p-gain-scheduled</kp>
-			<ki>0.0</ki>
+			<ki>0</ki>
 			<kd>/systems/fcc/yaw/tc-d-gain-scheduled</kd>
 			<clipto>
 				<min>-0.2</min>
@@ -1658,8 +1658,8 @@
 			<input>/systems/fcc/yaw/rudder-nul</input>
 			<input>/systems/fcc/yaw/upper-output</input>
 			<clipto>
-				<min>-1.0</min>
-				<max>1.0</max>
+				<min>-1</min>
+				<max>1</max>
 			</clipto>
 		</summer>
 		
@@ -1681,8 +1681,8 @@
 			<input>/systems/fcc/yaw/rudder-nul</input>
 			<input>/systems/fcc/yaw/upper-output</input>
 			<clipto>
-				<min>-1.0</min>
-				<max>1.0</max>
+				<min>-1</min>
+				<max>1</max>
 			</clipto>
 		</summer>
 		
@@ -1690,8 +1690,8 @@
 			<input>/systems/fcc/yaw/rudder-nul</input>
 			<input>/systems/fcc/yaw/lower-output</input>
 			<clipto>
-				<min>-1.0</min>
-				<max>1.0</max>
+				<min>-1</min>
+				<max>1</max>
 			</clipto>
 		</summer>
 	
@@ -1860,14 +1860,14 @@
 		<pid name="/systems/abs/decel-rate-kts">
 			<descripton>Use D only to calculate rate of decel</descripton>
 			<input>/velocities/groundspeed-kt</input>
-			<kp>0.0</kp>
-			<ki>0.0</ki>
-			<kd>1.0</kd>
+			<kp>0</kp>
+			<ki>0</ki>
+			<kd>1</kd>
 		</pid>
 		
 		<lag_filter name="/systems/abs/decel-rate-kts-lag">
 			<input>/systems/abs/decel-rate-kts</input>
-			<c1>1.0</c1>
+			<c1>1</c1>
 		</lag_filter>
 		
 		<pure_gain name="/systems/abs/decel-rate-fps2">
@@ -1895,11 +1895,11 @@
 			<input>/systems/abs/decel-error</input>
 			<kp>0.45</kp>
 			<ki>0.25</ki>
-			<kd>0.0</kd>
+			<kd>0</kd>
 			<trigger>/systems/abs/brake-cmd-trigger</trigger>
 			<clipto>
-				<min>0.0</min>
-				<max>1.0</max>
+				<min>0</min>
+				<max>1</max>
 			</clipto>
 		</pid>
 		

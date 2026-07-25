@@ -1095,7 +1095,7 @@
 		
 		<pure_gain name="/systems/pneumatics/temp/bleed-3-direct">
 			<input>/systems/pneumatics/temp/eng-3</input>
-			<gain>1.0</gain>
+			<gain>1</gain>
 		</pure_gain>
 		
 		<!-- Bleed 1 -->

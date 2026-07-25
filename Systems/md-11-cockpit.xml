@@ -15,10 +15,10 @@
 		
 		<pure_gain name="/controls/cockpit/armrest-rotate-cmd">
 			<input>/controls/cockpit/armrest</input>
-			<gain>1.0</gain>
+			<gain>1</gain>
 			<clipto>
 				<min>0.2</min>
-				<max>1.0</max>
+				<max>1</max>
 			</clipto>
 		</pure_gain>
 		

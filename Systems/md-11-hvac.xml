@@ -893,19 +893,26 @@
 		
 		<fcs_function name="/systems/pneumatics/hvac/duct-temp/cockpit-regulator-cmd">
 			<function>
-				<product>
-					<quotient>
-						<difference>
-							<property>/systems/pneumatics/hvac/duct-temp/cockpit-target</property>
-							<property>/systems/pneumatics/hvac/duct-temp/cockpit-cond-air</property>
-						</difference>
-						<difference>
-							<property>/systems/pneumatics/hvac/duct-temp/cockpit-trim-air</property>
-							<property>/systems/pneumatics/hvac/duct-temp/cockpit-target</property>
-						</difference>
-					</quotient>
-					<value>10</value> <!-- Compensate for the 0.1 gain in actual trim -->
-				</product>
+				<ifthen>
+					<lt>
+						<property>/systems/electrical/bus/dc-2</property>
+						<value>24</value>
+					</lt>
+					<property>/systems/pneumatics/hvac/duct-temp/cockpit-regulator-cmd</property>
+					<product>
+						<quotient>
+							<difference>
+								<property>/systems/pneumatics/hvac/duct-temp/cockpit-target</property>
+								<property>/systems/pneumatics/hvac/duct-temp/cockpit-cond-air</property>
+							</difference>
+							<difference>
+								<property>/systems/pneumatics/hvac/duct-temp/cockpit-trim-air</property>
+								<property>/systems/pneumatics/hvac/duct-temp/cockpit-target</property>
+							</difference>
+						</quotient>
+						<value>10</value> <!-- Compensate for the 0.1 gain in actual trim -->
+					</product>
+				</ifthen>
 			</function>
 			<clipto>
 				<min>0</min>
@@ -915,7 +922,7 @@
 		
 		<lag_filter name="/systems/pneumatics/hvac/duct-temp/cockpit-regulator-lag">
 			<input>/systems/pneumatics/hvac/duct-temp/cockpit-regulator-cmd</input>
-			<c1>5.0</c1>
+			<c1>5</c1>
 		</lag_filter>
 		
 		<pure_gain name="/systems/pneumatics/hvac/duct-temp/cockpit-regulator-valve">
@@ -1011,19 +1018,26 @@
 		
 		<fcs_function name="/systems/pneumatics/hvac/duct-temp/cabin-fwd-regulator-cmd">
 			<function>
-				<product>
-					<quotient>
-						<difference>
-							<property>/systems/pneumatics/hvac/duct-temp/cabin-fwd-target</property>
-							<property>/systems/pneumatics/hvac/duct-temp/cabin-fwd-cond-air</property>
-						</difference>
-						<difference>
-							<property>/systems/pneumatics/hvac/duct-temp/cabin-fwd-trim-air</property>
-							<property>/systems/pneumatics/hvac/duct-temp/cabin-fwd-target</property>
-						</difference>
-					</quotient>
-					<value>10</value> <!-- Compensate for the 0.1 gain in actual trim -->
-				</product>
+				<ifthen>
+					<lt>
+						<property>/systems/electrical/bus/dc-3</property>
+						<value>24</value>
+					</lt>
+					<property>/systems/pneumatics/hvac/duct-temp/cabin-fwd-regulator-cmd</property>
+					<product>
+						<quotient>
+							<difference>
+								<property>/systems/pneumatics/hvac/duct-temp/cabin-fwd-target</property>
+								<property>/systems/pneumatics/hvac/duct-temp/cabin-fwd-cond-air</property>
+							</difference>
+							<difference>
+								<property>/systems/pneumatics/hvac/duct-temp/cabin-fwd-trim-air</property>
+								<property>/systems/pneumatics/hvac/duct-temp/cabin-fwd-target</property>
+							</difference>
+						</quotient>
+						<value>10</value> <!-- Compensate for the 0.1 gain in actual trim -->
+					</product>
+				</ifthen>
 			</function>
 			<clipto>
 				<min>0</min>
@@ -1033,7 +1047,7 @@
 		
 		<lag_filter name="/systems/pneumatics/hvac/duct-temp/cabin-fwd-regulator-lag">
 			<input>/systems/pneumatics/hvac/duct-temp/cabin-fwd-regulator-cmd</input>
-			<c1>5.0</c1>
+			<c1>5</c1>
 		</lag_filter>
 		
 		<pure_gain name="/systems/pneumatics/hvac/duct-temp/cabin-fwd-regulator-valve">
@@ -1129,19 +1143,26 @@
 		
 		<fcs_function name="/systems/pneumatics/hvac/duct-temp/cabin-mid-regulator-cmd">
 			<function>
-				<product>
-					<quotient>
-						<difference>
-							<property>/systems/pneumatics/hvac/duct-temp/cabin-mid-target</property>
-							<property>/systems/pneumatics/hvac/duct-temp/cabin-mid-cond-air</property>
-						</difference>
-						<difference>
-							<property>/systems/pneumatics/hvac/duct-temp/cabin-mid-trim-air</property>
-							<property>/systems/pneumatics/hvac/duct-temp/cabin-mid-target</property>
-						</difference>
-					</quotient>
-					<value>10</value> <!-- Compensate for the 0.1 gain in actual trim -->
-				</product>
+				<ifthen>
+					<lt>
+						<property>/systems/electrical/bus/dc-1</property>
+						<value>24</value>
+					</lt>
+					<property>/systems/pneumatics/hvac/duct-temp/cabin-mid-regulator-cmd</property>
+					<product>
+						<quotient>
+							<difference>
+								<property>/systems/pneumatics/hvac/duct-temp/cabin-mid-target</property>
+								<property>/systems/pneumatics/hvac/duct-temp/cabin-mid-cond-air</property>
+							</difference>
+							<difference>
+								<property>/systems/pneumatics/hvac/duct-temp/cabin-mid-trim-air</property>
+								<property>/systems/pneumatics/hvac/duct-temp/cabin-mid-target</property>
+							</difference>
+						</quotient>
+						<value>10</value> <!-- Compensate for the 0.1 gain in actual trim -->
+					</product>
+				</ifthen>
 			</function>
 			<clipto>
 				<min>0</min>
@@ -1151,7 +1172,7 @@
 		
 		<lag_filter name="/systems/pneumatics/hvac/duct-temp/cabin-mid-regulator-lag">
 			<input>/systems/pneumatics/hvac/duct-temp/cabin-mid-regulator-cmd</input>
-			<c1>5.0</c1>
+			<c1>5</c1>
 		</lag_filter>
 		
 		<pure_gain name="/systems/pneumatics/hvac/duct-temp/cabin-mid-regulator-valve">
@@ -1247,19 +1268,26 @@
 		
 		<fcs_function name="/systems/pneumatics/hvac/duct-temp/cabin-aft-regulator-cmd">
 			<function>
-				<product>
-					<quotient>
-						<difference>
-							<property>/systems/pneumatics/hvac/duct-temp/cabin-aft-target</property>
-							<property>/systems/pneumatics/hvac/duct-temp/cabin-aft-cond-air</property>
-						</difference>
-						<difference>
-							<property>/systems/pneumatics/hvac/duct-temp/cabin-aft-trim-air</property>
-							<property>/systems/pneumatics/hvac/duct-temp/cabin-aft-target</property>
-						</difference>
-					</quotient>
-					<value>10</value> <!-- Compensate for the 0.1 gain in actual trim -->
-				</product>
+				<ifthen>
+					<lt>
+						<property>/systems/electrical/bus/dc-2</property>
+						<value>24</value>
+					</lt>
+					<property>/systems/pneumatics/hvac/duct-temp/cabin-aft-regulator-cmd</property>
+					<product>
+						<quotient>
+							<difference>
+								<property>/systems/pneumatics/hvac/duct-temp/cabin-aft-target</property>
+								<property>/systems/pneumatics/hvac/duct-temp/cabin-aft-cond-air</property>
+							</difference>
+							<difference>
+								<property>/systems/pneumatics/hvac/duct-temp/cabin-aft-trim-air</property>
+								<property>/systems/pneumatics/hvac/duct-temp/cabin-aft-target</property>
+							</difference>
+						</quotient>
+						<value>10</value> <!-- Compensate for the 0.1 gain in actual trim -->
+					</product>
+				</ifthen>
 			</function>
 			<clipto>
 				<min>0</min>
@@ -1269,7 +1297,7 @@
 		
 		<lag_filter name="/systems/pneumatics/hvac/duct-temp/cabin-aft-regulator-lag">
 			<input>/systems/pneumatics/hvac/duct-temp/cabin-aft-regulator-cmd</input>
-			<c1>5.0</c1>
+			<c1>5</c1>
 		</lag_filter>
 		
 		<pure_gain name="/systems/pneumatics/hvac/duct-temp/cabin-aft-regulator-valve">
@@ -1427,7 +1455,7 @@
 		
 		<lag_filter name="/systems/pneumatics/hvac/cargo-heat-temp/fwd-regulator-lag">
 			<input>/systems/pneumatics/hvac/cargo-heat-temp/fwd-regulator-cmd</input>
-			<c1>5.0</c1>
+			<c1>5</c1>
 		</lag_filter>
 		
 		<pure_gain name="/systems/pneumatics/hvac/cargo-heat-temp/fwd-regulator-valve">
@@ -1537,7 +1565,7 @@
 		
 		<lag_filter name="/systems/pneumatics/hvac/cargo-heat-temp/mid-regulator-lag">
 			<input>/systems/pneumatics/hvac/cargo-heat-temp/mid-regulator-cmd</input>
-			<c1>5.0</c1>
+			<c1>5</c1>
 		</lag_filter>
 		
 		<pure_gain name="/systems/pneumatics/hvac/cargo-heat-temp/mid-regulator-valve">
@@ -1647,7 +1675,7 @@
 		
 		<lag_filter name="/systems/pneumatics/hvac/cargo-heat-temp/aft-regulator-lag">
 			<input>/systems/pneumatics/hvac/cargo-heat-temp/aft-regulator-cmd</input>
-			<c1>5.0</c1>
+			<c1>5</c1>
 		</lag_filter>
 		
 		<pure_gain name="/systems/pneumatics/hvac/cargo-heat-temp/aft-regulator-valve">
@@ -1729,12 +1757,12 @@
 		<!-- Cargo Ventilation Temperature Targets -->
 		<pure_gain name="/systems/pneumatics/hvac/cargo-vent-temp/fwd-target">
 			<input>/systems/pneumatics/hvac/cargo-fwd-target-switched</input>
-			<gain>1.0</gain>
+			<gain>1</gain>
 		</pure_gain>
 		
 		<pure_gain name="/systems/pneumatics/hvac/cargo-vent-temp/aft-target">
 			<input>/systems/pneumatics/hvac/cargo-aft-target-switched</input>
-			<gain>1.0</gain>
+			<gain>1</gain>
 		</pure_gain>
 		
 		<!-- Fwd Cargo Ventilation -->
@@ -1785,7 +1813,7 @@
 		
 		<lag_filter name="/systems/pneumatics/hvac/cargo-vent-temp/fwd-regulator-valve">
 			<input>/systems/pneumatics/hvac/cargo-vent-temp/fwd-regulator-cmd</input>
-			<c1>5.0</c1>
+			<c1>5</c1>
 		</lag_filter>
 		
 		<fcs_function name="/systems/pneumatics/hvac/cargo-vent-temp/fwd-cmd">
@@ -1881,7 +1909,7 @@
 		
 		<lag_filter name="/systems/pneumatics/hvac/cargo-vent-temp/aft-regulator-valve">
 			<input>/systems/pneumatics/hvac/cargo-vent-temp/aft-regulator-cmd</input>
-			<c1>5.0</c1>
+			<c1>5</c1>
 		</lag_filter>
 		
 		<fcs_function name="/systems/pneumatics/hvac/cargo-vent-temp/aft-cmd">

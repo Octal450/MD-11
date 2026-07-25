@@ -10,7 +10,7 @@
 		<!-- Minimums Logic -->
 		<pure_gain name="/systems/misc/minimums-mode"> <!-- Synchronized DU updating -->
 			<input>/controls/switches/minimums-mode</input>
-			<gain>1.0</gain>
+			<gain>1</gain>
 		</pure_gain>
 		
 		<switch name="/systems/misc/minimums">
@@ -453,9 +453,9 @@
 		<!-- Stabilizer Motion -->
 		<pid name="/systems/caws/logic/stabilizer-rate">
 			<input>/systems/fcs/stabilizer/final-deg</input>
-			<kp>0.0</kp>
-			<ki>0.0</ki>
-			<kd>1.0</kd>
+			<kp>0</kp>
+			<ki>0</ki>
+			<kd>1</kd>
 		</pid>
 		
 		<fcs_function name="/systems/caws/logic/stabilizer-rate-abs">
