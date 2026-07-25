@@ -39,11 +39,37 @@
 	
 	<channel name="Cabin Pressure" execrate="8">
 		
+		<summer name="/systems/pressurization/cabin-diff-psi">
+			<input>/systems/pressurization/cabin-psi</input>
+			<input>-/systems/pressurization/environment-psi</input>
+		</summer>
+		
+		<pure_gain name="/systems/pressurization/outflow-psi-error">
+			<input>/systems/pressurization/cabin-diff-psi</input>
+			<value>1.0</value>
+		</pure_gain>
+		
+		<fcs_function name="/systems/pressurization/outflow-psi-rate">
+			<function>
+				<product>
+					<pow> <!-- Flow isn't linear -->
+						<property>/systems/pressurization/outflow-valve/pos</property>
+						<value>2</value>
+					</pow>
+					<value>-0.008</value>
+				</product>
+			</function>
+		</fcs_function>
+		
 		<fcs_function name="/systems/pressurization/cabin-psi-calc">
 			<function>
 				<sum>
 					<property>/systems/pressurization/cabin-psi</property>
-					<value>0</value> <!-- Temporary -->
+					<product> <!-- Outflow factor -->
+						<property>/systems/pressurization/outflow-psi-error</property>
+						<property>/systems/pressurization/outflow-psi-rate</property>
+						<property>simulation/channel-dt</property>
+					</product>
 				</sum>
 			</function>
 			<output>/systems/pressurization/cabin-psi</output>
@@ -83,8 +109,8 @@
 			<input>/systems/pressurization/cabin-rate-fps</input>
 			<gain>60</gain>
 			<clipto> <!-- Keep it sane -->
-				<min>-9999</min>
-				<max>9999</max>
+				<min>-9990</min>
+				<max>9990</max>
 			</clipto>
 		</pure_gain>
 		
@@ -92,11 +118,6 @@
 			<input>/systems/pressurization/cabin-rate-fpm-raw</input>
 			<c1>5.0</c1>
 		</lag_filter>
-		
-		<summer name="/systems/pressurization/cabin-diff-psi">
-			<input>/systems/pressurization/cabin-psi</input>
-			<input>-/systems/pressurization/environment-psi</input>
-		</summer>
 	
 	</channel>
 	
