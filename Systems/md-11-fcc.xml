@@ -1413,7 +1413,7 @@
 			</function>
 			<output>/systems/fcc/lsas/autotrim-inhibit</output>
 			<clipto>
-				<min>0.0</min>
+				<min>0</min>
 				<max>1</max>
 			</clipto>
 		</fcs_function>

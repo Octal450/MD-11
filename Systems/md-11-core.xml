@@ -312,7 +312,7 @@
 				</difference>
 			</function>
 			<clipto>
-				<min>0.0</min>
+				<min>0</min>
 				<max>/systems/load-manager/tank-capacity[0]</max>
 			</clipto>
 		</fcs_function>
@@ -328,7 +328,7 @@
 				</difference>
 			</function>
 			<clipto>
-				<min>0.0</min>
+				<min>0</min>
 				<max>/systems/load-manager/tank-capacity[4]</max>
 			</clipto>
 		</fcs_function>
@@ -347,7 +347,7 @@
 				</min>
 			</function>
 			<clipto>
-				<min>0.0</min>
+				<min>0</min>
 				<max>/systems/load-manager/tank-capacity[1]</max>
 			</clipto>
 		</fcs_function>
@@ -366,7 +366,7 @@
 				</min>
 			</function>
 			<clipto>
-				<min>0.0</min>
+				<min>0</min>
 				<max>/systems/load-manager/tank-capacity[3]</max>
 			</clipto>
 		</fcs_function>
@@ -388,7 +388,7 @@
 				</max>
 			</function>
 			<clipto>
-				<min>0.0</min>
+				<min>0</min>
 				<max>/systems/load-manager/tank-capacity[2]</max>
 			</clipto>
 		</fcs_function>
@@ -409,7 +409,7 @@
 				</quotient>
 			</function>
 			<clipto>
-				<min>0.0</min>
+				<min>0</min>
 				<max>/systems/load-manager/tank-capacity[7]</max>
 			</clipto>
 		</fcs_function>
@@ -427,7 +427,7 @@
 				</difference>
 			</function>
 			<clipto>
-				<min>0.0</min>
+				<min>0</min>
 				<max>/systems/load-manager/tank-capacity[5]</max>
 			</clipto>
 		</fcs_function>
@@ -446,7 +446,7 @@
 				</difference>
 			</function>
 			<clipto>
-				<min>0.0</min>
+				<min>0</min>
 				<max>/systems/load-manager/tank-capacity[6]</max>
 			</clipto>
 		</fcs_function>

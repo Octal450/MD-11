@@ -1045,7 +1045,7 @@
 			<input>/systems/fcs/flaps/cmd</input>
 			<gain>1.0</gain>
 			<clipto>
-				<min>0.0</min>
+				<min>0</min>
 				<max>/systems/fcs/flaps/max-deg</max>
 			</clipto>
 		</pure_gain>
@@ -1079,11 +1079,11 @@
 		<aerosurface_scale name="/systems/fcs/flaps/final-norm">
 			<input>/systems/fcs/flaps/final-actuator</input>
 			<domain>
-				<min>0.0</min>
+				<min>0</min>
 				<max>50</max>
 			</domain>
 			<range>
-				<min>0.0</min>
+				<min>0</min>
 				<max>1</max>
 			</range>
 			<output>fcs/flap-pos-norm</output>
@@ -1113,11 +1113,11 @@
 		<aerosurface_scale name="/systems/fcs/slats/final-norm">
 			<input>/systems/fcs/slats/final-actuator</input>
 			<domain>
-				<min>0.0</min>
+				<min>0</min>
 				<max>31</max>
 			</domain>
 			<range>
-				<min>0.0</min>
+				<min>0</min>
 				<max>1</max>
 			</range>
 			<output>fcs/slat-pos-norm</output>
