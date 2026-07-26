@@ -199,7 +199,7 @@
 		
 		<pure_gain name="/systems/pressurization/overpressure-relief-psi-rate">
 			<input>/systems/pressurization/relief-valves/overpressure-valve</input>
-			<gain>-0.008</gain>
+			<gain>-0.009</gain>
 			<clipto>
 				<min>-0.04</min>
 				<max>0</max>
@@ -208,10 +208,10 @@
 		
 		<pure_gain name="/systems/pressurization/underpressure-relief-psi-rate">
 			<input>/systems/pressurization/relief-valves/underpressure-valve</input>
-			<gain>-0.4</gain>
+			<gain>-0.081</gain>
 			<clipto>
-				<min>0</min>
-				<max>0.04</max>
+				<min>-0.36</min>
+				<max>0</max>
 			</clipto>
 		</pure_gain>
 		
@@ -272,6 +272,11 @@
 			<function>
 				<sum>
 					<property>/systems/pressurization/cabin-psi</property>
+					<product> <!-- Leakage factor -->
+						<property>/systems/pressurization/cabin-diff-psi</property>
+						<value>-0.00001</value>
+						<property>simulation/channel-dt</property>
+					</product>
 					<product> <!-- Outflow factor -->
 						<property>/systems/pressurization/cabin-diff-psi</property>
 						<property>/systems/pressurization/outflow-psi-rate</property>
