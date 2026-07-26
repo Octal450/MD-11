@@ -45,6 +45,13 @@
 				/systems/fms/flight-data/airport-to-alt gt -2000
 			</test>
 		</switch>
+		
+		<switch name="/systems/pressurization/cpcs/landing-alt-actual"> <!-- When unset, use 0 -->
+			<default value="/systems/pressurization/cpcs/landing-alt"/> <!-- Set -->
+			<test value="0"> <!-- Not set -->
+				/systems/pressurization/cpcs/landing-alt eq -2000
+			</test>
+		</switch>
 	
 	</channel>
 	
@@ -102,6 +109,20 @@
 	
 	</channel>
 	
+	<channel name="Cabin Differential Pressure" execrate="8">
+		
+		<pure_gain name="/systems/pressurization/environment-psi">
+			<input>/environment/pressure-inhg</input>
+			<gain>0.491154</gain>
+		</pure_gain>
+		
+		<summer name="/systems/pressurization/cabin-diff-psi">
+			<input>/systems/pressurization/cabin-psi</input>
+			<input>-/systems/pressurization/environment-psi</input>
+		</summer>
+	
+	</channel>
+	
 	<channel name="Outflow Valve" execrate="8">
 		
 		<fcs_function name="/systems/pressurization/outflow-valve/cmd">
@@ -134,22 +155,35 @@
 	
 	</channel>
 	
+	<channel name="Relief Valves" execrate="8">
+		
+		<fcs_function name="/systems/pressurization/relief-valves/overpressure-valve">
+			<function>
+				<table>
+					<independentVar lookup="row">/systems/pressurization/cabin-diff-psi</independentVar>
+					<tableData>
+						9.11  0
+						9.16  1
+					</tableData>
+				</table>
+			</function>
+		</fcs_function>
+		
+		<fcs_function name="/systems/pressurization/relief-valves/underpressure-valve">
+			<function>
+				<table>
+					<independentVar lookup="row">/systems/pressurization/cabin-diff-psi</independentVar>
+					<tableData>
+						-0.06  1
+						-0.01  0
+					</tableData>
+				</table>
+			</function>
+		</fcs_function>
+	
+	</channel>
+	
 	<channel name="Cabin Pressure" execrate="8">
-		
-		<pure_gain name="/systems/pressurization/environment-psi">
-			<input>/environment/pressure-inhg</input>
-			<gain>0.491154</gain>
-		</pure_gain>
-		
-		<summer name="/systems/pressurization/cabin-diff-psi">
-			<input>/systems/pressurization/cabin-psi</input>
-			<input>-/systems/pressurization/environment-psi</input>
-		</summer>
-		
-		<pure_gain name="/systems/pressurization/outflow-psi-error">
-			<input>/systems/pressurization/cabin-diff-psi</input>
-			<gain>1</gain>
-		</pure_gain>
 		
 		<fcs_function name="/systems/pressurization/outflow-psi-rate">
 			<function>
@@ -162,6 +196,24 @@
 				</product>
 			</function>
 		</fcs_function>
+		
+		<pure_gain name="/systems/pressurization/overpressure-relief-psi-rate">
+			<input>/systems/pressurization/relief-valves/overpressure-valve</input>
+			<gain>-0.008</gain>
+			<clipto>
+				<min>-0.04</min>
+				<max>0</max>
+			</clipto>
+		</pure_gain>
+		
+		<pure_gain name="/systems/pressurization/underpressure-relief-psi-rate">
+			<input>/systems/pressurization/relief-valves/underpressure-valve</input>
+			<gain>-0.4</gain>
+			<clipto>
+				<min>0</min>
+				<max>0.04</max>
+			</clipto>
+		</pure_gain>
 		
 		<fcs_function name="/systems/pressurization/pack-psi">
 			<function>
@@ -221,8 +273,18 @@
 				<sum>
 					<property>/systems/pressurization/cabin-psi</property>
 					<product> <!-- Outflow factor -->
-						<property>/systems/pressurization/outflow-psi-error</property>
+						<property>/systems/pressurization/cabin-diff-psi</property>
 						<property>/systems/pressurization/outflow-psi-rate</property>
+						<property>simulation/channel-dt</property>
+					</product>
+					<product> <!-- Overpressure relief factor -->
+						<property>/systems/pressurization/cabin-diff-psi</property>
+						<property>/systems/pressurization/overpressure-relief-psi-rate</property>
+						<property>simulation/channel-dt</property>
+					</product>
+					<product> <!-- Underpressure relief factor -->
+						<property>/systems/pressurization/cabin-diff-psi</property>
+						<property>/systems/pressurization/underpressure-relief-psi-rate</property>
 						<property>simulation/channel-dt</property>
 					</product>
 					<product> <!-- Packs factor -->
