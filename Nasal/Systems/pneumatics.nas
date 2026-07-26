@@ -145,6 +145,15 @@ var PNEUMATICS = {
 		me.Failures.pack3.setBoolValue(0);
 		me.Failures.system.setBoolValue(0);
 	},
+	manualLight: func() {
+		me.Lights.manualFlashTemp = me.Lights.manualFlash.getValue();
+		if (me.Lights.manualFlashTemp >= 5 or !me.Controls.system.getBoolValue()) {
+			manualPneuLightt.stop();
+			me.Lights.manualFlash.setValue(0);
+		} else {
+			me.Lights.manualFlash.setValue(me.Lights.manualFlashTemp + 1);
+		}
+	},
 	systemMode: func() {
 		if (me.Controls.system.getBoolValue()) {
 			me.Controls.system.setBoolValue(0);
@@ -154,15 +163,6 @@ var PNEUMATICS = {
 			me.Controls.system.setBoolValue(1);
 			manualPneuLightt.stop();
 			me.Lights.manualFlash.setValue(0);
-		}
-	},
-	manualLight: func() {
-		me.Lights.manualFlashTemp = me.Lights.manualFlash.getValue();
-		if (me.Lights.manualFlashTemp >= 5 or !me.Controls.system.getBoolValue()) {
-			manualPneuLightt.stop();
-			me.Lights.manualFlash.setValue(0);
-		} else {
-			me.Lights.manualFlash.setValue(me.Lights.manualFlashTemp + 1);
 		}
 	},
 };

@@ -244,6 +244,15 @@ var ELECTRICAL = {
 		me.Failures.tr2b.setBoolValue(0);
 		me.Failures.tr3.setBoolValue(0);
 	},
+	manualLight: func() {
+		me.Lights.manualFlashTemp = me.Lights.manualFlash.getValue();
+		if (me.Lights.manualFlashTemp >= 5 or !me.Controls.system.getBoolValue()) {
+			manualElecLightt.stop();
+			me.Lights.manualFlash.setValue(0);
+		} else {
+			me.Lights.manualFlash.setValue(me.Lights.manualFlashTemp + 1);
+		}
+	},
 	systemMode: func() {
 		if (me.Controls.system.getBoolValue()) {
 			me.Controls.system.setBoolValue(0);
@@ -253,15 +262,6 @@ var ELECTRICAL = {
 			me.Controls.system.setBoolValue(1);
 			manualElecLightt.stop();
 			me.Lights.manualFlash.setValue(0);
-		}
-	},
-	manualLight: func() {
-		me.Lights.manualFlashTemp = me.Lights.manualFlash.getValue();
-		if (me.Lights.manualFlashTemp >= 5 or !me.Controls.system.getBoolValue()) {
-			manualElecLightt.stop();
-			me.Lights.manualFlash.setValue(0);
-		} else {
-			me.Lights.manualFlash.setValue(me.Lights.manualFlashTemp + 1);
 		}
 	},
 };
