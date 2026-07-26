@@ -8882,6 +8882,41 @@
 		</condition>
 	</animation>
 	
+	<!-- Outflow Valve -->
+	<animation>
+		<type>rotate</type>
+		<object-name>OutflowValveNeedle</object-name>
+		<property>instrumentation/misc/outflow-valve</property>
+		<factor>180</factor>
+		<offset-deg>-90</offset-deg>
+		<axis>
+			<x>-1</x>
+			<y>0</y>
+			<z>0</z>
+		</axis>
+		<center>
+			<x-m>0</x-m>
+			<y-m>0.18218</y-m>
+			<z-m>-17.8751</z-m>
+		</center>
+	</animation>
+	<animation>
+		<type>select</type>
+		<object-name>OutflowValve.closed</object-name>
+		<condition>
+			<or>
+				<equals>
+					<property>systems/pressurization/lights/outflow-closed</property>
+					<value>1</value>
+				</equals>
+				<equals>
+					<property>controls/switches/annun-test</property>
+					<value>1</value>
+				</equals>
+			</or>
+		</condition>
+	</animation>
+	
 	<!-- Pressurization Manual Knob -->
 	<animation>
 		<type>rotate</type>
@@ -8908,6 +8943,19 @@
 			<button>0</button>
 			<repeatable>false</repeatable>
 			<binding>
+				<condition>
+					<and>
+						<property>systems/pressurization/system</property>
+						<greater-than-equals>
+							<property>systems/electrical/bus/dc-bat</property>
+							<value>24</value>
+						</greater-than-equals>
+					</and>
+				</condition>
+				<command>nasal</command>
+				<script>systems.manualPressLightt.start();</script>
+			</binding>
+			<binding>
 				<command>property-assign</command>
 				<property>controls/pressurization/cabin-manual</property>
 				<value>1</value>
@@ -8932,6 +8980,19 @@
 		<action>
 			<button>0</button>
 			<repeatable>false</repeatable>
+			<binding>
+				<condition>
+					<and>
+						<property>systems/pressurization/system</property>
+						<greater-than-equals>
+							<property>systems/electrical/bus/dc-bat</property>
+							<value>24</value>
+						</greater-than-equals>
+					</and>
+				</condition>
+				<command>nasal</command>
+				<script>systems.manualPressLightt.start();</script>
+			</binding>
 			<binding>
 				<command>property-assign</command>
 				<property>controls/pressurization/cabin-manual</property>
@@ -9031,39 +9092,44 @@
 		</condition>
 	</animation>
 	
-	<!-- Outflow Valve -->
+	<!-- Manual Landing Alt Knob -->
 	<animation>
-		<type>rotate</type>
-		<object-name>OutflowValveNeedle</object-name>
-		<property>instrumentation/misc/outflow-valve</property>
-		<factor>180</factor>
-		<offset-deg>-90</offset-deg>
+		<type>knob</type>
+		<object-name>ManualLdgAlt</object-name>
+		<property>controls/cockpit/manual-landing-alt-rotate</property>
+		<factor>-11.25</factor>
+		<center>
+			<x-m>0</x-m>
+			<y-m>0.27277</y-m>
+			<z-m>-17.8732</z-m>
+		</center>
 		<axis>
-			<x>-1</x>
+			<x>1</x>
 			<y>0</y>
 			<z>0</z>
 		</axis>
-		<center>
-			<x-m>0</x-m>
-			<y-m>0.18218</y-m>
-			<z-m>-17.8751</z-m>
-		</center>
-	</animation>
-	<animation>
-		<type>select</type>
-		<object-name>OutflowValve.closed</object-name>
-		<condition>
-			<or>
-				<equals>
-					<property>systems/pressurization/lights/outflow-closed</property>
-					<value>1</value>
-				</equals>
-				<equals>
-					<property>controls/switches/annun-test</property>
-					<value>1</value>
-				</equals>
-			</or>
-		</condition>
+		<increase>
+			<binding>
+				<command>nasal</command>
+				<script>systems.PRESSURIZATION.setManualLandingAlt(1);</script>
+			</binding>
+		</increase>
+		<decrease>
+			<binding>
+				<command>nasal</command>
+				<script>systems.PRESSURIZATION.setManualLandingAlt(-1);</script>
+			</binding>
+		</decrease>
+		<action>
+			<binding>
+				<command>property-adjust</command>
+				<property>controls/cockpit/manual-landing-alt-rotate</property>
+				<factor>1</factor>
+				<min>0</min>
+				<max>100000</max>
+				<wrap>true</wrap>
+			</binding>
+		</action>
 	</animation>
 	
 	<!-- Other -->

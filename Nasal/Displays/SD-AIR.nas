@@ -364,6 +364,7 @@ var CanvasAir = {
 		# Cabin Pressurization
 		Value.Air.cabinAlt = math.round(systems.PRESSURIZATION.Cabin.altFt.getValue(), 100);
 		Value.Air.cabinDp = math.round(systems.PRESSURIZATION.Cabin.diffPsi.getValue(), 0.1);
+		Value.Air.cabinLand = systems.PRESSURIZATION.Cpcs.landingAlt.getValue();
 		Value.Air.cabinRate = math.round(systems.PRESSURIZATION.Cabin.rateFpm.getValue(), 10);
 		
 		if (Value.Air.cabinAlt > 10000) {
@@ -400,12 +401,20 @@ var CanvasAir = {
 		}
 		me["Outflo_needle"].setRotation(((systems.PRESSURIZATION.OutflowValve.pos.getValue() * 180) - 90) * D2R);
 		
-		if (fms.flightData.airportToAlt > -2000) {
-			me["CabinLand"].setText(sprintf("%d", fms.flightData.airportToAlt));
-			me["CabinLand"].setColor(0.9608, 0, 0.7765);
+		if (Value.Air.cabinLand > -2000) {
+			if (systems.PRESSURIZATION.Cpcs.manualLandingAltSet.getBoolValue()) {
+				me["CabinLand"].setText(sprintf("%d", Value.Air.cabinLand));
+				me["CabinLand"].setColor(1, 1, 1);
+				me["CabinLand_box"].show();
+			} else {
+				me["CabinLand"].setText(sprintf("%d", Value.Air.cabinLand));
+				me["CabinLand"].setColor(0.9608, 0, 0.7765);
+				me["CabinLand_box"].hide();
+			}
 		} else {
 			me["CabinLand"].setText("----");
 			me["CabinLand"].setColor(0.9412, 0.7255, 0);
+			me["CabinLand_box"].hide();
 		}
 		
 		# Schematic Lines Phase 1
@@ -656,6 +665,7 @@ var KeyListAir = [
 	"CabinFwd_temp",
 	"CabinFwd_temp_error",
 	"CabinLand",
+	"CabinLand_box",
 	"CabinLand_error",
 	"CabinMid_dtemp",
 	"CabinMid_dtemp_error",

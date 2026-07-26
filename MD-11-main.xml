@@ -636,6 +636,7 @@
 			</fcp>
 			<flaps-lever-translate-cmd type="double">0</flaps-lever-translate-cmd>
 			<isfd-baro-rotate type="int">50016</isfd-baro-rotate>
+			<manual-landing-alt-rotate type="int">50016</manual-landing-alt-rotate>
 			<shade-left-cmd type="double">0</shade-left-cmd>
 			<shade-right-cmd type="double">0</shade-right-cmd>
 		</cockpit>
@@ -825,6 +826,8 @@
 		</pneumatics>
 		<pressurization n="0">
 			<cabin-manual type="int">0</cabin-manual>
+			<manual-landing-alt type="int">0</manual-landing-alt>
+			<manual-landing-alt-set type="bool">0</manual-landing-alt-set>
 			<system type="bool">1</system>
 		</pressurization>
 		<switches n="0">

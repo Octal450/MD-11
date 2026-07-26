@@ -7,12 +7,19 @@ var PRESSURIZATION = {
 		diffPsi: props.globals.getNode("/systems/pressurization/cabin-diff-psi"),
 		rateFpm: props.globals.getNode("/systems/pressurization/cabin-rate-fpm"),
 	},
+	Cpcs: {
+		landingAlt: props.globals.getNode("/systems/pressurization/cpcs/landing-alt"),
+		manualLandingAltSet: props.globals.getNode("/systems/pressurization/cpcs/manual-landing-alt-set"),
+		takeoffAlt: props.globals.getNode("/systems/pressurization/cpcs/takeoff-alt"),
+	},
 	OutflowValve: {
 		pos: props.globals.getNode("/systems/pressurization/outflow-valve/pos"),
 	},
 	system: props.globals.getNode("/systems/pressurization/system"),
 	Controls: {
 		cabinManual: props.globals.getNode("/controls/pressurization/cabin-manual"),
+		manualLandingAlt: props.globals.getNode("/controls/pressurization/manual-landing-alt"),
+		manualLandingAltSet: props.globals.getNode("/controls/pressurization/manual-landing-alt-set"),
 		system: props.globals.getNode("/controls/pressurization/system"),
 	},
 	Failures: {
@@ -33,17 +40,6 @@ var PRESSURIZATION = {
 	resetFailures: func() {
 		me.Failures.system.setBoolValue(0);
 	},
-	systemMode: func() {
-		if (me.Controls.system.getBoolValue()) {
-			me.Controls.system.setBoolValue(0);
-			manualPressLightt.stop();
-			me.Lights.manualFlash.setValue(0);
-		} else {
-			me.Controls.system.setBoolValue(1);
-			manualPressLightt.stop();
-			me.Lights.manualFlash.setValue(0);
-		}
-	},
 	manualLight: func() {
 		me.Lights.manualFlashTemp = me.Lights.manualFlash.getValue();
 		if (me.Lights.manualFlashTemp >= 5 or !me.Controls.system.getBoolValue()) {
@@ -51,6 +47,28 @@ var PRESSURIZATION = {
 			me.Lights.manualFlash.setValue(0);
 		} else {
 			me.Lights.manualFlash.setValue(me.Lights.manualFlashTemp + 1);
+		}
+	},
+	setManualLandingAlt: func(d) {
+		if (me.system.getBoolValue()) {
+			if (!me.Controls.manualLandingAltSet.getBoolValue()) {
+				me.Controls.manualLandingAlt.setValue(0);
+				me.Controls.manualLandingAltSet.setBoolValue(1);
+			}
+			
+			me.Controls.manualLandingAlt.setValue(me.Controls.manualLandingAlt.getValue() + d);
+		}
+	},
+	systemMode: func() {
+		if (me.Controls.system.getBoolValue()) {
+			me.Controls.manualLandingAltSet.setBoolValue(0);
+			me.Controls.system.setBoolValue(0);
+			manualPressLightt.stop();
+			me.Lights.manualFlash.setValue(0);
+		} else {
+			me.Controls.system.setBoolValue(1);
+			manualPressLightt.stop();
+			me.Lights.manualFlash.setValue(0);
 		}
 	},
 };

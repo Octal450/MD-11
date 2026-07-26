@@ -10,12 +10,39 @@
 	<property value="0">/systems/pressurization/controller/cabin-fpm-target</property>
 	<property value="1">/systems/pressurization/controller/outflow-cmd</property> <!-- Start open -->
 	
-	<channel name="CPCS Switches/Logic" execrate="8">
+	<channel name="CPCS Schedule/Logic" execrate="8">
 		
 		<switch name="/systems/pressurization/system">
 			<default value="/controls/pressurization/system"/>
 			<test value="0">
 				/systems/failures/pressurization/system eq 1
+			</test>
+		</switch>
+		
+		<switch name="/systems/pressurization/cpcs/takeoff-alt">
+			<default value="/systems/pressurization/cpcs/takeoff-alt"/> <!-- Memorize on takeoff if no FMS data -->
+			<test value="/systems/fms/flight-data/airport-from-alt"> <!-- FMS data available -->
+				/systems/fms/flight-data/airport-from-alt gt -2000
+			</test>
+			<test value="/instrumentation/altimeter/indicated-altitude-ft"> <!-- Update before takeoff if no FMS data -->
+				/systems/fms/internal/phase eq 0
+			</test>
+		</switch>
+		
+		<switch name="/systems/pressurization/cpcs/manual-landing-alt-set">
+			<default value="0"/>
+			<test value="1">
+				/controls/pressurization/manual-landing-alt-set eq 1
+			</test>
+		</switch>
+		
+		<switch name="/systems/pressurization/cpcs/landing-alt">
+			<default value="-2000"/> <!-- Not set -->
+			<test value="/controls/pressurization/manual-landing-alt"> <!-- Manually set -->
+				/systems/pressurization/cpcs/manual-landing-alt-set eq 1
+			</test>
+			<test value="/systems/fms/flight-data/airport-to-alt"> <!-- FMS data available -->
+				/systems/fms/flight-data/airport-to-alt gt -2000
 			</test>
 		</switch>
 	

@@ -32,6 +32,7 @@ var Value = {
 		cabinAlt: 0,
 		cabinDp: 0,
 		cabinFwdTarget: 0,
+		cabinLand: 0,
 		cabinMidTarget: 0,
 		cabinRate: 0,
 		cabinTempF: 0,
