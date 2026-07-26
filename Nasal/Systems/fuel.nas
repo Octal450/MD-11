@@ -173,6 +173,15 @@ var FUEL = {
 		me.Failures.transTailL.setBoolValue(0);
 		me.Failures.transTailR.setBoolValue(0);
 	},
+	manualLight: func() {
+		me.Lights.manualFlashTemp = me.Lights.manualFlash.getValue();
+		if (me.Lights.manualFlashTemp >= 5 or !me.Controls.system.getBoolValue()) {
+			manualFuelLightt.stop();
+			me.Lights.manualFlash.setValue(0);
+		} else {
+			me.Lights.manualFlash.setValue(me.Lights.manualFlashTemp + 1);
+		}
+	},
 	systemMode: func() {
 		if (me.Controls.system.getBoolValue()) {
 			me.Controls.system.setBoolValue(0);
@@ -195,15 +204,6 @@ var FUEL = {
 			me.Controls.system.setBoolValue(1);
 			manualFuelLightt.stop();
 			me.Lights.manualFlash.setValue(0);
-		}
-	},
-	manualLight: func() {
-		me.Lights.manualFlashTemp = me.Lights.manualFlash.getValue();
-		if (me.Lights.manualFlashTemp >= 5 or !me.Controls.system.getBoolValue()) {
-			manualFuelLightt.stop();
-			me.Lights.manualFlash.setValue(0);
-		} else {
-			me.Lights.manualFlash.setValue(me.Lights.manualFlashTemp + 1);
 		}
 	},
 };

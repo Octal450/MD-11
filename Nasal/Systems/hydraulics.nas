@@ -137,6 +137,15 @@ var HYDRAULICS = {
 		me.Failures.sys3Leak.setBoolValue(0);
 		me.Failures.system.setBoolValue(0);
 	},
+	manualLight: func() {
+		me.Lights.manualFlashTemp = me.Lights.manualFlash.getValue();
+		if (me.Lights.manualFlashTemp >= 5 or !me.Controls.system.getBoolValue()) {
+			manualHydLightt.stop();
+			me.Lights.manualFlash.setValue(0);
+		} else {
+			me.Lights.manualFlash.setValue(me.Lights.manualFlashTemp + 1);
+		}
+	},
 	systemMode: func() {
 		if (me.Controls.system.getBoolValue()) {
 			me.Controls.system.setBoolValue(0);
@@ -152,15 +161,6 @@ var HYDRAULICS = {
 			# Apparently this happens when turning to AUTO
 			me.Controls.auxPump1.setBoolValue(0);
 			me.Controls.auxPump2.setBoolValue(0);
-		}
-	},
-	manualLight: func() {
-		me.Lights.manualFlashTemp = me.Lights.manualFlash.getValue();
-		if (me.Lights.manualFlashTemp >= 5 or !me.Controls.system.getBoolValue()) {
-			manualHydLightt.stop();
-			me.Lights.manualFlash.setValue(0);
-		} else {
-			me.Lights.manualFlash.setValue(me.Lights.manualFlashTemp + 1);
 		}
 	},
 };
