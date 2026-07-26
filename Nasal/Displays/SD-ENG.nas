@@ -174,6 +174,13 @@ var CanvasEngBase = {
 			me["CabinRateDn"].hide();
 			me["CabinRateUp"].show();
 		}
+		if (systems.PRESSURIZATION.Lights.rateExceed5Sec.getValue() == 1 or systems.PRESSURIZATION.Lights.rateExceed15Sec.getValue() == 1) {
+			me["CabinRate"].setColor(0.9412, 0.7255, 0);
+			me["CabinRate_box"].show();
+		} else {
+			me["CabinRate"].setColor(1, 1, 1);
+			me["CabinRate_box"].hide();
+		}
 		me["CabinRate"].setText(sprintf("%d", Value.Air.cabinRate));
 		
 		# Nacelle Temp
@@ -244,9 +251,6 @@ var CanvasEngDials = {
 			me["GE_group"].show();
 			me["PW_group"].hide();
 		}
-		
-		# Hide unimplemented objects
-		me["CabinRate_box"].hide();
 	},
 	update: func() {
 		me.updateEngBase();
@@ -445,9 +449,6 @@ var CanvasEngTapes = {
 			me["GE_group"].show();
 			me["PW_group"].hide();
 		}
-		
-		# Hide unimplemented objects
-		me["CabinRate_box"].hide();
 	},
 	update: func() {
 		me.updateEngBase();

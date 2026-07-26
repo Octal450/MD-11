@@ -454,6 +454,34 @@
 				/systems/pressurization/outflow-valve/pos lt 0.001
 			</test>
 		</switch>
+		
+		<switch name="/systems/pressurization/lights/rate-exceed-5-sec-cmd">
+			<default value="0"/>
+			<test logic="OR" value="1">
+				/systems/pressurization/cabin-rate-fpm ge 2995
+				/systems/pressurization/cabin-rate-fpm le -1495
+			</test>
+		</switch>
+		
+		<actuator name="/systems/pressurization/lights/rate-exceed-5-sec">
+			<input>/systems/pressurization/lights/rate-exceed-5-sec-cmd</input>
+			<rate_limit sense="incr">0.2</rate_limit> <!-- 5 seconds -->
+			<rate_limit sense="decr">2</rate_limit> <!-- 0.5 seconds -->
+		</actuator>
+		
+		<switch name="/systems/pressurization/lights/rate-exceed-15-sec-cmd">
+			<default value="0"/>
+			<test logic="OR" value="1">
+				/systems/pressurization/cabin-rate-fpm ge 1495
+				/systems/pressurization/cabin-rate-fpm le -745
+			</test>
+		</switch>
+		
+		<actuator name="/systems/pressurization/lights/rate-exceed-15-sec">
+			<input>/systems/pressurization/lights/rate-exceed-15-sec-cmd</input>
+			<rate_limit sense="incr">0.06666666666666666666666666666667</rate_limit> <!-- 15 seconds -->
+			<rate_limit sense="decr">2</rate_limit> <!-- 0.5 seconds -->
+		</actuator>
 	
 	</channel>
 

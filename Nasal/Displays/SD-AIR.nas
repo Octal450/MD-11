@@ -27,7 +27,6 @@ var CanvasAir = {
 		me["AI_tail_group"].hide();
 		me["AI_wing_L_group"].hide();
 		me["AI_wing_R_group"].hide();
-		me["CabinRate_box"].hide();
 	},
 	update: func() {
 		Value.Misc.wow = pts.Position.wow.getBoolValue();
@@ -391,6 +390,13 @@ var CanvasAir = {
 		} else {
 			me["CabinRateDn"].hide();
 			me["CabinRateUp"].show();
+		}
+		if (systems.PRESSURIZATION.Lights.rateExceed5Sec.getValue() == 1 or systems.PRESSURIZATION.Lights.rateExceed15Sec.getValue() == 1) {
+			me["CabinRate"].setColor(0.9412, 0.7255, 0);
+			me["CabinRate_box"].show();
+		} else {
+			me["CabinRate"].setColor(1, 1, 1);
+			me["CabinRate_box"].hide();
 		}
 		me["CabinRate"].setText(sprintf("%d", abs(Value.Air.cabinRate)));
 		

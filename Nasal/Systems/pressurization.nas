@@ -31,6 +31,8 @@ var PRESSURIZATION = {
 		manualFlash: props.globals.getNode("/systems/pressurization/lights/manual-flash"),
 		manualFlashTemp: 0,
 		outflowClosed: props.globals.getNode("/systems/pressurization/lights/outflow-closed"),
+		rateExceed5Sec: props.globals.getNode("/systems/pressurization/lights/rate-exceed-5-sec"),
+		rateExceed15Sec: props.globals.getNode("/systems/pressurization/lights/rate-exceed-15-sec"),
 	},
 	init: func() {
 		me.resetFailures();
