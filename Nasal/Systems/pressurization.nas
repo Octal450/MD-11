@@ -5,6 +5,7 @@ var PRESSURIZATION = {
 	Cabin: {
 		altFt: props.globals.getNode("/systems/pressurization/cabin-alt-ft"),
 		diffPsi: props.globals.getNode("/systems/pressurization/cabin-diff-psi"),
+		psi: props.globals.getNode("/systems/pressurization/cabin-psi"),
 		rateFpm: props.globals.getNode("/systems/pressurization/cabin-rate-fpm"),
 	},
 	Cpcs: {
@@ -33,6 +34,7 @@ var PRESSURIZATION = {
 	},
 	init: func() {
 		me.resetFailures();
+		me.Cabin.psi.setValue(pts.Environment.pressureInhg.getValue() * 0.491154); # Sync cabin to current pressure on sim load
 		me.Controls.cabinManual.setValue(0);
 		me.Controls.system.setBoolValue(1);
 		manualPressLightt.stop();

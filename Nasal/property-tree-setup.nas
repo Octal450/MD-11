@@ -64,6 +64,7 @@ var Controls = {
 };
 
 var Environment = {
+	pressureInhg: props.globals.getNode("/environment/pressure-inhg"),
 	temperatureDegC: props.globals.getNode("/environment/temperature-degc"),
 };
 

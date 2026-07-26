@@ -155,7 +155,7 @@ var CanvasEngBase = {
 		}
 		
 		# Cabin Alt/Rate
-		Value.Air.cabinAlt = math.round(systems.PRESSURIZATION.Cabin.altFt.getValue(), 100);
+		Value.Air.cabinAlt = math.round(systems.PRESSURIZATION.Cabin.altFt.getValue(), 10);
 		Value.Air.cabinRate = math.round(systems.PRESSURIZATION.Cabin.rateFpm.getValue(), 10);
 		
 		if (Value.Air.cabinAlt > 10000) {
