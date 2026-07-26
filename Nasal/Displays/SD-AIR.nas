@@ -392,7 +392,7 @@ var CanvasAir = {
 			me["CabinRateDn"].hide();
 			me["CabinRateUp"].show();
 		}
-		me["CabinRate"].setText(sprintf("%d", Value.Air.cabinRate));
+		me["CabinRate"].setText(sprintf("%d", abs(Value.Air.cabinRate)));
 		
 		if (systems.PRESSURIZATION.Lights.outflowClosed.getBoolValue()) {
 			me["Outflo_clsd"].setColor(0.9412, 0.7255, 0);

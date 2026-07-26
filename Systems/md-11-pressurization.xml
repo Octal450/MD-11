@@ -7,7 +7,7 @@
 	
 	<property value="14.7">/systems/pressurization/cabin-psi</property> <!-- Should this be set to environment pressure on simload? -->
 	<property value="0">/systems/pressurization/cabin-rate-fpm</property>
-	<property value="0">/systems/pressurization/controller/cabin-fpm-target</property>
+	<property value="0">/systems/pressurization/controller/cabin-alt-target</property>
 	<property value="1">/systems/pressurization/controller/outflow-cmd</property> <!-- Start open -->
 	
 	<channel name="CPCS Schedule/Logic" execrate="8">
@@ -50,8 +50,22 @@
 	
 	<channel name="Automatic Controller" execrate="8">
 		
+		<summer name="/systems/pressurization/controller/cabin-alt-error">
+			<input>/systems/pressurization/controller/cabin-alt-target</input>
+			<input>-/systems/pressurization/cabin-alt-ft</input>
+		</summer>
+		
+		<pure_gain name="/systems/pressurization/controller/cabin-rate-target">
+			<input>/systems/pressurization/controller/cabin-alt-error</input>
+			<gain>5</gain>
+			<clipto>
+				<min>-350</min>
+				<max>750</max>
+			</clipto>
+		</pure_gain>
+		
 		<summer name="/systems/pressurization/controller/cabin-fpm-error">
-			<input>/systems/pressurization/controller/cabin-fpm-target</input>
+			<input>/systems/pressurization/controller/cabin-rate-target</input>
 			<input>-/systems/pressurization/cabin-rate-fpm</input>
 			<clipto>
 				<min>-500</min>
