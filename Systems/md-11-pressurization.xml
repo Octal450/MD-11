@@ -8,7 +8,6 @@
 	<property value="14.7">/systems/pressurization/cabin-psi</property> <!-- Should this be set to environment pressure on simload? -->
 	<property value="0">/systems/pressurization/cabin-rate-fpm</property>
 	<property value="0">/systems/pressurization/controller/cabin-fpm-target</property>
-	<property value="0">/systems/pressurization/controller/pid</property>
 	<property value="1">/systems/pressurization/controller/outflow-cmd</property> <!-- Start open -->
 	
 	<channel name="CPCS Switches/Logic" execrate="8">
