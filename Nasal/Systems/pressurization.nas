@@ -9,6 +9,7 @@ var PRESSURIZATION = {
 	},
 	Cpcs: {
 		landingAlt: props.globals.getNode("/systems/pressurization/cpcs/landing-alt"),
+		landingAltIndicated: props.globals.getNode("/systems/pressurization/cpcs/landing-alt-indicated"),
 		manualLandingAltSet: props.globals.getNode("/systems/pressurization/cpcs/manual-landing-alt-set"),
 		takeoffAlt: props.globals.getNode("/systems/pressurization/cpcs/takeoff-alt"),
 	},

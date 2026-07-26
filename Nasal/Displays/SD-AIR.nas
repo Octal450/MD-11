@@ -364,7 +364,7 @@ var CanvasAir = {
 		# Cabin Pressurization
 		Value.Air.cabinAlt = math.round(systems.PRESSURIZATION.Cabin.altFt.getValue(), 10);
 		Value.Air.cabinDp = math.round(systems.PRESSURIZATION.Cabin.diffPsi.getValue(), 0.1);
-		Value.Air.cabinLand = systems.PRESSURIZATION.Cpcs.landingAlt.getValue();
+		Value.Air.cabinLand = systems.PRESSURIZATION.Cpcs.landingAltIndicated.getValue();
 		Value.Air.cabinRate = math.round(systems.PRESSURIZATION.Cabin.rateFpm.getValue(), 10);
 		
 		if (Value.Air.cabinAlt > 10000) {

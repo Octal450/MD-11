@@ -7,10 +7,9 @@
 	
 	<property value="14.7">/systems/pressurization/cabin-psi</property> <!-- Should this be set to environment pressure on simload? -->
 	<property value="0">/systems/pressurization/cabin-rate-fpm</property>
-	<property value="0">/systems/pressurization/controller/cabin-alt-target</property>
 	<property value="1">/systems/pressurization/controller/outflow-cmd</property> <!-- Start open -->
 	
-	<channel name="CPCS Schedule/Logic" execrate="8">
+	<channel name="CPCS Logic" execrate="8">
 		
 		<switch name="/systems/pressurization/system">
 			<default value="/controls/pressurization/system"/>
@@ -20,12 +19,13 @@
 		</switch>
 		
 		<switch name="/systems/pressurization/cpcs/takeoff-alt">
-			<default value="/systems/pressurization/cpcs/takeoff-alt"/> <!-- Memorize on takeoff if no FMS data -->
+			<default value="/systems/pressurization/cpcs/takeoff-alt"/> <!-- Memorize on slat extend if no FMS data -->
 			<test value="/systems/fms/flight-data/airport-from-alt"> <!-- FMS data available -->
 				/systems/fms/flight-data/airport-from-alt gt -2000
 			</test>
-			<test value="/instrumentation/altimeter/indicated-altitude-ft"> <!-- Update before takeoff if no FMS data -->
+			<test logic="AND" value="/instrumentation/altimeter/indicated-altitude-ft"> <!-- Update before slat extend if no FMS data -->
 				/systems/fms/internal/phase eq 0
+				fcs/slat-pos-deg lt 0.1
 			</test>
 		</switch>
 		
@@ -36,7 +36,7 @@
 			</test>
 		</switch>
 		
-		<switch name="/systems/pressurization/cpcs/landing-alt">
+		<switch name="/systems/pressurization/cpcs/landing-alt-indicated">
 			<default value="-2000"/> <!-- Not set -->
 			<test value="/controls/pressurization/manual-landing-alt"> <!-- Manually set -->
 				/systems/pressurization/cpcs/manual-landing-alt-set eq 1
@@ -46,10 +46,122 @@
 			</test>
 		</switch>
 		
-		<switch name="/systems/pressurization/cpcs/landing-alt-actual"> <!-- When unset, use 0 -->
-			<default value="/systems/pressurization/cpcs/landing-alt"/> <!-- Set -->
+		<switch name="/systems/pressurization/cpcs/landing-alt"> <!-- When unset, use 0 -->
+			<default value="/systems/pressurization/cpcs/landing-alt-indicated"/> <!-- Set -->
 			<test value="0"> <!-- Not set -->
-				/systems/pressurization/cpcs/landing-alt eq -2000
+				/systems/pressurization/cpcs/landing-alt-indicated eq -2000
+			</test>
+		</switch>
+	
+	</channel>
+	
+	<channel name="Cabin Differential Pressure" execrate="8">
+		
+		<pure_gain name="/systems/pressurization/environment-psi">
+			<input>/environment/pressure-inhg</input>
+			<gain>0.491154</gain>
+		</pure_gain>
+		
+		<summer name="/systems/pressurization/cabin-diff-psi">
+			<input>/systems/pressurization/cabin-psi</input>
+			<input>-/systems/pressurization/environment-psi</input>
+		</summer>
+	
+	</channel>
+	
+	<channel name="Cabin Altitude Schedule" execrate="8">
+		
+		<fcs_function name="/systems/pressurization/cpcs/takeoff-alt-minus-100">
+			<function>
+				<difference>
+					<property>/systems/pressurization/cpcs/takeoff-alt</property>
+					<value>100</value>
+				</difference>
+			</function>
+		</fcs_function>
+		
+		<fcs_function name="/systems/pressurization/cpcs/takeoff-alt-plus-500">
+			<function>
+				<sum>
+					<property>/systems/pressurization/cpcs/takeoff-alt</property>
+					<value>500</value>
+				</sum>
+			</function>
+		</fcs_function>
+		
+		<fcs_function name="/systems/pressurization/cpcs/landing-alt-schedule">
+			<function>
+				<max>
+					<product> <!-- Lowest cabin alt within 8.6 diff -->
+						<value>145366.45</value>
+						<difference>
+							<value>1</value>
+							<pow>
+								<quotient>
+									<sum>
+										<property>/systems/pressurization/environment-psi</property>
+										<value>8.6</value>
+									</sum>
+									<value>14.6959</value>
+								</quotient>
+								<value>0.190263</value>
+							</pow>
+						</difference>
+					</product>
+					<property>/systems/pressurization/cpcs/landing-alt</property>
+				</max>
+			</function>
+		</fcs_function>
+		
+		<fcs_function name="/systems/pressurization/cpcs/cabin-alt-schedule">
+			<function>
+				<max>
+					<table>
+						<independentVar lookup="row">/instrumentation/altimeter/indicated-altitude-ft</independentVar>
+						<tableData> <!-- Approaches 8.6 diff max -->
+							    0  -600
+							 5000   800
+							10000  1700
+							15000  2400
+							20000  3100
+							25000  3900
+							30000  4800
+							35000  5900
+							40000  7200
+							43200  8000
+						</tableData>
+					</table>
+					<min>
+						<ifthen>
+							<ge>
+								<property>/systems/fms/internal/phase</property>
+								<value>4</value>
+							</ge>
+							<property>/systems/pressurization/cpcs/landing-alt</property>
+							<property>/systems/pressurization/cpcs/takeoff-alt-minus-100</property>
+						</ifthen>
+						<value>8000</value> <!-- Maximum allowed -->
+					</min>
+				</max>
+			</function>
+		</fcs_function>
+		
+		<switch name="/systems/pressurization/cpcs/cabin-alt-target"> <!-- When unset, use 0 -->
+			<default value="/systems/pressurization/cpcs/cabin-alt-schedule"/> <!-- Normal Schedule (fix) -->
+			<test logic="AND" value="/instrumentation/altimeter/indicated-altitude-ft"> <!-- Keep cabin at current altitude -->
+				/systems/fms/internal/phase le 1
+				fcs/slat-pos-deg lt 0.1
+				position/wow eq 1
+			</test>
+			<test logic="AND" value="/systems/pressurization/cpcs/takeoff-alt-minus-100"> <!-- Prepressurize when slats extend, until 500ft after takeoff -->
+				/systems/fms/internal/phase lt 2
+				<test logic="OR">
+					position/wow eq 1
+					/instrumentation/altimeter/indicated-altitude-ft lt /systems/pressurization/cpcs/takeoff-alt-plus-500
+				</test>
+			</test>
+			<test value="/instrumentation/altimeter/indicated-altitude-ft"> <!-- Depressurize to current altitude -->
+				/systems/fms/internal/phase eq 6
 			</test>
 		</switch>
 	
@@ -58,7 +170,7 @@
 	<channel name="Automatic Controller" execrate="8">
 		
 		<summer name="/systems/pressurization/controller/cabin-alt-error">
-			<input>/systems/pressurization/controller/cabin-alt-target</input>
+			<input>/systems/pressurization/cpcs/cabin-alt-target</input>
 			<input>-/systems/pressurization/cabin-alt-ft</input>
 		</summer>
 		
@@ -109,20 +221,6 @@
 	
 	</channel>
 	
-	<channel name="Cabin Differential Pressure" execrate="8">
-		
-		<pure_gain name="/systems/pressurization/environment-psi">
-			<input>/environment/pressure-inhg</input>
-			<gain>0.491154</gain>
-		</pure_gain>
-		
-		<summer name="/systems/pressurization/cabin-diff-psi">
-			<input>/systems/pressurization/cabin-psi</input>
-			<input>-/systems/pressurization/environment-psi</input>
-		</summer>
-	
-	</channel>
-	
 	<channel name="Outflow Valve" execrate="8">
 		
 		<fcs_function name="/systems/pressurization/outflow-valve/cmd">
@@ -162,8 +260,8 @@
 				<table>
 					<independentVar lookup="row">/systems/pressurization/cabin-diff-psi</independentVar>
 					<tableData>
-						9.11  0
-						9.16  1
+						8.81  0
+						8.86  1
 					</tableData>
 				</table>
 			</function>
