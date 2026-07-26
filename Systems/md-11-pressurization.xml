@@ -6,7 +6,10 @@
 <system name="MD-11: Pressurization">
 	
 	<property value="14.7">/systems/pressurization/cabin-psi</property> <!-- Should this be set to environment pressure on simload? -->
-	<property value="1">/systems/pressurization/outflow-valve/auto-cmd</property>
+	<property value="0">/systems/pressurization/cabin-rate-fpm</property>
+	<property value="0">/systems/pressurization/controller/cabin-fpm-target</property>
+	<property value="0">/systems/pressurization/controller/pid</property>
+	<property value="1">/systems/pressurization/controller/outflow-cmd</property> <!-- Start open -->
 	
 	<channel name="CPCS Switches/Logic" execrate="8">
 		
@@ -19,6 +22,46 @@
 	
 	</channel>
 	
+	<channel name="Automatic Controller" execrate="8">
+		
+		<summer name="/systems/pressurization/controller/cabin-fpm-error">
+			<input>/systems/pressurization/controller/cabin-fpm-target</input>
+			<input>-/systems/pressurization/cabin-rate-fpm</input>
+			<clipto>
+				<min>-500</min>
+				<max>500</max>
+			</clipto>
+		</summer>
+		
+		<pid name="/systems/pressurization/controller/pid">
+			<input>/systems/pressurization/controller/cabin-fpm-error</input>
+			<kp>0.0005</kp>
+			<ki>0</ki> <!-- Not used, using command integrator instead -->
+			<kd>0.0001</kd>
+			<clipto>
+				<min>-0.25</min>
+				<max>0.25</max>
+			</clipto>
+		</pid>
+		
+		<fcs_function name="/systems/pressurization/controller/outflow-cmd"> <!-- Command integrator -->
+			<function>
+				<sum>
+					<property>/systems/pressurization/controller/outflow-cmd</property>
+					<product>
+						<property>/systems/pressurization/controller/pid</property>
+						<property>simulation/channel-dt</property>
+					</product>
+				</sum>
+			</function>
+			<clipto>
+				<min>0</min>
+				<max>1</max>
+			</clipto>
+		</fcs_function>
+	
+	</channel>
+	
 	<channel name="Outflow Valve" execrate="8">
 		
 		<fcs_function name="/systems/pressurization/outflow-valve/cmd">
@@ -28,7 +71,7 @@
 						<property>/systems/pressurization/system</property>
 						<value>1</value>
 					</eq>
-					<property>/systems/pressurization/outflow-valve/auto-cmd</property>
+					<property>/systems/pressurization/controller/outflow-cmd</property>
 					<sum>
 						<property>/systems/pressurization/outflow-valve/cmd</property>
 						<product>
