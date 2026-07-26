@@ -21,7 +21,7 @@
 						</table>
 					</product>
 					<entry><ind>    0</ind><dep>0.7758</dep></entry>
-					<entry><ind>45000</ind><dep>1.0552</dep></entry>
+					<entry><ind>45000</ind><dep>1.0152</dep></entry>
 				</table>
 			</expression>
 		</input>
@@ -34,26 +34,18 @@
 		<gain>1.0</gain>
 		<input>
 			<expression>
-				<difference>
-					<table>
-						<product>
-							<property>/position/altitude-ft</property>
-							<table>
-								<property>/fdm/jsbsim/velocities/mach</property>
-								<entry><ind>0.09</ind><dep>0.1</dep></entry>
-								<entry><ind>0.15</ind><dep>1.0</dep></entry>
-							</table>
-						</product>
-						<entry><ind>    0</ind><dep>0.9848</dep></entry>
-						<entry><ind>45000</ind><dep>0.7267</dep></entry>
-					</table>
-					<table>
+				<table>
+					<product>
 						<property>/fdm/jsbsim/velocities/mach</property>
-						<entry><ind>0.09</ind><dep>0.000</dep></entry>
-						<entry><ind>0.15</ind><dep>0.017</dep></entry>
-						<entry><ind>0.22</ind><dep>0.023</dep></entry>
-					</table>
-				</difference>
+						<table>
+							<property>/position/altitude-ft</property>
+							<entry><ind>    0</ind><dep>0.5</dep></entry>
+							<entry><ind>45000</ind><dep>1.0</dep></entry>
+						</table>
+					</product>
+					<entry><ind>0</ind><dep>0.9848</dep></entry>
+					<entry><ind>1</ind><dep>0.6980</dep></entry>
+				</table>
 			</expression>
 		</input>
 		<output>/systems/fadec/epr/c2-raw</output>
