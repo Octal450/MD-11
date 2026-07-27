@@ -7,7 +7,8 @@
 	
 	<property value="14.7">/systems/pressurization/cabin-psi</property>
 	<property value="0">/systems/pressurization/cabin-rate-fpm</property>
-	<property value="1">/systems/pressurization/controller/outflow-cmd</property> <!-- Start open -->
+	<property value="1">/systems/pressurization/outflow-valve/auto-cmd</property> <!-- Start open -->
+	<property value="1">/systems/pressurization/outflow-valve/cmd</property> <!-- Start open -->
 	
 	<channel name="CPCS Logic" execrate="8">
 		
@@ -202,12 +203,26 @@
 				<max>0.25</max>
 			</clipto>
 		</pid>
+	
+	</channel>
+	
+	<channel name="Outflow Valve" execrate="8">
 		
-		<fcs_function name="/systems/pressurization/controller/outflow-cmd"> <!-- Command integrator -->
+		<switch name="/systems/pressurization/outflow-valve/power">
+			<default value="0"/>
+			<test logic="OR" value="1">
+				/systems/electrical/bus/dc-bat ge 24
+				/systems/electrical/bus/ac-1 ge 112
+				/systems/electrical/bus/ac-2 ge 112
+			</test>
+		</switch>
+		
+		<fcs_function name="/systems/pressurization/outflow-valve/auto-cmd"> <!-- Command integrator -->
 			<function>
 				<sum>
-					<property>/systems/pressurization/controller/outflow-cmd</property>
+					<property>/systems/pressurization/outflow-valve/auto-cmd</property>
 					<product>
+						<property>/systems/pressurization/outflow-valve/power</property>
 						<property>/systems/pressurization/controller/pid</property>
 						<property>simulation/channel-dt</property>
 					</product>
@@ -218,26 +233,29 @@
 				<max>1</max>
 			</clipto>
 		</fcs_function>
-	
-	</channel>
-	
-	<channel name="Outflow Valve" execrate="8">
 		
 		<fcs_function name="/systems/pressurization/outflow-valve/cmd">
 			<function>
 				<ifthen>
 					<eq>
-						<property>/systems/pressurization/system</property>
+						<property>/systems/pressurization/outflow-valve/power</property>
 						<value>1</value>
 					</eq>
-					<property>/systems/pressurization/controller/outflow-cmd</property>
-					<sum>
-						<property>/systems/pressurization/outflow-valve/cmd</property>
-						<product>
-							<property>/controls/pressurization/cabin-manual</property>
-							<value>0.01</value>
-						</product>
-					</sum>
+					<ifthen>
+						<eq>
+							<property>/systems/pressurization/system</property>
+							<value>1</value>
+						</eq>
+						<property>/systems/pressurization/outflow-valve/auto-cmd</property>
+						<sum>
+							<property>/systems/pressurization/outflow-valve/cmd</property>
+							<product>
+								<property>/controls/pressurization/cabin-manual</property>
+								<value>0.01</value>
+							</product>
+						</sum>
+					</ifthen>
+					<property>/systems/pressurization/outflow-valve/cmd</property>
 				</ifthen>
 			</function>
 			<clipto>
@@ -246,9 +264,16 @@
 			</clipto>
 		</fcs_function>
 		
+		<switch name="/systems/pressurization/outflow-valve/rate">
+			<default value="0"/>
+			<test value="0.25">
+				/systems/pressurization/outflow-valve/power eq 1
+			</test>
+		</switch>
+		
 		<actuator name="/systems/pressurization/outflow-valve/pos">
 			<input>/systems/pressurization/outflow-valve/cmd</input>
-			<rate_limit>0.25</rate_limit>
+			<rate_limit>/systems/pressurization/outflow-valve/rate</rate_limit>
 		</actuator>
 	
 	</channel>
