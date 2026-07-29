@@ -103,7 +103,10 @@
 										<property>/systems/pressurization/environment-psi</property>
 										<value>8.6</value>
 									</sum>
-									<value>14.6959</value>
+									<product>
+										<property>/instrumentation/altimeter/setting-inhg</property>
+										<value>0.4911738</value>
+									</product>
 								</quotient>
 								<value>0.190263</value>
 							</pow>
@@ -440,6 +443,27 @@
 						<pow>
 							<quotient>
 								<property>/systems/pressurization/cabin-psi</property>
+								<product>
+									<property>/instrumentation/altimeter/setting-inhg</property>
+									<value>0.4911738</value>
+								</product>
+							</quotient>
+							<value>0.190284</value>
+						</pow>
+					</difference>
+				</product>
+			</function>
+		</fcs_function>
+		
+		<fcs_function name="/systems/pressurization/cabin-rate-alt-ft-input">
+			<function>
+				<product>
+					<value>145366.45</value>
+					<difference>
+						<value>1</value>
+						<pow>
+							<quotient>
+								<property>/systems/pressurization/cabin-psi</property>
 								<value>14.6959</value>
 							</quotient>
 							<value>0.190284</value>
@@ -451,7 +475,7 @@
 		
 		<pid name="/systems/pressurization/cabin-rate-fps">
 			<descripton>Use D only to calculate rate</descripton>
-			<input>/systems/pressurization/cabin-alt-ft</input>
+			<input>/systems/pressurization/cabin-rate-alt-ft-input</input> <!-- So that QNH correction does not affect the rate calculation -->
 			<kp>0</kp>
 			<ki>0</ki>
 			<kd>1</kd>
