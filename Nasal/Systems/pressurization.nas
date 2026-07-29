@@ -63,7 +63,7 @@ var PRESSURIZATION = {
 				me.Controls.manualLandingAltSet.setBoolValue(1);
 			}
 			
-			me.Controls.manualLandingAlt.setValue(math.clamp(me.Controls.manualLandingAlt.getValue() + d, -1000, 9990));
+			me.Controls.manualLandingAlt.setValue(math.clamp(me.Controls.manualLandingAlt.getValue() + d, -1000, 9999));
 		}
 	},
 	systemMode: func() {
