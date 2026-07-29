@@ -8919,10 +8919,11 @@
 	
 	<!-- Pressurization Manual Knob -->
 	<animation>
-		<type>rotate</type>
+		<type>knob</type>
 		<object-name>CabinPress</object-name>
 		<object-name>CabinPress.light</object-name>
 		<property>controls/cockpit/overhead/cabin-manual</property>
+		<drag-scale-px>15</drag-scale-px>
 		<factor>-45</factor>
 		<axis>
 			<x>1</x>
@@ -8934,6 +8935,50 @@
 			<y-m>0.21454</y-m>
 			<z-m>-17.8755</z-m>
 		</center>
+		<axis>
+			<x>1</x>
+			<y>0</y>
+			<z>0</z>
+		</axis>
+		<center>
+			<x-m>0</x-m>
+			<y-m>-0.26272</y-m>
+			<z-m>-17.6817</z-m>
+		</center>
+		<action>
+			<binding>
+				<condition>
+					<and>
+						<property>systems/pressurization/system</property>
+						<greater-than-equals>
+							<property>systems/electrical/bus/dc-bat</property>
+							<value>24</value>
+						</greater-than-equals>
+					</and>
+				</condition>
+				<command>nasal</command>
+				<script>systems.manualPressLightt.start();</script>
+			</binding>
+			<binding>
+				<command>property-adjust</command>
+				<property>controls/pressurization/cabin-manual</property>
+				<factor>1</factor>
+				<min>-1</min>
+				<max>1</max>
+				<wrap>false</wrap>
+			</binding>
+			<binding>
+				<command>nasal</command>
+				<script>core.Sound.knb1();</script>
+			</binding>
+		</action>
+		<release>
+			<binding>
+				<command>property-assign</command>
+				<property>controls/pressurization/cabin-manual</property>
+				<value>0</value>
+			</binding>
+		</release>
 	</animation>
 	<animation>
 		<type>pick</type>

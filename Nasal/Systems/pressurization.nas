@@ -38,6 +38,8 @@ var PRESSURIZATION = {
 		me.resetFailures();
 		me.Cabin.psi.setValue(pts.Environment.pressureInhg.getValue() * 0.491154); # Sync cabin to current pressure on sim load
 		me.Controls.cabinManual.setValue(0);
+		me.Controls.manualLandingAlt.setValue(0);
+		me.Controls.manualLandingAltSet.setBoolValue(0);
 		me.Controls.system.setBoolValue(1);
 		manualPressLightt.stop();
 		me.Lights.manualFlash.setValue(0);
