@@ -408,12 +408,12 @@ var CanvasAir = {
 		me["Outflo_needle"].setRotation(((systems.PRESSURIZATION.OutflowValve.pos.getValue() * 180) - 90) * D2R);
 		
 		if (Value.Air.cabinLand > -2000) {
+			me["CabinLand"].setText(sprintf("%d", Value.Air.cabinLand));
+			
 			if (systems.PRESSURIZATION.Cpcs.manualLandingAltSet.getBoolValue()) {
-				me["CabinLand"].setText(sprintf("%d", Value.Air.cabinLand));
 				me["CabinLand"].setColor(1, 1, 1);
 				me["CabinLand_box"].show();
 			} else {
-				me["CabinLand"].setText(sprintf("%d", Value.Air.cabinLand));
 				me["CabinLand"].setColor(0.9608, 0, 0.7765);
 				me["CabinLand_box"].hide();
 			}
