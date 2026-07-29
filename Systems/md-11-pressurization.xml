@@ -211,6 +211,7 @@
 					<table>
 						<independentVar lookup="row">/instrumentation/altimeter/indicated-altitude-ft</independentVar>
 						<tableData> <!-- Approaches 8.6 diff max -->
+							-1000 -1000
 							    0  -600
 							 5000   800
 							10000  1700
