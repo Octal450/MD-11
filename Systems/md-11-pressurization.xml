@@ -147,7 +147,7 @@
 			</function>
 		</fcs_function>
 		
-		<switch name="/systems/pressurization/cpcs/cabin-alt-target"> <!-- When unset, use 0 -->
+		<switch name="/systems/pressurization/cpcs/cabin-alt-target">
 			<default value="/systems/pressurization/cpcs/cabin-alt-schedule"/> <!-- Normal Schedule -->
 			<test logic="AND" value="/systems/pressurization/cpcs/takeoff-alt-minus-100"> <!-- Prepressurize when slats extend, until 500ft after takeoff -->
 				/systems/fms/internal/phase lt 2
