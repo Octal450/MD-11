@@ -63,16 +63,17 @@ var PRESSURIZATION = {
 				me.Controls.manualLandingAltSet.setBoolValue(1);
 			}
 			
-			me.Controls.manualLandingAlt.setValue(me.Controls.manualLandingAlt.getValue() + d);
+			me.Controls.manualLandingAlt.setValue(math.clamp(me.Controls.manualLandingAlt.getValue() + d, -1000, 9990));
 		}
 	},
 	systemMode: func() {
 		if (me.Controls.system.getBoolValue()) {
-			me.Controls.manualLandingAltSet.setBoolValue(0);
 			me.Controls.system.setBoolValue(0);
 			manualPressLightt.stop();
 			me.Lights.manualFlash.setValue(0);
 		} else {
+			me.Controls.manualLandingAltSet.setBoolValue(0);
+			me.Controls.manualLandingAlt.setValue(0);
 			me.Controls.system.setBoolValue(1);
 			manualPressLightt.stop();
 			me.Lights.manualFlash.setValue(0);
