@@ -148,21 +148,23 @@
 		</fcs_function>
 		
 		<switch name="/systems/pressurization/cpcs/cabin-alt-target"> <!-- When unset, use 0 -->
-			<default value="/systems/pressurization/cpcs/cabin-alt-schedule"/> <!-- Normal Schedule (fix) -->
-			<test logic="AND" value="/instrumentation/altimeter/indicated-altitude-ft"> <!-- Keep cabin at current altitude -->
-				/systems/fms/internal/phase le 1
-				fcs/slat-pos-deg lt 0.1
-				position/wow eq 1
-			</test>
+			<default value="/systems/pressurization/cpcs/cabin-alt-schedule"/> <!-- Normal Schedule -->
 			<test logic="AND" value="/systems/pressurization/cpcs/takeoff-alt-minus-100"> <!-- Prepressurize when slats extend, until 500ft after takeoff -->
 				/systems/fms/internal/phase lt 2
 				<test logic="OR">
-					position/wow eq 1
-					/instrumentation/altimeter/indicated-altitude-ft lt /systems/pressurization/cpcs/takeoff-alt-plus-500
+					<test logic="AND">
+						position/wow eq 1
+						fcs/slat-pos-deg ge 0.1
+					</test>
+					<test logic="AND">
+						/instrumentation/altimeter/indicated-altitude-ft lt /systems/pressurization/cpcs/takeoff-alt-plus-500
+						position/wow eq 0
+					</test>
 				</test>
 			</test>
-			<test value="/instrumentation/altimeter/indicated-altitude-ft"> <!-- Depressurize to current altitude -->
+			<test logic="OR" value="/instrumentation/altimeter/indicated-altitude-ft"> <!-- Cabin to current altitude -->
 				/systems/fms/internal/phase eq 6
+				position/wow eq 1
 			</test>
 		</switch>
 	
