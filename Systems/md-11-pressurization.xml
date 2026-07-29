@@ -10,6 +10,20 @@
 	<property value="1">/systems/pressurization/outflow-valve/auto-cmd</property> <!-- Start open -->
 	<property value="1">/systems/pressurization/outflow-valve/cmd</property> <!-- Start open -->
 	
+	<channel name="Cabin Differential Pressure" execrate="8">
+		
+		<pure_gain name="/systems/pressurization/environment-psi">
+			<input>/environment/pressure-inhg</input>
+			<gain>0.491154</gain>
+		</pure_gain>
+		
+		<summer name="/systems/pressurization/cabin-diff-psi">
+			<input>/systems/pressurization/cabin-psi</input>
+			<input>-/systems/pressurization/environment-psi</input>
+		</summer>
+	
+	</channel>
+	
 	<channel name="CPCS Logic" execrate="8">
 		
 		<switch name="/systems/pressurization/system">
@@ -19,12 +33,70 @@
 			</test>
 		</switch>
 		
-		<switch name="/systems/pressurization/cpcs/takeoff-alt">
-			<default value="/systems/pressurization/cpcs/takeoff-alt"/> <!-- Memorize on slat extend if no FMS data -->
-			<test value="/systems/fms/flight-data/airport-from-alt"> <!-- FMS data available -->
+		<fcs_function name="/systems/pressurization/environment-alt-ft"> <!-- Due to real system using pressure, corrected "automatically" -->
+			<function>
+				<product>
+					<value>145366.45</value>
+					<difference>
+						<value>1.0</value>
+						<pow>
+							<quotient>
+								<property>/systems/pressurization/environment-psi</property>
+								<value>14.6959</value>
+							</quotient>
+							<value>0.190284</value>
+						</pow>
+					</difference>
+				</product>
+			</function>
+		</fcs_function>
+		
+		<switch name="/systems/pressurization/cpcs/takeoff-fms-alt-input">
+			<default value="0"/>
+			<test value="/systems/fms/flight-data/airport-from-alt">
 				/systems/fms/flight-data/airport-from-alt gt -2000
 			</test>
-			<test logic="AND" value="/instrumentation/altimeter/indicated-altitude-ft"> <!-- Update before slat extend if no FMS data -->
+		</switch>
+		
+		<fcs_function name="/systems/pressurization/cpcs/takeoff-fms-alt"> <!-- Correct FMS takeoff altitude with QNH setting -->
+			<function>
+				<product>
+					<value>145366.45</value>
+					<difference>
+						<value>1.0</value>
+						<pow>
+							<quotient>
+								<product>
+									<product>
+										<property>/instrumentation/altimeter/setting-inhg</property>
+										<value>0.4911738</value>
+									</product>
+									<pow>
+										<difference>
+											<value>1.0</value>
+											<quotient>
+												<property>/systems/pressurization/cpcs/takeoff-fms-alt-input</property>
+												<value>145366.45</value>
+											</quotient>
+										</difference>
+										<value>5.2558797</value>
+									</pow>
+								</product>
+								<value>14.6959</value>
+							</quotient>
+							<value>0.190284</value>
+						</pow>
+					</difference>
+				</product>
+			</function>
+		</fcs_function>
+		
+		<switch name="/systems/pressurization/cpcs/takeoff-alt">
+			<default value="/systems/pressurization/cpcs/takeoff-alt"/> <!-- Memorize on slat extend if no FMS data -->
+			<test value="/systems/pressurization/cpcs/takeoff-fms-alt"> <!-- FMS data available -->
+				/systems/fms/flight-data/airport-from-alt gt -2000
+			</test>
+			<test logic="AND" value="/systems/pressurization/environment-alt-ft"> <!-- Update before slat extend if no FMS data -->
 				/systems/fms/internal/phase eq 0
 				fcs/slat-pos-deg lt 0.1
 			</test>
@@ -37,7 +109,7 @@
 			</test>
 		</switch>
 		
-		<switch name="/systems/pressurization/cpcs/landing-alt-indicated">
+		<switch name="/systems/pressurization/cpcs/landing-alt-indicated"> <!-- Uncorrected, when unset, use -2000 -->
 			<default value="-2000"/> <!-- Not set -->
 			<test value="/controls/pressurization/manual-landing-alt"> <!-- Manually set -->
 				/systems/pressurization/cpcs/manual-landing-alt-set eq 1
@@ -47,26 +119,45 @@
 			</test>
 		</switch>
 		
-		<switch name="/systems/pressurization/cpcs/landing-alt"> <!-- When unset, use 0 -->
+		<switch name="/systems/pressurization/cpcs/landing-alt-raw"> <!-- When unset, use 0 -->
 			<default value="/systems/pressurization/cpcs/landing-alt-indicated"/> <!-- Set -->
 			<test value="0"> <!-- Not set -->
 				/systems/pressurization/cpcs/landing-alt-indicated eq -2000
 			</test>
 		</switch>
-	
-	</channel>
-	
-	<channel name="Cabin Differential Pressure" execrate="8">
 		
-		<pure_gain name="/systems/pressurization/environment-psi">
-			<input>/environment/pressure-inhg</input>
-			<gain>0.491154</gain>
-		</pure_gain>
-		
-		<summer name="/systems/pressurization/cabin-diff-psi">
-			<input>/systems/pressurization/cabin-psi</input>
-			<input>-/systems/pressurization/environment-psi</input>
-		</summer>
+		<fcs_function name="/systems/pressurization/cpcs/landing-alt"> <!-- Correct FMS or manual landing altitude with QNH setting -->
+			<function>
+				<product>
+					<value>145366.45</value>
+					<difference>
+						<value>1.0</value>
+						<pow>
+							<quotient>
+								<product>
+									<product>
+										<property>/instrumentation/altimeter/setting-inhg</property>
+										<value>0.4911738</value>
+									</product>
+									<pow>
+										<difference>
+											<value>1.0</value>
+											<quotient>
+												<property>/systems/pressurization/cpcs/landing-alt-raw</property>
+												<value>145366.45</value>
+											</quotient>
+										</difference>
+										<value>5.2558797</value>
+									</pow>
+								</product>
+								<value>14.6959</value>
+							</quotient>
+							<value>0.190284</value>
+						</pow>
+					</difference>
+				</product>
+			</function>
+		</fcs_function>
 	
 	</channel>
 	
@@ -162,7 +253,7 @@
 					</test>
 				</test>
 			</test>
-			<test logic="OR" value="/instrumentation/altimeter/indicated-altitude-ft"> <!-- Cabin to current altitude -->
+			<test logic="OR" value="/systems/pressurization/environment-alt-ft"> <!-- Cabin to environment altitude pressure -->
 				/systems/fms/internal/phase eq 6
 				position/wow eq 1
 			</test>
