@@ -94,7 +94,7 @@
 			</group>
 			
 			<checkbox>
-				<label>System (EPCU)</label>
+				<label>Automatic System</label>
 				<halign>left</halign>
 				<property>/systems/failures/electrical/system</property>
 				<binding>
@@ -268,7 +268,7 @@
 			</group>
 			
 			<checkbox>
-				<label>System (CPCS)</label>
+				<label>Automatic System</label>
 				<halign>left</halign>
 				<property>/systems/failures/pressurization/system</property>
 				<binding>
@@ -421,7 +421,7 @@
 			</group>
 			
 			<checkbox>
-				<label>System (HSC)</label>
+				<label>Automatic System</label>
 				<halign>left</halign>
 				<property>/systems/failures/hydraulics/system</property>
 				<binding>
@@ -730,7 +730,7 @@
 			</group>
 			
 			<checkbox>
-				<label>System (FSC)</label>
+				<label>Automatic System</label>
 				<halign>left</halign>
 				<property>/systems/failures/fuel/system</property>
 				<binding>
@@ -934,7 +934,7 @@
 			</group>
 			
 			<checkbox>
-				<label>System (ESC)</label>
+				<label>Automatic System</label>
 				<halign>left</halign>
 				<property>/systems/failures/pneumatics/system</property>
 				<binding>
