@@ -406,7 +406,10 @@
 			<function>
 				<product>
 					<pow> <!-- Flow isn't linear -->
-						<property>/systems/pressurization/outflow-valve/pos</property>
+						<max>
+							<property>/systems/pressurization/outflow-valve/pos</property>
+							<property>/systems/failures/pressurization/depressurization</property> <!-- Depressurization failure -->
+						</max>
 						<value>2</value>
 					</pow>
 					<value>-0.009</value>
@@ -566,6 +569,14 @@
 	</channel>
 	
 	<channel name="Overhead/Synoptic Lights">
+		
+		<switch name="/systems/pressurization/lights/select-manual">
+			<default value="0"/>
+			<test logic="AND" value="1">
+				/controls/pressurization/system eq 1
+				/systems/failures/pressurization/system eq 1
+			</test>
+		</switch>
 		
 		<switch name="/systems/pressurization/lights/outflow-closed">
 			<default value="0"/>

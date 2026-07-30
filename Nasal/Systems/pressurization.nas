@@ -25,6 +25,7 @@ var PRESSURIZATION = {
 		system: props.globals.getNode("/controls/pressurization/system"),
 	},
 	Failures: {
+		depressurization: props.globals.getNode("/systems/failures/pressurization/depressurization"),
 		system: props.globals.getNode("/systems/failures/pressurization/system"),
 	},
 	Lights: {
@@ -45,6 +46,7 @@ var PRESSURIZATION = {
 		me.Lights.manualFlash.setValue(0);
 	},
 	resetFailures: func() {
+		me.Failures.depressurization.setBoolValue(0);
 		me.Failures.system.setBoolValue(0);
 	},
 	manualLight: func() {

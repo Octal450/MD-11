@@ -260,6 +260,40 @@
 					<stretch>true</stretch>
 				</hrule>
 				<text>
+					<label>Pressurization</label>
+				</text>
+				<hrule>
+					<stretch>true</stretch>
+				</hrule>
+			</group>
+			
+			<checkbox>
+				<label>System (CPCS)</label>
+				<halign>left</halign>
+				<property>/systems/failures/pressurization/system</property>
+				<binding>
+					<command>dialog-apply</command>
+				</binding>
+				<live>true</live>
+			</checkbox>
+			
+			<checkbox>
+				<label>Depressurization</label>
+				<halign>left</halign>
+				<property>/systems/failures/pressurization/depressurization</property>
+				<binding>
+					<command>dialog-apply</command>
+				</binding>
+				<live>true</live>
+			</checkbox>
+			
+			<group>
+				<layout>hbox</layout>
+				
+				<hrule>
+					<stretch>true</stretch>
+				</hrule>
+				<text>
 					<label>Landing Gear</label>
 				</text>
 				<hrule>
