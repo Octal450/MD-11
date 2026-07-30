@@ -490,34 +490,47 @@
 		
 		<fcs_function name="/systems/pressurization/cabin-psi-calc">
 			<function>
-				<sum>
-					<property>/systems/pressurization/cabin-psi</property>
-					<product> <!-- Leakage factor -->
-						<property>/systems/pressurization/cabin-diff-psi</property>
-						<value>-0.00001</value>
-						<property>simulation/channel-dt</property>
-					</product>
-					<product> <!-- Outflow factor -->
-						<property>/systems/pressurization/cabin-diff-psi</property>
-						<property>/systems/pressurization/outflow-psi-rate</property>
-						<property>simulation/channel-dt</property>
-					</product>
-					<product> <!-- Overpressure relief factor -->
-						<property>/systems/pressurization/cabin-diff-psi</property>
-						<property>/systems/pressurization/overpressure-relief-psi-rate</property>
-						<property>simulation/channel-dt</property>
-					</product>
-					<product> <!-- Underpressure relief factor -->
-						<property>/systems/pressurization/cabin-diff-psi</property>
-						<property>/systems/pressurization/underpressure-relief-psi-rate</property>
-						<property>simulation/channel-dt</property>
-					</product>
-					<product> <!-- Packs factor -->
-						<property>/systems/pressurization/pack-psi-error</property>
-						<property>/systems/pressurization/pack-psi-rate</property>
-						<property>simulation/channel-dt</property>
-					</product>
-				</sum>
+				<ifthen>
+					<or> <!-- Workaround for sim starting with bogus pressure, and reset to environment when loading panel state -->
+						<le>
+							<property>/sim/time/elapsed-sec</property>
+							<value>1</value>
+						</le>
+						<eq>
+							<property>/systems/acconfig/autoconfig-running</property>
+							<value>1</value>
+						</eq>
+					</or>
+					<property>/systems/pressurization/environment-psi</property>
+					<sum>
+						<property>/systems/pressurization/cabin-psi</property>
+						<product> <!-- Leakage factor -->
+							<property>/systems/pressurization/cabin-diff-psi</property>
+							<value>-0.00001</value>
+							<property>simulation/channel-dt</property>
+						</product>
+						<product> <!-- Outflow factor -->
+							<property>/systems/pressurization/cabin-diff-psi</property>
+							<property>/systems/pressurization/outflow-psi-rate</property>
+							<property>simulation/channel-dt</property>
+						</product>
+						<product> <!-- Overpressure relief factor -->
+							<property>/systems/pressurization/cabin-diff-psi</property>
+							<property>/systems/pressurization/overpressure-relief-psi-rate</property>
+							<property>simulation/channel-dt</property>
+						</product>
+						<product> <!-- Underpressure relief factor -->
+							<property>/systems/pressurization/cabin-diff-psi</property>
+							<property>/systems/pressurization/underpressure-relief-psi-rate</property>
+							<property>simulation/channel-dt</property>
+						</product>
+						<product> <!-- Packs factor -->
+							<property>/systems/pressurization/pack-psi-error</property>
+							<property>/systems/pressurization/pack-psi-rate</property>
+							<property>simulation/channel-dt</property>
+						</product>
+					</sum>
+				</ifthen>
 			</function>
 			<output>/systems/pressurization/cabin-psi</output>
 			<clipto> <!-- Keep it reasonable -->
