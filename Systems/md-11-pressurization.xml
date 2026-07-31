@@ -182,30 +182,6 @@
 			</function>
 		</fcs_function>
 		
-		<fcs_function name="/systems/pressurization/cpcs/landing-alt-schedule">
-			<function>
-				<max>
-					<product> <!-- Lowest cabin alt within 8.6 diff -->
-						<value>145366.45</value>
-						<difference>
-							<value>1</value>
-							<pow>
-								<quotient>
-									<sum>
-										<property>/systems/pressurization/environment-psi</property>
-										<value>8.6</value>
-									</sum>
-									<value>14.6959</value>
-								</quotient>
-								<value>0.190263</value>
-							</pow>
-						</difference>
-					</product>
-					<property>/systems/pressurization/cpcs/landing-alt</property>
-				</max>
-			</function>
-		</fcs_function>
-		
 		<fcs_function name="/systems/pressurization/cpcs/cabin-alt-schedule">
 			<function>
 				<max>
