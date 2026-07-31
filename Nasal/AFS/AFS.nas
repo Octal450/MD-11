@@ -851,6 +851,7 @@ var ITAF = {
 		# Reset system once flight complete
 		if (!Output.ap1.getBoolValue() and !Output.ap2.getBoolValue() and Gear.wow0.getBoolValue() and Velocities.groundspeedKt.getValue() < 60 and Output.vert.getValue() != 7) { # Not in T/O or G/A
 			me.init(1); # FMS resets itself later
+			Fma.startBlink(1); # Only roll blinks
 		}
 		
 		# Speed Protection
