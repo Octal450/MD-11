@@ -348,7 +348,7 @@
 		
 		<switch name="/systems/fcs/aileron-out-l/rate">
 			<default value="/systems/fcs/aileron-out-droop-rate"/>
-			<test logic="OR" value="80">
+			<test logic="OR" value="60">
 				/systems/hydraulics/sys-2-psi ge 2200
 				/systems/hydraulics/sys-3-psi ge 2200
 			</test>
@@ -401,7 +401,7 @@
 		
 		<switch name="/systems/fcs/aileron-in-l/rate">
 			<default value="/systems/fcs/aileron-in-droop-rate"/>
-			<test logic="OR" value="80">
+			<test logic="OR" value="60">
 				/systems/hydraulics/sys-2-psi ge 2200
 				/systems/hydraulics/sys-3-psi ge 2200
 			</test>
@@ -454,7 +454,7 @@
 		
 		<switch name="/systems/fcs/aileron-in-r/rate">
 			<default value="/systems/fcs/aileron-in-droop-rate"/>
-			<test logic="OR" value="80">
+			<test logic="OR" value="60">
 				/systems/hydraulics/sys-1-psi ge 2200
 				/systems/hydraulics/sys-3-psi ge 2200
 			</test>
@@ -512,7 +512,7 @@
 		
 		<switch name="/systems/fcs/aileron-out-r/rate">
 			<default value="/systems/fcs/aileron-out-droop-rate"/>
-			<test logic="OR" value="80">
+			<test logic="OR" value="60">
 				/systems/hydraulics/sys-2-psi ge 2200
 				/systems/hydraulics/sys-3-psi ge 2200
 			</test>
@@ -607,7 +607,7 @@
 		
 		<switch name="/systems/fcs/elevator-out-l/rate">
 			<default value="/systems/fcs/elevator-out-droop-rate"/>
-			<test logic="OR" value="80">
+			<test logic="OR" value="60">
 				/systems/hydraulics/sys-1-psi ge 2200
 				/systems/hydraulics/sys-2-psi ge 2200
 			</test>
@@ -647,7 +647,7 @@
 		
 		<switch name="/systems/fcs/elevator-in-l/rate">
 			<default value="/systems/fcs/elevator-in-droop-rate"/>
-			<test logic="OR" value="80">
+			<test logic="OR" value="60">
 				/systems/hydraulics/sys-2-psi ge 2200
 				/systems/hydraulics/sys-3-aft-psi ge 2200
 			</test>
@@ -687,7 +687,7 @@
 		
 		<switch name="/systems/fcs/elevator-in-r/rate">
 			<default value="/systems/fcs/elevator-in-droop-rate"/>
-			<test logic="OR" value="80">
+			<test logic="OR" value="60">
 				/systems/hydraulics/sys-1-psi ge 2200
 				/systems/hydraulics/sys-3-aft-psi ge 2200
 			</test>
@@ -727,7 +727,7 @@
 		
 		<switch name="/systems/fcs/elevator-out-r/rate">
 			<default value="/systems/fcs/elevator-out-droop-rate"/>
-			<test logic="OR" value="80">
+			<test logic="OR" value="60">
 				/systems/hydraulics/sys-1-psi ge 2200
 				/systems/hydraulics/sys-2-psi ge 2200
 			</test>
@@ -849,7 +849,7 @@
 		
 		<switch name="/systems/fcs/rudder-upper/rate">
 			<default value="/systems/fcs/rudder-droop-rate"/>
-			<test logic="OR" value="75">
+			<test logic="OR" value="60">
 				/systems/hydraulics/sys-1-psi ge 2200
 				/systems/hydraulics/nrmp/sys-2-to-sys-1 ge 2200
 			</test>
@@ -885,7 +885,7 @@
 		
 		<switch name="/systems/fcs/rudder-lower/rate">
 			<default value="/systems/fcs/rudder-droop-rate"/>
-			<test logic="OR" value="75">
+			<test logic="OR" value="60">
 				/systems/hydraulics/sys-2-psi ge 2200
 				/systems/hydraulics/nrmp/sys-3-to-sys-2 ge 2200
 			</test>
