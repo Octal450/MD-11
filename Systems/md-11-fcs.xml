@@ -858,7 +858,7 @@
 		<actuator name="/systems/fcs/rudder-upper/final-actuator">
 			<input>/systems/fcs/rudder-upper/cmd-deg</input>
 			<rate_limit>/systems/fcs/rudder-upper/rate</rate_limit>
-			<lag>25.5</lag>
+			<lag>26.5</lag>
 			<output>/systems/fcs/rudder-upper/final-deg</output>
 		</actuator>
 	
@@ -894,7 +894,7 @@
 		<actuator name="/systems/fcs/rudder-lower/final-actuator">
 			<input>/systems/fcs/rudder-lower/cmd-deg</input>
 			<rate_limit>/systems/fcs/rudder-lower/rate</rate_limit>
-			<lag>25.5</lag>
+			<lag>26.5</lag>
 			<output>/systems/fcs/rudder-lower/final-deg</output>
 		</actuator>
 	
