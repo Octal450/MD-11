@@ -302,17 +302,30 @@
 		
 		<fcs_function name="/systems/pressurization/outflow-valve/auto-cmd"> <!-- Command integrator -->
 			<function>
-				<max>
-					<sum>
-						<property>/systems/pressurization/outflow-valve/auto-cmd</property>
-						<product>
+				<ifthen>
+					<and>
+						<eq>
 							<property>/systems/pressurization/outflow-valve/power</property>
-							<property>/systems/pressurization/controller/pid</property>
-							<property>simulation/channel-dt</property>
-						</product>
-					</sum>
-					<property>/systems/pressurization/cpcs/outflow-cmd-open</property>
-				</max>
+							<value>1</value>
+						</eq>
+						<eq>
+							<property>/systems/pressurization/system</property>
+							<value>1</value>
+						</eq>
+					</and>
+					<max>
+						<sum>
+							<property>/systems/pressurization/outflow-valve/auto-cmd</property>
+							<product>
+								<property>/systems/pressurization/outflow-valve/power</property>
+								<property>/systems/pressurization/controller/pid</property>
+								<property>simulation/channel-dt</property>
+							</product>
+						</sum>
+						<property>/systems/pressurization/cpcs/outflow-cmd-open</property>
+					</max>
+					<property>/systems/pressurization/outflow-valve/cmd</property>
+				</ifthen>
 			</function>
 			<clipto>
 				<min>0</min>
