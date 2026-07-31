@@ -6,6 +6,7 @@
 <system name="MD-11: Pressurization">
 	
 	<property value="14.7">/systems/pressurization/cabin-psi</property>
+	<property value="0">/systems/pressurization/cabin-alt-ft</property>
 	<property value="0">/systems/pressurization/cabin-rate-fpm</property>
 	<property value="1">/systems/pressurization/outflow-valve/auto-cmd</property> <!-- Start open -->
 	<property value="1">/systems/pressurization/outflow-valve/cmd</property> <!-- Start open -->
