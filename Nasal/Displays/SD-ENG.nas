@@ -181,7 +181,7 @@ var CanvasEngBase = {
 			me["CabinRate"].setColor(1, 1, 1);
 			me["CabinRate_box"].hide();
 		}
-		me["CabinRate"].setText(sprintf("%d", Value.Air.cabinRate));
+		me["CabinRate"].setText(sprintf("%d", abs(Value.Air.cabinRate)));
 		
 		# Nacelle Temp
 		me["NacelleTemp1"].setText(sprintf("%d", math.round(systems.ENGINES.nacelleTemp[0].getValue())));
