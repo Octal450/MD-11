@@ -854,9 +854,18 @@
 	<animation>
 		<type>select</type>
 		<object-name>master_caution_light_on</object-name>
-		<object-name>master_warning_light_on</object-name>
 		<condition>
 			<property>controls/switches/annun-test</property>
+		</condition>
+	</animation>
+	<animation>
+		<type>select</type>
+		<object-name>master_warning_light_on</object-name>
+		<condition>
+			<and>
+				<property>controls/switches/annun-test</property>
+				<property>systems/core/blink-med</property>
+			</and>
 		</condition>
 	</animation>
 	
