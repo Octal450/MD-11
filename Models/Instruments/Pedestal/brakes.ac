@@ -5,26 +5,7 @@ MATERIAL "Material.004" rgb 0.8 0.8 0.8  amb 1 1 1  emis 0.796 0.796 0.796  spec
 MATERIAL "DefaultWhite" rgb 1 1 1  amb 1 1 1  emis 0 0 0  spec 0 0 0  shi 20.2105  trans 0
 MATERIAL "DefaultWhite.012" rgb 1 1 1  amb 1 1 1  emis 1 1 1  spec 0 0 0  shi 0  trans 0
 OBJECT world
-kids 23
-OBJECT poly
-name "AntiSkid.off"
-loc -0.108652 0.00819001 -0.0738283
-texture "lights.png"
-crease 45.000000
-numvert 4
-0.106428 -6.51926e-09 0.0887471
-0.102526 -6.51926e-09 0.0887471
-0.102526 -6.51926e-09 0.0805172
-0.106428 -6.51926e-09 0.0805172
-numsurf 1
-SURF 0x30
-mat 4
-refs 4
-2 0.121734 0.0183337
-1 0.0830701 0.0183337
-0 0.0830701 0
-3 0.121734 0
-kids 0
+kids 22
 OBJECT poly
 name "AntiSkid"
 loc -0.00417475 -0.000887037 0.0108038
@@ -109,25 +90,6 @@ refs 4
 10 0.122917 0.060407
 2 0.124381 0.061869
 3 0.063136 0.061869
-kids 0
-OBJECT poly
-name "AuxPump1.on"
-loc -0.0893084 0.00819114 -0.0435415
-texture "lights.png"
-crease 45.000000
-numvert 4
-0.110628 0 0.0788392
-0.106726 0 0.0788392
-0.106726 0 0.0726467
-0.110628 0 0.0726467
-numsurf 1
-SURF 0x30
-mat 4
-refs 4
-2 0.158709 0.0183337
-1 0.129617 0.0183337
-0 0.129617 0
-3 0.158709 0
 kids 0
 OBJECT poly
 name "AuxPump1"
@@ -7347,4 +7309,46 @@ refs 4
 25 0.346352 0.530795
 17 0.3519 0.530795
 16 0.3519 0.521729
+kids 0
+OBJECT group
+name "Lights"
+loc -0.0989802 0.00819058 -0.0586849
+kids 2
+OBJECT poly
+name "AntiSkid.off"
+loc -0.0096718 -5.65313e-07 -0.0151434
+texture "lights.png"
+crease 45.000000
+numvert 4
+0.106428 -6.51926e-09 0.0887471
+0.102526 -6.51926e-09 0.0887471
+0.102526 -6.51926e-09 0.0805172
+0.106428 -6.51926e-09 0.0805172
+numsurf 1
+SURF 0x30
+mat 4
+refs 4
+2 0.121734 0.0183337
+1 0.0830701 0.0183337
+0 0.0830701 0
+3 0.121734 0
+kids 0
+OBJECT poly
+name "AuxPump1.on"
+loc 0.0096718 5.65313e-07 0.0151434
+texture "lights.png"
+crease 45.000000
+numvert 4
+0.110628 0 0.0788392
+0.106726 0 0.0788392
+0.106726 0 0.0726467
+0.110628 0 0.0726467
+numsurf 1
+SURF 0x30
+mat 4
+refs 4
+2 0.158709 0.0183337
+1 0.129617 0.0183337
+0 0.129617 0
+3 0.158709 0
 kids 0

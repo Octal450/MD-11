@@ -204,6 +204,18 @@
 		</action>
 	</animation>
 	
+	<!-- Annunciator dimming -->
+	<animation>
+		<type>material</type>
+		<object-name>Lights</object-name>
+		<emission>
+			<red>1.0</red>
+			<green>1.0</green>
+			<blue>1.0</blue>
+			<factor-prop>systems/lighting/annunciator-brightness</factor-prop>
+		</emission>
+	</animation>
+	
 	<!-- No button lights without power! -->
 	<animation>
 		<type>select</type>
@@ -9898,6 +9910,46 @@
 	
 	<animation>
 		<type>pick</type>
+		<object-name>LightsBrtDim</object-name>
+		<action>
+			<button>0</button>
+			<repeatable>false</repeatable>
+			<binding>
+				<command>property-assign</command>
+				<property>controls/cockpit/overhead/annun-dim</property>
+				<value>1</value>
+			</binding>
+			<binding>
+				<command>property-toggle</command>
+				<property>controls/switches/annun-dim</property>
+			</binding>
+			<binding>
+				<command>nasal</command>
+				<script>core.Sound.btn1();</script>
+			</binding>
+			<mod-up>
+				<binding>
+					<command>property-assign</command>
+					<property>controls/cockpit/overhead/annun-dim</property>
+					<value>0</value>
+				</binding>
+			</mod-up>
+		</action>
+	</animation>
+	<animation>
+		<type>translate</type>
+		<object-name>LightsBrtDim</object-name>
+		<property>controls/cockpit/overhead/annun-dim</property>
+		<factor>-0.0025</factor>
+		<axis>
+			<x>1</x>
+			<y>0</y>
+			<z>0</z>
+		</axis>
+	</animation>
+	
+	<animation>
+		<type>pick</type>
 		<object-name>AnnunTest</object-name>
 		<action>
 			<button>0</button>
@@ -9920,7 +9972,6 @@
 			</mod-up>
 		</action>
 	</animation>
-	
 	<animation>
 		<type>translate</type>
 		<object-name>AnnunTest</object-name>
@@ -9957,7 +10008,6 @@
 			</mod-up>
 		</action>
 	</animation>
-	
 	<animation>
 		<type>translate</type>
 		<object-name>FuelUsedReset</object-name>
@@ -9994,7 +10044,6 @@
 			</mod-up>
 		</action>
 	</animation>
-	
 	<animation>
 		<type>translate</type>
 		<object-name>EngMaxPointerReset</object-name>

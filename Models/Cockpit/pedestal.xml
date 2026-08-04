@@ -44,6 +44,20 @@
 	
 	<animation>
 		<type>material</type>
+		<object-name>SlatStow.on</object-name>
+		<object-name>starter.1.on</object-name>
+		<object-name>starter.2.on</object-name>
+		<object-name>starter.3.on</object-name>
+		<emission>
+			<red>1.0</red>
+			<green>1.0</green>
+			<blue>1.0</blue>
+			<factor-prop>systems/lighting/annunciator-brightness</factor-prop>
+		</emission>
+	</animation>
+	
+	<animation>
+		<type>material</type>
 		<object-name>brake.light</object-name>
 		<emission>
 			<red>1.0</red>
@@ -1151,6 +1165,7 @@
 		<type>translate</type>
 		<object-name>starter.1.off</object-name>
 		<object-name>starter.1.on</object-name>
+		<object-name>starter.1.stem</object-name>
 		<property>controls/cockpit/start-switch-1</property>
 		<factor>-0.004</factor>
 		<axis>
@@ -1168,16 +1183,21 @@
 		<object-name>starter.1.off</object-name>
 		<condition>
 			<not>
-				<property>systems/ignition/starter-1</property>
+				<or>
+					<property>systems/ignition/starter-1</property>
+					<property>controls/switches/annun-test</property>
+				</or>
 			</not>
 		</condition>
 	</animation>
-	
 	<animation>
 		<type>select</type>
 		<object-name>starter.1.on</object-name>
 		<condition>
-			<property>systems/ignition/starter-1</property>
+			<or>
+				<property>systems/ignition/starter-1</property>
+				<property>controls/switches/annun-test</property>
+			</or>
 		</condition>
 	</animation>
 	
@@ -1237,6 +1257,7 @@
 		<type>translate</type>
 		<object-name>starter.2.off</object-name>
 		<object-name>starter.2.on</object-name>
+		<object-name>starter.2.stem</object-name>
 		<property>controls/cockpit/start-switch-2</property>
 		<factor>-0.004</factor>
 		<axis>
@@ -1254,16 +1275,21 @@
 		<object-name>starter.2.off</object-name>
 		<condition>
 			<not>
-				<property>systems/ignition/starter-2</property>
+				<or>
+					<property>systems/ignition/starter-2</property>
+					<property>controls/switches/annun-test</property>
+				</or>
 			</not>
 		</condition>
 	</animation>
-	
 	<animation>
 		<type>select</type>
 		<object-name>starter.2.on</object-name>
 		<condition>
-			<property>systems/ignition/starter-2</property>
+			<or>
+				<property>systems/ignition/starter-2</property>
+				<property>controls/switches/annun-test</property>
+			</or>
 		</condition>
 	</animation>
 	
@@ -1323,6 +1349,7 @@
 		<type>translate</type>
 		<object-name>starter.3.off</object-name>
 		<object-name>starter.3.on</object-name>
+		<object-name>starter.3.stem</object-name>
 		<property>controls/cockpit/start-switch-3</property>
 		<factor>-0.004</factor>
 		<axis>
@@ -1340,16 +1367,21 @@
 		<object-name>starter.3.off</object-name>
 		<condition>
 			<not>
-				<property>systems/ignition/starter-3</property>
+				<or>
+					<property>systems/ignition/starter-3</property>
+					<property>controls/switches/annun-test</property>
+				</or>
 			</not>
 		</condition>
 	</animation>
-	
 	<animation>
 		<type>select</type>
 		<object-name>starter.3.on</object-name>
 		<condition>
-			<property>systems/ignition/starter-3</property>
+			<or>
+				<property>systems/ignition/starter-3</property>
+				<property>controls/switches/annun-test</property>
+			</or>
 		</condition>
 	</animation>
 	

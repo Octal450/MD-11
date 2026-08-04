@@ -43,6 +43,17 @@
 	</animation>
 	
 	<animation>
+		<type>material</type>
+		<object-name>MsgLight</object-name>
+		<emission>
+			<red>1.0</red>
+			<green>1.0</green>
+			<blue>1.0</blue>
+			<factor-prop>systems/lighting/annunciator-brightness</factor-prop>
+		</emission>
+	</animation>
+	
+	<animation>
 		<type>select</type>
 		<object-name>MsgLight</object-name>
 		<condition>

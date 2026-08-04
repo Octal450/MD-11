@@ -21,6 +21,8 @@ var variousReset = func() {
 	pts.Controls.Lighting.turnoffLightL.setBoolValue(0);
 	pts.Controls.Lighting.turnoffLightR.setBoolValue(0);
 	pts.Controls.Switches.adgHandle.setValue(0);
+	pts.Controls.Switches.annunDim.setBoolValue(0);
+	pts.Controls.Switches.annunTest.setBoolValue(0);
 	pts.Controls.Switches.gpws.setValue(0);
 	pts.Controls.Switches.gpwsCover.setBoolValue(0);
 	pts.Controls.Switches.minimumsMode.setBoolValue(0);

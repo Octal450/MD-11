@@ -45,6 +45,17 @@
 	</animation>
 	
 	<animation>
+		<type>material</type>
+		<object-name>Lights</object-name>
+		<emission>
+			<red>1.0</red>
+			<green>1.0</green>
+			<blue>1.0</blue>
+			<factor-prop>systems/lighting/annunciator-brightness</factor-prop>
+		</emission>
+	</animation>
+	
+	<animation>
 		<type>select</type>
 		<object-name>Display</object-name>
 		<object-name>Lights</object-name>

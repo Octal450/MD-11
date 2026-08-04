@@ -1837,6 +1837,16 @@
 		
 		<switch name="/systems/gear/lights/brake-parking">
 			<default value="0"/>
+			<test logic="AND" value="0.6">
+				/controls/switches/annun-dim eq 1
+				/systems/fcs/brakes/parking-actuator ge 0.5
+				<test logic="OR">
+					/systems/fcs/brakes/left-actuator ge 0.5
+					/systems/fcs/brakes/right-actuator ge 0.5
+					/systems/fcs/brakes/center-actuator ge 0.5
+				</test>
+				/systems/electrical/bus/dc-bat ge 24
+			</test>
 			<test logic="AND" value="1">
 				/systems/fcs/brakes/parking-actuator ge 0.5
 				<test logic="OR">
