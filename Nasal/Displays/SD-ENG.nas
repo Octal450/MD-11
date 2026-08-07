@@ -282,7 +282,7 @@ var CanvasEngDials = {
 			me["OilTemp1"].setText(sprintf("%d", math.round(Value.Eng.oilTemp[0])));
 			me["OilTemp1"].show();
 			
-			me["OilTemp1_needle"].setRotation((-45 + (Value.Eng.oilTemp[0] / 190 * 180)) * D2R);
+			me["OilTemp1_needle"].setRotation(math.clamp((-45 + (Value.Eng.oilTemp[0] / 190 * 180)), -45, 135) * D2R);
 			me["OilTemp1_needle"].show();
 			
 			if (Value.Eng.type == "PW") {
@@ -310,7 +310,7 @@ var CanvasEngDials = {
 			me["OilTemp2"].setText(sprintf("%d", math.round(Value.Eng.oilTemp[1])));
 			me["OilTemp2"].show();
 			
-			me["OilTemp2_needle"].setRotation((-45 + (Value.Eng.oilTemp[1] / 190 * 180)) * D2R);
+			me["OilTemp2_needle"].setRotation(math.clamp((-45 + (Value.Eng.oilTemp[1] / 190 * 180)), -45, 135) * D2R);
 			me["OilTemp2_needle"].show();
 			
 			if (Value.Eng.type == "PW") {
@@ -338,7 +338,7 @@ var CanvasEngDials = {
 			me["OilTemp3"].setText(sprintf("%d", math.round(Value.Eng.oilTemp[2])));
 			me["OilTemp3"].show();
 			
-			me["OilTemp3_needle"].setRotation((-45 + (Value.Eng.oilTemp[2] / 190 * 180)) * D2R);
+			me["OilTemp3_needle"].setRotation(math.clamp((-45 + (Value.Eng.oilTemp[2] / 190 * 180)), -45, 135) * D2R);
 			me["OilTemp3_needle"].show();
 			
 			if (Value.Eng.type == "PW") {
@@ -480,7 +480,7 @@ var CanvasEngTapes = {
 			me["OilTemp1"].setText(sprintf("%d", math.round(Value.Eng.oilTemp[0])));
 			me["OilTemp1"].show();
 			
-			me["OilTemp1_bar"].setTranslation(0, Value.Eng.oilTemp[0] / 190 * -251);
+			me["OilTemp1_bar"].setTranslation(0, math.clamp(Value.Eng.oilTemp[0] / 190 * -251, -251, 0));
 			me["OilTemp1_bar"].show();
 			
 			if (Value.Eng.type == "PW") {
@@ -508,7 +508,7 @@ var CanvasEngTapes = {
 			me["OilTemp2"].setText(sprintf("%d", math.round(Value.Eng.oilTemp[1])));
 			me["OilTemp2"].show();
 			
-			me["OilTemp2_bar"].setTranslation(0, Value.Eng.oilTemp[1] / 190 * -251);
+			me["OilTemp2_bar"].setTranslation(0, math.clamp(Value.Eng.oilTemp[1] / 190 * -251, -251, 0));
 			me["OilTemp2_bar"].show();
 			
 			if (Value.Eng.type == "PW") {
@@ -536,7 +536,7 @@ var CanvasEngTapes = {
 			me["OilTemp3"].setText(sprintf("%d", math.round(Value.Eng.oilTemp[2])));
 			me["OilTemp3"].show();
 			
-			me["OilTemp3_bar"].setTranslation(0, Value.Eng.oilTemp[2] / 190 * -251);
+			me["OilTemp3_bar"].setTranslation(0, math.clamp(Value.Eng.oilTemp[2] / 190 * -251, -251, 0));
 			me["OilTemp3_bar"].show();
 			
 			if (Value.Eng.type == "PW") {
