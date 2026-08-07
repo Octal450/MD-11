@@ -1,5 +1,4 @@
 # McDonnell Douglas MD-11 Property Tree Setup
-# McDonnell Douglas MD-11 Property Tree Setup
 # Copyright (c) 2026 Josh Davidson (Octal450)
 # Nodes organized like property tree, except when lots of identical (example: Gear wow), where vectors are used to make it easier
 # Anything that says Temp is set by another file to avoid multiple getValue calls
