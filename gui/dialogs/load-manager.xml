@@ -10,7 +10,6 @@
 	
 	<nasal>
 		<open>
-			setprop("/sim/gui/dialogs/load-manager/title", getprop("/sim/aircraft") ~ " Load Manager");
 			core.LoadManager.getLoad(); # Populate with current load
 			
 			setprop("/sim/gui/dialogs/load-manager/mtow-lbs", sprintf("%d", math.round(getprop("/limits/mass-and-balance/maximum-takeoff-mass-lbs"))) ~ " lbs");
@@ -58,9 +57,7 @@
 		
 		<text>
 			<halign>left</halign>
-			<label>9</label>
-			<live>true</live>
-			<property>/sim/gui/dialogs/load-manager/title</property>
+			<label>McDonnell Douglas MD-11 Load Manager</label>
 		</text>
 		
 		<button>
