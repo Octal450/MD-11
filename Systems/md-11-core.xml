@@ -745,6 +745,83 @@
 				</table>
 			</function>
 		</fcs_function>
+		
+		<!-- Opt/Max Flight Levels -->
+		<pure_gain name="/systems/load-manager/gw-kg">
+			<input>/systems/load-manager/gw-lbs</input>
+			<gain>0.45359237</gain>
+		</pure_gain>
+		
+		<fcs_function name="/systems/load-manager/opt-fl">
+			<function>
+				<table>
+					<independentVar lookup="row">/systems/load-manager/gw-kg</independentVar>
+					<tableData>
+						150487  430.000
+						154970  424.246
+						160031  417.886
+						165164  411.238
+						170080  404.589
+						174852  399.097
+						179985  392.882
+						185118  386.667
+						190034  380.741
+						194951  375.682
+						200084  370.334
+						205072  364.987
+						210061  359.639
+						215267  354.147
+						220038  349.377
+						224882  345.185
+						230088  340.560
+						235149  335.791
+						240137  331.021
+						245126  326.540
+						250042  322.493
+						255103  318.591
+						260092  315.122
+						265008  311.075
+						270069  307.028
+						275274  302.981
+						280000  299.000
+					</tableData>
+				</table>
+			</function>
+		</fcs_function>
+		
+		<fcs_function name="/systems/load-manager/max-fl">
+			<function>
+				<table>
+					<independentVar lookup="row">/systems/load-manager/gw-kg</independentVar>
+					<tableData>
+						167639  430.000
+						170163  426.877
+						174936  421.138
+						179997  414.634
+						185118  408.347
+						190034  402.566
+						194951  396.784
+						200084  391.003
+						205072  385.800
+						210061  380.741
+						215267  375.538
+						220038  371.057
+						225027  366.143
+						230088  360.073
+						235149  357.037
+						240137  352.990
+						245126  348.510
+						250042  344.318
+						255175  340.127
+						260092  336.080
+						265008  332.033
+						270069  327.986
+						275202  324.083
+						280000  320.000
+					</tableData>
+				</table>
+			</function>
+		</fcs_function>
 	
 	</channel>
 

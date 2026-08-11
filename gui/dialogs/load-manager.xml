@@ -15,6 +15,7 @@
 			setprop("/sim/gui/dialogs/load-manager/mtow-lbs", sprintf("%d", math.round(getprop("/limits/mass-and-balance/maximum-takeoff-mass-lbs"))) ~ " lbs");
 			setprop("/sim/gui/dialogs/load-manager/mlw-lbs", sprintf("%d", math.round(getprop("/limits/mass-and-balance/maximum-landing-mass-lbs"))) ~ " lbs");
 			setprop("/sim/gui/dialogs/load-manager/mzfw-lbs", sprintf("%d", math.round(getprop("/limits/mass-and-balance/maximum-zero-fuel-mass-lbs"))) ~ " lbs");
+			setprop("/sim/gui/dialogs/load-manager/opt-max-fl", "FL" ~ sprintf("%d", math.round(getprop("/systems/load-manager/opt-fl"))) ~ "/FL" ~ sprintf("%d", math.round(getprop("/systems/load-manager/max-fl"))));
 			
 			setprop("/sim/gui/dialogs/load-manager/gw-lbs", sprintf("%d", math.round(getprop("/systems/load-manager/gw-lbs"))) ~ " lbs");
 			setprop("/sim/gui/dialogs/load-manager/zfw-lbs", sprintf("%d", math.round(getprop("/systems/load-manager/zfw-lbs"))) ~ " lbs");
@@ -28,6 +29,8 @@
 			setprop("/sim/gui/dialogs/load-manager/zfwcg-fwd-limit", sprintf("%4.1f", math.round(getprop("/systems/load-manager/zfwcg-fwd-limit"), 0.1)) ~ "% MAC");
 			
 			var loop = maketimer(0.1, func() {
+				setprop("/sim/gui/dialogs/load-manager/opt-max-fl", "FL" ~ sprintf("%d", math.round(getprop("/systems/load-manager/opt-fl"))) ~ "/FL" ~ sprintf("%d", math.round(getprop("/systems/load-manager/max-fl"))));
+				
 				setprop("/sim/gui/dialogs/load-manager/gw-lbs", sprintf("%d", math.round(getprop("/systems/load-manager/gw-lbs"))) ~ " lbs");
 				setprop("/sim/gui/dialogs/load-manager/zfw-lbs", sprintf("%d", math.round(getprop("/systems/load-manager/zfw-lbs"))) ~ " lbs");
 				
@@ -1414,7 +1417,7 @@
 					<stretch>true</stretch>
 				</hrule>
 				<text>
-					<label>Maximum Weights</label>
+					<label>Weight and Altitude Limits</label>
 				</text>
 				<hrule>
 					<stretch>true</stretch>
@@ -1476,6 +1479,22 @@
 					<label>9999999999</label>
 					<live>true</live>
 					<property>/sim/gui/dialogs/load-manager/mzfw-lbs</property>
+				</text>
+				
+				<text>
+					<row>1</row>
+					<col>2</col>
+					<halign>right</halign>
+					<label>Opt/Max Cruise:</label>
+				</text>
+				
+				<text>
+					<row>1</row>
+					<col>3</col>
+					<halign>center</halign>
+					<label>9999999999</label>
+					<live>true</live>
+					<property>/sim/gui/dialogs/load-manager/opt-max-fl</property>
 				</text>
 			</group>
 			
