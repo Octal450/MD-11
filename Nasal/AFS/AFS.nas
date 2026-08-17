@@ -1519,7 +1519,7 @@ var ITAF = {
 			Radio.locDeflTemp[Input.radioSelTemp] = Radio.locDefl[Input.radioSelTemp].getValue();
 			Radio.signalQualityTemp[Input.radioSelTemp] = Radio.signalQuality[Input.radioSelTemp].getValue();
 			if (abs(Radio.locDeflTemp[Input.radioSelTemp]) <= 0.95 and Radio.locDeflTemp[Input.radioSelTemp] != 0 and Radio.signalQualityTemp[Input.radioSelTemp] >= 0.99) {
-				if (abs(Radio.locDeflTemp[Input.radioSelTemp]) <= 0.25) {
+				if (abs(Radio.locDeflTemp[Input.radioSelTemp]) <= 0.5) {
 					me.activateLoc();
 				} else if (Radio.locDeflTemp[Input.radioSelTemp] >= 0 and Internal.navHeadingErrorDegTemp[Input.radioSelTemp] <= 0) {
 					me.activateLoc();
