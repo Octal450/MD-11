@@ -49,6 +49,11 @@ var Value = { # Local store of commonly accessed values
 var CORE = {
 	init: func(t = 0) {
 		EditFlightData.reset();
+		if (t == 1) {
+			FPController.reset();
+		} else {
+			FPController.init();
+		}
 		me.resetPhase();
 		Internal.request[0] = 1;
 		Internal.request[1] = 1;
@@ -99,6 +104,7 @@ var CORE = {
 		}
 		
 		EditFlightData.loop();
+		FPController.loop();
 		
 		# Flight Phases
 		if (Internal.phase == 0) { # Preflight

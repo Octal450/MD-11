@@ -185,6 +185,11 @@
 	
 	<channel name="Execrate 8" execrate="8">
 		
+		<switch name="/systems/core/dbmr">
+			<default value="0"/>
+			<output>/sim/menubar/default/menu[3]/enabled</output>
+		</switch>
+		
 		<switch name="/systems/engines/any-engine-on">
 			<default value="0"/>
 			<test logic="OR" value="1">

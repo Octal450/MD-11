@@ -314,7 +314,7 @@ var Init = {
 				if (size(me.scratchpadSplit) == 2) {
 					if (unit[me.id].stringLengthInRange(3, 4, me.scratchpadSplit[0]) and unit[me.id].stringLengthInRange(3, 4, me.scratchpadSplit[1])) {
 						if (size(findAirportsByICAO(me.scratchpadSplit[0])) == 1 and size(findAirportsByICAO(me.scratchpadSplit[1])) == 1) {
-							fms.EditFlightData.newFlightplan(me.scratchpadSplit[0], me.scratchpadSplit[1]);
+							fms.EditFlightData.newFlightPlan(me.scratchpadSplit[0], me.scratchpadSplit[1]);
 							unit[me.id].scratchpadClear();
 							unit[me.id].setPage("compRte");
 						} else {

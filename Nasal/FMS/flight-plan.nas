@@ -1,0 +1,127 @@
+# McDonnell Douglas MD-11 FMS
+# Copyright (c) 2026 Josh Davidson (Octal450)
+
+var RouteManager = {
+	active: props.globals.getNode("/autopilot/route-manager/active"),
+	alternateAirport: props.globals.getNode("/autopilot/route-manager/alternate/airport"),
+	cruiseAlt: props.globals.getNode("/autopilot/route-manager/cruise/altitude-ft"),
+	currentWp: props.globals.getNode("/autopilot/route-manager/current-wp"),
+	departureAirport: props.globals.getNode("/autopilot/route-manager/departure/airport"),
+	destinationAirport: props.globals.getNode("/autopilot/route-manager/destination/airport"),
+	distanceRemainingNm: props.globals.getNode("/autopilot/route-manager/distance-remaining-nm"),
+	num: props.globals.getNode("/autopilot/route-manager/route/num"),
+};
+
+var FPController = {
+	active: 0,
+	currentWp: 0,
+	gotWp: [nil, nil, nil],
+	num: 0,
+	plan: [createFlightplan(), createFlightplan(), createFlightplan(), nil], # 0 = Active, 1 = Temporary 1, 2 = Temporary 2, 3 = Company Route
+	temporaryActive: [0, 0],
+	init: func(noSetup = 0) {
+		me.temporaryActive[0] = 0;
+		me.temporaryActive[1] = 0;
+		me.clearPlan(0);
+		me.clearPlan(1);
+		me.clearPlan(2);
+		me.plan[0].activate();
+		if (!noSetup) me.insertPpos(0);
+		if (!noSetup) me.insertDiscontinuity(0, 1, 1);
+		me.activatePlan();
+	},
+	reset: func(noSetup = 0) {
+		me.init(noSetup);
+	},
+	loop: func() {
+		me.active = RouteManager.active.getBoolValue();
+		me.currentWp = RouteManager.currentWp.getValue();
+		me.num = RouteManager.num.getValue();
+		
+		if (RouteManager.num.getValue() > 0) {
+			me.setActiveWp(); # Keep active waypoint set properly
+			
+			if (!me.active) {
+				me.activatePlan(1);
+			}
+		}
+	},
+	activatePlan: func(noWpChange = 0) {
+		if (!noWpChange) {
+			me.setActiveWp();
+		}
+		RouteManager.active.setBoolValue(1);
+	},
+	clearPlan: func(n) {
+		me.plan[n].cleanPlan();
+	},
+	insertDiscontinuity: func(n, i, force = 0) {
+		if (force) {
+			me.plan[n].insertWP(createDiscontinuity(), i);
+			return;
+		}
+		
+		if (me.plan[n].getWP(i) != nil) { # WP i is not nil
+			if (me.plan[n].getWP(i - 1) != nil) { # WP i - 1 is also not nil
+				if (me.plan[n].getWP(i).wp_name != "DISCONTINUITY" and me.plan[n].getWP(i - 1).wp_name != "DISCONTINUITY") {
+					me.plan[n].insertWP(createDiscontinuity(), i);
+				}
+			} else { # WP i - 1 is nil
+				if (me.plan[n].getWP(i).wp_name != "DISCONTINUITY") {
+					me.plan[n].insertWP(createDiscontinuity(), i);
+				}
+			}
+		} else if (me.plan[n].getWP(i - 1) != nil) { # WP i is nil, WP i - 1 is not nil
+			if (me.plan[n].getWP(i - 1).wp_name != "DISCONTINUITY") {
+				me.plan[n].insertWP(createDiscontinuity(), i);
+			}
+		} else { # Both are nil - should never happen
+			print("FPController Error: Both WP i and WP i - 1 are nil, skipping discontinuity add");
+		}
+		
+		me.planChanged(n);
+	},
+	insertPpos: func(n, i = 0) {
+		me.plan[n].insertWP(createWP(geo.aircraft_position(), "PPOS"), i);
+		me.planChanged(n);
+	},
+	newPlan: func(depInfo, destInfo) { # Takes airportinfo objects
+		me.reset(1);
+		me.plan[0].departure = depInfo;
+		me.plan[0].destination = destInfo;
+		me.insertDiscontinuity(0, 1);
+	},
+	planChanged: func(n) {
+		# Do something?
+	},
+	setActiveWp: func() {
+		if (me.active) {
+			if (me.num >= 3) { # Case where there are at least 3 WPs
+				me.gotWp[0] = me.plan[0].getWP(0);
+				me.gotWp[1] = me.plan[0].getWP(1);
+				me.gotWp[2] = me.plan[0].getWP(2);
+				
+				if (me.gotWp[0] != nil and me.gotWp[1] != nil and me.gotWp[2] != nil) { # Wait for all to become populated
+					if (me.gotWp[1].id != "DISCONTINUITY") {
+						RouteManager.currentWp.setValue(1);
+					} else if (me.gotWp[2].id != "DISCONTINUITY") { # Shouldn't be but just in case
+						RouteManager.currentWp.setValue(2);
+					} else if (me.gotWp[0].id != "DISCONTINUITY") { # Shouldn't be but just in case
+						RouteManager.currentWp.setValue(0);
+					}
+				}
+			} else if (me.num == 2) { # Case where there are only 2 WPs
+				me.gotWp[0] = me.plan[0].getWP(0);
+				me.gotWp[1] = me.plan[0].getWP(1);
+				
+				if (me.gotWp[0] != nil and me.gotWp[1] != nil) { # Wait for all to become populated
+					if (me.gotWp[1].id != "DISCONTINUITY") {
+						RouteManager.currentWp.setValue(1);
+					} else if (me.gotWp[0].id != "DISCONTINUITY") { # Shouldn't be but just in case
+						RouteManager.currentWp.setValue(0);
+					}
+				}
+			}
+		}
+	},
+};

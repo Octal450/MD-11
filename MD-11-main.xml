@@ -213,30 +213,6 @@
 					</item>
 				</menu>
 				<menu n="103">
-					<label>Navigation</label>
-					<item>
-						<label>Route Manager</label>
-						<binding>
-							<command>dialog-show</command>
-							<dialog-name>route-manager</dialog-name>
-						</binding>
-					</item>
-					<item>
-						<label>Previous Waypoint</label>
-						<binding>
-							<command>nasal</command>
-							<script>setprop("/autopilot/route-manager/input", "@previous")</script>
-						</binding>
-					</item>
-					<item>
-						<label>Next Waypoint</label>
-						<binding>
-							<command>nasal</command>
-							<script>setprop("/autopilot/route-manager/input", "@next")</script>
-						</binding>
-					</item>
-				</menu>
-				<menu n="104">
 					<label>Documentation</label>
 					<item>
 						<label>Auto Flight and FCC</label>
@@ -2069,8 +2045,10 @@
 			<file>Aircraft/MD-11/Nasal/AFS/AFS-b.nas</file>
 		</afs>
 		<fms>
+			<file>Aircraft/MD-11/Nasal/FMS/delegates.nas</file>
 			<file>Aircraft/MD-11/Nasal/FMS/FMS.nas</file>
 			<file>Aircraft/MD-11/Nasal/FMS/flight-data.nas</file>
+			<file>Aircraft/MD-11/Nasal/FMS/flight-plan.nas</file>
 			<file>Aircraft/MD-11/Nasal/FMS/speeds.nas</file>
 		</fms>
 		<mcdu>

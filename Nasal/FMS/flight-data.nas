@@ -14,8 +14,10 @@ var FlightData = {
 		m.airportAltn = "";
 		m.airportFrom = "";
 		m.airportFromAlt = -2000;
+		m.airportFromInfo = nil;
 		m.airportTo = "";
 		m.airportToAlt = -2000;
+		m.airportToInfo = nil;
 		m.blockFuelLbs = 0;
 		m.canCalcVspeeds = 0;
 		m.climbSpeedEditKts = 0;
@@ -103,17 +105,6 @@ var FlightDataOut = {
 	zfwLbs: props.globals.getNode("/systems/fms/flight-data/zfw-lbs"),
 };
 
-var RouteManager = {
-	active: props.globals.getNode("/autopilot/route-manager/active"),
-	alternateAirport: props.globals.getNode("/autopilot/route-manager/alternate/airport"),
-	cruiseAlt: props.globals.getNode("/autopilot/route-manager/cruise/altitude-ft"),
-	currentWp: props.globals.getNode("/autopilot/route-manager/current-wp"),
-	departureAirport: props.globals.getNode("/autopilot/route-manager/departure/airport"),
-	destinationAirport: props.globals.getNode("/autopilot/route-manager/destination/airport"),
-	distanceRemainingNm: props.globals.getNode("/autopilot/route-manager/distance-remaining-nm"),
-	num: props.globals.getNode("/autopilot/route-manager/route/num"),
-};
-
 var Value = { # Values used for internal checking, do not access elsewhere
 	togw: 0,
 	zfw: 0,
@@ -124,10 +115,6 @@ var EditFlightData = {
 	loop: func() {
 		# Status Sync
 		if (flightData.airportTo == "") {
-			if (Value.active) {
-				flightplan().cleanPlan();
-				gui.popupTip("You need to initialize the MCDU before a route can be activated");
-			}
 			systems.FUEL.tankFuelManagement.setBoolValue(0);
 		} else {
 			systems.FUEL.tankFuelManagement.setBoolValue(1);
@@ -217,14 +204,10 @@ var EditFlightData = {
 		}
 	},
 	reset: func() {
-		# Reset Route Manager
-		flightplan().cleanPlan(); # Clear List function in Route Manager
-		RouteManager.alternateAirport.setValue("");
-		RouteManager.cruiseAlt.setValue(0);
-		RouteManager.departureAirport.setValue("");
-		RouteManager.destinationAirport.setValue("");
+		# Clear flight plans
+		FPController.reset();
 		
-		# Clear FlightData
+		# Clear flight data
 		flightData.reset();
 		me.writeOut();
 	},
@@ -258,10 +241,7 @@ var EditFlightData = {
 	},
 	insertAlternate: func(aprt) { # Assumes validation is already done
 		flightData.airportAltn = aprt;
-		RouteManager.alternateAirport.setValue(aprt);
-		if (RouteManager.currentWp.getValue() == -1) { # This fixes a weird issue where the Route Manager sets it to -1
-			RouteManager.currentWp.setValue(0);
-		}
+		# TODO: Fix this
 	},
 	insertBlockFuel: func(block) { # Recalculate TOGW
 		if (flightData.zfwLbs > 0) {
@@ -281,29 +261,30 @@ var EditFlightData = {
 		}
 	},
 	insertCoRte: func(file) { # This behavior isn't 100% right, needs the confirmation page before inserting, but it will do for now
-		flightplan().cleanPlan(); # Clear List function in Route Manager
-		
-		if (fgcommand("load-flightplan", props.Node.new({"path": getprop("/sim/fg-home/") ~ "/Export/" ~ file ~ ".gpx"}))) { # Try GPX
-			flightData.coRte = file;
-		} else if (fgcommand("load-flightplan", props.Node.new({"path": getprop("/sim/fg-home/") ~ "/Export/" ~ file ~ ".fgfp"}))) { # Try FGFP
-			flightData.coRte = file;
-		} else {
-			if (flightData.airportFrom != "" and flightData.airportTo != "") { # Re-initialize what's entered if it can't find one
-				me.newFlightplan(flightData.airportFrom, flightData.airportTo);
-			}
-			
-			return 1;
-		}
-		
-		if (size(RouteManager.departureAirport.getValue()) < 3 or size(RouteManager.destinationAirport.getValue()) < 3) {
-			if (flightData.airportFrom != "" and flightData.airportTo != "") { # Re-initialize what's entered if it can't find one
-				me.newFlightplan(flightData.airportFrom, flightData.airportTo);
-			}
-			
-			return 2;
-		}
-		
-		me.newFlightplan(RouteManager.departureAirport.getValue(), RouteManager.destinationAirport.getValue(), 1);
+		#flightplan().cleanPlan(); # Clear List function in Route Manager
+		#
+		#if (fgcommand("load-flightplan", props.Node.new({"path": getprop("/sim/fg-home/") ~ "/Export/" ~ file ~ ".gpx"}))) { # Try GPX
+		#	flightData.coRte = file;
+		#} else if (fgcommand("load-flightplan", props.Node.new({"path": getprop("/sim/fg-home/") ~ "/Export/" ~ file ~ ".fgfp"}))) { # Try FGFP
+		#	flightData.coRte = file;
+		#} else {
+		#	if (flightData.airportFrom != "" and flightData.airportTo != "") { # Re-initialize what's entered if it can't find one
+		#		me.newFlightPlan(flightData.airportFrom, flightData.airportTo);
+		#	}
+		#	
+		#	return 1;
+		#}
+		#
+		#if (size(RouteManager.departureAirport.getValue()) < 3 or size(RouteManager.destinationAirport.getValue()) < 3) {
+		#	if (flightData.airportFrom != "" and flightData.airportTo != "") { # Re-initialize what's entered if it can't find one
+		#		me.newFlightPlan(flightData.airportFrom, flightData.airportTo);
+		#	}
+		#	
+		#	return 2;
+		#}
+		#
+		#me.newFlightPlan(RouteManager.departureAirport.getValue(), RouteManager.destinationAirport.getValue(), 1);
+		# TODO: Needs redoing
 		return 0;
 	},
 	insertCruiseFl: func(s1, s2 = 0, s3 = 0, s4 = 0, s5 = 0, s6 = 0) {
@@ -311,7 +292,6 @@ var EditFlightData = {
 		flightData.cruiseAltAll = [s1 * 100, s2 * 100, s3 * 100, s4 * 100, s5 * 100, s6 * 100];
 		flightData.cruiseFl = int(s1);
 		flightData.cruiseFlAll = [int(s1), int(s2), int(s3), int(s4), int(s5), int(s6)];
-		RouteManager.cruiseAlt.setValue(s1 * 100);
 		
 		if (s1 == 0) {
 			flightData.cruiseTemp = nil;
@@ -410,33 +390,23 @@ var EditFlightData = {
 			return 1;
 		}
 	},
-	newFlightplan: func(from, to, skipRM = 0) { # Assumes validation is already done
+	newFlightPlan: func(from, to) { # Assumes validation is already done
 		if (pts.Position.wow.getBoolValue()) {
 			CORE.resetPhase();
 		}
 		
-		if (!skipRM) {
-			flightplan().cleanPlan(); # Clear List function in Route Manager
-			flightData.coRte = "";
-		}
-		
+		flightData.coRte = "";
 		flightData.airportFrom = from;
 		flightData.airportTo = to;
 		
-		if (!skipRM) {
-			RouteManager.departureAirport.setValue(from);
-			RouteManager.destinationAirport.setValue(to);
-		}
+		flightData.airportFromInfo = airportinfo(flightData.airportFrom);
+		flightData.airportToInfo = airportinfo(flightData.airportTo);
 		
-		if (!RouteManager.active.getBoolValue()) {
-			fgcommand("activate-flightplan", props.Node.new({"activate": 1}));
-		}
-		if (RouteManager.currentWp.getValue() == -1) { # This fixes a weird issue where the Route Manager sets it to -1
-			RouteManager.currentWp.setValue(1);
-		}
+		# Reset and create a new plan
+		FPController.newPlan(flightData.airportFromInfo, flightData.airportToInfo);
 		
-		flightData.airportFromAlt = math.round(airportinfo(flightData.airportFrom).elevation * M2FT);
-		flightData.airportToAlt = math.round(airportinfo(flightData.airportTo).elevation * M2FT);
+		flightData.airportFromAlt = math.round(flightData.airportFromInfo.elevation * M2FT);
+		flightData.airportToAlt = math.round(flightData.airportToInfo.elevation * M2FT);
 		me.insertToAlts();
 		
 		me.resetVspeeds();
@@ -483,7 +453,7 @@ var EditFlightData = {
 		flightData.zfwLbs = math.round(pts.Fdm.JSBSim.Inertia.zfwLbs.getValue() / 1000, 0.1);
 	},
 	setNpsPhnlTest: func() { # For developer use/testing ONLY!
-		me.newFlightplan("NPS", "PHNL");
+		me.newFlightPlan("NPS", "PHNL");
 		me.insertCruiseFl(100);
 		flightData.costIndex = 30;
 		flightData.oatC = 20;
