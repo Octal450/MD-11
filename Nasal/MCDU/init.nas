@@ -204,6 +204,8 @@ var Init = {
 			me.Display.R6 = "---";
 		}
 	},
+	arrowKey: func(d) {
+	},
 	softKey: func(k) {
 		me.scratchpad = unit[me.id].scratchpad;
 		me.scratchpadState = unit[me.id].scratchpadState();
@@ -555,6 +557,8 @@ var Init2 = {
 			me.Display.R6 = "__._";
 		}
 	},
+	arrowKey: func(d) {
+	},
 	softKey: func(k) {
 		me.scratchpad = unit[me.id].scratchpad;
 		me.scratchpadState = unit[me.id].scratchpadState();
@@ -789,6 +793,8 @@ var Init3 = {
 	},
 	loop: func() {
 	},
+	arrowKey: func(d) {
+	},
 	softKey: func(k) {
 		me.scratchpad = unit[me.id].scratchpad;
 		me.scratchpadState = unit[me.id].scratchpadState();
@@ -886,6 +892,8 @@ var CompRte = {
 		}
 	},
 	loop: func() {
+	},
+	arrowKey: func(d) {
 	},
 	softKey: func(k) {
 		if (k == "r6") {

@@ -197,6 +197,8 @@ var NavRadio = {
 			me.Display.L5 = "";
 		}
 	},
+	arrowKey: func(d) {
+	},
 	softKey: func(k) {
 		me.scratchpad = unit[me.id].scratchpad;
 		me.scratchpadState = unit[me.id].scratchpadState();

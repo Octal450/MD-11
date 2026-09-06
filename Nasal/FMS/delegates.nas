@@ -11,7 +11,6 @@ var CustomRouteManagerDelegate = {
 		m.flightplan = fp;
 		return m;
 	},
-	
 	departureChanged: func
 	{
 		#logprint(LOG_INFO, 'saw departure changed');

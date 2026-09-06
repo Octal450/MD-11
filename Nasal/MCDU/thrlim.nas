@@ -298,6 +298,8 @@ var ThrLim = {
 			me.Display.R3 = "";
 		}
 	},
+	arrowKey: func(d) {
+	},
 	softKey: func(k) {
 		me.scratchpad = unit[me.id].scratchpad;
 		me.scratchpadState = unit[me.id].scratchpadState();

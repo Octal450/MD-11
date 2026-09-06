@@ -87,6 +87,8 @@ var Fallback = {
 	},
 	loop: func() {
 	},
+	arrowKey: func(d) {
+	},
 	softKey: func(k) {
 		unit[me.id].setMessage("NOT ALLOWED");
 	},

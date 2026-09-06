@@ -12,14 +12,16 @@ var RouteManager = {
 	num: props.globals.getNode("/autopilot/route-manager/route/num"),
 };
 
+# Flight plan controller
 var FPController = {
 	active: 0,
 	currentWp: 0,
 	gotWp: [nil, nil, nil],
-	num: 0,
+	size: [0, 0, 0, 0],
 	plan: [createFlightplan(), createFlightplan(), createFlightplan(), nil], # 0 = Active, 1 = Temporary 1, 2 = Temporary 2, 3 = Company Route
 	temporaryActive: [0, 0],
 	init: func(noSetup = 0) {
+		FPList.init();
 		me.temporaryActive[0] = 0;
 		me.temporaryActive[1] = 0;
 		me.clearPlan(0);
@@ -29,6 +31,7 @@ var FPController = {
 		if (!noSetup) me.insertPpos(0);
 		if (!noSetup) me.insertDiscontinuity(0, 1, 1);
 		me.activatePlan();
+		me.planChanged(0);
 	},
 	reset: func(noSetup = 0) {
 		me.init(noSetup);
@@ -36,9 +39,9 @@ var FPController = {
 	loop: func() {
 		me.active = RouteManager.active.getBoolValue();
 		me.currentWp = RouteManager.currentWp.getValue();
-		me.num = RouteManager.num.getValue();
+		me.size[0] = me.plan[0].getPlanSize();
 		
-		if (RouteManager.num.getValue() > 0) {
+		if (me.size[0] > 0) {
 			me.setActiveWp(); # Keep active waypoint set properly
 			
 			if (!me.active) {
@@ -54,6 +57,7 @@ var FPController = {
 	},
 	clearPlan: func(n) {
 		me.plan[n].cleanPlan();
+		me.planChanged(n);
 	},
 	insertDiscontinuity: func(n, i, force = 0) {
 		if (force) {
@@ -92,11 +96,11 @@ var FPController = {
 		me.insertDiscontinuity(0, 1);
 	},
 	planChanged: func(n) {
-		# Do something?
+		FPList.rebuildList(n);
 	},
 	setActiveWp: func() {
 		if (me.active) {
-			if (me.num >= 3) { # Case where there are at least 3 WPs
+			if (me.size[0] >= 3) { # Case where there are at least 3 WPs
 				me.gotWp[0] = me.plan[0].getWP(0);
 				me.gotWp[1] = me.plan[0].getWP(1);
 				me.gotWp[2] = me.plan[0].getWP(2);
@@ -110,7 +114,7 @@ var FPController = {
 						RouteManager.currentWp.setValue(0);
 					}
 				}
-			} else if (me.num == 2) { # Case where there are only 2 WPs
+			} else if (me.size[0] == 2) { # Case where there are only 2 WPs
 				me.gotWp[0] = me.plan[0].getWP(0);
 				me.gotWp[1] = me.plan[0].getWP(1);
 				
@@ -123,5 +127,61 @@ var FPController = {
 				}
 			}
 		}
+	},
+};
+
+# Flight plan data management
+var StaticItem = {
+	new: func(text) {
+		var m = {parents: [StaticItem]};
+		
+		if (text == "fplnEnd") {
+			m.text = "------END OF F-PLN------";
+		} else if (text == "altnFplnEnd") {
+			m.text = "---END OF ALTN F-PLN----";
+		} else {
+			me.text = text;
+		}
+		m.type = "static";
+		
+		return m;
+	},
+};
+
+var WPItem = {
+	new: func(wp) {
+		var m = {parents: [WPItem]};
+		
+		m.index = wp.index;
+		m.id = wp.wp_name;
+		m.parent = wp.wp_parent;
+		m.type = "wp";
+		
+		return m;
+	},
+};
+
+var FPList = {
+	list: [std.Vector.new(), std.Vector.new(), std.Vector.new(), std.Vector.new()],
+	size: 0,
+	init: func() {
+		me.clearList(0);
+		me.clearList(1);
+		me.clearList(2);
+		me.clearList(3);
+	},
+	clearList: func(n) {
+		me.list[n].clear();
+	},
+	rebuildList: func(n) {
+		me.clearList(n);
+		me.size = FPController.plan[n].getPlanSize();
+		
+		for (var i = 0; i < me.size; i += 1) {
+			me.list[n].append(WPItem.new(FPController.plan[n].getWP(i)));
+		}
+		
+		me.list[n].append(StaticItem.new("fplnEnd"));
+		me.list[n].append(StaticItem.new("altnFplnEnd"));
 	},
 };

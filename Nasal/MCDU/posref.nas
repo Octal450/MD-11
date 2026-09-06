@@ -144,6 +144,8 @@ var PosRef = {
 			me.Display.L2 = "-----.-/------.-";
 		}
 	},
+	arrowKey: func(d) {
+	},
 	softKey: func(k) {
 		me.scratchpadState = unit[me.id].scratchpadState();
 		
@@ -320,6 +322,8 @@ var IrsGnsPos = {
 		me.Display.L4 = me.Value.positionString;
 		me.Display.L5 = me.Value.positionString;
 	},
+	arrowKey: func(d) {
+	},
 	softKey: func(k) {
 		if (k == "r6") {
 			if (me.fromPage == "init") {
@@ -451,6 +455,8 @@ var IrsStatus = {
 			me.Display.C3 = " -";
 			me.Display.R3 = "- ";
 		}
+	},
+	arrowKey: func(d) {
 	},
 	softKey: func(k) {
 		if (k == "r6") {

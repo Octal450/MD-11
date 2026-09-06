@@ -31,6 +31,7 @@ var MCDU = {
 			closestAirports: ClosestAirports.new(n),
 			compRte: CompRte.new(n),
 			fallback: Fallback.new(n),
+			fpln: Fpln.new(n),
 			init: Init.new(n),
 			init2: Init2.new(n),
 			init3: Init3.new(n),
@@ -152,7 +153,7 @@ var MCDU = {
 		}
 		
 		if (!me.Blink.active) {
-			# Do cool up/down stuff here
+			me.page.arrowKey(d);
 		} else {
 			me.setMessage("BUTTON PUSH IGNORED");
 		}

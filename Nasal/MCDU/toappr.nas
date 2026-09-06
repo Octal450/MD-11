@@ -291,6 +291,8 @@ var Takeoff = {
 			me.Display.RFont[5] = FONT.small;
 		}
 	},
+	arrowKey: func(d) {
+	},
 	softKey: func(k) {
 		me.scratchpad = unit[me.id].scratchpad;
 		me.scratchpadState = unit[me.id].scratchpadState();
@@ -760,6 +762,8 @@ var Approach = {
 			me.Display.L4 = "35/LAND";
 			me.Display.L6 = "*50/LAND";
 		}
+	},
+	arrowKey: func(d) {
 	},
 	softKey: func(k) {
 		me.scratchpad = unit[me.id].scratchpad;

@@ -163,6 +163,8 @@ var ClosestAirports = {
 			me.Display.C5 = sprintf("%03.0fg/%d", math.round(me.Value.cdVector[4][0] - me.Value.magVar), math.round(me.Value.cdVector[4][1]));
 		}
 	},
+	arrowKey: func(d) {
+	},
 	softKey: func(k) {
 		me.scratchpad = unit[me.id].scratchpad;
 		me.scratchpadState = unit[me.id].scratchpadState();

@@ -42,7 +42,7 @@ var Value = { # Local store of commonly accessed values
 	vertText: 0,
 	wow: 0,
 	wow0: 0,
-	wpNum: 0,
+	wpSize: 0,
 };
 
 # Logic
@@ -81,7 +81,9 @@ var CORE = {
 		pts.Instrumentation.Nav.Radials.selectedDeg[2].setValue(-1);
 	},
 	loop: func() {
-		Value.active = RouteManager.active.getBoolValue();
+		FPController.loop();
+		
+		Value.active = FPController.active;
 		Value.afsAlt = afs.Internal.alt.getValue();
 		Value.asiKts = math.max(pts.Instrumentation.AirspeedIndicator.indicatedSpeedKt.getValue(), 0.0001);
 		Value.asiMach = math.max(pts.Instrumentation.AirspeedIndicator.indicatedMach.getValue(), 0.0001);
@@ -95,7 +97,7 @@ var CORE = {
 		Value.vertText = afs.Text.vert.getValue();
 		Value.wow = pts.Position.wow.getBoolValue();
 		Value.wow0 = pts.Gear.wow[0].getBoolValue();
-		Value.wpNum = RouteManager.num.getValue();
+		Value.wpSize = FPController.size;
 		
 		if (systems.ENGINES.state[0].getValue() == 3 or systems.ENGINES.state[1].getValue() == 3 or systems.ENGINES.state[2].getValue() == 3) {
 			Internal.engOn = 1;
@@ -104,7 +106,6 @@ var CORE = {
 		}
 		
 		EditFlightData.loop();
-		FPController.loop();
 		
 		# Flight Phases
 		if (Internal.phase == 0) { # Preflight

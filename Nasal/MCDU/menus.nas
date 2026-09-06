@@ -116,6 +116,8 @@ var Menu = {
 			}
 		}
 	},
+	arrowKey: func(d) {
+	},
 	softKey: func(k) {
 		me.scratchpadState = unit[me.id].scratchpadState();
 		

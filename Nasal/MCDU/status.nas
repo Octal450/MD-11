@@ -127,6 +127,8 @@ var AcStatus = {
 		
 		me.Display.L6 = sprintf("%+2.1f", me.Common.perfFactor);
 	},
+	arrowKey: func(d) {
+	},
 	softKey: func(k) {
 		me.scratchpad = unit[me.id].scratchpad;
 		me.scratchpadState = unit[me.id].scratchpadState();
@@ -260,6 +262,8 @@ var AcStatus2 = {
 	setup: func() {
 	},
 	loop: func() {
+	},
+	arrowKey: func(d) {
 	},
 	softKey: func(k) {
 		if (k == "r6") {
@@ -399,6 +403,8 @@ var SensorStatus = {
 			me.Display.C1 = "";
 			me.Display.R1 = "";	
 		}
+	},
+	arrowKey: func(d) {
 	},
 	softKey: func(k) {
 		unit[me.id].setMessage("NOT ALLOWED");

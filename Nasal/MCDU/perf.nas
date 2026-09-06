@@ -506,6 +506,8 @@ var Perf = {
 			unit[me.id].setMessage("NOT ALLOWED");
 		}
 	},
+	arrowKey: func(d) {
+	},
 	softKey: func(k) {
 		me.scratchpad = unit[me.id].scratchpad;
 		me.scratchpadState = unit[me.id].scratchpadState();
@@ -901,6 +903,8 @@ var PreSel = {
 		} else {
 			unit[me.id].setMessage("NOT ALLOWED");
 		}
+	},
+	arrowKey: func(d) {
 	},
 	softKey: func(k) {
 		me.scratchpad = unit[me.id].scratchpad;
