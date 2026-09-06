@@ -10,11 +10,11 @@ var Fpln = {
 		m.Display = {
 			arrow: 1,
 			
-			CFont: [FONT.large, FONT.large, FONT.large, FONT.large, FONT.large, FONT.large],
+			CFont: [FONT.small, FONT.small, FONT.small, FONT.small, FONT.small, FONT.small],
 			CLTranslate: [-2, -2, -2, -2, -2, -2],
 			CTranslate: [-2, -2, -2, -2, -2, -2],
-			C1L: " ETE",
-			C1: "----",
+			C1L: "",
+			C1: "",
 			C2L: "",
 			C2: "",
 			C3L: "",
@@ -48,11 +48,11 @@ var Fpln = {
 			L5B: "",
 			L6B: "",
 			
-			pageNum: "1/2",
+			pageNum: "",
 			
-			RFont: [FONT.large, FONT.large, FONT.large, FONT.large, FONT.large, FONT.large],
-			R1L: "SPD   ALT ",
-			R1: "---/ -----",
+			RFont: [FONT.small, FONT.small, FONT.small, FONT.small, FONT.small, FONT.small],
+			R1L: "",
+			R1: "",
 			R2L: "",
 			R2: "",
 			R3L: "",
@@ -78,7 +78,7 @@ var Fpln = {
 		
 		m.group = "fmc";
 		m.name = "fpln";
-		m.nextPage = "none";
+		m.nextPage = "handled";
 		m.type = 1;
 		
 		m.Value = {
@@ -86,14 +86,31 @@ var Fpln = {
 			indexStart: 0,
 			indexStartCalc: 0,
 			list: [nil, nil, nil, nil, nil, nil],
+			page: 0,
 			size: 0,
+			wpIndex: 0,
 		};
 		
 		return m;
 	},
 	setup: func() {
+		me.Value.page = 0;
 	},
 	loop: func() {
+		if (me.Value.page) {
+			me.Display.C1L = "DIST";
+			me.Display.pageNum = "2/2";
+			me.Display.R1L = "gC   WIND  ";
+		} else {
+			if (fms.Internal.phase == 0) {
+				me.Display.C1L = " ETE";
+			} else {
+				me.Display.C1L = " ETO";
+			}
+			me.Display.pageNum = "1/2";
+			me.Display.R1L = "SPD   ALT ";
+		}
+		
 		me.Value.size = fms.FPList.list[0].size();
 		
 		if (me.Value.size <= 6) { # No scrolling if the list is too short
@@ -112,29 +129,54 @@ var Fpln = {
 			
 			if (me.Value.list[i] != nil) {
 				if (me.Value.list[i].type == "static") {
-					me.Display["L" ~ (i + 1)] = me.Value.list[i].text;
 					me.Display["L" ~ (i + 1) ~ "L"] = "";
+					me.Display["L" ~ (i + 1)] = me.Value.list[i].text;
+					
+					if (i > 0) { # C1L is fixed
+						me.Display["C" ~ (i + 1) ~ "L"] = "";
+					}
+					
 					me.Display["C" ~ (i + 1)] = "";
 					me.Display["R" ~ (i + 1)] = "";
 				} else if (me.Value.list[i].id == "DISCONTINUITY") {
-					me.Display["L" ~ (i + 1)] = "---F-PLN DISCONTINUITY--";
 					me.Display["L" ~ (i + 1) ~ "L"] = "";
+					me.Display["L" ~ (i + 1)] = "---F-PLN DISCONTINUITY--";
+					
+					if (i > 0) { # C1L is fixed
+						me.Display["C" ~ (i + 1) ~ "L"] = "";
+					}
+					
 					me.Display["C" ~ (i + 1)] = "";
 					me.Display["R" ~ (i + 1)] = "";
 				} else {
-					me.Display["L" ~ (i + 1)] = me.Value.list[i].id;
-					me.Display["C" ~ (i + 1)] = "----";
-					me.Display["R" ~ (i + 1)] = "---/ -----";
-					
-					if (fms.FPList.list[0].index(me.Value.list[i]) == 0) {
+					me.Value.wpIndex = fms.FPList.list[0].index(me.Value.list[i]);
+					if (me.Value.wpIndex == 0) {
 						me.Display["L" ~ (i + 1) ~ "L"] = " FROM";
 					} else {
 						me.Display["L" ~ (i + 1) ~ "L"] = "";
 					}
+					
+					if (i > 0) { # C1L is fixed
+						if (me.Value.page and me.Value.wpIndex != 0 and me.Value.list[i - 1].id != "DISCONTINUITY") { # i - 1 is safe as this doesn't run for i = 0
+							me.Display["C" ~ (i + 1) ~ "L"] = sprintf("%4d", math.round(me.Value.list[i].leg_distance));
+						} else {
+							me.Display["C" ~ (i + 1) ~ "L"] = "";
+						}
+					}
+					
+					me.Display["L" ~ (i + 1)] = me.Value.list[i].id;
+					if (me.Value.page) {
+						me.Display["C" ~ (i + 1)] = "";
+						
+						me.Display["R" ~ (i + 1)] = "-- ---g/---";
+					} else {
+						me.Display["C" ~ (i + 1)] = "----";
+						me.Display["R" ~ (i + 1)] = "---/ -----";
+					}
 				}
 			} else {
-				me.Display["L" ~ (i + 1)] = "";
 				me.Display["L" ~ (i + 1) ~ "L"] = "";
+				me.Display["L" ~ (i + 1)] = "";
 				me.Display["C" ~ (i + 1)] = "";
 				me.Display["R" ~ (i + 1)] = "";
 			}
@@ -150,6 +192,9 @@ var Fpln = {
 		} else {
 			me.Value.indexStart = 0;
 		}
+	},
+	nextPageKey: func() {
+		me.Value.page = !me.Value.page;
 	},
 	softKey: func(k) {
 		unit[me.id].setMessage("NOT ALLOWED");

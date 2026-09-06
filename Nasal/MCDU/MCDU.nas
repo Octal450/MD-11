@@ -210,7 +210,7 @@ var MCDU = {
 			me.blinkScreen();
 			
 			if (me.page.nextPage == "handled") { # Page handles it itself
-				me.page.nextPage(); 
+				me.page.nextPageKey(); 
 			} else if (me.page.nextPage != "none") { # Has next page
 				me.setPage(me.page.nextPage);
 			} else { # No next page

@@ -89,6 +89,10 @@ var FPController = {
 		me.plan[n].insertWP(createWP(geo.aircraft_position(), "PPOS"), i);
 		me.planChanged(n);
 	},
+	insertTp: func(n, i = 0) {
+		me.plan[n].insertWP(createWP(geo.aircraft_position(), "T-P"), i);
+		me.planChanged(n);
+	},
 	newPlan: func(depInfo, destInfo) { # Takes airportinfo objects
 		me.reset(1);
 		me.plan[0].departure = depInfo;
@@ -152,6 +156,8 @@ var WPItem = {
 	new: func(wp) {
 		var m = {parents: [WPItem]};
 		
+		m.leg_bearing = wp.leg_bearing;
+		m.leg_distance = wp.leg_distance;
 		m.index = wp.index;
 		m.id = wp.wp_name;
 		m.parent = wp.wp_parent;
