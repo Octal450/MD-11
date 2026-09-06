@@ -3,13 +3,8 @@
 
 var RouteManager = {
 	active: props.globals.getNode("/autopilot/route-manager/active"),
-	alternateAirport: props.globals.getNode("/autopilot/route-manager/alternate/airport"),
-	cruiseAlt: props.globals.getNode("/autopilot/route-manager/cruise/altitude-ft"),
 	currentWp: props.globals.getNode("/autopilot/route-manager/current-wp"),
-	departureAirport: props.globals.getNode("/autopilot/route-manager/departure/airport"),
-	destinationAirport: props.globals.getNode("/autopilot/route-manager/destination/airport"),
 	distanceRemainingNm: props.globals.getNode("/autopilot/route-manager/distance-remaining-nm"),
-	num: props.globals.getNode("/autopilot/route-manager/route/num"),
 };
 
 # Flight plan controller
@@ -17,6 +12,7 @@ var FPController = {
 	active: 0,
 	currentWp: 0,
 	gotWp: [nil, nil, nil],
+	objTemp: nil,
 	size: [0, 0, 0, 0],
 	plan: [createFlightplan(), createFlightplan(), createFlightplan(), nil], # 0 = Active, 1 = Temporary 1, 2 = Temporary 2, 3 = Company Route
 	temporaryActive: [0, 0],
@@ -28,10 +24,9 @@ var FPController = {
 		me.clearPlan(1);
 		me.clearPlan(2);
 		me.plan[0].activate();
-		if (!noSetup) me.insertPpos(0);
-		if (!noSetup) me.insertDiscontinuity(0, 1, 1);
+		if (!noSetup) me.insertDiscontinuity(0, 0, 1, 1);
+		if (!noSetup) me.insertPpos(0); # Calls planChanged
 		me.activatePlan();
-		me.planChanged(0);
 	},
 	reset: func(noSetup = 0) {
 		me.init(noSetup);
@@ -59,7 +54,7 @@ var FPController = {
 		me.plan[n].cleanPlan();
 		me.planChanged(n);
 	},
-	insertDiscontinuity: func(n, i, force = 0) {
+	insertDiscontinuity: func(n, i, force = 0, noPlanChanged = 0) {
 		if (force) {
 			me.plan[n].insertWP(createDiscontinuity(), i);
 			return;
@@ -83,15 +78,28 @@ var FPController = {
 			print("FPController Error: Both WP i and WP i - 1 are nil, skipping discontinuity add");
 		}
 		
-		me.planChanged(n);
+		if (!noPlanChanged) me.planChanged(n); # If this is just part of another function, don't update now
 	},
-	insertPpos: func(n, i = 0) {
+	insertPpos: func(n, i = 0, noPlanChanged = 0) {
 		me.plan[n].insertWP(createWP(geo.aircraft_position(), "PPOS"), i);
-		me.planChanged(n);
+		if (!noPlanChanged) me.planChanged(n);
 	},
-	insertTp: func(n, i = 0) {
+	insertTp: func(n, i = 0, noPlanChanged = 0) {
 		me.plan[n].insertWP(createWP(geo.aircraft_position(), "T-P"), i);
-		me.planChanged(n);
+		if (!noPlanChanged) me.planChanged(n);
+	},
+	insertWp: func(n, i, type, id, force = 0, noDiscontinuity = 0, noPlanChanged = 0) {
+		if (type == "fix") {
+			me.objTemp = findFixesByID(id);
+			
+			if (size(me.objTemp) == 0) {
+				return 1; # Not in database
+			} else if (size(me.objTemp) == 1 or force) {
+				me.plan[n].insertWP(createWPFrom(me.objTemp[0]), i);
+				if (!noDiscontinuity) me.insertDiscontinuity(n, i + 1, 0, 1);
+				if (!noPlanChanged) me.planChanged(n);
+			}
+		}
 	},
 	newPlan: func(depInfo, destInfo) { # Takes airportinfo objects
 		me.reset(1);
@@ -101,6 +109,11 @@ var FPController = {
 	},
 	planChanged: func(n) {
 		FPList.rebuildList(n);
+	},
+	removeWp: func(n, i, noDiscontinuity = 0, noPlanChanged = 0) {
+		if (!noDiscontinuity and me.plan[n].getWP(i).wp_name != "DISCONTINUITY") me.insertDiscontinuity(n, i + 1, 0, 1);
+		me.plan[n].deleteWP(i);
+		if (!noPlanChanged) me.planChanged(n);
 	},
 	setActiveWp: func() {
 		if (me.active) {

@@ -79,6 +79,9 @@ var Fpln = {
 		m.group = "fmc";
 		m.name = "fpln";
 		m.nextPage = "handled";
+		m.scratchpad = "";
+		m.scratchpadSize = 0;
+		m.scratchpadState = 0;
 		m.type = 1;
 		
 		m.Value = {
@@ -87,6 +90,7 @@ var Fpln = {
 			indexStartCalc: 0,
 			list: [nil, nil, nil, nil, nil, nil],
 			page: 0,
+			result: 0,
 			size: 0,
 			wpIndex: 0,
 		};
@@ -182,6 +186,38 @@ var Fpln = {
 			}
 		}
 	},
+	latRev: func(i) {
+		if (me.Value.list[i] != nil) {
+			if (me.Value.list[i].type == "wp") {
+				if (me.scratchpadState == 2) {
+					me.scratchpadSize = size(me.scratchpad);
+					
+					if (me.scratchpadSize == 5) {
+						me.Value.result = fms.FPController.insertWp(0, me.Value.list[i].index, "fix", me.scratchpad);
+						if (me.Value.result == 1) {
+							unit[me.id].setMessage("NOT IN DATA BASE");
+						} else {
+							unit[me.id].scratchpadClear();
+						}
+					} else {
+						unit[me.id].setMessage("FORMAT ERROR");
+					}
+				} else if (me.scratchpadState == 0) {
+					fms.FPController.removeWp(0, me.Value.list[i].index);
+					unit[me.id].scratchpadClear();
+				} else {
+					
+				}
+			} else {
+				unit[me.id].setMessage("NOT ALLOWED");
+			}
+		} else {
+			unit[me.id].setMessage("NOT ALLOWED");
+		}
+	},
+	vertRev: func(i) {
+		unit[me.id].setMessage("NOT ALLOWED");
+	},
 	arrowKey: func(d) {
 		if (me.Value.size > 6) {
 			me.Value.indexStartCalc = me.Value.indexStart + d;
@@ -191,12 +227,40 @@ var Fpln = {
 			else me.Value.indexStart = me.Value.indexStartCalc;
 		} else {
 			me.Value.indexStart = 0;
+			unit[me.id].setMessage("NOT ALLOWED");
 		}
 	},
 	nextPageKey: func() {
 		me.Value.page = !me.Value.page;
 	},
 	softKey: func(k) {
-		unit[me.id].setMessage("NOT ALLOWED");
+		me.scratchpad = unit[me.id].scratchpad;
+		me.scratchpadState = unit[me.id].scratchpadState();
+		
+		if (k == "l1") {
+			me.latRev(0);
+		} else if (k == "l2") {
+			me.latRev(1);
+		} else if (k == "l3") {
+			me.latRev(2);
+		} else if (k == "l4") {
+			me.latRev(3);
+		} else if (k == "l5") {
+			me.latRev(4);
+		} else if (k == "l6") {
+			me.latRev(5);
+		} else if (k == "r1") {
+			me.vertRev(0);
+		} else if (k == "r2") {
+			me.vertRev(1);
+		} else if (k == "r3") {
+			me.vertRev(2);
+		} else if (k == "r4") {
+			me.vertRev(3);
+		} else if (k == "r5") {
+			me.vertRev(4);
+		} else if (k == "r6") {
+			me.vertRev(5);
+		}
 	},
 };
