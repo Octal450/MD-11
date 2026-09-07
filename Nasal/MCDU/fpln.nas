@@ -100,7 +100,7 @@ var Fpln = {
 		return m;
 	},
 	setup: func() {
-		me.Value.page = 0;
+		if (unit[me.id].lastFmcPage != "duplicateWp") me.Value.page = 0;
 	},
 	loop: func() {
 		if (me.Value.page) {
@@ -370,6 +370,8 @@ var DuplicateWp = {
 		m.group = "fmc";
 		m.name = "duplicateWp";
 		m.nextPage = "none";
+		m.scratchpad = "";
+		m.scratchpadState = 0;
 		
 		m.Value = {
 			index: 0,
@@ -448,6 +450,14 @@ var DuplicateWp = {
 		
 		return latHemi ~ sprintf("%02d", latDeg) ~ "/" ~ lonHemi ~ sprintf("%03d", lonDeg);
 	},
+	insert: func(i) {
+		if (me.Value.list[i] != nil and me.scratchpadState == 1) {
+			fms.FPController.insertGhost(BASE.duplicateWpInfo[me.id].plan, BASE.duplicateWpInfo[me.id].index, me.Value.list[i]);
+			unit[me.id].setPage("fpln");
+		} else {
+			unit[me.id].setMessage("NOT ALLOWED");
+		}
+	},
 	arrowKey: func(d) { # No wraparound
 		if (me.Value.size > 5) {
 			me.Value.indexStartCalc = me.Value.indexStart + d;
@@ -461,7 +471,22 @@ var DuplicateWp = {
 		}
 	},
 	softKey: func(k) {
-		if (k == "r6") {
+		me.scratchpad = unit[me.id].scratchpad;
+		me.scratchpadState = unit[me.id].scratchpadState();
+		
+		if (k == "l1") {
+			me.insert(0);
+		} else if (k == "l2") {
+			me.insert(1);
+		} else if (k == "l3") {
+			me.insert(2);
+		} else if (k == "l4") {
+			me.insert(3);
+		} else if (k == "l5") {
+			me.insert(4);
+		} else if (k == "l6") {
+			me.insert(5);
+		} else if (k == "r6") {
 			unit[me.id].setPage("fpln");
 		} else {
 			unit[me.id].setMessage("NOT ALLOWED");

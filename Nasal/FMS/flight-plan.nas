@@ -82,6 +82,11 @@ var FPController = {
 		
 		if (!noPlanChanged) me.planChanged(n); # If this is just part of another function, don't update now
 	},
+	insertGhost: func(n, i, ghost, noDiscontinuity = 0, noPlanChanged = 0) {
+		me.plan[n].insertWP(createWPFrom(ghost), i);
+		if (!noDiscontinuity) me.insertDiscontinuity(n, i + 1, 0, 1);
+		if (!noPlanChanged) me.planChanged(n);
+	},
 	insertPpos: func(n, i = 0, noPlanChanged = 0) {
 		me.plan[n].insertWP(createWP(geo.aircraft_position(), "PPOS"), i);
 		if (!noPlanChanged) me.planChanged(n);
