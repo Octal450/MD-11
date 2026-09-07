@@ -12,8 +12,8 @@ var FPController = {
 	active: 0,
 	currentWp: 0,
 	gotWp: [nil, nil, nil],
-	plan: [createFlightplan(), createFlightplan(), createFlightplan(), nil], # 0 = Active, 1 = Temporary 1, 2 = Temporary 2, 3 = Company Route
-	size: [0, 0, 0, 0],
+	plan: [createFlightplan(), createFlightplan(), createFlightplan(), createFlightplan(), nil], # 0 = Active, 1 = Alternate, 2 = Temporary 1, 3 = Temporary 2, 4 = Company Route
+	size: [0, 0, 0, 0, 0],
 	temporaryActive: [0, 0],
 	wpTemp: nil,
 	wpTempVector: std.Vector.new(),
@@ -25,6 +25,7 @@ var FPController = {
 		me.clearPlan(0);
 		me.clearPlan(1);
 		me.clearPlan(2);
+		me.clearPlan(3);
 		me.plan[0].activate();
 		if (!noSetup) me.insertDiscontinuity(0, 0, 1, 1);
 		if (!noSetup) me.insertPpos(0); # Calls planChanged
@@ -213,13 +214,14 @@ var WpItem = {
 };
 
 var FPList = {
-	list: [std.Vector.new(), std.Vector.new(), std.Vector.new(), std.Vector.new()],
+	list: [std.Vector.new(), std.Vector.new(), std.Vector.new(), std.Vector.new(), std.Vector.new()],
 	size: 0,
 	init: func() {
 		me.clearList(0);
 		me.clearList(1);
 		me.clearList(2);
 		me.clearList(3);
+		me.clearList(4);
 	},
 	clearList: func(n) {
 		me.list[n].clear();
