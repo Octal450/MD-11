@@ -151,6 +151,17 @@ var CanvasBase = {
 		me["R5_B"].setText(mcdu.unit[n].page.Display.R5B);
 		me["R6_B"].setText(mcdu.unit[n].page.Display.R6B);
 		
+		if (mcdu.unit[n].page.Display.scrollD) {
+			me["ScrollD"].show();
+		} else {
+			me["ScrollD"].hide();
+		}
+		if (mcdu.unit[n].page.Display.scrollU) {
+			me["ScrollU"].show();
+		} else {
+			me["ScrollU"].hide();
+		}
+		
 		me.updateFontSize(n);
 		me.updateTranslation(n);
 	},
@@ -495,5 +506,7 @@ var KeyList = [
 	"R6_B",
 	"R6_L",
 	"Scratchpad",
+	"ScrollD",
+	"ScrollU",
 	"Title"
 ];

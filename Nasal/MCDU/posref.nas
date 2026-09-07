@@ -72,6 +72,9 @@ var PosRef = {
 			R5B: "",
 			R6B: "",
 			
+			scrollD: 0,
+			scrollU: 0,
+			
 			title: "POS REF",
 			titleTranslate: 0,
 		};
@@ -145,6 +148,7 @@ var PosRef = {
 		}
 	},
 	arrowKey: func(d) {
+		unit[me.id].setMessage("NOT ALLOWED");
 	},
 	softKey: func(k) {
 		me.scratchpadState = unit[me.id].scratchpadState();
@@ -240,6 +244,9 @@ var IrsGnsPos = {
 			R5B: "",
 			R6B: "",
 			
+			scrollD: 0,
+			scrollU: 0,
+			
 			title: "IRS/GNS POS",
 			titleTranslate: 0,
 		};
@@ -323,6 +330,7 @@ var IrsGnsPos = {
 		me.Display.L5 = me.Value.positionString;
 	},
 	arrowKey: func(d) {
+		unit[me.id].setMessage("NOT ALLOWED");
 	},
 	softKey: func(k) {
 		if (k == "r6") {
@@ -408,6 +416,9 @@ var IrsStatus = {
 			R5B: "",
 			R6B: "",
 			
+			scrollD: 0,
+			scrollU: 0,
+			
 			title: "IRS STATUS",
 			titleTranslate: 0,
 		};
@@ -457,6 +468,7 @@ var IrsStatus = {
 		}
 	},
 	arrowKey: func(d) {
+		unit[me.id].setMessage("NOT ALLOWED");
 	},
 	softKey: func(k) {
 		if (k == "r6") {

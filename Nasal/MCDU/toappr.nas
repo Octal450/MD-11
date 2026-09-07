@@ -73,6 +73,9 @@ var Takeoff = {
 			R5B: "",
 			R6B: "",
 			
+			scrollD: 0,
+			scrollU: 0,
+			
 			title: "",
 			titleTranslate: 0,
 		};
@@ -292,6 +295,7 @@ var Takeoff = {
 		}
 	},
 	arrowKey: func(d) {
+		unit[me.id].setMessage("NOT ALLOWED");
 	},
 	softKey: func(k) {
 		me.scratchpad = unit[me.id].scratchpad;
@@ -686,6 +690,9 @@ var Approach = {
 			R5B: "",
 			R6B: "",
 			
+			scrollD: 0,
+			scrollU: 0,
+			
 			title: "",
 			titleTranslate: 0,
 		};
@@ -764,6 +771,7 @@ var Approach = {
 		}
 	},
 	arrowKey: func(d) {
+		unit[me.id].setMessage("NOT ALLOWED");
 	},
 	softKey: func(k) {
 		me.scratchpad = unit[me.id].scratchpad;

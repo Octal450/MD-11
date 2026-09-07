@@ -72,6 +72,9 @@ var Fpln = {
 			R5B: "",
 			R6B: "",
 			
+			scrollD: 0,
+			scrollU: 0,
+			
 			title: "ACT F-PLN",
 			titleTranslate: -1,
 		};
@@ -117,7 +120,12 @@ var Fpln = {
 		me.Value.size = fms.FPList.list[0].size();
 		
 		if (me.Value.size <= 6) { # No scrolling if the list is too short
+			me.Display.scrollD = 0;
+			me.Display.scrollU = 0;
 			me.Value.indexStart = 0;
+		} else {
+			me.Display.scrollD = 1;
+			me.Display.scrollU = 1;
 		}
 		
 		for (var i = 0; i < 6; i += 1) {
@@ -351,6 +359,9 @@ var DuplicateWp = {
 			R5B: "",
 			R6B: "",
 			
+			scrollD: 0,
+			scrollU: 0,
+			
 			title: "DUPLICATE NAMES",
 			titleTranslate: 0,
 		};
@@ -377,6 +388,7 @@ var DuplicateWp = {
 	loop: func() {
 	},
 	arrowKey: func(d) {
+		unit[me.id].setMessage("NOT ALLOWED");
 	},
 	softKey: func(k) {
 		if (k = "r6") {

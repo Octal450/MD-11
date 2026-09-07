@@ -72,6 +72,9 @@ var Init = {
 			R5B: "",
 			R6B: "",
 			
+			scrollD: 0,
+			scrollU: 0,
+			
 			title: "F-PLN INIT",
 			titleTranslate: 0,
 		};
@@ -205,6 +208,7 @@ var Init = {
 		}
 	},
 	arrowKey: func(d) {
+		unit[me.id].setMessage("NOT ALLOWED");
 	},
 	softKey: func(k) {
 		me.scratchpad = unit[me.id].scratchpad;
@@ -461,6 +465,9 @@ var Init2 = {
 			R5B: "",
 			R6B: "",
 			
+			scrollD: 0,
+			scrollU: 0,
+			
 			title: "WEIGHT INIT",
 			titleTranslate: 0,
 		};
@@ -558,6 +565,7 @@ var Init2 = {
 		}
 	},
 	arrowKey: func(d) {
+		unit[me.id].setMessage("NOT ALLOWED");
 	},
 	softKey: func(k) {
 		me.scratchpad = unit[me.id].scratchpad;
@@ -774,6 +782,9 @@ var Init3 = {
 			R5B: "",
 			R6B: "",
 			
+			scrollD: 0,
+			scrollU: 0,
+			
 			title: "FUEL INIT",
 			titleTranslate: 0,
 		};
@@ -794,6 +805,7 @@ var Init3 = {
 	loop: func() {
 	},
 	arrowKey: func(d) {
+		unit[me.id].setMessage("NOT ALLOWED");
 	},
 	softKey: func(k) {
 		me.scratchpad = unit[me.id].scratchpad;
@@ -876,6 +888,9 @@ var CompRte = {
 			R5B: "",
 			R6B: "",
 			
+			scrollD: 0,
+			scrollU: 0,
+			
 			title: "",
 			titleTranslate: 0,
 		};
@@ -894,6 +909,7 @@ var CompRte = {
 	loop: func() {
 	},
 	arrowKey: func(d) {
+		unit[me.id].setMessage("NOT ALLOWED");
 	},
 	softKey: func(k) {
 		if (k == "r6") {

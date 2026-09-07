@@ -73,6 +73,9 @@ var Perf = {
 			R5B: "",
 			R6B: "",
 			
+			scrollD: 0,
+			scrollU: 0,
+			
 			title: "",
 			titleTranslate: 0,
 		};
@@ -507,6 +510,7 @@ var Perf = {
 		}
 	},
 	arrowKey: func(d) {
+		unit[me.id].setMessage("NOT ALLOWED");
 	},
 	softKey: func(k) {
 		me.scratchpad = unit[me.id].scratchpad;
@@ -635,6 +639,9 @@ var PreSel = {
 			R4B: "",
 			R5B: "",
 			R6B: "",
+			
+			scrollD: 0,
+			scrollU: 0,
 			
 			title: "",
 			titleTranslate: 0,
@@ -905,6 +912,7 @@ var PreSel = {
 		}
 	},
 	arrowKey: func(d) {
+		unit[me.id].setMessage("NOT ALLOWED");
 	},
 	softKey: func(k) {
 		me.scratchpad = unit[me.id].scratchpad;

@@ -72,6 +72,9 @@ var ThrLim = {
 			R5B: "",
 			R6B: "",
 			
+			scrollD: 0,
+			scrollU: 0,
+			
 			title: "",
 			titleTranslate: 1,
 		};
@@ -299,6 +302,7 @@ var ThrLim = {
 		}
 	},
 	arrowKey: func(d) {
+		unit[me.id].setMessage("NOT ALLOWED");
 	},
 	softKey: func(k) {
 		me.scratchpad = unit[me.id].scratchpad;

@@ -72,6 +72,9 @@ var Menu = {
 			R5B: "",
 			R6B: "",
 			
+			scrollD: 0,
+			scrollU: 0,
+			
 			title: "MENU",
 			titleTranslate: 1,
 		};
@@ -117,6 +120,7 @@ var Menu = {
 		}
 	},
 	arrowKey: func(d) {
+		unit[me.id].setMessage("NOT ALLOWED");
 	},
 	softKey: func(k) {
 		me.scratchpadState = unit[me.id].scratchpadState();
@@ -215,6 +219,9 @@ var Ref = {
 			R4B: "",
 			R5B: "",
 			R6B: "",
+			
+			scrollD: 0,
+			scrollU: 0,
 			
 			title: "REF INDEX",
 			titleTranslate: 0,

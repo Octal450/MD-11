@@ -72,6 +72,9 @@ var Fallback = {
 			R5B: "",
 			R6B: "",
 			
+			scrollD: 0,
+			scrollU: 0,
+			
 			title: "PAGE NOT AVAIL",
 			titleTranslate: 0,
 		};
@@ -88,6 +91,7 @@ var Fallback = {
 	loop: func() {
 	},
 	arrowKey: func(d) {
+		unit[me.id].setMessage("NOT ALLOWED");
 	},
 	softKey: func(k) {
 		unit[me.id].setMessage("NOT ALLOWED");

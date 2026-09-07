@@ -82,6 +82,9 @@ var AcStatus = {
 			R5B: "",
 			R6B: "",
 			
+			scrollD: 0,
+			scrollU: 0,
+			
 			title: "A/C STATUS",
 			titleTranslate: 0,
 		};
@@ -128,6 +131,7 @@ var AcStatus = {
 		me.Display.L6 = sprintf("%+2.1f", me.Common.perfFactor);
 	},
 	arrowKey: func(d) {
+		unit[me.id].setMessage("NOT ALLOWED");
 	},
 	softKey: func(k) {
 		me.scratchpad = unit[me.id].scratchpad;
@@ -249,6 +253,9 @@ var AcStatus2 = {
 			R5B: "",
 			R6B: "",
 			
+			scrollD: 0,
+			scrollU: 0,
+			
 			title: "A/C STATUS",
 			titleTranslate: 0,
 		};
@@ -264,6 +271,7 @@ var AcStatus2 = {
 	loop: func() {
 	},
 	arrowKey: func(d) {
+		unit[me.id].setMessage("NOT ALLOWED");
 	},
 	softKey: func(k) {
 		if (k == "r6") {
@@ -345,6 +353,9 @@ var SensorStatus = {
 			R5B: "",
 			R6B: "",
 			
+			scrollD: 0,
+			scrollU: 0,
+			
 			title: "SENSOR STATUS",
 			titleTranslate: 0,
 		};
@@ -405,6 +416,7 @@ var SensorStatus = {
 		}
 	},
 	arrowKey: func(d) {
+		unit[me.id].setMessage("NOT ALLOWED");
 	},
 	softKey: func(k) {
 		unit[me.id].setMessage("NOT ALLOWED");
