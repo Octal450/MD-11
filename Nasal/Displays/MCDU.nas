@@ -21,6 +21,8 @@ var Value = {
 	RFont: [["", "", "", "", "", ""], ["", "", "", "", "", ""], ["", "", "", "", "", ""]],
 	RBFont: [["", "", "", "", "", ""], ["", "", "", "", "", ""], ["", "", "", "", "", ""]],
 	title: ["", "", ""],
+	titleSmall: ["", "", ""],
+	titleSmallTranslate: [0, 0, 0],
 	titleTranslate: [0, 0, 0],
 };
 
@@ -35,7 +37,7 @@ var CanvasBase = {
 		var svgKeys = me.getKeys();
 		foreach(var key; svgKeys) {
 			me[key] = canvasGroup.getElementById(key);
-			if (find("_L", key) != -1 or key == "Arrow" or key == "PageNum") me[key].setFont(mcdu.FONT.small);
+			if (find("_L", key) != -1 or key == "Arrow" or key == "PageNum" or key == "TitleSmall") me[key].setFont(mcdu.FONT.small);
 		}
 		
 		me.page = canvasGroup;
@@ -95,6 +97,12 @@ var CanvasBase = {
 			Value.title[n] = " " ~ Value.title[n];
 		}
 		me["Title"].setText(Value.title[n]);
+		
+		Value.titleSmall[n] = mcdu.unit[n].page.Display.titleSmall;
+		if (math.mod(size(Value.titleSmall[n]), 2) != 0) { # Preserve alignment if odd num of characters
+			Value.titleSmall[n] = " " ~ Value.titleSmall[n];
+		}
+		me["TitleSmall"].setText(Value.titleSmall[n]);
 		
 		me["C1"].setText(mcdu.unit[n].page.Display.C1);
 		me["C1_L"].setText(mcdu.unit[n].page.Display.C1L);
@@ -295,6 +303,10 @@ var CanvasBase = {
 		if (Value.titleTranslate[n] != mcdu.unit[n].page.Display.titleTranslate) {
 			Value.titleTranslate[n] = mcdu.unit[n].page.Display.titleTranslate;
 			me["Title"].setTranslation(mcdu.unit[n].page.Display.titleTranslate * 38.77, 0);
+		}
+		if (Value.titleSmallTranslate[n] != mcdu.unit[n].page.Display.titleSmallTranslate) {
+			Value.titleSmallTranslate[n] = mcdu.unit[n].page.Display.titleSmallTranslate;
+			me["TitleSmall"].setTranslation(mcdu.unit[n].page.Display.titleSmallTranslate * 38.77, 0);
 		}
 		
 		if (Value.CTranslate[n][0] != mcdu.unit[n].page.Display.CTranslate[0]) {
@@ -508,5 +520,6 @@ var KeyList = [
 	"Scratchpad",
 	"ScrollD",
 	"ScrollU",
-	"Title"
+	"Title",
+	"TitleSmall"
 ];

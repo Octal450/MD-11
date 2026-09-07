@@ -77,6 +77,8 @@ var Perf = {
 			scrollU: 0,
 			
 			title: "",
+			titleSmall: "",
+			titleSmallTranslate: 0,
 			titleTranslate: 0,
 		};
 		
@@ -644,6 +646,8 @@ var PreSel = {
 			scrollU: 0,
 			
 			title: "",
+			titleSmall: "",
+			titleSmallTranslate: 0,
 			titleTranslate: 0,
 		};
 		

@@ -76,6 +76,8 @@ var Menu = {
 			scrollU: 0,
 			
 			title: "MENU",
+			titleSmall: "",
+			titleSmallTranslate: 0,
 			titleTranslate: 1,
 		};
 		
@@ -224,6 +226,8 @@ var Ref = {
 			scrollU: 0,
 			
 			title: "REF INDEX",
+			titleSmall: "",
+			titleSmallTranslate: 0,
 			titleTranslate: 0,
 		};
 		

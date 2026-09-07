@@ -76,6 +76,8 @@ var Fallback = {
 			scrollU: 0,
 			
 			title: "PAGE NOT AVAIL",
+			titleSmall: "",
+			titleSmallTranslate: 0,
 			titleTranslate: 0,
 		};
 		

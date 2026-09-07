@@ -19,6 +19,11 @@ var MCDU = {
 			time: -5,
 		};
 		
+		m.Data = {
+			duplicateWpInfo: nil,
+			latRevInfo: nil,
+		};
+		
 		m.elapsedSec = 0;
 		m.id = n;
 		m.lastFmcPage = "none";
@@ -38,6 +43,7 @@ var MCDU = {
 			init3: Init3.new(n),
 			irsGnsPos: IrsGnsPos.new(n),
 			irsStatus: IrsStatus.new(n),
+			latRev: LatRev.new(n),
 			menu: Menu.new(n, t),
 			navRadio: NavRadio.new(n),
 			perfClb: Perf.new(n, 0),
@@ -438,7 +444,6 @@ var BASE = {
 			unit[i].reset();
 		}
 	},
-	duplicateWpInfo: [nil, nil, nil], # One for each unit
 	removeGlobalMessage: func(m) {
 		for (var i = 0; i < 3; i = i + 1) {
 			unit[i].removeMessage(m);
@@ -462,6 +467,17 @@ var FORMAT = {
 		dms: nil,
 		minutes: [nil, nil],
 		sign: [nil, nil],
+		formatGhost: func(ghost) {
+			me.dms = ghost.lat;
+			me.degrees[0] = int(me.dms);
+			me.minutes[0] = sprintf("%.1f",abs((me.dms - me.degrees[0]) * 60));
+			me.sign[0] = me.degrees[0] >= 0 ? "N" : "S";
+			me.dms = ghost.lon;
+			me.degrees[1] = int(me.dms);
+			me.minutes[1] = sprintf("%.1f",abs((me.dms - me.degrees[1]) * 60));
+			me.sign[1] = me.degrees[1] >= 0 ? "E" : "W";
+			return sprintf("%s%02d%04.1f/%s%03d%04.1f", me.sign[0], abs(me.degrees[0]), me.minutes[0], me.sign[1], abs(me.degrees[1]), me.minutes[1]);
+		},
 		formatNode: func(node) {
 			me.dms = node.getChild("latitude-deg").getValue();
 			me.degrees[0] = int(me.dms);

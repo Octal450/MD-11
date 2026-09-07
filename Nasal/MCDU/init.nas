@@ -76,6 +76,8 @@ var Init = {
 			scrollU: 0,
 			
 			title: "F-PLN INIT",
+			titleSmall: "",
+			titleSmallTranslate: 0,
 			titleTranslate: 0,
 		};
 		
@@ -469,6 +471,8 @@ var Init2 = {
 			scrollU: 0,
 			
 			title: "WEIGHT INIT",
+			titleSmall: "",
+			titleSmallTranslate: 0,
 			titleTranslate: 0,
 		};
 		
@@ -786,6 +790,8 @@ var Init3 = {
 			scrollU: 0,
 			
 			title: "FUEL INIT",
+			titleSmall: "",
+			titleSmallTranslate: 0,
 			titleTranslate: 0,
 		};
 		
@@ -892,6 +898,8 @@ var CompRte = {
 			scrollU: 0,
 			
 			title: "",
+			titleSmall: "",
+			titleSmallTranslate: 0,
 			titleTranslate: 0,
 		};
 		

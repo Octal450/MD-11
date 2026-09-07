@@ -76,6 +76,8 @@ var ThrLim = {
 			scrollU: 0,
 			
 			title: "",
+			titleSmall: "",
+			titleSmallTranslate: 0,
 			titleTranslate: 1,
 		};
 		

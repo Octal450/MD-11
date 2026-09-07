@@ -76,6 +76,8 @@ var NavRadio = {
 			scrollU: 0,
 			
 			title: "NAV RADIO",
+			titleSmall: "",
+			titleSmallTranslate: 0,
 			titleTranslate: 0,
 		};
 		

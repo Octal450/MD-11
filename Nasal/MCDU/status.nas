@@ -86,6 +86,8 @@ var AcStatus = {
 			scrollU: 0,
 			
 			title: "A/C STATUS",
+			titleSmall: "",
+			titleSmallTranslate: 0,
 			titleTranslate: 0,
 		};
 		
@@ -257,6 +259,8 @@ var AcStatus2 = {
 			scrollU: 0,
 			
 			title: "A/C STATUS",
+			titleSmall: "",
+			titleSmallTranslate: 0,
 			titleTranslate: 0,
 		};
 		
@@ -357,6 +361,8 @@ var SensorStatus = {
 			scrollU: 0,
 			
 			title: "SENSOR STATUS",
+			titleSmall: "",
+			titleSmallTranslate: 0,
 			titleTranslate: 0,
 		};
 		

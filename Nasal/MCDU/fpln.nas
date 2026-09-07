@@ -76,6 +76,8 @@ var Fpln = {
 			scrollU: 0,
 			
 			title: "ACT F-PLN",
+			titleSmall: "",
+			titleSmallTranslate: 0,
 			titleTranslate: -1,
 		};
 		
@@ -149,7 +151,7 @@ var Fpln = {
 					
 					me.Display["C" ~ (i + 1)] = "";
 					me.Display["R" ~ (i + 1)] = "";
-				} else if (me.Value.list[i].id == "DISCONTINUITY") {
+				} else if (me.Value.list[i].wp.id == "DISCONTINUITY") {
 					me.Display["L" ~ (i + 1) ~ "L"] = "";
 					me.Display["L" ~ (i + 1)] = "---F-PLN DISCONTINUITY--";
 					
@@ -168,14 +170,14 @@ var Fpln = {
 					}
 					
 					if (i > 0) { # C1L is fixed
-						if (me.Value.page and me.Value.wpIndex != 0 and me.Value.list[i - 1].id != "DISCONTINUITY") { # i - 1 is safe as this doesn't run for i = 0
-							me.Display["C" ~ (i + 1) ~ "L"] = sprintf("%4d", math.round(me.Value.list[i].leg_distance));
+						if (me.Value.page and me.Value.wpIndex != 0 and me.Value.list[i - 1].wp.id != "DISCONTINUITY") { # i - 1 is safe as this doesn't run for i = 0
+							me.Display["C" ~ (i + 1) ~ "L"] = sprintf("%4d", math.round(me.Value.list[i].wp.leg_distance));
 						} else {
 							me.Display["C" ~ (i + 1) ~ "L"] = "";
 						}
 					}
 					
-					me.Display["L" ~ (i + 1)] = me.Value.list[i].id;
+					me.Display["L" ~ (i + 1)] = me.Value.list[i].wp.id;
 					if (me.Value.page) {
 						me.Display["C" ~ (i + 1)] = "";
 						
@@ -197,17 +199,17 @@ var Fpln = {
 		if (me.Value.list[i] != nil) {
 			if (me.Value.list[i].type == "wp") {
 				if (me.scratchpadState == 2) {
-					if (me.Value.list[i].index == 0) { # Can't replace FROM waypoint
+					if (me.Value.list[i].wp.index == 0) { # Can't replace FROM waypoint
 						unit[me.id].setMessage("NOT ALLOWED");
 					} else {
 						me.scratchpadSize = size(me.scratchpad);
 						
 						if (me.scratchpadSize == 5) { # Fix
-							me.Value.result = fms.FPController.insertWp(0, me.Value.list[i].index, "fix", me.scratchpad, me.id);
+							me.Value.result = fms.FPController.insertWp(0, me.Value.list[i].wp.index, "fix", me.scratchpad, me.id);
 						} else if (me.scratchpadSize >= 1 and me.scratchpadSize <= 3) { # Navaid
-							me.Value.result = fms.FPController.insertWp(0, me.Value.list[i].index, "navaid", me.scratchpad, me.id);
+							me.Value.result = fms.FPController.insertWp(0, me.Value.list[i].wp.index, "navaid", me.scratchpad, me.id);
 						} else if (me.scratchpadSize == 4) { # Airport
-							me.Value.result = fms.FPController.insertWp(0, me.Value.list[i].index, "airport", me.scratchpad, me.id);
+							me.Value.result = fms.FPController.insertWp(0, me.Value.list[i].wp.index, "airport", me.scratchpad, me.id);
 						} else {
 							unit[me.id].setMessage("FORMAT ERROR");
 							return;
@@ -231,8 +233,11 @@ var Fpln = {
 						fms.FPController.removeWp(0, me.Value.list[i].index);
 						unit[me.id].scratchpadClear();
 					}
+				} else if (me.Value.list[i].wp.id != "DISCONTINUITY") {
+					unit[me.id].Data.latRevInfo = fms.WpInfo.new(0, me.Value.list[i].wp.index, me.Value.list[i].wp); # Prep Lat Rev page
+					unit[me.id].setPage("latRev");
 				} else {
-					
+					unit[me.id].setMessage("NOT ALLOWED");
 				}
 			} else {
 				unit[me.id].setMessage("NOT ALLOWED");
@@ -248,8 +253,8 @@ var Fpln = {
 		if (me.Value.size > 6) {
 			me.Value.indexStartCalc = me.Value.indexStart + d;
 			
-			if (me.Value.indexStartCalc > me.Value.size) me.Value.indexStart = 0;
-			else if (me.Value.indexStartCalc < 0) me.Value.indexStart = me.Value.size;
+			if (me.Value.indexStartCalc > me.Value.size - 1) me.Value.indexStart = 0;
+			else if (me.Value.indexStartCalc < 0) me.Value.indexStart = me.Value.size - 1;
 			else me.Value.indexStart = me.Value.indexStartCalc;
 		} else {
 			me.Value.indexStart = 0;
@@ -291,6 +296,7 @@ var Fpln = {
 	},
 };
 
+# Subpages
 var DuplicateWp = {
 	new: func(n) {
 		var m = {parents: [DuplicateWp]};
@@ -366,6 +372,8 @@ var DuplicateWp = {
 			scrollU: 0,
 			
 			title: "DUPLICATE NAMES",
+			titleSmall: "",
+			titleSmallTranslate: 0,
 			titleTranslate: 0,
 		};
 		
@@ -389,9 +397,9 @@ var DuplicateWp = {
 	setup: func() {
 	},
 	loop: func() {
-		me.Value.size = BASE.duplicateWpInfo[me.id].wpVector.size();
+		me.Value.size = unit[me.id].Data.duplicateWpInfo.wpVector.size();
 		
-		if (BASE.duplicateWpInfo[me.id].type == "fix") {
+		if (unit[me.id].Data.duplicateWpInfo.type == "fix") {
 			me.Display.R1L = "";
 		} else {
 			me.Display.R1L = "FREQ ";
@@ -418,7 +426,7 @@ var DuplicateWp = {
 			me.Value.index = i + me.Value.indexStart;
 			
 			if (i < me.Value.size) {
-				me.Value.list[i] = BASE.duplicateWpInfo[me.id].wpVector.vector[me.Value.index];
+				me.Value.list[i] = unit[me.id].Data.duplicateWpInfo.wpVector.vector[me.Value.index];
 			} else {
 				me.Value.list[i] = nil;
 			}
@@ -428,7 +436,7 @@ var DuplicateWp = {
 				me.Display["L" ~ (i + 1)] = "*" ~ me.Value.list[i].id;
 				me.Display["C" ~ (i + 1)] = me.formatLatLon(me.Value.list[i].lat, me.Value.list[i].lon);
 				
-				if (BASE.duplicateWpInfo[me.id].type != "navaid") {
+				if (unit[me.id].Data.duplicateWpInfo.type != "navaid") {
 					me.Display["R" ~ (i + 1)] = "";
 				} else if (me.Value.list[i].type == "NDB") {
 					me.Display["R" ~ (i + 1)] = sprintf("%5.1f", me.Value.list[i].frequency / 100);
@@ -454,8 +462,12 @@ var DuplicateWp = {
 	},
 	insert: func(i) {
 		if (me.Value.list[i] != nil and me.scratchpadState == 1) {
-			fms.FPController.insertGhost(BASE.duplicateWpInfo[me.id].plan, BASE.duplicateWpInfo[me.id].index, me.Value.list[i]);
-			unit[me.id].setPage("fpln");
+			if (unit[me.id].Data.duplicateWpInfo.index <= fms.FPController.plan[unit[me.id].Data.duplicateWpInfo.plan].getPlanSize()) {
+				fms.FPController.insertGhost(unit[me.id].Data.duplicateWpInfo.plan, unit[me.id].Data.duplicateWpInfo.index, me.Value.list[i]);
+				unit[me.id].setPage("fpln");
+			} else {
+				unit[me.id].setMessage("NOT ALLOWED");
+			}
 		} else {
 			unit[me.id].setMessage("NOT ALLOWED");
 		}
@@ -489,6 +501,129 @@ var DuplicateWp = {
 		} else if (k == "l6") {
 			me.insert(5);
 		} else if (k == "r6") {
+			unit[me.id].setPage("fpln");
+		} else {
+			unit[me.id].setMessage("NOT ALLOWED");
+		}
+	},
+};
+
+var LatRev = {
+	new: func(n) {
+		var m = {parents: [LatRev]};
+		
+		m.id = n;
+		
+		m.Display = {
+			arrow: 0,
+			
+			CFont: [FONT.large, FONT.large, FONT.large, FONT.large, FONT.large, FONT.large],
+			CLTranslate: [-6, 0, 0, 0, 0, 0],
+			CTranslate: [0, 0, 0, 0, 0, 0],
+			C1L: "",
+			C1: "",
+			C2L: "",
+			C2: "",
+			C3L: "",
+			C3: "",
+			C4L: "",
+			C4: "",
+			C5L: "",
+			C5: "",
+			C6L: "",
+			C6: "",
+			
+			LFont: [FONT.large, FONT.large, FONT.large, FONT.large, FONT.large, FONT.large],
+			L1L: "",
+			L1: "",
+			L2L: "",
+			L2: "",
+			L3L: "",
+			L3: "",
+			L4L: " NEXT WPT",
+			L4: "*[     ]",
+			L5L: "",
+			L5: "",
+			L6L: "",
+			L6: "",
+			
+			LBFont: [FONT.large, FONT.large, FONT.large, FONT.large, FONT.large, FONT.large],
+			L1B: "",
+			L2B: "",
+			L3B: "",
+			L4B: "",
+			L5B: "",
+			L6B: "",
+			
+			pageNum: "",
+			
+			RFont: [FONT.large, FONT.large, FONT.large, FONT.large, FONT.large, FONT.large],
+			R1L: "",
+			R1: "",
+			R2L: "",
+			R2: "HOLD>",
+			R3L: "",
+			R3: "",
+			R4L: "NEW CO RTE ",
+			R4: "[        ]*",
+			R5L: "NEW DEST ",
+			R5: "[   ]*",
+			R6L: "RETURN TO ",
+			R6: "ACT F-PLN>",
+			
+			RBFont: [FONT.large, FONT.large, FONT.large, FONT.large, FONT.large, FONT.large],
+			R1B: "",
+			R2B: "",
+			R3B: "",
+			R4B: "",
+			R5B: "",
+			R6B: "",
+			
+			scrollD: 0,
+			scrollU: 0,
+			
+			title: "",
+			titleSmall: "  FROM",
+			titleSmallTranslate: 1,
+			titleTranslate: 0,
+		};
+		
+		m.group = "fmc";
+		m.name = "latRev";
+		m.nextPage = "none";
+		m.scratchpad = "";
+		m.scratchpadState = 0;
+		
+		m.Value = {
+			idSize: 0,
+		};
+		
+		return m;
+	},
+	setup: func() {
+	},
+	loop: func() {
+		me.Display.title = "LAT REV      " ~ unit[me.id].Data.latRevInfo.wp.id;
+		me.Value.idSize = size(unit[me.id].Data.latRevInfo.wp.id);
+		if (me.Value.idSize == 5) {
+			me.Display.titleTranslate = 1;
+		} else if (me.Value.idSize == 3 or me.Value.idSize == 4) {
+			me.Display.titleTranslate = 0;
+		} else if (me.Value.idSize <= 2) {
+			me.Display.titleTranslate = -1;
+		} else { # Should never be
+			me.Display.titleTranslate = 0;
+		}
+		me.Display.C1L = FORMAT.Position.formatGhost(unit[me.id].Data.latRevInfo.wp);
+	},
+	arrowKey: func(d) {
+		unit[me.id].setMessage("NOT ALLOWED");
+	},
+	softKey: func(k) {
+		me.scratchpad = unit[me.id].scratchpad;
+		me.scratchpadState = unit[me.id].scratchpadState();
+		
+		if (k == "r6") {
 			unit[me.id].setPage("fpln");
 		} else {
 			unit[me.id].setMessage("NOT ALLOWED");

@@ -76,6 +76,8 @@ var PosRef = {
 			scrollU: 0,
 			
 			title: "POS REF",
+			titleSmall: "",
+			titleSmallTranslate: 0,
 			titleTranslate: 0,
 		};
 		
@@ -248,6 +250,8 @@ var IrsGnsPos = {
 			scrollU: 0,
 			
 			title: "IRS/GNS POS",
+			titleSmall: "",
+			titleSmallTranslate: 0,
 			titleTranslate: 0,
 		};
 		
@@ -420,6 +424,8 @@ var IrsStatus = {
 			scrollU: 0,
 			
 			title: "IRS STATUS",
+			titleSmall: "",
+			titleSmallTranslate: 0,
 			titleTranslate: 0,
 		};
 		

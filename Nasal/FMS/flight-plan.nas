@@ -126,7 +126,7 @@ var FPController = {
 			if (!noDiscontinuity) me.insertDiscontinuity(n, i + 1, 0, 1);
 			if (!noPlanChanged) me.planChanged(n);
 		} else if (me.wpTempVectorSize > 1) { # Duplicate names
-			mcdu.BASE.duplicateWpInfo[mcduId] = DuplicateWpList.new(n, i, type, me.wpTempVector);
+			mcdu.unit[mcduId].Data.duplicateWpInfo = DuplicateWpList.new(n, i, type, me.wpTempVector); # Prep Duplicate Names page
 			return 2;
 		} else {
 			return 1; # Not in database
@@ -202,12 +202,8 @@ var WpItem = {
 	new: func(wp) {
 		var m = {parents: [WpItem]};
 		
-		m.leg_bearing = wp.leg_bearing;
-		m.leg_distance = wp.leg_distance;
-		m.index = wp.index;
-		m.id = wp.wp_name;
-		m.parent = wp.wp_parent;
 		m.type = "wp";
+		m.wp = wp;
 		
 		return m;
 	},
@@ -239,8 +235,8 @@ var FPList = {
 	},
 };
 
-# Duplicate waypoint list constructor
-# Allows us to tell the duplicateWp page the information it needs to display and command waypoint entry
+# Info page constructors
+# Allows us to tell the F-PLN sub-pages information they need
 var DuplicateWpList = {
 	new: func(n, i, t, wpV) {
 		var m = {parents: [DuplicateWpList]};
@@ -249,6 +245,18 @@ var DuplicateWpList = {
 		m.plan = n;
 		m.type = t;
 		m.wpVector = wpV; # std.Vector
+		
+		return m;
+	},
+};
+
+var WpInfo = {
+	new: func(n, i, wp) {
+		var m = {parents: [WpInfo]};
+		
+		m.index = i;
+		m.plan = n;
+		m.wp = wp;
 		
 		return m;
 	},

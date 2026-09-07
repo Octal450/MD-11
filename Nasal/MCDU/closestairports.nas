@@ -76,6 +76,8 @@ var ClosestAirports = {
 			scrollU: 0,
 			
 			title: "CLOSEST AIRPORTS",
+			titleSmall: "",
+			titleSmallTranslate: 0,
 			titleTranslate: 0,
 		};
 		

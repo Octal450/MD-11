@@ -77,6 +77,8 @@ var Takeoff = {
 			scrollU: 0,
 			
 			title: "",
+			titleSmall: "",
+			titleSmallTranslate: 0,
 			titleTranslate: 0,
 		};
 		
@@ -694,6 +696,8 @@ var Approach = {
 			scrollU: 0,
 			
 			title: "",
+			titleSmall: "",
+			titleSmallTranslate: 0,
 			titleTranslate: 0,
 		};
 		
