@@ -13,6 +13,7 @@ var FPController = {
 	currentWp: 0,
 	gotWp: [nil, nil, nil],
 	objTemp: nil,
+	objTempSize: 0,
 	size: [0, 0, 0, 0],
 	plan: [createFlightplan(), createFlightplan(), createFlightplan(), nil], # 0 = Active, 1 = Temporary 1, 2 = Temporary 2, 3 = Company Route
 	temporaryActive: [0, 0],
@@ -91,14 +92,24 @@ var FPController = {
 	insertWp: func(n, i, type, id, force = 0, noDiscontinuity = 0, noPlanChanged = 0) {
 		if (type == "fix") {
 			me.objTemp = findFixesByID(id);
-			
-			if (size(me.objTemp) == 0) {
-				return 1; # Not in database
-			} else if (size(me.objTemp) == 1 or force) {
-				me.plan[n].insertWP(createWPFrom(me.objTemp[0]), i);
-				if (!noDiscontinuity) me.insertDiscontinuity(n, i + 1, 0, 1);
-				if (!noPlanChanged) me.planChanged(n);
-			}
+		} else if (type == "navaid") {
+			me.objTemp = findNavaidsByID(id);
+		} else if (type == "airport") {
+			me.objTemp = findAirportsByICAO(id);
+		} else {
+			return 1;
+		}
+		
+		me.objTempSize = size(me.objTemp);
+		
+		if (me.objTempSize == 1 or force) {
+			me.plan[n].insertWP(createWPFrom(me.objTemp[0]), i);
+			if (!noDiscontinuity) me.insertDiscontinuity(n, i + 1, 0, 1);
+			if (!noPlanChanged) me.planChanged(n);
+		} else if (me.objTempSize > 1) {
+			return 2; # Duplicate names, tell the MCDU to ask for clarification
+		} else {
+			return 1; # Not in database
 		}
 	},
 	newPlan: func(depInfo, destInfo) { # Takes airportinfo objects

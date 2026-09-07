@@ -30,6 +30,7 @@ var MCDU = {
 			approach: Approach.new(n),
 			closestAirports: ClosestAirports.new(n),
 			compRte: CompRte.new(n),
+			duplicateWp: DuplicateWp.new(n),
 			fallback: Fallback.new(n),
 			fpln: Fpln.new(n),
 			init: Init.new(n),

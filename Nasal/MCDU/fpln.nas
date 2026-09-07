@@ -82,7 +82,6 @@ var Fpln = {
 		m.scratchpad = "";
 		m.scratchpadSize = 0;
 		m.scratchpadState = 0;
-		m.type = 1;
 		
 		m.Value = {
 			index: 0,
@@ -190,21 +189,38 @@ var Fpln = {
 		if (me.Value.list[i] != nil) {
 			if (me.Value.list[i].type == "wp") {
 				if (me.scratchpadState == 2) {
-					me.scratchpadSize = size(me.scratchpad);
-					
-					if (me.scratchpadSize == 5) {
-						me.Value.result = fms.FPController.insertWp(0, me.Value.list[i].index, "fix", me.scratchpad);
-						if (me.Value.result == 1) {
+					if (me.Value.list[i].index == 0) { # Can't replace FROM waypoint
+						unit[me.id].setMessage("NOT ALLOWED");
+					} else {
+						me.scratchpadSize = size(me.scratchpad);
+						
+						if (me.scratchpadSize == 5) { # Fix
+							me.Value.result = fms.FPController.insertWp(0, me.Value.list[i].index, "fix", me.scratchpad);
+						} else if (me.scratchpadSize >= 1 and me.scratchpadSize <= 3) { # Navaid
+							me.Value.result = fms.FPController.insertWp(0, me.Value.list[i].index, "navaid", me.scratchpad);
+						} else if (me.scratchpadSize == 4) { # Airport
+							me.Value.result = fms.FPController.insertWp(0, me.Value.list[i].index, "airport", me.scratchpad);
+						} else {
+							unit[me.id].setMessage("FORMAT ERROR");
+							return;
+						}	
+						
+						if (me.Value.result == 2) {
+							unit[me.id].setPage("duplicateWp");
+							unit[me.id].setMessage("DUP WP NOT SUPPORTED");
+						} else if (me.Value.result == 1) {
 							unit[me.id].setMessage("NOT IN DATA BASE");
 						} else {
 							unit[me.id].scratchpadClear();
 						}
-					} else {
-						unit[me.id].setMessage("FORMAT ERROR");
 					}
 				} else if (me.scratchpadState == 0) {
-					fms.FPController.removeWp(0, me.Value.list[i].index);
-					unit[me.id].scratchpadClear();
+					if (me.Value.list[i].index == 0) { # Can't remove FROM waypoint
+						unit[me.id].setMessage("NOT ALLOWED");
+					} else {
+						fms.FPController.removeWp(0, me.Value.list[i].index);
+						unit[me.id].scratchpadClear();
+					}
 				} else {
 					
 				}
@@ -261,6 +277,105 @@ var Fpln = {
 			me.vertRev(4);
 		} else if (k == "r6") {
 			me.vertRev(5);
+		}
+	},
+};
+
+var DuplicateWp = {
+	new: func(n) {
+		var m = {parents: [DuplicateWp]};
+		
+		m.id = n;
+		
+		m.Display = {
+			arrow: 0,
+			
+			CFont: [FONT.large, FONT.large, FONT.large, FONT.large, FONT.large, FONT.large],
+			CLTranslate: [-2, 0, 0, 0, 0, 0],
+			CTranslate: [-1, -1, -1, -1, -1, -1],
+			C1L: "LAT/LONG",
+			C1: "",
+			C2L: "",
+			C2: "",
+			C3L: "",
+			C3: "",
+			C4L: "",
+			C4: "",
+			C5L: "",
+			C5: "",
+			C6L: "",
+			C6: "",
+			
+			LFont: [FONT.large, FONT.large, FONT.large, FONT.large, FONT.large, FONT.large],
+			L1L: "",
+			L1: "",
+			L2L: "",
+			L2: "",
+			L3L: "",
+			L3: "",
+			L4L: "",
+			L4: "",
+			L5L: "",
+			L5: "",
+			L6L: "",
+			L6: "",
+			
+			LBFont: [FONT.large, FONT.large, FONT.large, FONT.large, FONT.large, FONT.large],
+			L1B: "",
+			L2B: "",
+			L3B: "",
+			L4B: "",
+			L5B: "",
+			L6B: "",
+			
+			pageNum: "",
+			
+			RFont: [FONT.large, FONT.large, FONT.large, FONT.large, FONT.large, FONT.large],
+			R1L: "FREQ ",
+			R1: "",
+			R2L: "",
+			R2: "",
+			R3L: "",
+			R3: "",
+			R4L: "",
+			R4: "",
+			R5L: "",
+			R5: "",
+			R6L: "RETURN TO ",
+			R6: "ACT F-PLN>",
+			
+			RBFont: [FONT.large, FONT.large, FONT.large, FONT.large, FONT.large, FONT.large],
+			R1B: "",
+			R2B: "",
+			R3B: "",
+			R4B: "",
+			R5B: "",
+			R6B: "",
+			
+			title: "DUPLICATE NAMES",
+			titleTranslate: 0,
+		};
+		
+		m.group = "fmc";
+		m.name = "duplicateWp";
+		m.nextPage = "none";
+	
+		m.Value = {
+		};
+		
+		return m;
+	},
+	setup: func() {
+	},
+	loop: func() {
+	},
+	arrowKey: func(d) {
+	},
+	softKey: func(k) {
+		if (k = "r6") {
+			unit[me.id].setPage("fpln");
+		} else {
+			unit[me.id].setMessage("NOT ALLOWED");
 		}
 	},
 };
