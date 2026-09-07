@@ -547,7 +547,7 @@ var LatRev = {
 			L6L: "",
 			L6: "",
 			
-			LBFont: [FONT.large, FONT.large, FONT.large, FONT.large, FONT.large, FONT.large],
+			LBFont: [FONT.large, FONT.large, FONT.large, FONT.large, FONT.large, FONT.small],
 			L1B: "",
 			L2B: "",
 			L3B: "",
@@ -596,6 +596,7 @@ var LatRev = {
 		
 		m.Value = {
 			idSize: 0,
+			info: nil,
 		};
 		
 		return m;
@@ -603,8 +604,10 @@ var LatRev = {
 	setup: func() {
 	},
 	loop: func() {
-		me.Display.title = "LAT REV      " ~ unit[me.id].Data.latRevInfo.wp.id;
-		me.Value.idSize = size(unit[me.id].Data.latRevInfo.wp.id);
+		me.Value.info = unit[me.id].Data.latRevInfo;
+		
+		me.Display.title = "LAT REV      " ~ me.Value.info.wp.id;
+		me.Value.idSize = size(me.Value.info.wp.id);
 		if (me.Value.idSize == 5) {
 			me.Display.titleTranslate = 1;
 		} else if (me.Value.idSize == 3 or me.Value.idSize == 4) {
@@ -614,7 +617,49 @@ var LatRev = {
 		} else { # Should never be
 			me.Display.titleTranslate = 0;
 		}
-		me.Display.C1L = FORMAT.Position.formatGhost(unit[me.id].Data.latRevInfo.wp);
+		me.Display.C1L = FORMAT.Position.formatGhost(me.Value.info.wp);
+		
+		if (me.Value.info.wp.id == "PPOS" or me.Value.info.wp.id == "T-P") {
+			me.Display.L1 = "";
+			me.Display.L2 = "";
+			me.Display.R1 = "";
+			me.Display.R3L = "";
+			me.Display.R3 = "";
+		} else if (fms.Internal.phase == 0 and me.Value.info.wp.index == 0 and me.Value.info.wp.id == fms.flightData.airportFrom) { # This needs to check if we're the departure runway also for entered RW/SID
+			me.Display.L1 = "<SID";
+			me.Display.L2 = "";
+			me.Display.R1 = "";
+			me.Display.R3L = "";
+			me.Display.R3 = "";
+		} else {
+			me.Display.L1 = "";
+			
+			if (me.Value.info.wp.wp_type != "airport" and me.Value.info.wp.wp_type != "runway") { # Airports cannot enter airways
+				me.Display.L2 = "<AIRWAYS";
+			} else {
+				me.Display.L2 = "";
+			}
+			
+			if (fms.flightData.airportTo != "") {
+				me.Display.R1 = "STAR>";
+				me.Display.R3L = "PROCEDURE ";
+				me.Display.R3 = "TURN>";
+			} else {
+				me.Display.R1 = "";
+				me.Display.R3L = "";
+				me.Display.R3 = "";
+			}
+		}
+		
+		if (fms.flightData.airportAltn != "") {
+			me.Display.L6L = " ENABLE ALTN";
+			me.Display.L6 = "*   " ~ fms.flightData.airportAltn;
+			me.Display.L6B = " TO";
+		} else {
+			me.Display.L6L = "";
+			me.Display.L6 = "";
+			me.Display.L6B = "";
+		}
 	},
 	arrowKey: func(d) {
 		unit[me.id].setMessage("NOT ALLOWED");
