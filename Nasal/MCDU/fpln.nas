@@ -195,11 +195,11 @@ var Fpln = {
 						me.scratchpadSize = size(me.scratchpad);
 						
 						if (me.scratchpadSize == 5) { # Fix
-							me.Value.result = fms.FPController.insertWp(0, me.Value.list[i].index, "fix", me.scratchpad);
+							me.Value.result = fms.FPController.insertWp(0, me.Value.list[i].index, "fix", me.scratchpad, me.id);
 						} else if (me.scratchpadSize >= 1 and me.scratchpadSize <= 3) { # Navaid
-							me.Value.result = fms.FPController.insertWp(0, me.Value.list[i].index, "navaid", me.scratchpad);
+							me.Value.result = fms.FPController.insertWp(0, me.Value.list[i].index, "navaid", me.scratchpad, me.id);
 						} else if (me.scratchpadSize == 4) { # Airport
-							me.Value.result = fms.FPController.insertWp(0, me.Value.list[i].index, "airport", me.scratchpad);
+							me.Value.result = fms.FPController.insertWp(0, me.Value.list[i].index, "airport", me.scratchpad, me.id);
 						} else {
 							unit[me.id].setMessage("FORMAT ERROR");
 							return;
@@ -207,7 +207,6 @@ var Fpln = {
 						
 						if (me.Value.result == 2) {
 							unit[me.id].setPage("duplicateWp");
-							unit[me.id].setMessage("DUP WP NOT SUPPORTED");
 						} else if (me.Value.result == 1) {
 							unit[me.id].setMessage("NOT IN DATA BASE");
 						} else {
@@ -359,8 +358,16 @@ var DuplicateWp = {
 		m.group = "fmc";
 		m.name = "duplicateWp";
 		m.nextPage = "none";
-	
+		
 		m.Value = {
+			index: 0,
+			indexStart: 0,
+			indexStartCalc: 0,
+			list: [nil, nil, nil, nil, nil, nil],
+			page: 0,
+			result: 0,
+			size: 0,
+			wpIndex: 0,
 		};
 		
 		return m;

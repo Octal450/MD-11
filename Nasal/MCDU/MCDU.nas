@@ -438,6 +438,7 @@ var BASE = {
 			unit[i].reset();
 		}
 	},
+	duplicateWpInfo: [nil, nil, nil], # One for each unit
 	removeGlobalMessage: func(m) {
 		for (var i = 0; i < 3; i = i + 1) {
 			unit[i].removeMessage(m);

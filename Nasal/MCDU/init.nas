@@ -109,9 +109,9 @@ var Init = {
 	loop: func() {
 		if (me.Value.gnsPosSide) {
 			me.Display.L3L = "LAT";
-			me.Display.R3L = "^  LONG";
+			me.Display.R3L = "ud LONG";
 		} else {
-			me.Display.L3L = "LAT  ^";
+			me.Display.L3L = "LAT ud";
 			me.Display.R3L = "LONG";
 		}
 		
