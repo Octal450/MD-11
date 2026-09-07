@@ -186,6 +186,8 @@ var StaticItem = {
 			m.text = "------END OF F-PLN------";
 		} else if (text == "altnFplnEnd") {
 			m.text = "---END OF ALTN F-PLN----";
+		} else if (text == "noAltnFpln") {
+			m.text = "-----NO ALTN F-PLN------";
 		} else {
 			me.text = text;
 		}
@@ -231,7 +233,7 @@ var FPList = {
 		}
 		
 		me.list[n].append(StaticItem.new("fplnEnd"));
-		me.list[n].append(StaticItem.new("altnFplnEnd"));
+		me.list[n].append(StaticItem.new("noAltnFpln"));
 	},
 };
 

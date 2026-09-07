@@ -223,7 +223,9 @@ var Fpln = {
 						}
 					}
 				} else if (me.scratchpadState == 0) {
-					if (me.Value.list[i].index == 0) { # Can't remove FROM waypoint
+					if (me.Value.list[i].index == 0) { # Can't remove the FROM waypoint
+						unit[me.id].setMessage("NOT ALLOWED");
+					} else if (fms.FPController.plan[0].getPlanSize() <= 2) { # Can't remove the only TO waypoint
 						unit[me.id].setMessage("NOT ALLOWED");
 					} else {
 						fms.FPController.removeWp(0, me.Value.list[i].index);
