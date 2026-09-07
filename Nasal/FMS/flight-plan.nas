@@ -16,7 +16,8 @@ var FPController = {
 	size: [0, 0, 0, 0],
 	temporaryActive: [0, 0],
 	wpTemp: nil,
-	wpTempSize: 0,
+	wpTempVector: std.Vector.new(),
+	wpTempVectorSize: 0,
 	init: func(noSetup = 0) {
 		FPList.init();
 		me.temporaryActive[0] = 0;
@@ -100,14 +101,26 @@ var FPController = {
 			return 1;
 		}
 		
-		me.wpTempSize = size(me.wpTemp);
+		me.wpTempVector.clear();
+		if (type == "navaid") {
+			foreach (wp; me.wpTemp) {
+				if (wp.type == "VOR" or wp.type == "NDB") { # No DME/TACAN/ILS
+					me.wpTempVector.append(wp);
+				}
+			}
+		} else {
+			foreach (wp; me.wpTemp) {
+				me.wpTempVector.append(wp);
+			}
+		}
+		me.wpTempVectorSize = me.wpTempVector.size();
 		
-		if (me.wpTempSize == 1 or mcduId == -1) {
-			me.plan[n].insertWP(createWPFrom(me.wpTemp[0]), i);
+		if (me.wpTempVectorSize == 1 or mcduId == -1) {
+			me.plan[n].insertWP(createWPFrom(me.wpTempVector.vector[0]), i);
 			if (!noDiscontinuity) me.insertDiscontinuity(n, i + 1, 0, 1);
 			if (!noPlanChanged) me.planChanged(n);
-		} else if (me.wpTempSize > 1) { # Duplicate names
-			mcdu.BASE.duplicateWpInfo[mcduId] = DuplicateWp.new(n, i, me.wpTemp);
+		} else if (me.wpTempVectorSize > 1) { # Duplicate names
+			mcdu.BASE.duplicateWpInfo[mcduId] = DuplicateWpList.new(n, i, type, me.wpTempVector);
 			return 2;
 		} else {
 			return 1; # Not in database
@@ -177,9 +190,9 @@ var StaticItem = {
 	},
 };
 
-var WPItem = {
+var WpItem = {
 	new: func(wp) {
-		var m = {parents: [WPItem]};
+		var m = {parents: [WpItem]};
 		
 		m.leg_bearing = wp.leg_bearing;
 		m.leg_distance = wp.leg_distance;
@@ -209,7 +222,7 @@ var FPList = {
 		me.size = FPController.plan[n].getPlanSize();
 		
 		for (var i = 0; i < me.size; i += 1) {
-			me.list[n].append(WPItem.new(FPController.plan[n].getWP(i)));
+			me.list[n].append(WpItem.new(FPController.plan[n].getWP(i)));
 		}
 		
 		me.list[n].append(StaticItem.new("fplnEnd"));
@@ -220,12 +233,13 @@ var FPList = {
 # Duplicate waypoint list constructor
 # Allows us to tell the duplicateWp page the information it needs to display and command waypoint entry
 var DuplicateWpList = {
-	new: func(n, i, v) {
+	new: func(n, i, t, wpV) {
 		var m = {parents: [DuplicateWpList]};
 		
 		m.index = i;
 		m.plan = n;
-		m.vector = v;
+		m.type = t;
+		m.wpVector = wpV; # std.Vector
 		
 		return m;
 	},

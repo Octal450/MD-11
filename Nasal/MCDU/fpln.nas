@@ -214,6 +214,7 @@ var Fpln = {
 						}	
 						
 						if (me.Value.result == 2) {
+							unit[me.id].scratchpadClear();
 							unit[me.id].setPage("duplicateWp");
 						} else if (me.Value.result == 1) {
 							unit[me.id].setMessage("NOT IN DATA BASE");
@@ -241,7 +242,7 @@ var Fpln = {
 	vertRev: func(i) {
 		unit[me.id].setMessage("NOT ALLOWED");
 	},
-	arrowKey: func(d) {
+	arrowKey: func(d) { # With wraparound
 		if (me.Value.size > 6) {
 			me.Value.indexStartCalc = me.Value.indexStart + d;
 			
@@ -299,7 +300,7 @@ var DuplicateWp = {
 			
 			CFont: [FONT.large, FONT.large, FONT.large, FONT.large, FONT.large, FONT.large],
 			CLTranslate: [-2, 0, 0, 0, 0, 0],
-			CTranslate: [-1, -1, -1, -1, -1, -1],
+			CTranslate: [-2, -2, -2, -2, -2, -2],
 			C1L: "LAT/LONG",
 			C1: "",
 			C2L: "",
@@ -338,7 +339,7 @@ var DuplicateWp = {
 			pageNum: "",
 			
 			RFont: [FONT.large, FONT.large, FONT.large, FONT.large, FONT.large, FONT.large],
-			R1L: "FREQ ",
+			R1L: "",
 			R1: "",
 			R2L: "",
 			R2: "",
@@ -374,9 +375,7 @@ var DuplicateWp = {
 			index: 0,
 			indexStart: 0,
 			indexStartCalc: 0,
-			list: [nil, nil, nil, nil, nil, nil],
-			page: 0,
-			result: 0,
+			list: [nil, nil, nil, nil, nil],
 			size: 0,
 			wpIndex: 0,
 		};
@@ -386,12 +385,83 @@ var DuplicateWp = {
 	setup: func() {
 	},
 	loop: func() {
+		me.Value.size = BASE.duplicateWpInfo[me.id].wpVector.size();
+		
+		if (BASE.duplicateWpInfo[me.id].type == "fix") {
+			me.Display.R1L = "";
+		} else {
+			me.Display.R1L = "FREQ ";
+		}
+		
+		if (me.Value.size <= 5) { # No scrolling if the list is too short
+			me.Display.scrollD = 0;
+			me.Display.scrollU = 0;
+			me.Value.indexStart = 0;
+		} else {
+			if (me.Value.indexStart == 0) {
+				me.Display.scrollD = 0;
+				me.Display.scrollU = 1;
+			} else if (me.Value.indexStart == (me.Value.size - 5)) {
+				me.Display.scrollD = 1;
+				me.Display.scrollU = 0;
+			} else {
+				me.Display.scrollD = 1;
+				me.Display.scrollU = 1;
+			}
+		}
+		
+		for (var i = 0; i < 5; i += 1) {
+			me.Value.index = i + me.Value.indexStart;
+			
+			if (i < me.Value.size) {
+				me.Value.list[i] = BASE.duplicateWpInfo[me.id].wpVector.vector[me.Value.index];
+			} else {
+				me.Value.list[i] = nil;
+			}
+			
+			if (me.Value.list[i] != nil) {
+				me.Display["L" ~ (i + 1) ~ "L"] = sprintf("%4d", math.round(courseAndDistance(me.Value.list[i])[1])) ~ " NM";
+				me.Display["L" ~ (i + 1)] = "*" ~ me.Value.list[i].id;
+				me.Display["C" ~ (i + 1)] = me.formatLatLon(me.Value.list[i].lat, me.Value.list[i].lon);
+				
+				if (BASE.duplicateWpInfo[me.id].type != "navaid") {
+					me.Display["R" ~ (i + 1)] = "";
+				} else if (me.Value.list[i].type == "NDB") {
+					me.Display["R" ~ (i + 1)] = sprintf("%5.1f", me.Value.list[i].frequency / 100);
+				} else {
+					me.Display["R" ~ (i + 1)] = sprintf("%6.2f", me.Value.list[i].frequency / 100);
+				}
+			} else {
+				me.Display["L" ~ (i + 1) ~ "L"] = "";
+				me.Display["L" ~ (i + 1)] = "";
+				me.Display["C" ~ (i + 1)] = "";
+				me.Display["R" ~ (i + 1)] = "";
+			}
+		}
 	},
-	arrowKey: func(d) {
-		unit[me.id].setMessage("NOT ALLOWED");
+	formatLatLon: func(lat, lon) {
+		var latHemi = lat >= 0 ? "N" : "S";
+		var lonHemi = lon >= 0 ? "E" : "W";
+		
+		var latDeg = math.abs(lat);
+		var lonDeg = math.abs(lon);
+		
+		return latHemi ~ sprintf("%02d", latDeg) ~ "/" ~ lonHemi ~ sprintf("%03d", lonDeg);
+	},
+	arrowKey: func(d) { # No wraparound
+		if (me.Value.size > 5) {
+			me.Value.indexStartCalc = me.Value.indexStart + d;
+			
+			if (me.Value.indexStartCalc > (me.Value.size - 5)) me.Value.indexStart = me.Value.size - 5;
+			else if (me.Value.indexStartCalc < 0) me.Value.indexStart = 0;
+			else me.Value.indexStart = me.Value.indexStartCalc;
+		} else {
+			me.Value.indexStart = 0;
+			unit[me.id].setMessage("NOT ALLOWED");
+		}
 	},
 	softKey: func(k) {
-		if (k = "r6") {
+		if (k == "r6") {
 			unit[me.id].setPage("fpln");
 		} else {
 			unit[me.id].setMessage("NOT ALLOWED");
