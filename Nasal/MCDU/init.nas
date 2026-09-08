@@ -248,7 +248,7 @@ var Init = {
 				unit[me.id].setMessage("NOT ALLOWED");
 			}
 		} else if (k == "l3") {
-			if (me.scratchpadState == 1) {
+			if (me.scratchpadState == 1 and me.Display.C3L != "") {
 				me.Value.gnsPosSide = 0;
 			} else {
 				unit[me.id].setMessage("NOT ALLOWED");
@@ -370,7 +370,7 @@ var Init = {
 				unit[me.id].setMessage("NOT ALLOWED");
 			}
 		} else if (k == "r3") {
-			if (me.scratchpadState == 1) {
+			if (me.scratchpadState == 1 and me.Display.C3L != "") {
 				me.Value.gnsPosSide = 1;
 			} else {
 				unit[me.id].setMessage("NOT ALLOWED");
