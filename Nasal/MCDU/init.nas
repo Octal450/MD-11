@@ -17,7 +17,7 @@ var Init = {
 			C1: "",
 			C2L: "",
 			C2: "",
-			C3L: "GNS POS",
+			C3L: "",
 			C3: "",
 			C4L: "",
 			C4: "",
@@ -107,19 +107,14 @@ var Init = {
 	},
 	setup: func() {
 		me.Value.gnsPosSide = 0;
-		me.Value.positionSplit = split("/", FORMAT.Position.formatNode(pts.Position.node));
-		me.Display.L3 = me.Value.positionSplit[0];
-		me.Display.R3 = me.Value.positionSplit[1];
+		
+		if (pts.Position.wow.getBoolValue()) {
+			me.Value.positionSplit = split("/", FORMAT.Position.formatNode(pts.Position.node));
+			me.Display.L3 = me.Value.positionSplit[0];
+			me.Display.R3 = me.Value.positionSplit[1];
+		}
 	},
 	loop: func() {
-		if (me.Value.gnsPosSide) {
-			me.Display.L3L = "LAT";
-			me.Display.R3L = "ud LONG";
-		} else {
-			me.Display.L3L = "LAT ud";
-			me.Display.R3L = "LONG";
-		}
-		
 		if (fms.flightData.coRte != "") {
 			me.Display.L1 = fms.flightData.coRte;
 		} else if (fms.flightData.airportTo != "") {
@@ -134,6 +129,23 @@ var Init = {
 			me.Display.L2 = "__________";
 		} else {
 			me.Display.L2 = "----------";
+		}
+		
+		if (pts.Position.wow.getBoolValue()) {
+			me.Display.C3L = "GNS POS";
+			if (me.Value.gnsPosSide) {
+				me.Display.L3L = "LAT";
+				me.Display.R3L = "ud LONG";
+			} else {
+				me.Display.L3L = "LAT ud";
+				me.Display.R3L = "LONG";
+			}
+		} else {
+			me.Display.L3L = "";
+			me.Display.L3 = "";
+			me.Display.C3L = "";
+			me.Display.R3L = "";
+			me.Display.R3 = "";
 		}
 		
 		if (fms.flightData.flightNumber != "") {
@@ -338,15 +350,13 @@ var Init = {
 				unit[me.id].setMessage("NOT ALLOWED");
 			}
 		} else if (k == "r2") {
-			if (me.scratchpadState == 0) {
-				fms.EditFlightData.insertAlternate("");
-				unit[me.id].scratchpadClear();
-			} else if (me.scratchpadState == 2) {
+			if (me.scratchpadState == 2) {
 				if (unit[me.id].stringLengthInRange(3, 4)) {
 					if (size(findAirportsByICAO(me.scratchpad)) == 1) {
 						if (fms.flightData.airportTo != "") {
 							fms.EditFlightData.insertAlternate(me.scratchpad);
 							unit[me.id].scratchpadClear();
+							unit[me.id].setPage("compRteAltn");
 						} else {
 							unit[me.id].setMessage("NOT ALLOWED");
 						}
@@ -824,7 +834,7 @@ var Init3 = {
 };
 
 var CompRte = {
-	new: func(n) {
+	new: func(n, t) {
 		var m = {parents: [CompRte]};
 		
 		m.id = n;
@@ -904,14 +914,27 @@ var CompRte = {
 		};
 		
 		m.group = "fmc";
-		m.name = "compRte";
+		m.type = t; # 0 = Active, 1 = Alternate
+		
+		if (t == 1) {
+			m.name = "compRteAltn";
+		} else {
+			m.name = "compRte";
+		}
+		
 		m.nextPage = "none";
 		
 		return m;
 	},
 	setup: func() {
-		if (fms.flightData.airportTo != "") {
-			me.Display.title = fms.flightData.airportFrom ~ "/" ~ fms.flightData.airportTo;
+		if (me.type == 1) {
+			if (fms.flightData.airportTo != "" and fms.flightData.airportAltn != "") {
+				me.Display.title = fms.flightData.airportTo ~ "/" ~ fms.flightData.airportAltn;
+			}
+		} else {
+			if (fms.flightData.airportFrom != "" and fms.flightData.airportTo != "") {
+				me.Display.title = fms.flightData.airportFrom ~ "/" ~ fms.flightData.airportTo;
+			}
 		}
 	},
 	loop: func() {
