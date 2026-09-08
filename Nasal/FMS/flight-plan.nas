@@ -18,7 +18,7 @@ var FPController = {
 	wpTemp: nil,
 	wpTempVector: std.Vector.new(),
 	wpTempVectorSize: 0,
-	init: func(noSetup = 0) {
+	init: func() {
 		FPList.init();
 		me.temporaryActive[0] = 0;
 		me.temporaryActive[1] = 0;
@@ -27,12 +27,12 @@ var FPController = {
 		me.clearPlan(2);
 		me.clearPlan(3);
 		me.plan[0].activate();
-		if (!noSetup) me.insertDiscontinuity(0, 0, 1, 1);
-		if (!noSetup) me.insertPpos(0); # Calls planChanged
+		me.insertDiscontinuity(0, 0, 1, 1);
+		me.insertPpos(0); # Calls planChanged
 		me.activatePlan();
 	},
-	reset: func(noSetup = 0) {
-		me.init(noSetup);
+	reset: func() {
+		me.init();
 	},
 	loop: func() {
 		me.active = RouteManager.active.getBoolValue();
@@ -53,9 +53,9 @@ var FPController = {
 		}
 		RouteManager.active.setBoolValue(1);
 	},
-	clearPlan: func(n) {
-		me.plan[n].cleanPlan();
-		me.planChanged(n);
+	clearPlan: func(n, noPlanChanged = 0) {
+		me.plan[n].clearAll();
+		if (!noPlanChanged) me.planChanged(n);
 	},
 	insertDiscontinuity: func(n, i, force = 0, noPlanChanged = 0) {
 		if (force) {
@@ -132,11 +132,11 @@ var FPController = {
 			return 1; # Not in database
 		}
 	},
-	newPlan: func(depInfo, destInfo) { # Takes airportinfo objects
-		me.reset(1);
-		me.plan[0].departure = depInfo;
-		me.plan[0].destination = destInfo;
-		me.insertDiscontinuity(0, 1);
+	newPlan: func(n, depInfo, destInfo) { # Takes airportinfo objects
+		me.clearPlan(n, 1);
+		me.plan[n].departure = depInfo;
+		me.plan[n].destination = destInfo;
+		me.insertDiscontinuity(n, 1); # Calls planChanged
 	},
 	planChanged: func(n) {
 		FPList.rebuildList(n);
@@ -187,20 +187,24 @@ var FPController = {
 	},
 };
 
-# Flight plan data management
+# Flight plan list management
+# This generates the plan lists used by the MCDU
 var StaticItem = {
-	new: func(text) {
+	new: func(n, text) {
 		var m = {parents: [StaticItem]};
+		
+		m.plan = n;
 		
 		if (text == "fplnEnd") {
 			m.text = "------END OF F-PLN------";
 		} else if (text == "altnFplnEnd") {
 			m.text = "---END OF ALTN F-PLN----";
 		} else if (text == "noAltnFpln") {
-			m.text = "-----NO ALTN F-PLN------";
+			m.text = "------NO ALTN F-PLN-----";
 		} else {
 			me.text = text;
 		}
+		
 		m.type = "static";
 		
 		return m;
@@ -208,9 +212,10 @@ var StaticItem = {
 };
 
 var WpItem = {
-	new: func(wp) {
+	new: func(n, wp) {
 		var m = {parents: [WpItem]};
 		
+		m.plan = n;
 		m.type = "wp";
 		m.wp = wp;
 		
@@ -219,14 +224,19 @@ var WpItem = {
 };
 
 var FPList = {
+	combinedList: [std.Vector.new()],
 	list: [std.Vector.new(), std.Vector.new(), std.Vector.new(), std.Vector.new(), std.Vector.new()],
 	size: 0,
 	init: func() {
+		me.clearCombinedList(0);
 		me.clearList(0);
 		me.clearList(1);
 		me.clearList(2);
 		me.clearList(3);
 		me.clearList(4);
+	},
+	clearCombinedList: func(n) {
+		me.combinedList[n].clear();
 	},
 	clearList: func(n) {
 		me.list[n].clear();
@@ -236,11 +246,27 @@ var FPList = {
 		me.size = FPController.plan[n].getPlanSize();
 		
 		for (var i = 0; i < me.size; i += 1) {
-			me.list[n].append(WpItem.new(FPController.plan[n].getWP(i)));
+			me.list[n].append(WpItem.new(n, FPController.plan[n].getWP(i)));
 		}
 		
-		me.list[n].append(StaticItem.new("fplnEnd"));
-		me.list[n].append(StaticItem.new("noAltnFpln"));
+		if (n == 1) {
+			if (me.size > 0) {
+				me.list[n].append(StaticItem.new(n, "altnFplnEnd"));
+			} else {
+				me.list[n].append(StaticItem.new(n, "noAltnFpln"));
+			}
+		} else {
+			me.list[n].append(StaticItem.new(n, "fplnEnd"));
+		}
+		
+		if (n == 0 or n == 1) { # Only needed on pages that display both (F-PLN), and these don't display temporary
+			me.rebuildCombinedList(0, 0, 1);
+		}
+	},
+	rebuildCombinedList: func(n, n1, n2) {
+		me.clearCombinedList(n);
+		me.combinedList[n].extend(me.list[n1].vector);
+		me.combinedList[n].extend(me.list[n2].vector);
 	},
 };
 

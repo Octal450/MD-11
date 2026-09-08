@@ -354,7 +354,7 @@ var Init = {
 				if (unit[me.id].stringLengthInRange(3, 4)) {
 					if (size(findAirportsByICAO(me.scratchpad)) == 1) {
 						if (fms.flightData.airportTo != "") {
-							fms.EditFlightData.insertAlternate(me.scratchpad);
+							fms.EditFlightData.newFlightPlanAltn(me.scratchpad);
 							unit[me.id].scratchpadClear();
 							unit[me.id].setPage("compRteAltn");
 						} else {

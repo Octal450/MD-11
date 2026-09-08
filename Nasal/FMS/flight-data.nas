@@ -12,6 +12,8 @@ var FlightData = {
 		m.accelAltEo = -2000;
 		m.accelAltEoSet = 0;
 		m.airportAltn = "";
+		m.airportAltnAlt = -2000;
+		m.airportAltnInfo = -2000;
 		m.airportFrom = "";
 		m.airportFromAlt = -2000;
 		m.airportFromInfo = nil;
@@ -27,6 +29,7 @@ var FlightData = {
 		m.climbThrustAltSet = 0;
 		m.climbTransAlt = 18000;
 		m.coRte = "";
+		m.coRteAltn = "";
 		m.costIndex = -1;
 		m.cruiseAlt = 0;
 		m.cruiseAltAll = [0, 0, 0, 0, 0, 0];
@@ -239,10 +242,6 @@ var EditFlightData = {
 			flightData.vapp = math.round(fms.Speeds.vapp.getValue());
 		}
 	},
-	insertAlternate: func(aprt) { # Assumes validation is already done
-		flightData.airportAltn = aprt;
-		# TODO: Fix this
-	},
 	insertBlockFuel: func(block) { # Recalculate TOGW
 		if (flightData.zfwLbs > 0) {
 			Value.togw = block + flightData.zfwLbs - flightData.taxiFuel;
@@ -390,6 +389,17 @@ var EditFlightData = {
 			return 1;
 		}
 	},
+	newFlightPlanAltn: func(aprt) { # Assumes validation and active plan is already done
+		flightData.coRteAltn = "";
+		flightData.airportAltn = aprt;
+		
+		flightData.airportAltnInfo = airportinfo(flightData.airportAltn);
+		
+		# Reset and create a new plan
+		FPController.newPlan(1, flightData.airportToInfo, flightData.airportAltnInfo);
+		
+		flightData.airportAltnAlt = math.round(flightData.airportAltnInfo.elevation * M2FT);
+	},
 	newFlightPlan: func(from, to) { # Assumes validation is already done
 		if (pts.Position.wow.getBoolValue()) {
 			CORE.resetPhase();
@@ -403,7 +413,7 @@ var EditFlightData = {
 		flightData.airportToInfo = airportinfo(flightData.airportTo);
 		
 		# Reset and create a new plan
-		FPController.newPlan(flightData.airportFromInfo, flightData.airportToInfo);
+		FPController.newPlan(0, flightData.airportFromInfo, flightData.airportToInfo);
 		
 		flightData.airportFromAlt = math.round(flightData.airportFromInfo.elevation * M2FT);
 		flightData.airportToAlt = math.round(flightData.airportToInfo.elevation * M2FT);

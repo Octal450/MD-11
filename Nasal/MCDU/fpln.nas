@@ -89,12 +89,14 @@ var Fpln = {
 		m.scratchpadState = 0;
 		
 		m.Value = {
+			gotPlan: 0,
 			index: 0,
 			indexStart: 0,
 			indexStartCalc: 0,
 			list: [nil, nil, nil, nil, nil, nil],
 			page: 0,
 			result: 0,
+			sourceList: nil,
 			size: 0,
 			wpIndex: 0,
 		};
@@ -102,7 +104,7 @@ var Fpln = {
 		return m;
 	},
 	setup: func() {
-		if (unit[me.id].lastFmcPage != "duplicateWp" or unit[me.id].lastFmcPage != "latRev" or unit[me.id].lastFmcPage != "vertRev") {
+		if (unit[me.id].lastFmcPage != "duplicateWp" and unit[me.id].lastFmcPage != "latRev" and unit[me.id].lastFmcPage != "vertRev") {
 			me.Value.indexStart = 0;
 			me.Value.page = 0;
 		}
@@ -122,7 +124,8 @@ var Fpln = {
 			me.Display.R1L = "SPD   ALT ";
 		}
 		
-		me.Value.size = fms.FPList.list[0].size();
+		me.Value.sourceList = fms.FPList.combinedList[0];
+		me.Value.size = me.Value.sourceList.size();
 		
 		if (me.Value.size <= 6) { # No scrolling if the list is too short
 			me.Display.scrollD = 0;
@@ -138,7 +141,7 @@ var Fpln = {
 			if (me.Value.index >= me.Value.size) me.Value.index = me.Value.index - me.Value.size;
 			
 			if (i < me.Value.size) {
-				me.Value.list[i] = fms.FPList.list[0].vector[me.Value.index];
+				me.Value.list[i] = me.Value.sourceList.vector[me.Value.index];
 			} else {
 				me.Value.list[i] = nil;
 			}
@@ -165,7 +168,7 @@ var Fpln = {
 					me.Display["C" ~ (i + 1)] = "";
 					me.Display["R" ~ (i + 1)] = "";
 				} else {
-					me.Value.wpIndex = fms.FPList.list[0].index(me.Value.list[i]);
+					me.Value.wpIndex = me.Value.sourceList.index(me.Value.list[i]);
 					if (me.Value.wpIndex == 0) {
 						me.Display["L" ~ (i + 1) ~ "L"] = " FROM";
 					} else {
@@ -201,6 +204,8 @@ var Fpln = {
 	latRev: func(i) {
 		if (me.Value.list[i] != nil) {
 			if (me.Value.list[i].type == "wp") {
+				me.Value.gotPlan = me.Value.list[i].plan;
+				
 				if (me.scratchpadState == 2) {
 					if (me.Value.list[i].wp.index == 0) { # Can't replace FROM waypoint
 						unit[me.id].setMessage("NOT ALLOWED");
@@ -208,15 +213,15 @@ var Fpln = {
 						me.scratchpadSize = size(me.scratchpad);
 						
 						if (me.scratchpadSize == 5) { # Fix
-							me.Value.result = fms.FPController.insertWp(0, me.Value.list[i].wp.index, "fix", me.scratchpad, me.id);
+							me.Value.result = fms.FPController.insertWp(me.Value.gotPlan, me.Value.list[i].wp.index, "fix", me.scratchpad, me.id);
 						} else if (me.scratchpadSize >= 1 and me.scratchpadSize <= 3) { # Navaid
-							me.Value.result = fms.FPController.insertWp(0, me.Value.list[i].wp.index, "navaid", me.scratchpad, me.id);
+							me.Value.result = fms.FPController.insertWp(me.Value.gotPlan, me.Value.list[i].wp.index, "navaid", me.scratchpad, me.id);
 						} else if (me.scratchpadSize == 4) { # Airport
-							me.Value.result = fms.FPController.insertWp(0, me.Value.list[i].wp.index, "airport", me.scratchpad, me.id);
+							me.Value.result = fms.FPController.insertWp(me.Value.gotPlan, me.Value.list[i].wp.index, "airport", me.scratchpad, me.id);
 						} else {
 							unit[me.id].setMessage("FORMAT ERROR");
 							return;
-						}	
+						}
 						
 						if (me.Value.result == 2) {
 							unit[me.id].scratchpadClear();
@@ -230,14 +235,14 @@ var Fpln = {
 				} else if (me.scratchpadState == 0) {
 					if (me.Value.list[i].wp.index == 0) { # Can't remove the FROM waypoint
 						unit[me.id].setMessage("NOT ALLOWED");
-					} else if (fms.FPController.plan[0].getPlanSize() <= 2) { # Can't remove the only TO waypoint
+					} else if (fms.FPController.plan[me.Value.gotPlan].getPlanSize() <= 2) { # Can't remove the only TO waypoint
 						unit[me.id].setMessage("NOT ALLOWED");
 					} else {
-						fms.FPController.removeWp(0, me.Value.list[i].wp.index);
+						fms.FPController.removeWp(me.Value.gotPlan, me.Value.list[i].wp.index);
 						unit[me.id].scratchpadClear();
 					}
 				} else if (me.Value.list[i].wp.id != "DISCONTINUITY") {
-					unit[me.id].Data.latRevInfo = fms.WpInfo.new(0, me.Value.list[i].wp.index, me.Value.list[i].wp); # Prep Lat Rev page
+					unit[me.id].Data.latRevInfo = fms.WpInfo.new(me.Value.gotPlan, me.Value.list[i].wp.index, me.Value.list[i].wp); # Prep Lat Rev page
 					unit[me.id].setPage("latRev");
 				} else {
 					unit[me.id].setMessage("NOT ALLOWED");
@@ -692,11 +697,11 @@ var LatRev = {
 				me.scratchpadSize = size(me.scratchpad);
 				
 				if (me.scratchpadSize == 5) { # Fix
-					me.Value.result = fms.FPController.insertWp(0, me.Value.info.index + 1, "fix", me.scratchpad, me.id);
+					me.Value.result = fms.FPController.insertWp(me.Value.info.plan, me.Value.info.index + 1, "fix", me.scratchpad, me.id);
 				} else if (me.scratchpadSize >= 1 and me.scratchpadSize <= 3) { # Navaid
-					me.Value.result = fms.FPController.insertWp(0, me.Value.info.index + 1, "navaid", me.scratchpad, me.id);
+					me.Value.result = fms.FPController.insertWp(me.Value.info.plan, me.Value.info.index + 1, "navaid", me.scratchpad, me.id);
 				} else if (me.scratchpadSize == 4) { # Airport
-					me.Value.result = fms.FPController.insertWp(0, me.Value.info.index + 1, "airport", me.scratchpad, me.id);
+					me.Value.result = fms.FPController.insertWp(me.Value.info.plan, me.Value.info.index + 1, "airport", me.scratchpad, me.id);
 				} else {
 					unit[me.id].setMessage("FORMAT ERROR");
 					return;
