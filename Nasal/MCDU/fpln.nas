@@ -102,7 +102,10 @@ var Fpln = {
 		return m;
 	},
 	setup: func() {
-		if (unit[me.id].lastFmcPage != "duplicateWp" or unit[me.id].lastFmcPage != "latRev" or unit[me.id].lastFmcPage != "vertRev") me.Value.page = 0;
+		if (unit[me.id].lastFmcPage != "duplicateWp" or unit[me.id].lastFmcPage != "latRev" or unit[me.id].lastFmcPage != "vertRev") {
+			me.Value.indexStart = 0;
+			me.Value.page = 0;
+		}
 	},
 	loop: func() {
 		if (me.Value.page) {
@@ -485,9 +488,15 @@ var DuplicateWp = {
 		if (me.Value.size > 5) {
 			me.Value.indexStartCalc = me.Value.indexStart + d;
 			
-			if (me.Value.indexStartCalc > (me.Value.size - 5)) me.Value.indexStart = me.Value.size - 5;
-			else if (me.Value.indexStartCalc < 0) me.Value.indexStart = 0;
-			else me.Value.indexStart = me.Value.indexStartCalc;
+			if (me.Value.indexStartCalc > (me.Value.size - 5)) {
+				me.Value.indexStart = me.Value.size - 5;
+				unit[me.id].setMessage("NOT ALLOWED");
+			} else if (me.Value.indexStartCalc < 0) {
+				me.Value.indexStart = 0;
+				unit[me.id].setMessage("NOT ALLOWED");
+			} else {
+				me.Value.indexStart = me.Value.indexStartCalc;
+			}
 		} else {
 			me.Value.indexStart = 0;
 			unit[me.id].setMessage("NOT ALLOWED");
