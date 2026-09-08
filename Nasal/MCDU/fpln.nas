@@ -102,7 +102,7 @@ var Fpln = {
 		return m;
 	},
 	setup: func() {
-		if (unit[me.id].lastFmcPage != "duplicateWp") me.Value.page = 0;
+		if (unit[me.id].lastFmcPage != "duplicateWp" or unit[me.id].lastFmcPage != "latRev" or unit[me.id].lastFmcPage != "vertRev") me.Value.page = 0;
 	},
 	loop: func() {
 		if (me.Value.page) {
@@ -225,12 +225,12 @@ var Fpln = {
 						}
 					}
 				} else if (me.scratchpadState == 0) {
-					if (me.Value.list[i].index == 0) { # Can't remove the FROM waypoint
+					if (me.Value.list[i].wp.index == 0) { # Can't remove the FROM waypoint
 						unit[me.id].setMessage("NOT ALLOWED");
 					} else if (fms.FPController.plan[0].getPlanSize() <= 2) { # Can't remove the only TO waypoint
 						unit[me.id].setMessage("NOT ALLOWED");
 					} else {
-						fms.FPController.removeWp(0, me.Value.list[i].index);
+						fms.FPController.removeWp(0, me.Value.list[i].wp.index);
 						unit[me.id].scratchpadClear();
 					}
 				} else if (me.Value.list[i].wp.id != "DISCONTINUITY") {
@@ -358,7 +358,7 @@ var DuplicateWp = {
 			R5L: "",
 			R5: "",
 			R6L: "RETURN TO ",
-			R6: "ACT F-PLN>",
+			R6: "",
 			
 			RBFont: [FONT.large, FONT.large, FONT.large, FONT.large, FONT.large, FONT.large],
 			R1B: "",
@@ -377,6 +377,7 @@ var DuplicateWp = {
 			titleTranslate: 0,
 		};
 		
+		m.fromPage = "";
 		m.group = "fmc";
 		m.name = "duplicateWp";
 		m.nextPage = "none";
@@ -450,6 +451,14 @@ var DuplicateWp = {
 				me.Display["R" ~ (i + 1)] = "";
 			}
 		}
+		
+		if (unit[me.id].lastFmcPage == "latRev") {
+			me.fromPage = "latRev";
+			me.Display.R6 = "LAT REV>";
+		} else {
+			me.fromPage = "fpln";
+			me.Display.R6 = "FPLN>";
+		}
 	},
 	formatLatLon: func(lat, lon) {
 		var latHemi = lat >= 0 ? "N" : "S";
@@ -501,7 +510,7 @@ var DuplicateWp = {
 		} else if (k == "l6") {
 			me.insert(5);
 		} else if (k == "r6") {
-			unit[me.id].setPage("fpln");
+			unit[me.id].setPage(me.fromPage);
 		} else {
 			unit[me.id].setMessage("NOT ALLOWED");
 		}
@@ -592,6 +601,7 @@ var LatRev = {
 		m.name = "latRev";
 		m.nextPage = "none";
 		m.scratchpad = "";
+		m.scratchpadSize = 0;
 		m.scratchpadState = 0;
 		
 		m.Value = {
@@ -668,7 +678,34 @@ var LatRev = {
 		me.scratchpad = unit[me.id].scratchpad;
 		me.scratchpadState = unit[me.id].scratchpadState();
 		
-		if (k == "r6") {
+		if (k == "l4") {
+			if (me.scratchpadState == 2) {
+				me.scratchpadSize = size(me.scratchpad);
+				
+				if (me.scratchpadSize == 5) { # Fix
+					me.Value.result = fms.FPController.insertWp(0, me.Value.info.index + 1, "fix", me.scratchpad, me.id);
+				} else if (me.scratchpadSize >= 1 and me.scratchpadSize <= 3) { # Navaid
+					me.Value.result = fms.FPController.insertWp(0, me.Value.info.index + 1, "navaid", me.scratchpad, me.id);
+				} else if (me.scratchpadSize == 4) { # Airport
+					me.Value.result = fms.FPController.insertWp(0, me.Value.info.index + 1, "airport", me.scratchpad, me.id);
+				} else {
+					unit[me.id].setMessage("FORMAT ERROR");
+					return;
+				}	
+				
+				if (me.Value.result == 2) {
+					unit[me.id].scratchpadClear();
+					unit[me.id].setPage("duplicateWp");
+				} else if (me.Value.result == 1) {
+					unit[me.id].setMessage("NOT IN DATA BASE");
+				} else {
+					unit[me.id].scratchpadClear();
+					unit[me.id].setPage("fpln");
+				}
+			} else {
+				unit[me.id].setMessage("NOT ALLOWED");
+			}
+		} else if (k == "r6") {
 			unit[me.id].setPage("fpln");
 		} else {
 			unit[me.id].setMessage("NOT ALLOWED");
