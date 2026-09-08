@@ -198,7 +198,7 @@ var StaticItem = {
 		if (text == "fplnEnd") {
 			m.text = "------END OF F-PLN------";
 		} else if (text == "altnFplnEnd") {
-			m.text = "---END OF ALTN F-PLN----";
+			m.text = "----END OF ALTN F-PLN---";
 		} else if (text == "noAltnFpln") {
 			m.text = "------NO ALTN F-PLN-----";
 		} else {
