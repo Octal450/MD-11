@@ -176,8 +176,12 @@ var Fpln = {
 					}
 					
 					if (i > 0) { # C1L is fixed
-						if (me.Value.page and me.Value.wpIndex != 0 and me.Value.list[i - 1].wp.id != "DISCONTINUITY") { # i - 1 is safe as this doesn't run for i = 0
-							me.Display["C" ~ (i + 1) ~ "L"] = sprintf("%4d", math.round(me.Value.list[i].wp.leg_distance));
+						if (me.Value.page and me.Value.wpIndex != 0 and me.Value.list[i - 1].type == "wp") { # Make sure i - 1 is a wp
+							if (me.Value.list[i - 1].wp.id != "DISCONTINUITY") { # i - 1 is safe as this doesn't run for i = 0
+								me.Display["C" ~ (i + 1) ~ "L"] = sprintf("%4d", math.round(me.Value.list[i].wp.leg_distance));
+							} else {
+								me.Display["C" ~ (i + 1) ~ "L"] = "";
+							}
 						} else {
 							me.Display["C" ~ (i + 1) ~ "L"] = "";
 						}
