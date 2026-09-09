@@ -619,6 +619,7 @@ var LatRev = {
 		m.scratchpadState = 0;
 		
 		m.Value = {
+			airportFrom: 0,
 			idSize: 0,
 			info: nil,
 		};
@@ -643,14 +644,22 @@ var LatRev = {
 		}
 		me.Display.C1L = FORMAT.Position.formatGhost(me.Value.info.wp);
 		
+		if (me.Value.info.plan == 1) me.Value.airportFrom = fms.flightData.airportTo;
+		else me.Value.airportFrom = fms.flightData.airportFrom;
+		
 		if (me.Value.info.wp.id == "PPOS" or me.Value.info.wp.id == "T-P") {
 			me.Display.L1 = "";
 			me.Display.L2 = "";
 			me.Display.R1 = "";
 			me.Display.R3L = "";
 			me.Display.R3 = "";
-		} else if (fms.Internal.phase == 0 and me.Value.info.wp.index == 0 and me.Value.info.wp.id == fms.flightData.airportFrom) { # This needs to check if we're the departure runway also for entered RW/SID
-			me.Display.L1 = "<SID";
+		} else if (fms.Internal.phase == 0 and me.Value.info.wp.index == 0 and me.Value.info.wp.id == me.Value.airportFrom) { # This needs to check if we're the departure runway also for entered RW/SID
+			if (me.Value.info.plan == 1) {
+				me.Display.L1 = "";
+			} else {
+				me.Display.L1 = "<SID";
+			}
+			
 			me.Display.L2 = "";
 			me.Display.R1 = "";
 			me.Display.R3L = "";
@@ -658,7 +667,9 @@ var LatRev = {
 		} else {
 			me.Display.L1 = "";
 			
-			if (me.Value.info.wp.wp_type != "airport" and me.Value.info.wp.wp_type != "runway") { # Airports cannot enter airways
+			# Airports cannot enter airways
+			#if (me.Value.info.wp.wp_type != "airport" and me.Value.info.wp.wp_type != "runway") { # Why are these returning navaid?
+			if (size(me.Value.info.wp.id) != 4) {
 				me.Display.L2 = "<AIRWAYS";
 			} else {
 				me.Display.L2 = "";
@@ -675,7 +686,7 @@ var LatRev = {
 			}
 		}
 		
-		if (fms.flightData.airportAltn != "") {
+		if (fms.flightData.airportAltn != "" and me.Value.info.plan != 1) {
 			me.Display.L6L = " ENABLE ALTN";
 			me.Display.L6 = "*   " ~ fms.flightData.airportAltn;
 			me.Display.L6B = " TO";
