@@ -371,7 +371,6 @@ var LatRev = {
 			me.Display.L1 = "";
 			
 			# Airports cannot enter airways
-			#if (me.Value.info.wp.wp_type != "airport" and me.Value.info.wp.wp_type != "runway") { # Why are these returning navaid?
 			if (size(me.Value.info.wp.id) != 4) {
 				me.Display.L2 = "<AIRWAYS";
 			} else {

@@ -494,13 +494,20 @@ var DirIntc = {
 				me.Value.gotPlan = me.Value.list[i].plan;
 				
 				if (me.Value.list[i].wp.id != "DISCONTINUITY") {
+					if (!fms.FPController.temporaryActive[me.id]) fms.FPController.createTemporary(me.id, 0, 1);
+						
 					if (me.Value.gotPlan == me.Value.sourceId and me.Value.list[i].wp.index > 0) { # Must not be FROM and from the active plan to do this type of dirIntc
-						if (!fms.FPController.temporaryActive[me.id]) fms.FPController.createTemporary(me.id, 0, 1);
-						fms.FPController.dirIntcFromFP(me.Value.temporarySourceId, me.Value.list[i].wp.index);
-						me.Value.selectedId = me.Value.list[i].wp.id;
+						fms.FPController.dirIntcInSequenceWP(me.Value.temporarySourceId, me.Value.list[i].wp.index);
 					} else {
-						unit[me.id].setMessage("NOT ALLOWED");
+						if (me.Value.gotPlan == 1) { # If it's in the alternate
+							fms.FPController.dirIntcFPWP(me.Value.temporarySourceId, 1, me.Value.list[i].wp.index);
+						} else {
+							fms.FPController.dirIntcFPWP(me.Value.temporarySourceId, me.Value.temporarySourceId, me.Value.list[i].wp.index);
+						}
 					}
+					
+					me.Value.selectedId = me.Value.list[i].wp.id;
+					me.Value.indexStart = 0;
 				} else {
 					unit[me.id].setMessage("NOT ALLOWED");
 				}

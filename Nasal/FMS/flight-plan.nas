@@ -73,7 +73,7 @@ var FPController = {
 		if (!noPlanChanged) me.planChanged(n);
 	},
 	createTemporary: func(mcduId, n, noPlanChanged = 0) { # No temporary alternate
-		var planIdTemp = -1; # Local variable because could be called by two MCDUs at once
+		var planIdTemp = -1;
 		
 		if (mcduId == 0) {
 			planIdTemp = 2;
@@ -87,14 +87,20 @@ var FPController = {
 		me.copyPlan(planIdTemp, n, noPlanChanged);
 		me.temporaryActive[mcduId] = 1;
 	},
-	dirIntcFromFP: func(n, i) {
+	dirIntcFPWP: func(n, s, i) {
+		var legTemp = me.plan[s].getWP(i);
+		me.removeWp(n, 0, 1, 1); # Remove FROM
+		me.insertTp(n, 0, 1);
+		me.insertLeg(n, 1, legTemp); # Calls planChanged
+	},
+	dirIntcInSequenceWP: func(n, i) {
 		me.removeWp(n, 0, 1, 1); # Remove FROM
 		me.insertTp(n, 0, 1);
 		me.removeMultipleWp(n, 1, i - 1); # Calls planChanged
 	},
 	executeTemporary: func(n, mcduId, noPlanChanged = 0) {
 		if (me.temporaryActive[mcduId]) {
-			var planIdTemp = -1; # Local variable because could be called by two MCDUs at once
+			var planIdTemp = -1;
 			
 			if (mcduId == 0) {
 				planIdTemp = 2;
@@ -115,6 +121,7 @@ var FPController = {
 			return;
 		}
 		
+		# Make sure that we do not insert one if one already exists
 		if (me.plan[n].getWP(i) != nil) { # WP i is not nil
 			if (me.plan[n].getWP(i - 1) != nil) { # WP i - 1 is also not nil
 				if (me.plan[n].getWP(i).wp_name != "DISCONTINUITY" and me.plan[n].getWP(i - 1).wp_name != "DISCONTINUITY") {
@@ -137,6 +144,11 @@ var FPController = {
 	},
 	insertGhost: func(n, i, ghost, noDiscontinuity = 0, noPlanChanged = 0) {
 		me.plan[n].insertWP(createWPFrom(ghost), i);
+		if (!noDiscontinuity) me.insertDiscontinuity(n, i + 1, 0, 1);
+		if (!noPlanChanged) me.planChanged(n);
+	},
+	insertLeg: func(n, i, leg, noDiscontinuity = 0, noPlanChanged = 0) {
+		me.plan[n].insertWP(leg, i);
 		if (!noDiscontinuity) me.insertDiscontinuity(n, i + 1, 0, 1);
 		if (!noPlanChanged) me.planChanged(n);
 	},
