@@ -117,6 +117,27 @@ var FPController = {
 			me.clearTemporary(mcduId, noPlanChanged);
 		}
 	},
+	getPrevWpGeo: func(n, i) {
+		var prevGeo = geo.aircraft_position();
+		
+		if (i > 0) {
+			var prev = me.plan[n].getWP(i - 1);
+			
+			if (prev.wp_name != "DISCONTINUITY") {
+				prevGeo = geo.Coord.new();
+				prevGeo.set_latlon(prev.lat, prev.lon);
+			} else if (i > 1) {
+				prev = me.plan[n].getWP(i - 2);
+				
+				if (prev.wp_name != "DISCONTINUITY") { # Should never be false, but just in case, fall through
+					prevGeo = geo.Coord.new();
+					prevGeo.set_latlon(prev.lat, prev.lon);
+				}
+			}
+		}
+		
+		return prevGeo;
+	},
 	getWpGhostByID: func(n, type, id, mcduId = -1) { # Similar to insertWp
 		var wpTemp = nil;
 		
@@ -149,7 +170,7 @@ var FPController = {
 		if (wpTempVectorSize == 1 or mcduId == -1) {
 			return wpTempVector.vector[0];
 		} else if (wpTempVectorSize > 1) { # Duplicate names
-			mcdu.unit[mcduId].Data.duplicateWpInfo = DuplicateWpList.new(n, 1, type, wpTempVector); # Prep Duplicate Names page
+			mcdu.unit[mcduId].Data.duplicateWpInfo = DuplicateWpList.new(n, 1, type, wpTempVector); # Prep Duplicate Names page, use current pos since no T-P exists yet
 			return 2;
 		} else {
 			return 1; # Not in database
@@ -200,7 +221,7 @@ var FPController = {
 		me.plan[n].insertWP(createWP(geo.aircraft_position(), "T-P"), i);
 		if (!noPlanChanged) me.planChanged(n);
 	},
-	insertWp: func(n, i, type, id, mcduId = -1, noDiscontinuity = 0, noPlanChanged = 0) {
+	insertWp: func(n, i, type, id, mcduId = -1, noDiscontinuity = 0, noPlanChanged = 0) { # Similar to getWpGhostByID
 		var wpTemp = nil;
 		
 		if (type == "fix") {
@@ -234,7 +255,7 @@ var FPController = {
 			if (!noDiscontinuity) me.insertDiscontinuity(n, i + 1, 0, 1);
 			if (!noPlanChanged) me.planChanged(n);
 		} else if (wpTempVectorSize > 1) { # Duplicate names
-			mcdu.unit[mcduId].Data.duplicateWpInfo = DuplicateWpList.new(n, i, type, wpTempVector); # Prep Duplicate Names page
+			mcdu.unit[mcduId].Data.duplicateWpInfo = DuplicateWpList.new(n, i, type, wpTempVector, me.getPrevWpGeo(n, i)); # Prep Duplicate Names page, previous waypoint pos
 			return 2;
 		} else {
 			return 1; # Not in database
@@ -400,13 +421,24 @@ var FPList = {
 # Info page constructors
 # Allows us to tell the F-PLN sub-pages information they need
 var DuplicateWpList = {
-	new: func(n, i, t, wpV) {
+	new: func(n, i, t, wpV, prevGeo = nil) {
 		var m = {parents: [DuplicateWpList]};
 		
+		if (prevGeo == nil) {
+			prevGeo = geo.aircraft_position();
+		}
+		
+		m.cDVector = std.Vector.new();
 		m.index = i;
 		m.plan = n;
 		m.type = t;
 		m.wpVector = wpV; # std.Vector
+		
+		var wpGeo = geo.Coord.new();
+		for (var i = 0; i < m.wpVector.size(); i += 1) {
+			wpGeo.set_latlon(m.wpVector.vector[i].lat, m.wpVector.vector[i].lon);
+			m.cDVector.append(courseAndDistance(prevGeo, wpGeo));
+		};
 		
 		return m;
 	},

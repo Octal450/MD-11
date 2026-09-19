@@ -150,7 +150,7 @@ var DuplicateWp = {
 			}
 			
 			if (me.Value.list[i] != nil) {
-				me.Display["L" ~ (i + 1) ~ "L"] = sprintf("%4d", math.round(courseAndDistance(me.Value.list[i])[1])) ~ " NM";
+				me.Display["L" ~ (i + 1) ~ "L"] = sprintf("%4d", math.round(unit[me.id].Data.duplicateWpInfo.cDVector.vector[me.Value.index][1])) ~ " NM";
 				me.Display["L" ~ (i + 1)] = "*" ~ me.Value.list[i].id;
 				me.Display["C" ~ (i + 1)] = me.formatLatLon(me.Value.list[i].lat, me.Value.list[i].lon);
 				
