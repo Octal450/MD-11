@@ -90,6 +90,8 @@ var Fallback = {
 	},
 	setup: func() {
 	},
+	exit: func() {
+	},
 	loop: func() {
 	},
 	arrowKey: func(d) {

@@ -97,6 +97,8 @@ var Menu = {
 	},
 	setup: func() {
 	},
+	exit: func() {
+	},
 	loop: func() {
 		if (!me.type) {
 			if (fms.Internal.avail[me.id].getBoolValue()) {
@@ -239,6 +241,8 @@ var Ref = {
 		return m;
 	},
 	setup: func() {
+	},
+	exit: func() {
 	},
 	loop: func() {
 	},

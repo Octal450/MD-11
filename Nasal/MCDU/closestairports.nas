@@ -96,9 +96,6 @@ var ClosestAirports = {
 		
 		return m;
 	},
-	reset: func() {
-		me.setup();
-	},
 	setup: func() {
 		me.Value.cdVector = [nil, nil, nil, nil, nil];
 		me.customAirport = nil;
@@ -120,6 +117,8 @@ var ClosestAirports = {
 				me.Value.range += 500;
 			}
 		}
+	},
+	exit: func() {
 	},
 	loop: func() {
 		if (size(me.Value.airports) == 0) {

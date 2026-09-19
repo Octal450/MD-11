@@ -110,6 +110,8 @@ var PosRef = {
 		
 		me.Value.frozen = 0;
 	},
+	exit: func() {
+	},
 	loop: func() {
 		me.anyAligned = systems.IRS.Iru.anyAligned.getValue();
 		
@@ -276,6 +278,8 @@ var IrsGnsPos = {
 		} else {
 			me.Display.R6 = "REF INDEX>";
 		}
+	},
+	exit: func() {
 	},
 	loop: func() {
 		me.Value.positionString = FORMAT.Position.formatNode(pts.Position.node);
@@ -446,6 +450,8 @@ var IrsStatus = {
 		} else {
 			me.Display.R6 = "REF INDEX>";
 		}
+	},
+	exit: func() {
 	},
 	loop: func() {
 		pts.Velocities.groundspeedKtTemp = pts.Velocities.groundspeedKt.getValue();

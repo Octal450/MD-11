@@ -57,6 +57,58 @@ var FPController = {
 		me.plan[n].clearAll();
 		if (!noPlanChanged) me.planChanged(n);
 	},
+	clearTemporary: func(mcduId, noPlanChanged = 0) {
+		me.temporaryActive[mcduId] = 0;
+		
+		if (mcduId == 0) {
+			me.clearPlan(2, noPlanChanged);
+		} else if (mcduId == 1) {
+			me.clearPlan(3, noPlanChanged);
+		}
+	},
+	copyPlan: func(n, s, noPlanChanged = 0) {
+		me.clearPlan(n, 1);
+		me.plan[n] = me.plan[s].clone();
+		if (n == 0) me.plan[0].activate(); # Has to be re-set as active because it's a "new" plan
+		if (!noPlanChanged) me.planChanged(n);
+	},
+	createTemporary: func(mcduId, n, noPlanChanged = 0) { # No temporary alternate
+		var planIdTemp = -1; # Local variable because could be called by two MCDUs at once
+		
+		if (mcduId == 0) {
+			planIdTemp = 2;
+		} else if (mcduId == 1) {
+			planIdTemp = 3;
+		} else { # Just in case
+			return;
+		}
+		
+		me.clearPlan(planIdTemp, 1);
+		me.copyPlan(planIdTemp, n, noPlanChanged);
+		me.temporaryActive[mcduId] = 1;
+	},
+	dirIntcFromFP: func(n, i) {
+		me.removeWp(n, 0, 1, 1); # Remove FROM
+		me.insertTp(n, 0, 1);
+		me.removeMultipleWp(n, 1, i - 1); # Calls planChanged
+	},
+	executeTemporary: func(n, mcduId, noPlanChanged = 0) {
+		if (me.temporaryActive[mcduId]) {
+			var planIdTemp = -1; # Local variable because could be called by two MCDUs at once
+			
+			if (mcduId == 0) {
+				planIdTemp = 2;
+			} else if (mcduId == 1) {
+				planIdTemp = 3;
+			} else { # Just in case
+				return;
+			}
+			
+			# Both plan's planChanged must be called/not called
+			me.copyPlan(n, planIdTemp, noPlanChanged);
+			me.clearTemporary(mcduId, noPlanChanged);
+		}
+	},
 	insertDiscontinuity: func(n, i, force = 0, noPlanChanged = 0) {
 		if (force) {
 			me.plan[n].insertWP(createDiscontinuity(), i);
@@ -155,6 +207,14 @@ var FPController = {
 		me.removeDuplicateDiscontinuities(n, i, 1); # If we delete a WP between two discontinuities, then two would be next to each other
 		if (!noPlanChanged) me.planChanged(n);
 	},
+	removeMultipleWp: func(n, first, last, noPlanChanged = 0) { # Does not insert discontinuities
+		for (var i = first; i <= last; i += 1) {
+			me.removeWp(n, first, 1, 1); # Just keep removing the WP at first index
+		}
+		
+		me.removeDuplicateDiscontinuities(n, first, 1); # Need to check for duplicates here, since the waypoint after "last" became the waypoint at "first"
+		if (!noPlanChanged) me.planChanged(n);
+	},
 	setActiveWp: func() {
 		if (me.active) {
 			if (me.size[0] >= 3) { # Case where there are at least 3 WPs
@@ -224,7 +284,7 @@ var WpItem = {
 };
 
 var FPList = {
-	combinedList: [std.Vector.new()],
+	combinedList: [std.Vector.new(), nil, std.Vector.new(), std.Vector.new()], # Sorted to match main FP list
 	list: [std.Vector.new(), std.Vector.new(), std.Vector.new(), std.Vector.new(), std.Vector.new()],
 	size: 0,
 	init: func() {
@@ -259,8 +319,19 @@ var FPList = {
 			me.list[n].append(StaticItem.new(n, "fplnEnd"));
 		}
 		
-		if (n == 0 or n == 1) { # Only needed on pages that display both (F-PLN), and these don't display temporary
+		# Compute combined lists
+		if (n == 0) {
 			me.rebuildCombinedList(0, 0, 1);
+		} else if (n == 1) { # No temporary alternate, so we might have to update all 3
+			me.rebuildCombinedList(0, 0, 1); # Always update active
+			
+			# Update temporary if they are active
+			if (FPController.temporaryActive[0]) me.rebuildCombinedList(2, 2, 1);
+			if (FPController.temporaryActive[1]) me.rebuildCombinedList(3, 3, 1);
+		} else if (n == 2) {
+			me.rebuildCombinedList(2, 2, 1);
+		} else if (n == 3) {
+			me.rebuildCombinedList(3, 3, 1);
 		}
 	},
 	rebuildCombinedList: func(n, n1, n2) {

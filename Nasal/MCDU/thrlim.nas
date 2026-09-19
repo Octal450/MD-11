@@ -115,6 +115,8 @@ var ThrLim = {
 			me.Value.pw = 0;
 		}
 	},
+	exit: func() {
+	},
 	loop: func() {
 		me.Value.Limit.auto = systems.FADEC.Limit.auto.getBoolValue();
 		me.Value.Limit.climb = systems.FADEC.Limit.climb.getValue();

@@ -96,8 +96,8 @@ var Fpln = {
 			list: [nil, nil, nil, nil, nil, nil],
 			page: 0,
 			result: 0,
-			sourceList: nil,
 			size: 0,
+			sourceList: nil,
 			wpIndex: 0,
 		};
 		
@@ -108,6 +108,8 @@ var Fpln = {
 			me.Value.indexStart = 0;
 			me.Value.page = 0;
 		}
+	},
+	exit: func() {
 	},
 	loop: func() {
 		if (me.Value.page) {
@@ -169,7 +171,7 @@ var Fpln = {
 					me.Display["R" ~ (i + 1)] = "";
 				} else {
 					me.Value.wpIndex = me.Value.sourceList.index(me.Value.list[i]);
-					if (me.Value.wpIndex == 0) {
+					if (me.Value.wpIndex == 0 and i == 0) { # FROM only shows when L1 = FROM
 						me.Display["L" ~ (i + 1) ~ "L"] = " FROM";
 					} else {
 						me.Display["L" ~ (i + 1) ~ "L"] = "";
@@ -190,7 +192,6 @@ var Fpln = {
 					me.Display["L" ~ (i + 1)] = me.Value.list[i].wp.id;
 					if (me.Value.page) {
 						me.Display["C" ~ (i + 1)] = "";
-						
 						me.Display["R" ~ (i + 1)] = "-- ---g/---";
 					} else {
 						me.Display["C" ~ (i + 1)] = "----";
@@ -304,6 +305,251 @@ var Fpln = {
 			me.vertRev(4);
 		} else if (k == "r6") {
 			me.vertRev(5);
+		}
+	},
+};
+
+var DirIntc = {
+	new: func(n) {
+		var m = {parents: [DirIntc]};
+		
+		m.id = n;
+		
+		m.Display = {
+			arrow: 0,
+			
+			CFont: [FONT.large, FONT.small, FONT.small, FONT.small, FONT.small, FONT.small],
+			CLTranslate: [-2, -2, -2, -2, -2, -2],
+			CTranslate: [-2, -2, -2, -2, -2, -2],
+			C1L: "",
+			C1: "",
+			C2L: "",
+			C2: "",
+			C3L: "",
+			C3: "",
+			C4L: "",
+			C4: "",
+			C5L: "",
+			C5: "",
+			C6L: "",
+			C6: "",
+			
+			LFont: [FONT.large, FONT.large, FONT.large, FONT.large, FONT.large, FONT.large],
+			L1L: " DIR TO",
+			L1: "",
+			L2L: "",
+			L2: "",
+			L3L: "",
+			L3: "",
+			L4L: "",
+			L4: "",
+			L5L: "",
+			L5: "",
+			L6L: "",
+			L6: "",
+			
+			LBFont: [FONT.large, FONT.large, FONT.large, FONT.large, FONT.large, FONT.large],
+			L1B: "",
+			L2B: "",
+			L3B: "",
+			L4B: "",
+			L5B: "",
+			L6B: "",
+			
+			pageNum: "",
+			
+			RFont: [FONT.large, FONT.small, FONT.small, FONT.small, FONT.small, FONT.small],
+			R1L: "INTC FIX/CRS  ",
+			R1: "",
+			R2L: "",
+			R2: "",
+			R3L: "",
+			R3: "",
+			R4L: "",
+			R4: "",
+			R5L: "",
+			R5: "",
+			R6L: "",
+			R6: "",
+			
+			RBFont: [FONT.large, FONT.large, FONT.large, FONT.large, FONT.large, FONT.large],
+			R1B: "",
+			R2B: "",
+			R3B: "",
+			R4B: "",
+			R5B: "",
+			R6B: "",
+			
+			scrollD: 0,
+			scrollU: 0,
+			
+			title: "ACT F-PLN",
+			titleSmall: "",
+			titleSmallTranslate: 0,
+			titleTranslate: -1,
+		};
+		
+		m.group = "fmc";
+		m.name = "dirIntc";
+		m.nextPage = "";
+		m.scratchpad = "";
+		m.scratchpadSize = 0;
+		m.scratchpadState = 0;
+		
+		m.Value = {
+			gotPlan: 0,
+			index: 0,
+			indexStart: 0,
+			indexStartCalc: 0,
+			list: [nil, nil, nil, nil, nil, nil],
+			selectedId: "",
+			size: 0,
+			sourceId: 0,
+			sourceList: nil,
+			temporarySourceId: 2,
+		};
+		
+		if (n == 1) m.Value.temporarySourceId = 3;
+		
+		return m;
+	},
+	setup: func() {
+		if (unit[me.id].lastFmcPage != "duplicateWp") {
+			me.Value.indexStart = 0;
+			me.Value.page = 0;
+		}
+	},
+	exit: func() {
+		me.Value.selectedId = "";
+		fms.FPController.clearTemporary(me.id); # Clear any temporary plan created on this page
+	},
+	loop: func() {
+		if (fms.FPController.temporaryActive[me.id]) {
+			me.Value.sourceId = me.Value.temporarySourceId;
+		} else {
+			me.Value.sourceId = 0;
+		}
+		
+		me.Value.sourceList = fms.FPList.combinedList[me.Value.sourceId];
+		me.Value.size = me.Value.sourceList.size();
+		
+		if (me.Value.size <= 6) { # No scrolling if the list is too short
+			me.Display.scrollD = 0;
+			me.Display.scrollU = 0;
+			me.Value.indexStart = 0;
+		} else {
+			me.Display.scrollD = 1;
+			me.Display.scrollU = 1;
+		}
+		
+		if (me.Value.selectedId != "") {
+			me.Display.L1 = "*" ~ me.Value.selectedId;
+			me.Display.R1 = me.Value.selectedId ~ "/[ ]g ";
+			me.Display.L2L = " WITH";
+			me.Display.L2 = "*ABEAM POINTS";
+			me.Display.C2 = "";
+			me.Display.R2 = "";
+		} else { # L2/C2/R2 are set in loop
+			me.Display.L1 = "[     ]";
+			me.Display.L2L = "";
+			me.Display.R1 = "[     ]/[ ]g ";
+		}
+		
+		for (var i = 1; i < 6; i += 1) { # Skip 0, line 1 is handled above
+			me.Value.index = i + me.Value.indexStart;
+			if (me.Value.index >= me.Value.size) me.Value.index = me.Value.index - me.Value.size;
+			
+			if (i < me.Value.size) {
+				me.Value.list[i] = me.Value.sourceList.vector[me.Value.index];
+			} else {
+				me.Value.list[i] = nil;
+			}
+			
+			if (i == 1 and me.Value.selectedId != "") {
+				continue; # We handled it above
+			} else if (me.Value.list[i] != nil) {
+				if (me.Value.list[i].type == "static") {
+					me.Display["L" ~ (i + 1)] = me.Value.list[i].text;
+					me.Display["C" ~ (i + 1)] = "";
+					me.Display["R" ~ (i + 1)] = "";
+				} else if (me.Value.list[i].wp.id == "DISCONTINUITY") {
+					me.Display["L" ~ (i + 1)] = "---F-PLN DISCONTINUITY--";
+					me.Display["C" ~ (i + 1)] = "";
+					me.Display["R" ~ (i + 1)] = "";
+				} else {
+					me.Display["L" ~ (i + 1)] = me.Value.list[i].wp.id;
+					me.Display["C" ~ (i + 1)] = "----";
+					me.Display["R" ~ (i + 1)] = "---/ -----";
+				}
+			} else {
+				me.Display["L" ~ (i + 1)] = "";
+				me.Display["C" ~ (i + 1)] = "";
+				me.Display["R" ~ (i + 1)] = "";
+			}
+		}
+	},
+	stageFromFp: func(i) { # i > 0
+		if (me.Value.list[i] != nil and me.scratchpadState == 1) {
+			if (me.Value.list[i].type == "wp") {
+				me.Value.gotPlan = me.Value.list[i].plan;
+				
+				if (me.Value.list[i].wp.id != "DISCONTINUITY") {
+					if (me.Value.gotPlan == me.Value.sourceId and me.Value.list[i].wp.index > 0) { # Must not be FROM and from the active plan to do this type of dirIntc
+						if (!fms.FPController.temporaryActive[me.id]) fms.FPController.createTemporary(me.id, 0, 1);
+						fms.FPController.dirIntcFromFP(me.Value.temporarySourceId, me.Value.list[i].wp.index);
+						me.Value.selectedId = me.Value.list[i].wp.id;
+					} else {
+						unit[me.id].setMessage("NOT ALLOWED");
+					}
+				} else {
+					unit[me.id].setMessage("NOT ALLOWED");
+				}
+			} else {
+				unit[me.id].setMessage("NOT ALLOWED");
+			}
+		} else {
+			unit[me.id].setMessage("NOT ALLOWED");
+		}
+	},
+	arrowKey: func(d) { # With wraparound
+		if (me.Value.size > 6) {
+			me.Value.indexStartCalc = me.Value.indexStart + d;
+			
+			if (me.Value.indexStartCalc > me.Value.size - 1) me.Value.indexStart = 0;
+			else if (me.Value.indexStartCalc < 0) me.Value.indexStart = me.Value.size - 1;
+			else me.Value.indexStart = me.Value.indexStartCalc;
+		} else {
+			me.Value.indexStart = 0;
+			unit[me.id].setMessage("NOT ALLOWED");
+		}
+	},
+	softKey: func(k) {
+		me.scratchpad = unit[me.id].scratchpad;
+		me.scratchpadState = unit[me.id].scratchpadState();
+		
+		if (k == "l1") {
+			if (me.Value.selectedId != "" and me.scratchpadState == 1) {
+				fms.FPController.executeTemporary(0, me.id);
+				unit[me.id].setPage("fpln");
+			} else {
+				unit[me.id].setMessage("NOT ALLOWED");
+			}
+		} else if (k == "l2") {
+			if (me.Value.selectedId != "") { # ABEAM POINTS
+				unit[me.id].setMessage("NOT ALLOWED");
+			} else {
+				me.stageFromFp(1);
+			}
+		} else if (k == "l3") {
+			me.stageFromFp(2);
+		} else if (k == "l4") {
+			me.stageFromFp(3);
+		} else if (k == "l5") {
+			me.stageFromFp(4);
+		} else if (k == "l6") {
+			me.stageFromFp(5);
+		} else {
+			unit[me.id].setMessage("NOT ALLOWED");
 		}
 	},
 };

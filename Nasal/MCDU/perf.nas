@@ -158,6 +158,8 @@ var Perf = {
 	},
 	setup: func() {
 	},
+	exit: func() {
+	},
 	loop: func() {
 		# Page advance logic
 		if (me.type == 2) {
@@ -689,6 +691,8 @@ var PreSel = {
 		return m;
 	},
 	setup: func() {
+	},
+	exit: func() {
 	},
 	loop: func() {
 		# Page advance logic

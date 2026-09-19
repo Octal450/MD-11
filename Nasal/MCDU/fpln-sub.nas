@@ -101,6 +101,8 @@ var DuplicateWp = {
 	},
 	setup: func() {
 	},
+	exit: func() {
+	},
 	loop: func() {
 		me.Value.size = unit[me.id].Data.duplicateWpInfo.wpVector.size();
 		
@@ -159,9 +161,12 @@ var DuplicateWp = {
 		if (unit[me.id].lastFmcPage == "latRev") {
 			me.fromPage = "latRev";
 			me.Display.R6 = "LAT REV>";
+		} else if (unit[me.id].lastFmcPage == "dirIntc") {
+			me.fromPage = "dirIntc";
+			me.Display.R6 = "ACT F-PLN>";
 		} else {
 			me.fromPage = "fpln";
-			me.Display.R6 = "FPLN>";
+			me.Display.R6 = "ACT F-PLN>";
 		}
 	},
 	formatLatLon: func(lat, lon) {
@@ -323,6 +328,8 @@ var LatRev = {
 		return m;
 	},
 	setup: func() {
+	},
+	exit: func() {
 	},
 	loop: func() {
 		me.Value.info = unit[me.id].Data.latRevInfo;

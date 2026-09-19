@@ -103,6 +103,8 @@ var NavRadio = {
 	},
 	setup: func() {
 	},
+	exit: func() {
+	},
 	loop: func() {
 		me.Value.navCrs[0] = pts.Instrumentation.Nav.Radials.selectedDeg[0].getValue();
 		me.Value.navMhz[0] = pts.Instrumentation.Nav.Frequencies.selectedMhz[0].getValue();

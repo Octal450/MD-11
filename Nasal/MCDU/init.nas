@@ -114,6 +114,8 @@ var Init = {
 			me.Display.R3 = me.Value.positionSplit[1];
 		}
 	},
+	exit: func() {
+	},
 	loop: func() {
 		if (fms.flightData.coRte != "") {
 			me.Display.L1 = fms.flightData.coRte;
@@ -500,6 +502,8 @@ var Init2 = {
 	},
 	setup: func() {
 	},
+	exit: func() {
+	},
 	loop: func() {
 		if (fms.Internal.engOn) {
 			me.Display.L1L = "";
@@ -818,6 +822,8 @@ var Init3 = {
 	},
 	setup: func() {
 	},
+	exit: func() {
+	},
 	loop: func() {
 	},
 	arrowKey: func(d) {
@@ -936,6 +942,8 @@ var CompRte = {
 				me.Display.title = fms.flightData.airportFrom ~ "/" ~ fms.flightData.airportTo;
 			}
 		}
+	},
+	exit: func() {
 	},
 	loop: func() {
 	},

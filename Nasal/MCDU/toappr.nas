@@ -119,6 +119,8 @@ var Takeoff = {
 			me.Value.pw = 0;
 		}
 	},
+	exit: func() {
+	},
 	loop: func() {
 		if (fms.Internal.phase > 1) {
 			unit[me.id].setPage("approach");
@@ -718,6 +720,8 @@ var Approach = {
 		return m;
 	},
 	setup: func() {
+	},
+	exit: func() {
 	},
 	loop: func() {
 		if (fms.flightData.airportTo != "") {

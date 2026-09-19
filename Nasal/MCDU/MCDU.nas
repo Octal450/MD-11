@@ -36,6 +36,7 @@ var MCDU = {
 			closestAirports: ClosestAirports.new(n),
 			compRte: CompRte.new(n, 0),
 			compRteAltn: CompRte.new(n, 1),
+			dirIntc: DirIntc.new(n),
 			duplicateWp: DuplicateWp.new(n),
 			fallback: Fallback.new(n),
 			fpln: Fpln.new(n),
@@ -77,7 +78,6 @@ var MCDU = {
 		me.page = me.PageList.menu;
 		
 		me.PageList.acStatus.reset();
-		me.PageList.closestAirports.reset();
 		me.PageList.init.reset();
 		me.PageList.irsGnsPos.reset();
 		me.PageList.irsStatus.reset();
@@ -328,6 +328,7 @@ var MCDU = {
 		}
 		
 		me.blinkScreen();
+		me.page.exit(); # Page exit behavior
 		me.page = me.PageList[p]; # Set page
 		me.page.setup();
 		

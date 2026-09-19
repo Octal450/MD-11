@@ -113,6 +113,8 @@ var AcStatus = {
 		me.Value.databaseConfirm = 0;
 		me.Display.R4 = "";
 	},
+	exit: func() {
+	},
 	loop: func() {
 		if (pts.Systems.Acconfig.Options.deflectedAileron.getBoolValue()) {
 			me.Display.L1 = me.Value.type ~ " DEF AIL";
@@ -272,6 +274,8 @@ var AcStatus2 = {
 	},
 	setup: func() {
 	},
+	exit: func() {
+	},
 	loop: func() {
 	},
 	arrowKey: func(d) {
@@ -377,6 +381,8 @@ var SensorStatus = {
 		return m;
 	},
 	setup: func() {
+	},
+	exit: func() {
 	},
 	loop: func() {
 		if (systems.IRS.Iru.aligned[0].getValue()) {
