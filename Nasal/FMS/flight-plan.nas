@@ -63,9 +63,22 @@ var FPController = {
 			me.clearPlan(3, noPlanChanged);
 		}
 	},
-	copyPlan: func(n, s, noPlanChanged = 0) {
+	copyPlan: func(n, s, noPlanChanged = 0, noPosUpdate = 0) {
 		me.clearPlan(n, 1);
 		me.plan[n] = me.plan[s].clone();
+		
+		# PPOS and T-P need to be updated any time we move a flightplan unless we say not to
+		if (!noPosUpdate) {
+			var wpTemp = me.plan[n].getWP(0); # Only if they are in FROM
+			if (wpTemp.id == "PPOS") {
+				me.removeWp(n, 0, 1, 1);
+				me.insertPpos(n, 0, 1);
+			} else if (wpTemp.id == "T-P") {
+				me.removeWp(n, 0, 1, 1);
+				me.insertTp(n, 0, 1);
+			}
+		}
+		
 		if (n == 0) me.plan[0].activate(); # Has to be re-set as active because it's a "new" plan
 		if (!noPlanChanged) me.planChanged(n);
 	},
