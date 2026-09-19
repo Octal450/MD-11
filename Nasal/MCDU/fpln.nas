@@ -173,6 +173,8 @@ var Fpln = {
 					me.Value.wpIndex = me.Value.sourceList.index(me.Value.list[i]);
 					if (me.Value.wpIndex == 0 and i == 0) { # FROM only shows when L1 = FROM
 						me.Display["L" ~ (i + 1) ~ "L"] = " FROM";
+					} else if (me.Value.list[i].wp.wp_parent != nil) {
+						me.Display["L" ~ (i + 1) ~ "L"] = " " ~ me.Value.list[i].wp.wp_parent;
 					} else {
 						me.Display["L" ~ (i + 1) ~ "L"] = "";
 					}
