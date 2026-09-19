@@ -233,7 +233,7 @@
 			<pref-width>50</pref-width>
 			<binding>
 				<command>nasal</command>
-				<script>mcdu.unit[0].pageKey("dir");</script>
+				<script>mcdu.unit[0].pageKey("dirIntc");</script>
 			</binding>
 		</button>
 		
