@@ -81,15 +81,6 @@ var NavRadio = {
 			titleTranslate: 0,
 		};
 		
-		m.Value = {
-			adfKhz: [0, 0],
-			alt: 0,
-			lat: 0,
-			navCrs: [0, 0, 0], # Course 0 is forced to 360, so 0 = no course set
-			navMhz: [0, 0, 0],
-			vert: 0,
-		};
-		
 		m.group = "fmc";
 		m.name = "navRadio";
 		m.nextPage = "none";
@@ -98,6 +89,15 @@ var NavRadio = {
 		m.scratchpadSplitSize0 = 0;
 		m.scratchpadSplitSize1 = 0;
 		m.scratchpadState = 0;
+		
+		m.Value = {
+			adfKhz: [0, 0],
+			alt: 0,
+			lat: 0,
+			navCrs: [0, 0, 0], # Course 0 is forced to 360, so 0 = no course set
+			navMhz: [0, 0, 0],
+			vert: 0,
+		};
 		
 		return m;
 	},

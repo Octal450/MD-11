@@ -15,9 +15,6 @@ var FPController = {
 	plan: [createFlightplan(), createFlightplan(), createFlightplan(), createFlightplan(), nil], # 0 = Active, 1 = Alternate, 2 = Temporary 1, 3 = Temporary 2, 4 = Company Route
 	size: [0, 0, 0, 0, 0],
 	temporaryActive: [0, 0],
-	wpTemp: nil,
-	wpTempVector: std.Vector.new(),
-	wpTempVectorSize: 0,
 	init: func() {
 		FPList.init();
 		me.temporaryActive[0] = 0;
@@ -87,6 +84,11 @@ var FPController = {
 		me.copyPlan(planIdTemp, n, noPlanChanged);
 		me.temporaryActive[mcduId] = 1;
 	},
+	dirIntcArbitraryGhost: func(n, ghost) {
+		me.removeWp(n, 0, 1, 1); # Remove FROM
+		me.insertTp(n, 0, 1);
+		me.insertGhost(n, 1, ghost); # Calls planChanged
+	},
 	dirIntcFPWP: func(n, s, i) {
 		var legTemp = me.plan[s].getWP(i);
 		me.removeWp(n, 0, 1, 1); # Remove FROM
@@ -113,6 +115,44 @@ var FPController = {
 			# Both plan's planChanged must be called/not called
 			me.copyPlan(n, planIdTemp, noPlanChanged);
 			me.clearTemporary(mcduId, noPlanChanged);
+		}
+	},
+	getWpGhostByID: func(n, type, id, mcduId = -1) { # Similar to insertWp
+		var wpTemp = nil;
+		
+		if (type == "fix") {
+			wpTemp = findFixesByID(id);
+		} else if (type == "navaid") {
+			wpTemp = findNavaidsByID(id);
+		} else if (type == "airport") {
+			wpTemp = findAirportsByICAO(id);
+		} else {
+			return 1; # Not in database
+		}
+		
+		var wpTempVector = std.Vector.new();
+		
+		if (type == "navaid") {
+			foreach (wp; wpTemp) {
+				if (wp.type == "VOR" or wp.type == "NDB") { # No DME/TACAN/ILS
+					wpTempVector.append(wp);
+				}
+			}
+		} else {
+			foreach (wp; wpTemp) {
+				wpTempVector.append(wp);
+			}
+		}
+		
+		var wpTempVectorSize = wpTempVector.size();
+		
+		if (wpTempVectorSize == 1 or mcduId == -1) {
+			return wpTempVector.vector[0];
+		} else if (wpTempVectorSize > 1) { # Duplicate names
+			mcdu.unit[mcduId].Data.duplicateWpInfo = DuplicateWpList.new(n, 1, type, wpTempVector); # Prep Duplicate Names page
+			return 2;
+		} else {
+			return 1; # Not in database
 		}
 	},
 	insertDiscontinuity: func(n, i, force = 0, noPlanChanged = 0) {
@@ -161,36 +201,40 @@ var FPController = {
 		if (!noPlanChanged) me.planChanged(n);
 	},
 	insertWp: func(n, i, type, id, mcduId = -1, noDiscontinuity = 0, noPlanChanged = 0) {
+		var wpTemp = nil;
+		
 		if (type == "fix") {
-			me.wpTemp = findFixesByID(id);
+			wpTemp = findFixesByID(id);
 		} else if (type == "navaid") {
-			me.wpTemp = findNavaidsByID(id);
+			wpTemp = findNavaidsByID(id);
 		} else if (type == "airport") {
-			me.wpTemp = findAirportsByICAO(id);
+			wpTemp = findAirportsByICAO(id);
 		} else {
-			return 1;
+			return 1; # Not in database
 		}
 		
-		me.wpTempVector.clear();
+		var wpTempVector = std.Vector.new();
+		
 		if (type == "navaid") {
-			foreach (wp; me.wpTemp) {
+			foreach (wp; wpTemp) {
 				if (wp.type == "VOR" or wp.type == "NDB") { # No DME/TACAN/ILS
-					me.wpTempVector.append(wp);
+					wpTempVector.append(wp);
 				}
 			}
 		} else {
-			foreach (wp; me.wpTemp) {
-				me.wpTempVector.append(wp);
+			foreach (wp; wpTemp) {
+				wpTempVector.append(wp);
 			}
 		}
-		me.wpTempVectorSize = me.wpTempVector.size();
 		
-		if (me.wpTempVectorSize == 1 or mcduId == -1) {
-			me.plan[n].insertWP(createWPFrom(me.wpTempVector.vector[0]), i);
+		var wpTempVectorSize = wpTempVector.size();
+		
+		if (wpTempVectorSize == 1 or mcduId == -1) {
+			me.plan[n].insertWP(createWPFrom(wpTempVector.vector[0]), i);
 			if (!noDiscontinuity) me.insertDiscontinuity(n, i + 1, 0, 1);
 			if (!noPlanChanged) me.planChanged(n);
-		} else if (me.wpTempVectorSize > 1) { # Duplicate names
-			mcdu.unit[mcduId].Data.duplicateWpInfo = DuplicateWpList.new(n, i, type, me.wpTempVector); # Prep Duplicate Names page
+		} else if (wpTempVectorSize > 1) { # Duplicate names
+			mcdu.unit[mcduId].Data.duplicateWpInfo = DuplicateWpList.new(n, i, type, wpTempVector); # Prep Duplicate Names page
 			return 2;
 		} else {
 			return 1; # Not in database

@@ -81,7 +81,6 @@ var ThrLim = {
 			titleTranslate: 1,
 		};
 		
-		m.fromPage = "";
 		m.group = "fmc";
 		m.name = "thrLim";
 		m.nextPage = "none";
@@ -89,6 +88,7 @@ var ThrLim = {
 		m.scratchpadState = 0;
 		
 		m.Value = {
+			fromPage: "",
 			Limit: {
 				auto: 0,
 				climb: 0,
@@ -185,10 +185,10 @@ var ThrLim = {
 			}
 			
 			if (unit[me.id].lastFmcPage == "takeoff") {
-				me.fromPage = "takeoff";
+				me.Value.fromPage = "takeoff";
 				me.Display.R6 = "TAKEOFF>";
 			} else {
-				me.fromPage = "perf"; # Which page is handled by MCDU.nas
+				me.Value.fromPage = "perf"; # Which page is handled by MCDU.nas
 				me.Display.R6 = "PERF MODE>";
 			}
 		} else {
@@ -210,7 +210,7 @@ var ThrLim = {
 			me.Display.R1L = "TAT        ";
 			me.Display.R1 = "";
 			
-			me.fromPage = "perf"; # Which page is handled by MCDU.nas
+			me.Value.fromPage = "perf"; # Which page is handled by MCDU.nas
 			me.Display.R6 = "PERF MODE>";
 		}
 		
@@ -384,7 +384,7 @@ var ThrLim = {
 				unit[me.id].setMessage("NOT ALLOWED");
 			}
 		} else if (k == "r6") {
-			unit[me.id].setPage(me.fromPage);
+			unit[me.id].setPage(me.Value.fromPage);
 		} else {
 			unit[me.id].setMessage("NOT ALLOWED");
 		}

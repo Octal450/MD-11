@@ -81,6 +81,14 @@ var Init = {
 			titleTranslate: 0,
 		};
 		
+		m.group = "fmc";
+		m.name = "init";
+		m.nextPage = "init2";
+		m.scratchpad = "";
+		m.scratchpadSplit = nil;
+		m.scratchpadSplitSize = 0;
+		m.scratchpadState = 0;
+		
 		m.Value = {
 			coRteInsertStatus: 0,
 			cruiseFlText: ["", "", "", "", "", ""],
@@ -91,14 +99,6 @@ var Init = {
 			optAlt: 0,
 			positionSplit: ["", ""],
 		};
-		
-		m.group = "fmc";
-		m.name = "init";
-		m.nextPage = "init2";
-		m.scratchpad = "";
-		m.scratchpadSplit = nil;
-		m.scratchpadSplitSize = 0;
-		m.scratchpadState = 0;
 		
 		return m;
 	},
@@ -488,15 +488,15 @@ var Init2 = {
 			titleTranslate: 0,
 		};
 		
-		m.Value = {
-			taxiInsertStatus: 0,
-		};
-		
 		m.group = "fmc";
 		m.name = "init2";
 		m.nextPage = "init3";
 		m.scratchpad = "";
 		m.scratchpadState = 0;
+		
+		m.Value = {
+			taxiInsertStatus: 0,
+		};
 		
 		return m;
 	},
@@ -807,9 +807,6 @@ var Init3 = {
 			titleSmall: "",
 			titleSmallTranslate: 0,
 			titleTranslate: 0,
-		};
-		
-		m.Value = {
 		};
 		
 		m.group = "fmc";

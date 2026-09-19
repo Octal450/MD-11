@@ -370,13 +370,13 @@ var SensorStatus = {
 			titleTranslate: 0,
 		};
 		
-		m.Value = {
-			IruFailure: [0, 0, 0],
-		};
-		
 		m.group = "fmc";
 		m.name = "sensorStatus";
 		m.nextPage = "none";
+		
+		m.Value = {
+			IruFailure: [0, 0, 0],
+		};
 		
 		return m;
 	},

@@ -81,7 +81,6 @@ var DuplicateWp = {
 			titleTranslate: 0,
 		};
 		
-		m.fromPage = "";
 		m.group = "fmc";
 		m.name = "duplicateWp";
 		m.nextPage = "none";
@@ -89,6 +88,7 @@ var DuplicateWp = {
 		m.scratchpadState = 0;
 		
 		m.Value = {
+			fromPage: "",
 			index: 0,
 			indexStart: 0,
 			indexStartCalc: 0,
@@ -104,6 +104,17 @@ var DuplicateWp = {
 	exit: func() {
 	},
 	loop: func() {
+		if (unit[me.id].lastFmcPage == "latRev") {
+			me.Value.fromPage = "latRev";
+			me.Display.R6 = "LAT REV>";
+		} else if (unit[me.id].lastFmcPage == "dirIntc") {
+			me.Value.fromPage = "dirIntc";
+			me.Display.R6 = "ACT F-PLN>";
+		} else {
+			me.Value.fromPage = "fpln";
+			me.Display.R6 = "ACT F-PLN>";
+		}
+		
 		me.Value.size = unit[me.id].Data.duplicateWpInfo.wpVector.size();
 		
 		if (unit[me.id].Data.duplicateWpInfo.type == "fix") {
@@ -157,17 +168,6 @@ var DuplicateWp = {
 				me.Display["R" ~ (i + 1)] = "";
 			}
 		}
-		
-		if (unit[me.id].lastFmcPage == "latRev") {
-			me.fromPage = "latRev";
-			me.Display.R6 = "LAT REV>";
-		} else if (unit[me.id].lastFmcPage == "dirIntc") {
-			me.fromPage = "dirIntc";
-			me.Display.R6 = "ACT F-PLN>";
-		} else {
-			me.fromPage = "fpln";
-			me.Display.R6 = "ACT F-PLN>";
-		}
 	},
 	formatLatLon: func(lat, lon) {
 		var latHemi = lat >= 0 ? "N" : "S";
@@ -180,11 +180,18 @@ var DuplicateWp = {
 	},
 	insert: func(i) {
 		if (me.Value.list[i] != nil and me.scratchpadState == 1) {
-			if (unit[me.id].Data.duplicateWpInfo.index <= fms.FPController.plan[unit[me.id].Data.duplicateWpInfo.plan].getPlanSize()) {
-				fms.FPController.insertGhost(unit[me.id].Data.duplicateWpInfo.plan, unit[me.id].Data.duplicateWpInfo.index, me.Value.list[i]);
-				unit[me.id].setPage("fpln");
+			if (me.Value.fromPage == "dirIntc") {
+				if (!fms.FPController.temporaryActive[me.id]) fms.FPController.createTemporary(me.id, 0, 1);
+				fms.FPController.dirIntcArbitraryGhost(unit[me.id].Data.duplicateWpInfo.plan, me.Value.list[i]);
+				unit[me.id].PageList.dirIntc.Value.selectedId = me.Value.list[i].id;
+				unit[me.id].setPage("dirIntc");
 			} else {
-				unit[me.id].setMessage("NOT ALLOWED");
+				if (unit[me.id].Data.duplicateWpInfo.index <= fms.FPController.plan[unit[me.id].Data.duplicateWpInfo.plan].getPlanSize()) {
+					fms.FPController.insertGhost(unit[me.id].Data.duplicateWpInfo.plan, unit[me.id].Data.duplicateWpInfo.index, me.Value.list[i]);
+					unit[me.id].setPage("fpln");
+				} else {
+					unit[me.id].setMessage("NOT ALLOWED");
+				}
 			}
 		} else {
 			unit[me.id].setMessage("NOT ALLOWED");
@@ -225,7 +232,7 @@ var DuplicateWp = {
 		} else if (k == "l6") {
 			me.insert(5);
 		} else if (k == "r6") {
-			unit[me.id].setPage(me.fromPage);
+			unit[me.id].setPage(me.Value.fromPage);
 		} else {
 			unit[me.id].setMessage("NOT ALLOWED");
 		}

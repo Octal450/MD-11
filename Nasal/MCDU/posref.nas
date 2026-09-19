@@ -81,18 +81,18 @@ var PosRef = {
 			titleTranslate: 0,
 		};
 		
-		m.Value = {
-			anyAligned: 0,
-			frozen: 0,
-			positionMode: "",
-			positionString: "",
-		};
-		
-		m.fromPage = "";
 		m.group = "fmc";
 		m.name = "posRef";
 		m.nextPage = "irsGnsPos";
 		m.scratchpadState = 0;
+		
+		m.Value = {
+			anyAligned: 0,
+			fromPage: "",
+			frozen: 0,
+			positionMode: "",
+			positionString: "",
+		};
 		
 		return m;
 	},
@@ -101,10 +101,10 @@ var PosRef = {
 	},
 	setup: func() {
 		if (unit[me.id].lastFmcPage == "init") {
-			me.fromPage = "init";
+			me.Value.fromPage = "init";
 			me.Display.R6 = "F-PLN INIT>";
 		} else {
-			me.fromPage = "ref";
+			me.Value.fromPage = "ref";
 			me.Display.R6 = "REF INDEX>";
 		}
 		
@@ -166,7 +166,7 @@ var PosRef = {
 		} else if (k == "r5") {
 			fms.flightData.gpsEnable = !fms.flightData.gpsEnable;
 		} else if (k == "r6") {
-			if (me.fromPage == "init") {
+			if (me.Value.fromPage == "init") {
 				unit[me.id].setPage("init");
 			} else {
 				unit[me.id].setPage("ref");
@@ -257,14 +257,14 @@ var IrsGnsPos = {
 			titleTranslate: 0,
 		};
 		
-		m.Value = {
-			positionString: "",
-		};
-		
-		m.fromPage = "";
 		m.group = "fmc";
 		m.name = "irsGnsPos";
 		m.nextPage = "irsStatus";
+		
+		m.Value = {
+			fromPage: "",
+			positionString: "",
+		};
 		
 		return m;
 	},
@@ -272,8 +272,8 @@ var IrsGnsPos = {
 		me.setup();
 	},
 	setup: func() {
-		me.fromPage = unit[me.id].PageList.posRef.fromPage;
-		if (me.fromPage == "init") {
+		me.Value.fromPage = unit[me.id].PageList.posRef.Value.fromPage;
+		if (me.Value.fromPage == "init") {
 			me.Display.R6 = "F-PLN INIT>";
 		} else {
 			me.Display.R6 = "REF INDEX>";
@@ -342,7 +342,7 @@ var IrsGnsPos = {
 	},
 	softKey: func(k) {
 		if (k == "r6") {
-			if (me.fromPage == "init") {
+			if (me.Value.fromPage == "init") {
 				unit[me.id].setPage("init");
 			} else {
 				unit[me.id].setPage("ref");
@@ -433,10 +433,14 @@ var IrsStatus = {
 			titleTranslate: 0,
 		};
 		
-		m.fromPage = "";
 		m.group = "fmc";
 		m.name = "irsStatus";
 		m.nextPage = "posRef";
+		
+		m.Value = {
+			fromPage: "",
+			positionString: "",
+		};
 		
 		return m;
 	},
@@ -444,8 +448,8 @@ var IrsStatus = {
 		me.setup();
 	},
 	setup: func() {
-		me.fromPage = unit[me.id].PageList.posRef.fromPage;
-		if (me.fromPage == "init") {
+		me.Value.fromPage = unit[me.id].PageList.posRef.Value.fromPage;
+		if (me.Value.fromPage == "init") {
 			me.Display.R6 = "F-PLN INIT>";
 		} else {
 			me.Display.R6 = "REF INDEX>";
@@ -484,7 +488,7 @@ var IrsStatus = {
 	},
 	softKey: func(k) {
 		if (k == "r6") {
-			if (me.fromPage == "init") {
+			if (me.Value.fromPage == "init") {
 				unit[me.id].setPage("init");
 			} else {
 				unit[me.id].setPage("ref");

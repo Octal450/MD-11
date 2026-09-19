@@ -82,6 +82,13 @@ var Takeoff = {
 			titleTranslate: 0,
 		};
 		
+		m.group = "fmc";
+		m.name = "takeoff";
+		m.nextPage = "none";
+		m.scratchpad = "";
+		m.scratchpadSplit = nil;
+		m.scratchpadState = 0;
+		
 		m.Value = {
 			oatEntry: 0,
 			pw: 0,
@@ -97,13 +104,6 @@ var Takeoff = {
 			vrCalc: 0,
 			vsr: 0,
 		};
-		
-		m.group = "fmc";
-		m.name = "takeoff";
-		m.nextPage = "none";
-		m.scratchpad = "";
-		m.scratchpadSplit = nil;
-		m.scratchpadState = 0;
 		
 		return m;
 	},
@@ -703,6 +703,12 @@ var Approach = {
 			titleTranslate: 0,
 		};
 		
+		m.group = "fmc";
+		m.name = "approach";
+		m.nextPage = "none";
+		m.scratchpad = "";
+		m.scratchpadState = 0;
+		
 		m.Value = {
 			cleanMin: 0,
 			flap28Min: 0,
@@ -710,12 +716,6 @@ var Approach = {
 			vappMax: 0,
 			vref: 0,
 		};
-		
-		m.group = "fmc";
-		m.name = "approach";
-		m.nextPage = "none";
-		m.scratchpad = "";
-		m.scratchpadState = 0;
 		
 		return m;
 	},

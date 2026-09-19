@@ -84,7 +84,6 @@ var Fallback = {
 		m.group = "base";
 		m.name = "fallback";
 		m.nextPage = "none";
-		m.type = 1;
 		
 		return m;
 	},

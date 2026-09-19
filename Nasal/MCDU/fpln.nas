@@ -416,7 +416,6 @@ var DirIntc = {
 	setup: func() {
 		if (unit[me.id].lastFmcPage != "duplicateWp") {
 			me.Value.indexStart = 0;
-			me.Value.page = 0;
 		}
 	},
 	exit: func() {
@@ -488,7 +487,33 @@ var DirIntc = {
 			}
 		}
 	},
-	stageFromFp: func(i) { # i > 0
+	stageArbitrary: func() {
+		me.scratchpadSize = size(me.scratchpad);
+		
+		if (me.scratchpadSize == 5) { # Fix
+			me.Value.result = fms.FPController.getWpGhostByID(me.Value.temporarySourceId, "fix", me.scratchpad, me.id);
+		} else if (me.scratchpadSize >= 1 and me.scratchpadSize <= 3) { # Navaid
+			me.Value.result = fms.FPController.getWpGhostByID(me.Value.temporarySourceId, "navaid", me.scratchpad, me.id);
+		} else if (me.scratchpadSize == 4) { # Airport
+			me.Value.result = fms.FPController.getWpGhostByID(me.Value.temporarySourceId, "airport", me.scratchpad, me.id);
+		} else {
+			unit[me.id].setMessage("FORMAT ERROR");
+			return;
+		}
+		
+		if (me.Value.result == 2) {
+			unit[me.id].scratchpadClear();
+			unit[me.id].setPage("duplicateWp");
+		} else if (me.Value.result == 1) {
+			unit[me.id].setMessage("NOT IN DATA BASE");
+		} else {
+			if (!fms.FPController.temporaryActive[me.id]) fms.FPController.createTemporary(me.id, 0, 1);
+			fms.FPController.dirIntcArbitraryGhost(me.Value.temporarySourceId, me.Value.result); # Result is a waypoint ghost here
+			me.Value.selectedId = me.Value.result.id;
+			unit[me.id].scratchpadClear();
+		}
+	},
+	stageFromFP: func(i) { # i > 0
 		if (me.Value.list[i] != nil and me.scratchpadState == 1) {
 			if (me.Value.list[i].type == "wp") {
 				me.Value.gotPlan = me.Value.list[i].plan;
@@ -538,6 +563,8 @@ var DirIntc = {
 			if (me.Value.selectedId != "" and me.scratchpadState == 1) {
 				fms.FPController.executeTemporary(0, me.id);
 				unit[me.id].setPage("fpln");
+			} else if (me.scratchpadState == 2) {
+				me.stageArbitrary();
 			} else {
 				unit[me.id].setMessage("NOT ALLOWED");
 			}
@@ -545,16 +572,16 @@ var DirIntc = {
 			if (me.Value.selectedId != "") { # ABEAM POINTS
 				unit[me.id].setMessage("NOT ALLOWED");
 			} else {
-				me.stageFromFp(1);
+				me.stageFromFP(1);
 			}
 		} else if (k == "l3") {
-			me.stageFromFp(2);
+			me.stageFromFP(2);
 		} else if (k == "l4") {
-			me.stageFromFp(3);
+			me.stageFromFP(3);
 		} else if (k == "l5") {
-			me.stageFromFp(4);
+			me.stageFromFP(4);
 		} else if (k == "l6") {
-			me.stageFromFp(5);
+			me.stageFromFP(5);
 		} else {
 			unit[me.id].setMessage("NOT ALLOWED");
 		}
