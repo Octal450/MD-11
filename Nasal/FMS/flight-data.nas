@@ -340,7 +340,7 @@ var EditFlightData = {
 			return 0;
 		}
 	},
-	insertToAlts: func(t = 0) {
+	insertTakeoffAlts: func(t = 0) {
 		if (flightData.airportFromAlt > -2000) {
 			if (t == 0 or t == 1) flightData.climbThrustAlt = math.max(flightData.airportFromAlt + 1500, 0);
 			if (t == 0 or t == 2) flightData.accelAlt = math.max(flightData.airportFromAlt + 3000, 0);
@@ -417,7 +417,7 @@ var EditFlightData = {
 		
 		flightData.airportFromAlt = math.round(flightData.airportFromInfo.elevation * M2FT);
 		flightData.airportToAlt = math.round(flightData.airportToInfo.elevation * M2FT);
-		me.insertToAlts();
+		me.insertTakeoffAlts();
 		
 		me.resetVspeeds();
 		flightData.toSlope = -100;

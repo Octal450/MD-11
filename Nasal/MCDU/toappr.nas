@@ -558,7 +558,7 @@ var Takeoff = {
 				}
 			} else if (me.scratchpadState == 0) {
 				if (fms.flightData.climbThrustAltSet)  {
-					fms.EditFlightData.insertToAlts(1);
+					fms.EditFlightData.insertTakeoffAlts(1);
 					fms.flightData.climbThrustAltSet = 0;
 					unit[me.id].scratchpadClear();
 				} else {
@@ -582,7 +582,7 @@ var Takeoff = {
 				}
 			} else if (me.scratchpadState == 0) {
 				if (fms.flightData.accelAltSet) {
-					fms.EditFlightData.insertToAlts(2);
+					fms.EditFlightData.insertTakeoffAlts(2);
 					fms.flightData.accelAltSet = 0;
 					unit[me.id].scratchpadClear();
 				} else {
@@ -606,7 +606,7 @@ var Takeoff = {
 				}
 			} else if (me.scratchpadState == 0) {
 				if (fms.flightData.accelAltEoSet) {
-					fms.EditFlightData.insertToAlts(3);
+					fms.EditFlightData.insertTakeoffAlts(3);
 					fms.flightData.accelAltEoSet = 0;
 					unit[me.id].scratchpadClear();
 				} else {
