@@ -3,12 +3,12 @@
 
 var LnavController = {
 	init: func() {
-	
+		
 	},
 	reset: func() {
-	
+		
 	},
 	loop: func() {
-	
+		
 	},
 };
