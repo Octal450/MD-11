@@ -17,6 +17,16 @@ var FPController = {
 	routeReady: 0,
 	size: [0, 0, 0, 0, 0],
 	temporaryActive: [0, 0],
+	wpNext: {
+		exists: 0,
+		geoCoord: geo.Coord.new(),
+		ghost: nil,
+	},
+	wpTo: {
+		exists: 0,
+		geoCoord: geo.Coord.new(),
+		ghost: nil,
+	},
 	init: func() {
 		FPList.init();
 		me.temporaryActive[0] = 0;
@@ -26,9 +36,9 @@ var FPController = {
 		me.clearPlan(2);
 		me.clearPlan(3);
 		me.plan[0].activate();
+		me.activatePlan();
 		me.insertDiscontinuity(0, 0, 1, 1);
 		me.insertPpos(0); # Calls planChanged
-		me.activatePlan();
 		me.ready = 1;
 	},
 	reset: func() {
@@ -55,6 +65,10 @@ var FPController = {
 			me.setActiveWp();
 		}
 		RouteManager.active.setBoolValue(1);
+	},
+	advanceWp: func(n) { # Assumes checks are already done
+		me.plan[n].deleteWP(0);
+		me.planChanged(n);
 	},
 	clearPlan: func(n, noPlanChanged = 0) {
 		me.plan[n].clearAll();
@@ -273,6 +287,7 @@ var FPController = {
 			me.plan[n].insertWP(createWPFrom(wpTempVector.vector[0]), i);
 			if (!noDiscontinuity) me.insertDiscontinuity(n, i + 1, 0, 1);
 			if (!noPlanChanged) me.planChanged(n);
+			return 0;
 		} else if (wpTempVectorSize > 1) { # Duplicate names
 			mcdu.unit[mcduId].Data.duplicateWpInfo = DuplicateWpList.new(n, i, type, wpTempVector, me.getPrevWpGeo(n, i)); # Prep Duplicate Names page, previous waypoint pos
 			return 2;
@@ -288,6 +303,27 @@ var FPController = {
 	},
 	planChanged: func(n) {
 		FPList.rebuildList(n);
+		
+		# LNAV Support
+		if (n == 0) {
+			me.size[0] = me.plan[0].getPlanSize();
+			
+			if (me.size[0] > 1) {
+				me.wpTo.ghost = me.plan[0].getWP(1);
+				me.wpTo.geoCoord.set_latlon(me.wpTo.ghost.lat, me.wpTo.ghost.lon);
+				me.wpTo.exists = 1;
+			} else {
+				me.wpTo.exists = 0;
+			}
+			
+			if (me.size[0] > 2) {
+				me.wpNext.ghost = me.plan[0].getWP(2);
+				me.wpNext.geoCoord.set_latlon(me.wpNext.ghost.lat, me.wpNext.ghost.lon);
+				me.wpNext.exists = 1;
+			} else {
+				me.wpNext.exists = 0;
+			}
+		}
 	},
 	removeDuplicateDiscontinuities: func(n, i, noPlanChanged = 0) {
 		if (i > 0) { # i = 0 case should never have one anyway

@@ -36,6 +36,7 @@ var Value = { # Local store of commonly accessed values
 	flapsLever: 0,
 	flapsPos: 0,
 	gearLever: 0,
+	groundspeedMps: 0,
 	maxFl: 0,
 	slatsPos: 0,
 	vertText: 0,
@@ -50,11 +51,10 @@ var CORE = {
 		EditFlightData.reset();
 		if (t == 1) {
 			FPController.reset();
-			LnavController.reset();
 		} else {
 			FPController.init();
-			LnavController.init();
 		}
+		LnavController.init();
 		me.resetPhase();
 		Internal.request[0] = 1;
 		Internal.request[1] = 1;
@@ -83,7 +83,6 @@ var CORE = {
 	},
 	loop: func() {
 		FPController.loop();
-		LnavController.loop();
 		
 		Value.afsAlt = afs.Internal.alt.getValue();
 		Value.asiKts = math.max(pts.Instrumentation.AirspeedIndicator.indicatedSpeedKt.getValue(), 0.0001);
@@ -178,6 +177,9 @@ var CORE = {
 		
 		# FMS SPD logic
 		FmsSpd.loop();
+		
+		# LNAV logic
+		LnavController.loop();
 		
 		# Reset system once engines shutdown
 		if (Internal.engOn) {

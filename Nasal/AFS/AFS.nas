@@ -16,28 +16,6 @@ var Engines = {
 	reverserNorm: [props.globals.getNode("/engines/engine[0]/reverser-pos-norm", 1), props.globals.getNode("/engines/engine[1]/reverser-pos-norm", 1), props.globals.getNode("/engines/engine[2]/reverser-pos-norm", 1)],
 };
 
-var FPLN = {
-	active: props.globals.getNode("/autopilot/route-manager/active", 1),
-	activeTemp: 0,
-	currentCourse: 0,
-	currentWp: props.globals.getNode("/autopilot/route-manager/current-wp", 1),
-	currentWpTemp: 0,
-	deltaAngle: 0,
-	deltaAngleRad: 0,
-	distCoeff: 0,
-	maxBank: 0,
-	maxBankLimit: 0,
-	nextCourse: 0,
-	num: props.globals.getNode("/autopilot/route-manager/route/num", 1),
-	numTemp: 0,
-	R: 0,
-	radius: 0,
-	turnDist: 0,
-	wp0Dist: props.globals.getNode("/autopilot/route-manager/wp/dist", 1),
-	wpFlyFrom: 0,
-	wpFlyTo: 0,
-};
-
 var Gear = {
 	wow0: props.globals.getNode("/gear/gear[0]/wow", 1),
 	wow1: props.globals.getNode("/gear/gear[1]/wow", 1),
@@ -84,7 +62,6 @@ var Velocities = {
 	athrMin: 0,
 	athrMinMach: 0,
 	groundspeedKt: props.globals.getNode("/velocities/groundspeed-kt", 1),
-	groundspeedMps: 0,
 	indicatedAirspeedKt: props.globals.getNode("/instrumentation/airspeed-indicator/indicated-speed-kt", 1),
 	indicatedAirspeedKtTemp: 0,
 	indicatedAirspeedKt5Sec: props.globals.getNode("/it-autoflight/internal/kts-predicted-5", 1),
@@ -416,7 +393,7 @@ var ITAF = {
 		
 		# LNAV Reversion
 		if (Output.lat.getValue() == 1) { # Only evaulate the rest of the condition if we are in LNAV mode
-			if (FPLN.num.getValue() == 0 or !FPLN.active.getBoolValue() or !systems.IRS.Iru.anyAligned.getBoolValue()) {
+			if (!fms.LnavController.canCapture or !systems.IRS.Iru.anyAligned.getBoolValue()) {
 				me.setLatMode(3);
 				Fma.startBlink(1);
 			}
@@ -959,55 +936,6 @@ var ITAF = {
 				}
 			}
 		}
-		
-		# Waypoint Advance Logic (disabled temporarily)
-		#FPLN.activeTemp = FPLN.active.getValue();
-		#FPLN.currentWpTemp = FPLN.currentWp.getValue();
-		#FPLN.numTemp = FPLN.num.getValue();
-		#
-		#if (FPLN.numTemp > 0 and FPLN.activeTemp == 1) {
-		#	if ((FPLN.currentWpTemp + 1) < FPLN.numTemp) {
-		#		if (FPLN.currentWpTemp == -1) { # This fixes a Route Manager bug
-		#			FPLN.currentWp.setValue(1);
-		#			FPLN.currentWpTemp = 1;
-		#		}
-		#		
-		#		Velocities.groundspeedMps = Velocities.groundspeedKt.getValue() * 0.5144444444444;
-		#		FPLN.wpFlyFrom = FPLN.currentWpTemp;
-		#		if (FPLN.wpFlyFrom < 0) {
-		#			FPLN.wpFlyFrom = 0;
-		#		}
-		#		FPLN.currentCourse = getprop("/autopilot/route-manager/route/wp[" ~ FPLN.wpFlyFrom ~ "]/leg-bearing-true-deg"); # Best left at getprop
-		#		FPLN.wpFlyTo = FPLN.currentWpTemp + 1;
-		#		if (FPLN.wpFlyTo < 0) {
-		#			FPLN.wpFlyTo = 0;
-		#		}
-		#		FPLN.nextCourse = getprop("/autopilot/route-manager/route/wp[" ~ FPLN.wpFlyTo ~ "]/leg-bearing-true-deg"); # Best left at getprop
-		#		FPLN.maxBankLimit = Internal.bankLimit.getValue();
-		#
-		#		FPLN.deltaAngle = math.abs(geo.normdeg180(FPLN.currentCourse - FPLN.nextCourse));
-		#		FPLN.maxBank = FPLN.deltaAngle * 1.5;
-		#		if (FPLN.maxBank > FPLN.maxBankLimit) {
-		#			FPLN.maxBank = FPLN.maxBankLimit;
-		#		}
-		#		FPLN.radius = (Velocities.groundspeedMps * Velocities.groundspeedMps) / (9.81 * math.tan(FPLN.maxBank / 57.2957795131));
-		#		FPLN.deltaAngleRad = (180 - FPLN.deltaAngle) / 114.5915590262;
-		#		FPLN.R = FPLN.radius / math.sin(FPLN.deltaAngleRad);
-		#		FPLN.distCoeff = FPLN.deltaAngle * -0.011111 + 2;
-		#		if (FPLN.distCoeff < 1) {
-		#			FPLN.distCoeff = 1;
-		#		}
-		#		FPLN.turnDist = math.cos(FPLN.deltaAngleRad) * FPLN.R * FPLN.distCoeff / 1852;
-		#		if (Gear.wow0.getBoolValue() and FPLN.turnDist < 1) {
-		#			FPLN.turnDist = 1;
-		#		}
-		#		Internal.lnavAdvanceNm.setValue(FPLN.turnDist);
-		#		
-		#		if (FPLN.wp0Dist.getValue() <= FPLN.turnDist and flightplan().getWP(FPLN.currentWp.getValue()).fly_type == "flyBy") { # Don't care unless we are flyBy-ing
-		#			FPLN.currentWp.setValue(FPLN.currentWpTemp + 1);
-		#		}
-		#	}
-		#}
 	},
 	ap1Master: func(s) {
 		if (s == 1) {
@@ -1240,7 +1168,7 @@ var ITAF = {
 	},
 	setLatArm: func(n) {
 		if (n == 1) {
-			if (FPLN.num.getValue() > 0 and FPLN.active.getBoolValue()) {
+			if (fms.LnavController.canArm) {
 				me.updateLnavArm(1);
 			}
 		} else if (n == 3) {
@@ -1497,13 +1425,12 @@ var ITAF = {
 		}
 	},
 	checkLnav: func(t) {
-		FPLN.activeTemp = FPLN.active.getBoolValue();
-		if (FPLN.num.getValue() > 0 and FPLN.activeTemp and Position.gearAglFt.getValue() >= Internal.lnavEngageFt) {
+		if (fms.LnavController.canCapture and Position.gearAglFt.getValue() >= Internal.lnavEngageFt) {
 			me.activateLnav();
-		} else if (FPLN.activeTemp and Output.lat.getValue() != 1 and t != 1) {
+		} else if (fms.LnavController.canArm and Output.lat.getValue() != 1 and t != 1) {
 			me.updateLnavArm(1);
 		}
-		if (!FPLN.activeTemp) {
+		if (!fms.LnavController.canArm) {
 			me.updateLnavArm(0);
 		}
 	},

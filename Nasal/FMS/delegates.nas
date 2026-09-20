@@ -43,14 +43,14 @@ var CustomGPSDelegate = {
 		
 		setprop(GPSPath ~ '/config/delegate-sequencing', 1);
 		
-		# disable turn anticipation
-		setprop(GPSPath ~ '/config/enable-fly-by', 1);
+		# disable turn anticipation (KEEP THIS OFF)
+		setprop(GPSPath ~ '/config/enable-fly-by', 0);
 		
 		# flyOver maximum distance
 		setprop(GPSPath ~ '/config/over-flight-arm-distance', 5);
 		
 		fp.followLegTrackToFix = 1;
-		fp.aircraftCategory = 'C';
+		fp.aircraftCategory = 'D';
 		
 		m._modeProp = props.globals.getNode(GPSPath ~ '/mode');
 		return m;
