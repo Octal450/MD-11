@@ -292,8 +292,9 @@ var FPController = {
 		}
 	},
 	removeWp: func(n, i, noDiscontinuity = 0, noPlanChanged = 0) {
-		if (!noDiscontinuity and me.plan[n].getWP(i).wp_name != "DISCONTINUITY") me.insertDiscontinuity(n, i + 1, 0, 1);
+		var wpName = me.plan[n].getWP(i).wp_name;
 		me.plan[n].deleteWP(i);
+		if (!noDiscontinuity and wpName != "DISCONTINUITY") me.insertDiscontinuity(n, i, 0, 1);
 		me.removeDuplicateDiscontinuities(n, i, 1); # If we delete a WP between two discontinuities, then two would be next to each other
 		if (!noPlanChanged) me.planChanged(n);
 	},
