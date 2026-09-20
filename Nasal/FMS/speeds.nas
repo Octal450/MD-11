@@ -316,7 +316,7 @@ var FmsSpd = {
 			me.decel = 0;
 		}
 		
-		if (FPController.routeReady) {
+		if (!FPController.routeReady) {
 			me.cancelAndZero(1);
 		} else if (Internal.phase <= 1) { # Preflight/Takeoff
 			if (me.active) { # Re-enable driving if overriden
