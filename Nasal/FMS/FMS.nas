@@ -28,7 +28,6 @@ var Internal = {
 };
 
 var Value = { # Local store of commonly accessed values
-	active: 0,
 	afsAlt: 0,
 	altitude: 0,
 	asiKts: 0,
@@ -51,8 +50,10 @@ var CORE = {
 		EditFlightData.reset();
 		if (t == 1) {
 			FPController.reset();
+			LnavController.reset();
 		} else {
 			FPController.init();
+			LnavController.init();
 		}
 		me.resetPhase();
 		Internal.request[0] = 1;
@@ -82,8 +83,8 @@ var CORE = {
 	},
 	loop: func() {
 		FPController.loop();
+		LnavController.loop();
 		
-		Value.active = FPController.active;
 		Value.afsAlt = afs.Internal.alt.getValue();
 		Value.asiKts = math.max(pts.Instrumentation.AirspeedIndicator.indicatedSpeedKt.getValue(), 0.0001);
 		Value.asiMach = math.max(pts.Instrumentation.AirspeedIndicator.indicatedMach.getValue(), 0.0001);
@@ -97,7 +98,6 @@ var CORE = {
 		Value.vertText = afs.Text.vert.getValue();
 		Value.wow = pts.Position.wow.getBoolValue();
 		Value.wow0 = pts.Gear.wow[0].getBoolValue();
-		Value.wpSize = FPController.size;
 		
 		if (systems.ENGINES.state[0].getValue() == 3 or systems.ENGINES.state[1].getValue() == 3 or systems.ENGINES.state[2].getValue() == 3) {
 			Internal.engOn = 1;

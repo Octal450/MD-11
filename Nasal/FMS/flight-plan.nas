@@ -3,16 +3,18 @@
 
 var RouteManager = {
 	active: props.globals.getNode("/autopilot/route-manager/active"),
+	activeTemp: 0,
 	currentWp: props.globals.getNode("/autopilot/route-manager/current-wp"),
 	distanceRemainingNm: props.globals.getNode("/autopilot/route-manager/distance-remaining-nm"),
 };
 
 # Flight plan controller
 var FPController = {
-	active: 0,
 	currentWp: 0,
 	gotWp: [nil, nil, nil],
 	plan: [createFlightplan(), createFlightplan(), createFlightplan(), createFlightplan(), nil], # 0 = Active, 1 = Alternate, 2 = Temporary 1, 3 = Temporary 2, 4 = Company Route
+	ready: 0,
+	routeReady: 0,
 	size: [0, 0, 0, 0, 0],
 	temporaryActive: [0, 0],
 	init: func() {
@@ -27,19 +29,23 @@ var FPController = {
 		me.insertDiscontinuity(0, 0, 1, 1);
 		me.insertPpos(0); # Calls planChanged
 		me.activatePlan();
+		me.ready = 1;
 	},
 	reset: func() {
 		me.init();
 	},
 	loop: func() {
-		me.active = RouteManager.active.getBoolValue();
+		RouteManager.activeTemp = RouteManager.active.getBoolValue();
 		me.currentWp = RouteManager.currentWp.getValue();
 		me.size[0] = me.plan[0].getPlanSize();
+		
+		if (me.ready and flightData.airportFrom != "" and flightData.airportTo != "") me.routeReady = 1;
+		else me.routeReady = 0;
 		
 		if (me.size[0] > 0) {
 			me.setActiveWp(); # Keep active waypoint set properly
 			
-			if (!me.active) {
+			if (!RouteManager.activeTemp) {
 				me.activatePlan(1);
 			}
 		}
@@ -307,7 +313,7 @@ var FPController = {
 		if (!noPlanChanged) me.planChanged(n);
 	},
 	setActiveWp: func() {
-		if (me.active) {
+		if (me.ready) {
 			if (me.size[0] >= 3) { # Case where there are at least 3 WPs
 				me.gotWp[0] = me.plan[0].getWP(0);
 				me.gotWp[1] = me.plan[0].getWP(1);

@@ -305,7 +305,7 @@ var FmsSpd = {
 		# Main FMS SPD Logic
 		# ktsMach determines which is active, the other is handled in Inactive Value Sync
 		if (Internal.phase >= 4) {
-			if (Value.active and Value.wpSize > 0) {
+			if (FPController.routeReady) {
 				if (Value.distanceRemainingNm < 15) {
 					me.decel = 1;
 				}
@@ -316,7 +316,7 @@ var FmsSpd = {
 			me.decel = 0;
 		}
 		
-		if (!Value.active) { # If Route Manager is not activated properly, then this logic will not work
+		if (FPController.routeReady) {
 			me.cancelAndZero(1);
 		} else if (Internal.phase <= 1) { # Preflight/Takeoff
 			if (me.active) { # Re-enable driving if overriden
