@@ -816,7 +816,7 @@
 						<property>/systems/load-manager/weight-f[2]</property>
 						<step>100</step>
 						<min>0</min>
-						<max>42000</max>
+						<max>50800</max>
 						<live>true</live>
 						<binding>
 							<command>dialog-apply</command>
@@ -870,7 +870,7 @@
 						<binding>
 							<command>property-adjust</command>
 							<property>/systems/load-manager/weight-f[2]</property>
-							<max>42000</max>
+							<max>50800</max>
 							<step>100</step>
 							<wrap>false</wrap>
 						</binding>
@@ -884,7 +884,7 @@
 						<binding>
 							<command>property-adjust</command>
 							<property>/systems/load-manager/weight-f[2]</property>
-							<max>42000</max>
+							<max>50800</max>
 							<step>1000</step>
 							<wrap>false</wrap>
 						</binding>
