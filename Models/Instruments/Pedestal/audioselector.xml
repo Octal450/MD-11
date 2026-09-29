@@ -3,9 +3,9 @@
 <!-- Copyright (c) 2026 Josh Davidson (Octal450) -->
 
 <PropertyList>
-	
-    <path>audioselector.ac</path>
-	
+
+	<path>audioselector.ac</path>
+
 	<animation>
 		<name>Panel lighting</name>
 		<type>material</type>
@@ -17,21 +17,102 @@
 			<factor-prop>systems/lighting/main-integ</factor-prop>
 		</emission>
 	</animation>
-	
+
 	<effect>
 		<inherits-from>Effects/model-transparent</inherits-from>
 		<object-name>audioselector.text</object-name>
 	</effect>
-	
-    <animation>
-        <type>select</type>
-        <object-name>mic</object-name>
-        <condition>
-            <greater-than>
-                <property>systems/electrical/unused</property>
-                <value>5</value>
-            </greater-than>
-        </condition>
-    </animation>
+
+	<animation>
+		<type>select</type>
+		<object-name>mic</object-name>
+		<condition>
+			<greater-than>
+				<property>systems/electrical/unused</property>
+				<value>5</value>
+			</greater-than>
+		</condition>
+	</animation>
+
+	<animation>
+		<type>knob</type>
+		<object-name>audioselector.buttons.vhf1</object-name>
+		<property>/instrumentation/comm/volume</property>
+		<factor>-180</factor>
+		<center>
+			<x-m>-0.009525</x-m>
+			<y-m>-0.044</y-m>
+			<z-m>0.005286</z-m>
+		</center>
+		<axis>
+			<x>0</x>
+			<y>0</y>
+			<z>1</z>
+		</axis>
+		<action>
+			<binding>
+				<command>property-adjust</command>
+				<property>/instrumentation/comm/volume</property>
+				<factor>0.1</factor>
+				<min>0</min>
+				<max>1</max>
+				<wrap>false</wrap>
+			</binding>
+		</action>
+	</animation>
+
+	<animation>
+		<type>knob</type>
+		<object-name>audioselector.buttons.vhf2</object-name>
+		<property>/instrumentation/comm[1]/volume</property>
+		<factor>-180</factor>
+		<center>
+			<x-m>-0.009525</x-m>
+			<y-m>-0.02933</y-m>
+			<z-m>0.005286</z-m>
+		</center>
+		<axis>
+			<x>0</x>
+			<y>0</y>
+			<z>1</z>
+		</axis>
+		<action>
+			<binding>
+				<command>property-adjust</command>
+				<property>/instrumentation/comm[1]/volume</property>
+				<factor>0.1</factor>
+				<min>0</min>
+				<max>1</max>
+				<wrap>false</wrap>
+			</binding>
+		</action>
+	</animation>
+
+	<animation>
+		<type>knob</type>
+		<object-name>audioselector.buttons.vhf3</object-name>
+		<property>/instrumentation/comm[2]/volume</property>
+		<factor>-180</factor>
+		<center>
+			<x-m>-0.009525</x-m>
+			<y-m>-0.01467</y-m>
+			<z-m>0.005286</z-m>
+		</center>
+		<axis>
+			<x>0</x>
+			<y>0</y>
+			<z>1</z>
+		</axis>
+		<action>
+			<binding>
+				<command>property-adjust</command>
+				<property>/instrumentation/comm[2]/volume</property>
+				<factor>0.1</factor>
+				<min>0</min>
+				<max>1</max>
+				<wrap>false</wrap>
+			</binding>
+		</action>
+	</animation>
 
 </PropertyList>
