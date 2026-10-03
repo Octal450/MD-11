@@ -54,7 +54,7 @@ var CORE = {
 		} else {
 			FPController.init();
 		}
-		LnavController.init();
+		NavController.init();
 		me.resetPhase();
 		Internal.request[0] = 1;
 		Internal.request[1] = 1;
@@ -179,7 +179,7 @@ var CORE = {
 		FmsSpd.loop();
 		
 		# LNAV logic
-		LnavController.loop();
+		NavController.loop();
 		
 		# Reset system once engines shutdown
 		if (Internal.engOn) {

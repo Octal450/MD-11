@@ -1,7 +1,13 @@
 # McDonnell Douglas MD-11 FMS
 # Copyright (c) 2026 Josh Davidson (Octal450)
 
-var LnavController = {
+var Gps = {
+	bearingTrueDeg: props.globals.getNode("/instrumentation/gps/wp/wp[1]/bearing-true-deg"),
+	courseErrorNm: props.globals.getNode("/instrumentation/gps/wp/wp[1]/course-error-nm"),
+	legTrueCourseDeg: props.globals.getNode("/instrumentation/gps/wp/leg-true-course-deg"),
+};
+
+var NavController = {
 	Advance: {
 		courseNext: 0,
 		courseTo: 0,
@@ -17,11 +23,25 @@ var LnavController = {
 	},
 	canArm: 0,
 	canCapture: 0,
+	Gps: {
+		bearingTrueDeg: 0,
+		courseErrorDeg: 0,
+		courseErrorGain: 0,
+		courseErrorNm: 0,
+		deltaLegAngle: 0,
+		deltaWpAngle: 0,
+		gainAirspeed: 0,
+		legTrueCourseDeg: 0,
+	},
+	latMode: 0,
+	onInterceptHdg: 0,
 	init: func() {
 		me.canArm = 0;
 		me.canCapture = 0;
+		me.onInterceptHdg = 0;
 	},
 	loop: func() {
+		# Waypoint advance/sequencing
 		if (FPController.ready) {
 			if (FPController.size[0] > 2 and !Value.wow0) {
 				if (FPController.wpTo.ghost.fly_type != "flyBy") { # Don't other to calculate it
@@ -70,7 +90,70 @@ var LnavController = {
 			}
 		}
 		
+		# Get info from GPS
+		me.Gps.bearingTrueDeg = Gps.bearingTrueDeg.getValue();
+		me.Gps.courseErrorNm = Gps.courseErrorNm.getValue();
+		me.Gps.legTrueCourseDeg = Gps.legTrueCourseDeg.getValue();
+		me.latMode = afs.Output.lat.getValue();
+		
+		# Calculate delta angles
+		me.Gps.deltaLegAngle = geo.normdeg180(me.Gps.legTrueCourseDeg - pts.Orientation.trackDeg.getValue());
+		me.Gps.deltaWpAngle = geo.normdeg180(me.Gps.bearingTrueDeg - pts.Orientation.trackDeg.getValue());
+		
+		# Calculate error angle command here so we don't have to wait for control loop to update
+		me.Gps.gainAirspeed = math.max(140, math.min(360, pts.Velocities.airspeedKt.getValue()));
+		me.Gps.courseErrorGain = 40 - (((me.Gps.gainAirspeed - 140) * 20) / 220); # From afs-drivers.xml
+		me.Gps.courseErrorDeg = math.clamp(me.Gps.courseErrorNm * me.Gps.courseErrorGain, -45, 45);
+		
+		# If NAV can be armed
 		me.canArm = FPController.ready and FPController.wpTo.exists and FPController.wpTo.ghost.id != "DISCONTINUITY";
-		me.canCapture = me.canArm; # To be done
+		
+		# Check if on intercept heading with course
+		me.checkOnInterceptHdg();
+		
+		# If NAV can engage
+		me.checkCapture();
+	},
+	checkCapture: func() {
+		if (!me.canArm) {
+			me.canCapture = 0;
+			return;
+		}
+		
+		if (me.latMode == 1) { # If we get here and we're already in NAV, always return true
+			me.canCapture = 1;
+			return;
+		}
+		
+		if (me.Gps.courseErrorNm < -1 or me.Gps.courseErrorNm > 1) { # Within 1nm onInterceptHdg is too sensitive, can prevent NAV engagement
+			if (!me.onInterceptHdg) {
+				me.canCapture = 0;
+				return;
+			}
+		}
+		
+		me.canCapture = 1; # If we fall through all cases, then capture
+	},
+	checkOnInterceptHdg: func() {
+		if (me.latMode == 1) { # If we're already in NAV, always return true
+			me.onInterceptHdg = 1;
+			return;
+		}
+		
+		if (me.Gps.courseErrorNm > 0) { # Left of line
+			if (me.Gps.deltaWpAngle <= 0) {
+				me.onInterceptHdg = 1;
+			} else {
+				me.onInterceptHdg = 0;
+			}
+		} else if (me.Gps.courseErrorNm < 0) { # Right of line
+			if (me.Gps.deltaWpAngle >= 0) {
+				me.onInterceptHdg = 1;
+			} else {
+				me.onInterceptHdg = 0;
+			}
+		} else { # Rare case where error is exactly 0, fall through
+			me.onInterceptHdg = 1;
+		}
 	},
 };

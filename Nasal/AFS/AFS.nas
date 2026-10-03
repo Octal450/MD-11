@@ -393,7 +393,7 @@ var ITAF = {
 		
 		# LNAV Reversion
 		if (Output.lat.getValue() == 1) { # Only evaulate the rest of the condition if we are in LNAV mode
-			if (!fms.LnavController.canCapture or !systems.IRS.Iru.anyAligned.getBoolValue()) {
+			if (!fms.NavController.canCapture or !systems.IRS.Iru.anyAligned.getBoolValue()) {
 				me.setLatMode(3);
 				Fma.startBlink(1);
 			}
@@ -1168,7 +1168,7 @@ var ITAF = {
 	},
 	setLatArm: func(n) {
 		if (n == 1) {
-			if (fms.LnavController.canArm) {
+			if (fms.NavController.canArm) {
 				me.updateLnavArm(1);
 			}
 		} else if (n == 3) {
@@ -1425,12 +1425,12 @@ var ITAF = {
 		}
 	},
 	checkLnav: func(t) {
-		if (fms.LnavController.canCapture and Position.gearAglFt.getValue() >= Internal.lnavEngageFt) {
+		if (fms.NavController.canCapture and Position.gearAglFt.getValue() >= Internal.lnavEngageFt) {
 			me.activateLnav();
-		} else if (fms.LnavController.canArm and Output.lat.getValue() != 1 and t != 1) {
+		} else if (fms.NavController.canArm and Output.lat.getValue() != 1 and t != 1) {
 			me.updateLnavArm(1);
 		}
-		if (!fms.LnavController.canArm) {
+		if (!fms.NavController.canArm) {
 			me.updateLnavArm(0);
 		}
 	},

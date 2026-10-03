@@ -534,7 +534,7 @@
 		<type>gain</type>
 		<gain>
 			<expression>
-				<table>
+				<table> <!-- Check navigation.nas if changing -->
 					<property>/velocities/airspeed-kt</property>
 					<entry><ind>140</ind><dep>40</dep></entry>
 					<entry><ind>360</ind><dep>20</dep></entry>

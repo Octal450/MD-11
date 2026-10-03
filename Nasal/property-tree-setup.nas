@@ -251,6 +251,7 @@ var Orientation = {
 	headingMagneticDeg: props.globals.getNode("/orientation/heading-magnetic-deg"),
 	pitchDeg: props.globals.getNode("/orientation/pitch-deg"),
 	rollDeg: props.globals.getNode("/orientation/roll-deg"),
+	trackDeg: props.globals.getNode("/orientation/track-deg"),
 };
 
 var Payload = {
@@ -361,6 +362,7 @@ var Systems = {
 };
 
 var Velocities = {
+	airspeedKt: props.globals.getNode("/velocities/airspeed-kt"),
 	groundspeedKt: props.globals.getNode("/velocities/groundspeed-kt"),
 	groundspeedKtTemp: 0,
 };
