@@ -100,6 +100,7 @@ var DuplicateWp = {
 		return m;
 	},
 	setup: func() {
+		me.Value.indexStart = 0; # Must be reset since this page doesn't wrap around
 	},
 	exit: func() {
 	},

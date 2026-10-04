@@ -174,6 +174,7 @@ var FPController = {
 	getWpGhostByID: func(n, type, id, mcduId = -1) { # Similar to insertWp
 		var wpTemp = nil;
 		
+		# Use current pos since no T-P exists yet
 		if (type == "fix") {
 			wpTemp = findFixesByID(id);
 		} else if (type == "navaid") {
@@ -186,16 +187,16 @@ var FPController = {
 		
 		var wpTempVector = std.Vector.new();
 		
-		if (type == "navaid") {
-			foreach (wp; wpTemp) {
-				if (wp.type == "VOR" or wp.type == "NDB") { # No DME/TACAN/ILS
-					wpTempVector.append(wp);
-				}
+		foreach (wp; wpTemp) {
+			if (wp.id != id) { # Filter out partial search
+				continue;
 			}
-		} else {
-			foreach (wp; wpTemp) {
-				wpTempVector.append(wp);
+			
+			if (type == "navaid" and !(wp.type == "VOR" or wp.type == "NDB")) { # No DME/TACAN/ILS
+				continue;
 			}
+			
+			wpTempVector.append(wp);
 		}
 		
 		var wpTempVectorSize = wpTempVector.size();
@@ -203,7 +204,7 @@ var FPController = {
 		if (wpTempVectorSize == 1 or mcduId == -1) {
 			return wpTempVector.vector[0];
 		} else if (wpTempVectorSize > 1) { # Duplicate names
-			mcdu.unit[mcduId].Data.duplicateWpInfo = DuplicateWpList.new(n, 1, type, wpTempVector); # Prep Duplicate Names page, use current pos since no T-P exists yet
+			mcdu.unit[mcduId].Data.duplicateWpInfo = DuplicateWpList.new(n, 1, type, wpTempVector); # Prep Duplicate Names page
 			return 2;
 		} else {
 			return 1; # Not in database
@@ -256,29 +257,30 @@ var FPController = {
 	},
 	insertWp: func(n, i, type, id, mcduId = -1, noDiscontinuity = 0, noPlanChanged = 0) { # Similar to getWpGhostByID
 		var wpTemp = nil;
+		var prevGeo = me.getPrevWpGeo(n, i);
 		
 		if (type == "fix") {
-			wpTemp = findFixesByID(id);
+			wpTemp = findFixesByID(prevGeo, id);
 		} else if (type == "navaid") {
-			wpTemp = findNavaidsByID(id);
+			wpTemp = findNavaidsByID(prevGeo, id);
 		} else if (type == "airport") {
-			wpTemp = findAirportsByICAO(id);
+			wpTemp = findAirportsByICAO(prevGeo, id);
 		} else {
 			return 1; # Not in database
 		}
 		
 		var wpTempVector = std.Vector.new();
 		
-		if (type == "navaid") {
-			foreach (wp; wpTemp) {
-				if (wp.type == "VOR" or wp.type == "NDB") { # No DME/TACAN/ILS
-					wpTempVector.append(wp);
-				}
+		foreach (wp; wpTemp) {
+			if (wp.id != id) { # Filter out partial search
+				continue;
 			}
-		} else {
-			foreach (wp; wpTemp) {
-				wpTempVector.append(wp);
+			
+			if (type == "navaid" and !(wp.type == "VOR" or wp.type == "NDB")) { # No DME/TACAN/ILS
+				continue;
 			}
+			
+			wpTempVector.append(wp);
 		}
 		
 		var wpTempVectorSize = wpTempVector.size();
@@ -289,7 +291,7 @@ var FPController = {
 			if (!noPlanChanged) me.planChanged(n);
 			return 0;
 		} else if (wpTempVectorSize > 1) { # Duplicate names
-			mcdu.unit[mcduId].Data.duplicateWpInfo = DuplicateWpList.new(n, i, type, wpTempVector, me.getPrevWpGeo(n, i)); # Prep Duplicate Names page, previous waypoint pos
+			mcdu.unit[mcduId].Data.duplicateWpInfo = DuplicateWpList.new(n, i, type, wpTempVector, prevGeo); # Prep Duplicate Names page, previous waypoint pos
 			return 2;
 		} else {
 			return 1; # Not in database
@@ -334,8 +336,8 @@ var FPController = {
 		}
 	},
 	removeWp: func(n, i, noDiscontinuity = 0, noPlanChanged = 0) {
-		var wpName = me.plan[n].getWP(i).wp_name;
 		me.plan[n].deleteWP(i);
+		var wpName = me.plan[n].getWP(i).wp_name;
 		if (!noDiscontinuity and wpName != "DISCONTINUITY") me.insertDiscontinuity(n, i, 0, 1);
 		me.removeDuplicateDiscontinuities(n, i, 1); # If we delete a WP between two discontinuities, then two would be next to each other
 		if (!noPlanChanged) me.planChanged(n);

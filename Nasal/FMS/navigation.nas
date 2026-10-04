@@ -123,11 +123,11 @@ var NavController = {
 		me.Gps.courseErrorGain = 40 - (((me.Gps.gainAirspeed - 140) * 20) / 220); # From afs-drivers.xml
 		me.Gps.courseErrorDeg = math.clamp(me.Gps.courseErrorNm * me.Gps.courseErrorGain, -45, 45);
 		
-		# If NAV can be armed
-		me.canArm = FPController.ready and FPController.wpTo.exists and FPController.wpTo.ghost.id != "DISCONTINUITY";
-		
 		# Check if on intercept heading with course
 		me.checkOnInterceptHdg();
+		
+		# If NAV can be armed
+		me.canArm = FPController.ready and FPController.wpTo.exists and FPController.wpTo.ghost.id != "DISCONTINUITY";
 		
 		# If NAV can engage
 		me.checkCapture();
