@@ -21,8 +21,13 @@ var NavController = {
 		radius: 0,
 		turnDist: 0,
 	},
+	captureTimer: {
+		active: 0,
+		time: -5,
+	},
 	canArm: 0,
 	canCapture: 0,
+	elapsedSec: 0,
 	Gps: {
 		bearingTrueDeg: 0,
 		courseErrorDeg: 0,
@@ -34,6 +39,7 @@ var NavController = {
 		legTrueCourseDeg: 0,
 	},
 	latMode: 0,
+	lnavArm: 0,
 	onInterceptHdg: 0,
 	init: func() {
 		me.canArm = 0;
@@ -42,8 +48,8 @@ var NavController = {
 	},
 	loop: func() {
 		# Waypoint advance/sequencing
-		if (FPController.ready) {
-			if (FPController.size[0] > 2 and !Value.wow0) {
+		if (FPController.ready and !Value.wow0) {
+			if (FPController.size[0] > 2) {
 				if (FPController.wpTo.ghost.fly_type != "flyBy") { # Don't other to calculate it
 					me.Advance.turnDist = 0.2; # Under 0.2nm guidance becomes unreliable
 				} else {
@@ -71,8 +77,8 @@ var NavController = {
 					
 					me.Advance.turnDist = math.cos(me.Advance.deltaAngleRad) * me.Advance.R * me.Advance.distCoeff / 1852;
 					
-					if (me.Advance.turnDist < 0.2) { # Under 0.2nm guidance becomes unreliable
-						me.Advance.turnDist = 0.2;
+					if (me.Advance.turnDist < 0.1) { # Under 0.1nm guidance becomes unreliable
+						me.Advance.turnDist = 0.1;
 					}
 				}
 				
@@ -82,19 +88,31 @@ var NavController = {
 					if (FPController.wpNext.ghost.id == "DISCONTINUITY") { # Add vectors/manual???
 						if (afs.Output.lat.getValue() == 1) {
 							afs.Input.lat.setValue(3); # Exit to heading hold
+							Fma.startBlink(1);
 						}
 					} else {
 						FPController.advanceWp(0);
 					}
 				}
+			} else if (FPController.size[0] == 2) { # End of route handling
+				me.Advance.distTo = courseAndDistance(FPController.wpTo.geoCoord)[1];
+				if (me.Advance.distTo < 0.1) {
+					if (afs.Output.lat.getValue() == 1) {
+						afs.Input.lat.setValue(3); # Exit to heading hold
+						Fma.startBlink(1);
+					}
+				}
 			}
 		}
+		
+		me.elapsedSec = pts.Sim.Time.elapsedSec.getValue();
+		me.latMode = afs.Output.lat.getValue();
+		me.lnavArm = afs.Output.lnavArm.getBoolValue();
 		
 		# Get info from GPS
 		me.Gps.bearingTrueDeg = Gps.bearingTrueDeg.getValue();
 		me.Gps.courseErrorNm = Gps.courseErrorNm.getValue();
 		me.Gps.legTrueCourseDeg = Gps.legTrueCourseDeg.getValue();
-		me.latMode = afs.Output.lat.getValue();
 		
 		# Calculate delta angles
 		me.Gps.deltaLegAngle = geo.normdeg180(me.Gps.legTrueCourseDeg - pts.Orientation.trackDeg.getValue());
@@ -117,24 +135,42 @@ var NavController = {
 	checkCapture: func() {
 		if (!me.canArm) {
 			me.canCapture = 0;
+			me.captureTimer.active = 0;
+			me.captureTimer.time = -5;
 			return;
 		}
 		
 		if (me.latMode == 1) { # If we get here and we're already in NAV, always return true
 			me.canCapture = 1;
+			me.captureTimer.active = 0;
+			me.captureTimer.time = -5;
 			return;
-		}
-		
-		if (me.Gps.courseErrorNm < -1 or me.Gps.courseErrorNm > 1) { # Within 1nm onInterceptHdg is too sensitive, can prevent NAV engagement
-			if (!me.onInterceptHdg) {
+		} else if (!me.lnavArm) {
+			me.canCapture = 0;
+			me.captureTimer.active = 0;
+			me.captureTimer.time = -5;
+			return;
+		} else {
+			if (!me.captureTimer.active) {
+				me.captureTimer.active = 1;
+				me.captureTimer.time = me.elapsedSec;
+			}
+			
+			# Within 0.2 seconds of arming, inhibit capture to simulate "checking conditions"
+			if (me.captureTimer.time + 0.2 >= me.elapsedSec) {
 				me.canCapture = 0;
 				return;
 			}
 		}
 		
+		if (abs(me.Gps.courseErrorNm) > 10) { # To capture we must be within 10nm of course
+			me.canCapture = 0;
+			return;
+		}
+		
 		me.canCapture = 1; # If we fall through all cases, then capture
 	},
-	checkOnInterceptHdg: func() {
+	checkOnInterceptHdg: func() { # Not used by capture logic, but may be useful
 		if (me.latMode == 1) { # If we're already in NAV, always return true
 			me.onInterceptHdg = 1;
 			return;
