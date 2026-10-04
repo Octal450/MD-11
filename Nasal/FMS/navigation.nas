@@ -48,50 +48,63 @@ var NavController = {
 	},
 	loop: func() {
 		# Waypoint advance/sequencing
-		if (FPController.ready and !Value.wow0) {
+		if (FPController.ready and !Value.wow0 and RouteManager.currentWp.getValue() > -1) { # Must check for -1 as a protection
 			if (FPController.size[0] > 2) {
-				if (FPController.wpTo.ghost.fly_type != "flyBy") { # Don't other to calculate it
-					me.Advance.turnDist = 0.2; # Under 0.2nm guidance becomes unreliable
+				if (FPController.wpTo.ghost.id == "DISCONTINUITY") { # Add vectors/manual???
+					if (afs.Output.lat.getValue() == 1) {
+						afs.Input.lat.setValue(3); # Exit to heading hold
+						afs.Fma.startBlink(1);
+					}
 				} else {
-					Value.groundspeedMps = pts.Velocities.groundspeedKt.getValue() * 0.5144444444444;
-					me.Advance.maxBankLimit = afs.Internal.bankLimit.getValue();
-					
-					me.Advance.courseTo = FPController.wpTo.ghost.leg_bearing;
-					me.Advance.courseNext = FPController.wpNext.ghost.leg_bearing;
-					me.Advance.deltaAngle = math.abs(geo.normdeg180(me.Advance.courseTo - me.Advance.courseNext));
 					me.Advance.distTo = courseAndDistance(FPController.wpTo.geoCoord)[1];
 					
-					me.Advance.maxBank = me.Advance.deltaAngle * 1.5;
-					if (me.Advance.maxBank > me.Advance.maxBankLimit) {
-						me.Advance.maxBank = me.Advance.maxBankLimit;
-					}
-					
-					me.Advance.radius = (Value.groundspeedMps * Value.groundspeedMps) / (9.81 * math.tan(me.Advance.maxBank / 57.2957795131));
-					me.Advance.deltaAngleRad = (180 - me.Advance.deltaAngle) / 114.5915590262;
-					me.Advance.R = me.Advance.radius / math.sin(me.Advance.deltaAngleRad);
-					
-					me.Advance.distCoeff = me.Advance.deltaAngle * -0.011111 + 2;
-					if (me.Advance.distCoeff < 1) {
-						me.Advance.distCoeff = 1;
-					}
-					
-					me.Advance.turnDist = math.cos(me.Advance.deltaAngleRad) * me.Advance.R * me.Advance.distCoeff / 1852;
-					
-					if (me.Advance.turnDist < 0.1) { # Under 0.1nm guidance becomes unreliable
-						me.Advance.turnDist = 0.1;
-					}
-				}
-				
-				afs.Internal.lnavAdvanceNm.setValue(me.Advance.turnDist); # Just keeping it synced
-				
-				if (me.Advance.distTo <= me.Advance.turnDist) {
-					if (FPController.wpNext.ghost.id == "DISCONTINUITY") { # Add vectors/manual???
-						if (afs.Output.lat.getValue() == 1) {
-							afs.Input.lat.setValue(3); # Exit to heading hold
-							Fma.startBlink(1);
-						}
+					if (FPController.wpTo.ghost.fly_type != "flyBy") { # Don't bother to calculate it
+						me.Advance.turnDist = 0.1; # Under 0.1nm guidance becomes unreliable
 					} else {
-						FPController.advanceWp(0);
+						Value.groundspeedMps = pts.Velocities.groundspeedKt.getValue() * 0.5144444444444;
+						me.Advance.maxBankLimit = afs.Internal.bankLimit.getValue();
+						
+						me.Advance.courseTo = FPController.wpTo.ghost.leg_bearing;
+						me.Advance.courseNext = FPController.wpNext.ghost.leg_bearing;
+						me.Advance.deltaAngle = math.abs(geo.normdeg180(me.Advance.courseTo - me.Advance.courseNext));
+						if (me.Advance.deltaAngle > 90) { # Above 90 degrees, it starts to blow up
+							me.Advance.deltaAngle = 90;
+						}
+						
+						me.Advance.maxBank = me.Advance.deltaAngle * 1.5;
+						if (me.Advance.maxBank > me.Advance.maxBankLimit) {
+							me.Advance.maxBank = me.Advance.maxBankLimit;
+						}
+						
+						me.Advance.radius = (Value.groundspeedMps * Value.groundspeedMps) / (9.81 * math.tan(me.Advance.maxBank / 57.2957795131));
+						me.Advance.deltaAngleRad = (180 - me.Advance.deltaAngle) / 114.5915590262;
+						me.Advance.R = me.Advance.radius / math.sin(me.Advance.deltaAngleRad);
+						
+						me.Advance.distCoeff = me.Advance.deltaAngle * -0.011111 + 2;
+						if (me.Advance.distCoeff < 1) {
+							me.Advance.distCoeff = 1;
+						}
+						
+						me.Advance.turnDist = math.cos(me.Advance.deltaAngleRad) * me.Advance.R * me.Advance.distCoeff / 1852;
+						
+						if (me.Advance.turnDist < 0.1) { # Under 0.1nm guidance becomes unreliable
+							me.Advance.turnDist = 0.1;
+						} else if (me.Advance.turnDist > 15) { # Clamp to a sane value
+							me.Advance.turnDist = 15;
+						}
+					}
+					
+					afs.Internal.lnavAdvanceNm.setValue(me.Advance.turnDist); # Just keeping it synced
+					
+					if (me.Advance.distTo <= me.Advance.turnDist) {
+						if (FPController.wpNext.ghost.id == "DISCONTINUITY") { # Add vectors/manual???
+							if (afs.Output.lat.getValue() == 1) {
+								afs.Input.lat.setValue(3); # Exit to heading hold
+								afs.Fma.startBlink(1);
+							}
+						} else {
+							FPController.advanceWp(0);
+						}
 					}
 				}
 			} else if (FPController.size[0] == 2) { # End of route handling
@@ -99,7 +112,7 @@ var NavController = {
 				if (me.Advance.distTo < 0.1) {
 					if (afs.Output.lat.getValue() == 1) {
 						afs.Input.lat.setValue(3); # Exit to heading hold
-						Fma.startBlink(1);
+						afs.Fma.startBlink(1);
 					}
 				}
 			}

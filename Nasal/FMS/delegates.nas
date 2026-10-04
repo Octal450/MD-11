@@ -50,7 +50,7 @@ var CustomGPSDelegate = {
 		setprop(GPSPath ~ '/config/over-flight-arm-distance', 5);
 		
 		fp.followLegTrackToFix = 1;
-		fp.aircraftCategory = 'D';
+		fp.aircraftCategory = 'C';
 		
 		m._modeProp = props.globals.getNode(GPSPath ~ '/mode');
 		return m;

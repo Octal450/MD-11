@@ -12,6 +12,7 @@ var RouteManager = {
 var FPController = {
 	currentWp: 0,
 	gotWp: [nil, nil, nil],
+	inhibitSetActiveWp: 0,
 	plan: [createFlightplan(), createFlightplan(), createFlightplan(), createFlightplan(), nil], # 0 = Active, 1 = Alternate, 2 = Temporary 1, 3 = Temporary 2, 4 = Company Route
 	ready: 0,
 	routeReady: 0,
@@ -29,6 +30,7 @@ var FPController = {
 	},
 	init: func() {
 		FPList.init();
+		me.inhibitSetActiveWp = 0;
 		me.temporaryActive[0] = 0;
 		me.temporaryActive[1] = 0;
 		me.clearPlan(0);
@@ -37,8 +39,9 @@ var FPController = {
 		me.clearPlan(3);
 		me.plan[0].activate();
 		me.activatePlan();
-		me.insertDiscontinuity(0, 0, 1, 1);
-		me.insertPpos(0); # Calls planChanged
+		me.insertPpos(0, 0, 1);
+		me.insertDiscontinuity(0, 0, 1); # Calls planChanged
+		
 		me.ready = 1;
 	},
 	reset: func() {
@@ -53,18 +56,16 @@ var FPController = {
 		else me.routeReady = 0;
 		
 		if (me.size[0] > 0) {
-			me.setActiveWp(); # Keep active waypoint set properly
-			
 			if (!RouteManager.activeTemp) {
-				me.activatePlan(1);
+				me.activatePlan();
+			} else {
+				me.setActiveWp(); # Keep active waypoint set properly
 			}
 		}
 	},
-	activatePlan: func(noWpChange = 0) {
-		if (!noWpChange) {
-			me.setActiveWp();
-		}
+	activatePlan: func() {
 		RouteManager.active.setBoolValue(1);
+		me.setActiveWp();
 	},
 	advanceWp: func(n) { # Assumes checks are already done
 		me.plan[n].deleteWP(0);
@@ -264,7 +265,7 @@ var FPController = {
 		} else if (type == "navaid") {
 			wpTemp = findNavaidsByID(prevGeo, id);
 		} else if (type == "airport") {
-			wpTemp = findAirportsByICAO(prevGeo, id);
+			wpTemp = findAirportsByICAO(id); # Limitation, FG doesn't support definiting position :(
 		} else {
 			return 1; # Not in database
 		}
@@ -306,10 +307,10 @@ var FPController = {
 	planChanged: func(n) {
 		FPList.rebuildList(n);
 		
-		# LNAV Support
 		if (n == 0) {
-			me.size[0] = me.plan[0].getPlanSize();
+			me.size[0] = me.plan[0].getPlanSize(); # Required for wpTo/wpNext and setActiveWp
 			
+			# LNAV Support
 			if (me.size[0] > 1) {
 				me.wpTo.ghost = me.plan[0].getWP(1);
 				me.wpTo.geoCoord.set_latlon(me.wpTo.ghost.lat, me.wpTo.ghost.lon);
@@ -325,6 +326,10 @@ var FPController = {
 			} else {
 				me.wpNext.exists = 0;
 			}
+			
+			# Ensure active wp is set properly
+			me.inhibitSetActiveWp = 0; # If this was set, now is time to unset it
+			me.setActiveWp();
 		}
 	},
 	removeDuplicateDiscontinuities: func(n, i, noPlanChanged = 0) {
@@ -336,8 +341,16 @@ var FPController = {
 		}
 	},
 	removeWp: func(n, i, noDiscontinuity = 0, noPlanChanged = 0) {
-		me.plan[n].deleteWP(i);
+		# Special case: If we are deleting the active waypoint, and a discontinuity becomes the active, FG breaks very badly!
+		# FG needs to fix this, but until that happens, here is a workaround
+		if (i == RouteManager.currentWp.getValue()) {
+			me.inhibitSetActiveWp = 1;
+			RouteManager.currentWp.setValue(-1); # Keep it out of the way for this split second
+		}
+		# End special case
+		
 		var wpName = me.plan[n].getWP(i).wp_name;
+		me.plan[n].deleteWP(i);
 		if (!noDiscontinuity and wpName != "DISCONTINUITY") me.insertDiscontinuity(n, i, 0, 1);
 		me.removeDuplicateDiscontinuities(n, i, 1); # If we delete a WP between two discontinuities, then two would be next to each other
 		if (!noPlanChanged) me.planChanged(n);
@@ -351,7 +364,7 @@ var FPController = {
 		if (!noPlanChanged) me.planChanged(n);
 	},
 	setActiveWp: func() {
-		if (me.ready) {
+		if (me.ready and !me.inhibitSetActiveWp) {
 			if (me.size[0] >= 3) { # Case where there are at least 3 WPs
 				me.gotWp[0] = me.plan[0].getWP(0);
 				me.gotWp[1] = me.plan[0].getWP(1);
