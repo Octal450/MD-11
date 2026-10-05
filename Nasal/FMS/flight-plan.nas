@@ -41,7 +41,6 @@ var FPController = {
 		me.activatePlan();
 		me.insertPpos(0, 0, 1);
 		me.insertDiscontinuity(0, 0, 1); # Calls planChanged
-		
 		me.ready = 1;
 	},
 	reset: func() {

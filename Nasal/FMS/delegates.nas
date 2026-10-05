@@ -65,7 +65,8 @@ var CustomGPSDelegate = {
 	_selectOBSMode: func
 	{
 		setprop(GPSPath ~ "/command", "obs");
-	},	waypointsChanged: func
+	},
+	waypointsChanged: func
 	{
 	},
 	activated: func
