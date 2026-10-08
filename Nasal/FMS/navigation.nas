@@ -107,12 +107,19 @@ var NavController = {
 						}
 					}
 				}
-			} else if (FPController.size[0] == 2) { # End of route handling
-				me.Advance.distTo = courseAndDistance(FPController.wpTo.geoCoord)[1];
-				if (me.Advance.distTo < 0.1) {
+			} else if (FPController.size[0] == 2) {
+				if (FPController.wpTo.ghost.id == "DISCONTINUITY") { # Add vectors/manual???
 					if (afs.Output.lat.getValue() == 1) {
 						afs.Input.lat.setValue(3); # Exit to heading hold
 						afs.Fma.startBlink(1);
+					}
+				} else {
+					me.Advance.distTo = courseAndDistance(FPController.wpTo.geoCoord)[1];
+					if (me.Advance.distTo < 0.1) {
+						if (afs.Output.lat.getValue() == 1) {
+							afs.Input.lat.setValue(3); # Exit to heading hold
+							afs.Fma.startBlink(1);
+						}
 					}
 				}
 			}

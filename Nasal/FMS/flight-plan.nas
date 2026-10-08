@@ -213,6 +213,7 @@ var FPController = {
 	insertDiscontinuity: func(n, i, force = 0, noPlanChanged = 0) {
 		if (force) {
 			me.plan[n].insertWP(createDiscontinuity(), i);
+			if (!noPlanChanged) me.planChanged(n);
 			return;
 		}
 		
