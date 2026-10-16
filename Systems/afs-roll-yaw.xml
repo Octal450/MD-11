@@ -230,7 +230,7 @@
 	<filter>
 		<name>System Command: Target Roll Rate</name>
 		<type>gain</type>
-		<gain>-0.9</gain>
+		<gain>-0.8</gain>
 		<input>/orientation/roll-deg</input>
 		<reference>/it-autoflight/internal/target-roll</reference>
 		<output>/it-autoflight/internal/roll-rate</output>
