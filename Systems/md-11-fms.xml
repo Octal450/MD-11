@@ -556,7 +556,7 @@
 				fcs/slat-pos-deg ge 1
 				fcs/flap-pos-deg lt 1
 			</test>
-			<test value="/systems/fms/speeds/gear-max-kts">
+			<test logic="AND" value="/systems/fms/speeds/gear-max-kts">
 				/systems/gear/cmd eq 1
 				/gear/gear[1]/position-norm ge 0.99
 			</test>
