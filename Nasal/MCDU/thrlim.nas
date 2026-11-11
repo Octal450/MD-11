@@ -66,7 +66,7 @@ var ThrLim = {
 			R6: "",
 			
 			RBFont: [FONT.small, FONT.large, FONT.large, FONT.large, FONT.large, FONT.large],
-			RBTranslate: [0, 0, 0, 0, 0, 0],
+			RBTranslate: [-8, 0, 0, 0, 0, 0],
 			R1B: "",
 			R2B: "",
 			R3B: "",
@@ -293,7 +293,7 @@ var ThrLim = {
 			me.Display.L6B = "a";
 		}
 		
-		me.Display.R1B = math.round(pts.Fdm.JSBSim.Propulsion.tatC.getValue()) ~ "g        ";
+		me.Display.R1B = math.round(pts.Fdm.JSBSim.Propulsion.tatC.getValue()) ~ "g";
 		
 		if (me.Value.pw and (me.Value.Limit.mode == 0 or me.Value.Limit.mode == 1)) {
 			me.Display.R3L = "SELECT ";

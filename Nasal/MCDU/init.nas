@@ -450,12 +450,12 @@ var Init2 = {
 			L6: "---.-/----",
 			
 			LBFont: [FONT.large, FONT.large, FONT.large, FONT.large, FONT.large, FONT.large],
-			LBTranslate: [0, 0, 0, 0, 0, 0],
+			LBTranslate: [0, 0, 4, 0, 5, 0],
 			L1B: "",
 			L2B: "",
-			L3B: "    /05.0",
+			L3B: "/05.0",
 			L4B: "",
-			L5B: "     /0030",
+			L5B: "/0030",
 			L6B: "",
 			
 			pageNum: "2/3",
@@ -475,10 +475,10 @@ var Init2 = {
 			R6: "",
 			
 			RBFont: [FONT.small, FONT.large, FONT.small, FONT.large, FONT.large, FONT.large],
-			RBTranslate: [0, 0, 0, 0, 0, 0],
+			RBTranslate: [-6, 0, -7, 0, 0, 0],
 			R1B: "",
 			R2B: "",
-			R3B: "0.0       ",
+			R3B: "0.0",
 			R4B: "",
 			R5B: "",
 			R6B: "",
@@ -525,7 +525,7 @@ var Init2 = {
 				me.Display.LFont[0] = FONT.small;
 			}
 			
-			me.Display.R1B = sprintf("%5.1f", fms.flightData.ufobLbs) ~ "      ";
+			me.Display.R1B = sprintf("%5.1f", fms.flightData.ufobLbs);
 			me.Display.R1L = "UFOB  BLOCK";
 			if (fms.flightData.blockFuelLbs != 0) {
 				me.Display.R1 = sprintf("%5.1f", fms.flightData.blockFuelLbs);
