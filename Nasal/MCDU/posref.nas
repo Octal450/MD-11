@@ -41,6 +41,7 @@ var PosRef = {
 			L6: "",
 			
 			LBFont: [FONT.large, FONT.large, FONT.large, FONT.large, FONT.large, FONT.large],
+			LBTranslate: [0, 0, 0, 0, 0, 0],
 			L1B: "",
 			L2B: "",
 			L3B: "",
@@ -65,6 +66,7 @@ var PosRef = {
 			R6: "",
 			
 			RBFont: [FONT.large, FONT.large, FONT.large, FONT.large, FONT.large, FONT.large],
+			RBTranslate: [0, 0, 0, 0, 0, 0],
 			R1B: "",
 			R2B: "",
 			R3B: "",
@@ -217,6 +219,7 @@ var IrsGnsPos = {
 			L6: "",
 			
 			LBFont: [FONT.large, FONT.large, FONT.large, FONT.large, FONT.large, FONT.large],
+			LBTranslate: [0, 0, 0, 0, 0, 0],
 			L1B: "",
 			L2B: "",
 			L3B: "",
@@ -241,6 +244,7 @@ var IrsGnsPos = {
 			R6: "",
 			
 			RBFont: [FONT.large, FONT.large, FONT.large, FONT.large, FONT.large, FONT.large],
+			RBTranslate: [0, 0, 0, 0, 0, 0],
 			R1B: "",
 			R2B: "",
 			R3B: "",
@@ -393,6 +397,7 @@ var IrsStatus = {
 			L6: "IRU3     00",
 			
 			LBFont: [FONT.large, FONT.large, FONT.large, FONT.large, FONT.large, FONT.large],
+			LBTranslate: [0, 0, 0, 0, 0, 0],
 			L1B: "",
 			L2B: "",
 			L3B: "",
@@ -417,6 +422,7 @@ var IrsStatus = {
 			R6: "",
 			
 			RBFont: [FONT.large, FONT.large, FONT.large, FONT.large, FONT.large, FONT.large],
+			RBTranslate: [0, 0, 0, 0, 0, 0],
 			R1B: "",
 			R2B: "",
 			R3B: "",

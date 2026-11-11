@@ -41,6 +41,7 @@ var NavRadio = {
 			L6: "[   ]/[   ]",
 			
 			LBFont: [FONT.large, FONT.large, FONT.large, FONT.large, FONT.large, FONT.large],
+			LBTranslate: [0, 0, 0, 0, 0, 0],
 			L1B: "",
 			L2B: "",
 			L3B: "",
@@ -65,6 +66,7 @@ var NavRadio = {
 			R6: "[   ]/[   ]",
 			
 			RBFont: [FONT.large, FONT.large, FONT.large, FONT.large, FONT.large, FONT.large],
+			RBTranslate: [0, 0, 0, 0, 0, 0],
 			R1B: "",
 			R2B: "",
 			R3B: "",

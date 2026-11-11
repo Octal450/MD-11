@@ -51,6 +51,7 @@ var AcStatus = {
 			L6: "",
 			
 			LBFont: [FONT.large, FONT.large, FONT.large, FONT.large, FONT.large, FONT.large],
+			LBTranslate: [0, 0, 0, 0, 0, 0],
 			L1B: "",
 			L2B: "",
 			L3B: "",
@@ -75,6 +76,7 @@ var AcStatus = {
 			R6: "F-PLN INIT>",
 			
 			RBFont: [FONT.large, FONT.large, FONT.large, FONT.large, FONT.large, FONT.large],
+			RBTranslate: [0, 0, 0, 0, 0, 0],
 			R1B: "",
 			R2B: "",
 			R3B: "",
@@ -226,6 +228,7 @@ var AcStatus2 = {
 			L6: "",
 			
 			LBFont: [FONT.large, FONT.large, FONT.large, FONT.large, FONT.large, FONT.large],
+			LBTranslate: [0, 0, 0, 0, 0, 0],
 			L1B: "",
 			L2B: "",
 			L3B: "",
@@ -250,6 +253,7 @@ var AcStatus2 = {
 			R6: "F-PLN INIT>",
 			
 			RBFont: [FONT.large, FONT.large, FONT.large, FONT.large, FONT.large, FONT.large],
+			RBTranslate: [0, 0, 0, 0, 0, 0],
 			R1B: "",
 			R2B: "",
 			R3B: "",
@@ -330,6 +334,7 @@ var SensorStatus = {
 			L6: "",
 			
 			LBFont: [FONT.large, FONT.large, FONT.large, FONT.large, FONT.large, FONT.large],
+			LBTranslate: [0, 0, 0, 0, 0, 0],
 			L1B: "",
 			L2B: "",
 			L3B: "",
@@ -354,6 +359,7 @@ var SensorStatus = {
 			R6: "",
 			
 			RBFont: [FONT.large, FONT.large, FONT.large, FONT.large, FONT.large, FONT.large],
+			RBTranslate: [0, 0, 0, 0, 0, 0],
 			R1B: "",
 			R2B: "",
 			R3B: "",

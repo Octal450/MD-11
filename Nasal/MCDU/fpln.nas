@@ -41,6 +41,7 @@ var Fpln = {
 			L6: "",
 			
 			LBFont: [FONT.large, FONT.large, FONT.large, FONT.large, FONT.large, FONT.large],
+			LBTranslate: [0, 0, 0, 0, 0, 0],
 			L1B: "",
 			L2B: "",
 			L3B: "",
@@ -64,7 +65,8 @@ var Fpln = {
 			R6L: "",
 			R6: "",
 			
-			RBFont: [FONT.large, FONT.large, FONT.large, FONT.large, FONT.large, FONT.large],
+			RBFont: [FONT.small, FONT.small, FONT.small, FONT.small, FONT.small, FONT.small],
+			RBTranslate: [-6, -6, -6, -6, -6, -6],
 			R1B: "",
 			R2B: "",
 			R3B: "",
@@ -159,6 +161,7 @@ var Fpln = {
 					
 					me.Display["C" ~ (i + 1)] = "";
 					me.Display["R" ~ (i + 1)] = "";
+					me.Display["R" ~ (i + 1) ~ "B"] = "";
 				} else if (me.Value.list[i].wp.id == "DISCONTINUITY") {
 					me.Display["L" ~ (i + 1) ~ "L"] = "";
 					me.Display["L" ~ (i + 1)] = "---F-PLN DISCONTINUITY--";
@@ -169,6 +172,7 @@ var Fpln = {
 					
 					me.Display["C" ~ (i + 1)] = "";
 					me.Display["R" ~ (i + 1)] = "";
+					me.Display["R" ~ (i + 1) ~ "B"] = "";
 				} else {
 					me.Value.wpIndex = me.Value.sourceList.index(me.Value.list[i]);
 					if (me.Value.wpIndex == 0 and i == 0) { # FROM only shows when L1 = FROM
@@ -192,12 +196,36 @@ var Fpln = {
 					}
 					
 					me.Display["L" ~ (i + 1)] = me.Value.list[i].wp.id;
+					
 					if (me.Value.page) {
 						me.Display["C" ~ (i + 1)] = "";
 						me.Display["R" ~ (i + 1)] = "-- ---g/---";
 					} else {
 						me.Display["C" ~ (i + 1)] = "----";
-						me.Display["R" ~ (i + 1)] = "---/ -----";
+						
+						if (me.Value.list[i].wp.speed_cstr_type == nil) {
+							me.Display["R" ~ (i + 1) ~ "B"] = "---/";
+							me.Display.RBFont[i] = FONT.small;
+						} else {
+							me.Display["R" ~ (i + 1) ~ "B"] = sprintf("%d", me.Value.list[i].wp.speed_cstr) ~ "/";
+							if (me.Value.list[i].wp.speed_cstr_type == "computed" or me.Value.list[i].wp.speed_cstr_type == "computed-mach") {
+								me.Display.RBFont[i] = FONT.small;
+							} else {
+								me.Display.RBFont[i] = FONT.large;
+							}
+						}
+						
+						if (me.Value.list[i].wp.alt_cstr_type == nil) {
+							me.Display["R" ~ (i + 1)] = "-----";
+							me.Display.RFont[i] = FONT.small;
+						} else {
+							me.Display["R" ~ (i + 1)] = sprintf("%d", me.Value.list[i].wp.alt_cstr);
+							if (me.Value.list[i].wp.alt_cstr_type == "computed") {
+								me.Display.RFont[i] = FONT.small;
+							} else {
+								me.Display.RFont[i] = FONT.large;
+							}
+						}
 					}
 				}
 			} else {
@@ -205,6 +233,7 @@ var Fpln = {
 				me.Display["L" ~ (i + 1)] = "";
 				me.Display["C" ~ (i + 1)] = "";
 				me.Display["R" ~ (i + 1)] = "";
+				me.Display["R" ~ (i + 1) ~ "B"] = "";
 			}
 		}
 	},
@@ -351,6 +380,7 @@ var DirIntc = {
 			L6: "",
 			
 			LBFont: [FONT.large, FONT.large, FONT.large, FONT.large, FONT.large, FONT.large],
+			LBTranslate: [0, 0, 0, 0, 0, 0],
 			L1B: "",
 			L2B: "",
 			L3B: "",
@@ -374,7 +404,8 @@ var DirIntc = {
 			R6L: "",
 			R6: "",
 			
-			RBFont: [FONT.large, FONT.large, FONT.large, FONT.large, FONT.large, FONT.large],
+			RBFont: [FONT.small, FONT.small, FONT.small, FONT.small, FONT.small, FONT.small],
+			RBTranslate: [-6, -6, -6, -6, -6, -6],
 			R1B: "",
 			R2B: "",
 			R3B: "",
@@ -473,19 +504,45 @@ var DirIntc = {
 					me.Display["L" ~ (i + 1)] = me.Value.list[i].text;
 					me.Display["C" ~ (i + 1)] = "";
 					me.Display["R" ~ (i + 1)] = "";
+					me.Display["R" ~ (i + 1) ~ "B"] = "";
 				} else if (me.Value.list[i].wp.id == "DISCONTINUITY") {
 					me.Display["L" ~ (i + 1)] = "---F-PLN DISCONTINUITY--";
 					me.Display["C" ~ (i + 1)] = "";
 					me.Display["R" ~ (i + 1)] = "";
+					me.Display["R" ~ (i + 1) ~ "B"] = "";
 				} else {
 					me.Display["L" ~ (i + 1)] = me.Value.list[i].wp.id;
 					me.Display["C" ~ (i + 1)] = "----";
-					me.Display["R" ~ (i + 1)] = "---/ -----";
+					
+					if (me.Value.list[i].wp.speed_cstr_type == nil) {
+						me.Display["R" ~ (i + 1) ~ "B"] = "---/";
+						me.Display.RBFont[i] = FONT.small;
+					} else {
+						me.Display["R" ~ (i + 1) ~ "B"] = sprintf("%d", me.Value.list[i].wp.speed_cstr) ~ "/";
+						if (me.Value.list[i].wp.speed_cstr_type == "computed" or me.Value.list[i].wp.speed_cstr_type == "computed-mach") {
+							me.Display.RBFont[i] = FONT.small;
+						} else {
+							me.Display.RBFont[i] = FONT.large;
+						}
+					}
+					
+					if (me.Value.list[i].wp.alt_cstr_type == nil) {
+						me.Display["R" ~ (i + 1)] = "-----";
+						me.Display.RFont[i] = FONT.small;
+					} else {
+						me.Display["R" ~ (i + 1)] = sprintf("%d", me.Value.list[i].wp.alt_cstr);
+						if (me.Value.list[i].wp.alt_cstr_type == "computed") {
+							me.Display.RFont[i] = FONT.small;
+						} else {
+							me.Display.RFont[i] = FONT.large;
+						}
+					}
 				}
 			} else {
 				me.Display["L" ~ (i + 1)] = "";
 				me.Display["C" ~ (i + 1)] = "";
 				me.Display["R" ~ (i + 1)] = "";
+				me.Display["R" ~ (i + 1) ~ "B"] = "";
 			}
 		}
 	},

@@ -41,6 +41,7 @@ var DuplicateWp = {
 			L6: "",
 			
 			LBFont: [FONT.large, FONT.large, FONT.large, FONT.large, FONT.large, FONT.large],
+			LBTranslate: [0, 0, 0, 0, 0, 0],
 			L1B: "",
 			L2B: "",
 			L3B: "",
@@ -65,6 +66,7 @@ var DuplicateWp = {
 			R6: "",
 			
 			RBFont: [FONT.large, FONT.large, FONT.large, FONT.large, FONT.large, FONT.large],
+			RBTranslate: [0, 0, 0, 0, 0, 0],
 			R1B: "",
 			R2B: "",
 			R3B: "",
@@ -280,6 +282,7 @@ var LatRev = {
 			L6: "",
 			
 			LBFont: [FONT.large, FONT.large, FONT.large, FONT.large, FONT.large, FONT.small],
+			LBTranslate: [0, 0, 0, 0, 0, 0],
 			L1B: "",
 			L2B: "",
 			L3B: "",
@@ -304,6 +307,7 @@ var LatRev = {
 			R6: "ACT F-PLN>",
 			
 			RBFont: [FONT.large, FONT.large, FONT.large, FONT.large, FONT.large, FONT.large],
+			RBTranslate: [0, 0, 0, 0, 0, 0],
 			R1B: "",
 			R2B: "",
 			R3B: "",

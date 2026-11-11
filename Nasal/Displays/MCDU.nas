@@ -18,8 +18,10 @@ var Value = {
 	CLTranslate: [[0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0]],
 	LFont: [["", "", "", "", "", ""], ["", "", "", "", "", ""], ["", "", "", "", "", ""]],
 	LBFont: [["", "", "", "", "", ""], ["", "", "", "", "", ""], ["", "", "", "", "", ""]],
+	LBTranslate: [[0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0]],
 	RFont: [["", "", "", "", "", ""], ["", "", "", "", "", ""], ["", "", "", "", "", ""]],
 	RBFont: [["", "", "", "", "", ""], ["", "", "", "", "", ""], ["", "", "", "", "", ""]],
+	RBTranslate: [[0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0]],
 	title: ["", "", ""],
 	titleSmall: ["", "", ""],
 	titleSmallTranslate: [0, 0, 0],
@@ -357,6 +359,56 @@ var CanvasBase = {
 		if (Value.CLTranslate[n][5] != mcdu.unit[n].page.Display.CLTranslate[5]) {
 			Value.CLTranslate[n][5] = mcdu.unit[n].page.Display.CLTranslate[5];
 			me["C6_L"].setTranslation(mcdu.unit[n].page.Display.CLTranslate[5] * 38.77, 0);
+		}
+		
+		if (Value.LBTranslate[n][0] != mcdu.unit[n].page.Display.LBTranslate[0]) {
+			Value.LBTranslate[n][0] = mcdu.unit[n].page.Display.LBTranslate[0];
+			me["L1_B"].setTranslation(mcdu.unit[n].page.Display.LBTranslate[0] * 38.77, 0);
+		}
+		if (Value.LBTranslate[n][1] != mcdu.unit[n].page.Display.LBTranslate[1]) {
+			Value.LBTranslate[n][1] = mcdu.unit[n].page.Display.LBTranslate[1];
+			me["L2_B"].setTranslation(mcdu.unit[n].page.Display.LBTranslate[1] * 38.77, 0);
+		}
+		if (Value.LBTranslate[n][2] != mcdu.unit[n].page.Display.LBTranslate[2]) {
+			Value.LBTranslate[n][2] = mcdu.unit[n].page.Display.LBTranslate[2];
+			me["L3_B"].setTranslation(mcdu.unit[n].page.Display.LBTranslate[2] * 38.77, 0);
+		}
+		if (Value.LBTranslate[n][3] != mcdu.unit[n].page.Display.LBTranslate[3]) {
+			Value.LBTranslate[n][3] = mcdu.unit[n].page.Display.LBTranslate[3];
+			me["L4_B"].setTranslation(mcdu.unit[n].page.Display.LBTranslate[3] * 38.77, 0);
+		}
+		if (Value.LBTranslate[n][4] != mcdu.unit[n].page.Display.LBTranslate[4]) {
+			Value.LBTranslate[n][4] = mcdu.unit[n].page.Display.LBTranslate[4];
+			me["L5_B"].setTranslation(mcdu.unit[n].page.Display.LBTranslate[4] * 38.77, 0);
+		}
+		if (Value.LBTranslate[n][5] != mcdu.unit[n].page.Display.LBTranslate[5]) {
+			Value.LBTranslate[n][5] = mcdu.unit[n].page.Display.LBTranslate[5];
+			me["L6_B"].setTranslation(mcdu.unit[n].page.Display.LBTranslate[5] * 38.77, 0);
+		}
+		
+		if (Value.RBTranslate[n][0] != mcdu.unit[n].page.Display.RBTranslate[0]) {
+			Value.RBTranslate[n][0] = mcdu.unit[n].page.Display.RBTranslate[0];
+			me["R1_B"].setTranslation(mcdu.unit[n].page.Display.RBTranslate[0] * 38.77, 0);
+		}
+		if (Value.RBTranslate[n][1] != mcdu.unit[n].page.Display.RBTranslate[1]) {
+			Value.RBTranslate[n][1] = mcdu.unit[n].page.Display.RBTranslate[1];
+			me["R2_B"].setTranslation(mcdu.unit[n].page.Display.RBTranslate[1] * 38.77, 0);
+		}
+		if (Value.RBTranslate[n][2] != mcdu.unit[n].page.Display.RBTranslate[2]) {
+			Value.RBTranslate[n][2] = mcdu.unit[n].page.Display.RBTranslate[2];
+			me["R3_B"].setTranslation(mcdu.unit[n].page.Display.RBTranslate[2] * 38.77, 0);
+		}
+		if (Value.RBTranslate[n][3] != mcdu.unit[n].page.Display.RBTranslate[3]) {
+			Value.RBTranslate[n][3] = mcdu.unit[n].page.Display.RBTranslate[3];
+			me["R4_B"].setTranslation(mcdu.unit[n].page.Display.RBTranslate[3] * 38.77, 0);
+		}
+		if (Value.RBTranslate[n][4] != mcdu.unit[n].page.Display.RBTranslate[4]) {
+			Value.RBTranslate[n][4] = mcdu.unit[n].page.Display.RBTranslate[4];
+			me["R5_B"].setTranslation(mcdu.unit[n].page.Display.RBTranslate[4] * 38.77, 0);
+		}
+		if (Value.RBTranslate[n][5] != mcdu.unit[n].page.Display.RBTranslate[5]) {
+			Value.RBTranslate[n][5] = mcdu.unit[n].page.Display.RBTranslate[5];
+			me["R6_B"].setTranslation(mcdu.unit[n].page.Display.RBTranslate[5] * 38.77, 0);
 		}
 	},
 };
