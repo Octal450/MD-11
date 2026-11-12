@@ -1415,7 +1415,10 @@ var ITAF = {
 			Internal.bankLimitCalc = 10;
 			Internal.bankLimit.setValue(Internal.bankLimitCalc);
 		} else {
-			if (Output.latTemp == 2 or Output.latTemp == 4) {
+			if (Output.latTemp == 2 and Internal.radioSelTemp < 2) { # VOR
+				Internal.bankLimitAuto = fms.Internal.bankAngle1.getValue();
+				Internal.bankLimitCalc = Internal.bankLimitAuto;
+			} else if (Output.latTemp == 2 or Output.latTemp == 4) {
 				Radio.locDeflTemp[Internal.radioSelTemp] = abs(Radio.locDefl[Internal.radioSelTemp].getValue());
 				if (Radio.locDeflTemp[Internal.radioSelTemp] >= 0.105) {
 					Internal.bankLimitCalc = 30;
