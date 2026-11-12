@@ -201,7 +201,18 @@ var Fpln = {
 						me.Display["C" ~ (i + 1)] = "";
 						me.Display["R" ~ (i + 1)] = "-- ---g/---";
 					} else {
-						me.Display["C" ~ (i + 1)] = "----";
+						if (fms.Internal.phase == 0) {
+							if (me.Value.wpIndex == 0) { # FROM only
+								me.Display["C" ~ (i + 1)] = "0000";
+								me.Display.CFont[i] = FONT.large;
+							} else {
+								me.Display["C" ~ (i + 1)] = "----";
+								me.Display.CFont[i] = FONT.small;
+							}
+						} else {
+							me.Display["C" ~ (i + 1)] = "----";
+							me.Display.CFont[i] = FONT.small;
+						}
 						
 						if (me.Value.list[i].wp.speed_cstr_type == nil) {
 							me.Display["R" ~ (i + 1) ~ "B"] = "---/";
@@ -440,6 +451,7 @@ var DirIntc = {
 			sourceId: 0,
 			sourceList: nil,
 			temporarySourceId: 2,
+			wpIndex: 0,
 		};
 		
 		if (n == 1) m.Value.temporarySourceId = 3;
@@ -511,8 +523,21 @@ var DirIntc = {
 					me.Display["R" ~ (i + 1)] = "";
 					me.Display["R" ~ (i + 1) ~ "B"] = "";
 				} else {
+					me.Value.wpIndex = me.Value.sourceList.index(me.Value.list[i]);
 					me.Display["L" ~ (i + 1)] = me.Value.list[i].wp.id;
-					me.Display["C" ~ (i + 1)] = "----";
+					
+					if (fms.Internal.phase == 0) {
+						if (me.Value.wpIndex == 0) { # FROM only
+							me.Display["C" ~ (i + 1)] = "0000";
+							me.Display.CFont[i] = FONT.large;
+						} else {
+							me.Display["C" ~ (i + 1)] = "----";
+							me.Display.CFont[i] = FONT.small;
+						}
+					} else {
+						me.Display["C" ~ (i + 1)] = "----";
+						me.Display.CFont[i] = FONT.small;
+					}
 					
 					if (me.Value.list[i].wp.speed_cstr_type == nil) {
 						me.Display["R" ~ (i + 1) ~ "B"] = "---/";
