@@ -522,8 +522,8 @@
 		
 		<!-- Flap/Slat/Gear Max -->
 		<switch name="/systems/fms/speeds/flap-gear-max">
-			<default value="0"/> <!-- Hide the tape -->
-			<test value="0"> <!-- Hide the tape -->
+			<default value="0"/> <!-- Not limited -->
+			<test value="0"> <!-- Not limited -->
 				gear/unit[0]/WOW eq 1
 			</test>
 			<test value="/systems/fms/speeds/flap-50-max-kts">
@@ -562,14 +562,64 @@
 			</test>
 		</switch>
 		
+		<!-- High Speed Buffet -->
+		<fcs_function name="/systems/fms/speeds/buffet-high-speed"> <!-- Guess -->
+			<function>
+				<table>
+					<independentVar lookup="row">/position/altitude-ft</independentVar>
+					<independentVar lookup="column">/systems/fms/flight-data/gw-lbs</independentVar>
+					<tableData>
+						       350  400  450  500  550  600  650
+						25000  377  377  376  376  375  375  374
+						27000  363  363  362  362  361  361  360
+						29000  346  345  345  344  344  343  343
+						31000  330  329  329  328  328  327  327
+						33000  315  314  314  313  312  311  311
+						35000  300  299  298  296  296  295  295
+						37000  285  284  284  283  282  282  281
+						39000  271  270  270  269  268  268  267
+						41000  259  258  257  257  256  256  256
+						43000  246  245  245  244  243  243  243
+						45000  233  232  232  231  231  231  231
+					</tableData>
+				</table>
+			</function>
+		</fcs_function>
+		
+		<fcs_function name="/systems/fms/speeds/buffet-high-speed-plus-1">
+			<function>
+				<sum>
+					<property>/systems/fms/speeds/buffet-high-speed</property>
+					<value>1</value>
+				</sum>
+			</function>
+		</fcs_function>
+		
 		<!-- Vmax -->
 		<switch name="/systems/fms/speeds/vmax">
 			<default value="/systems/fms/speeds/vmo-mmo"/>
 			<test value="/systems/fms/speeds/flap-gear-max">
 				/systems/fms/speeds/flap-gear-max gt 0
 			</test>
+			<test value="/systems/fms/speeds/buffet-high-speed">
+				/systems/fms/speeds/buffet-high-speed le /systems/fms/speeds/vmo-mmo
+			</test>
 			<clipto>
 				<min>100</min>
+				<max>100000</max>
+			</clipto>
+		</switch>
+		
+		<switch name="/systems/fms/speeds/vmax-tape">
+			<default value="0"/> <!-- Hide the tape -->
+			<test value="/systems/fms/speeds/flap-gear-max">
+				/systems/fms/speeds/flap-gear-max gt 0
+			</test>
+			<test value="/systems/fms/speeds/buffet-high-speed">
+				/systems/fms/speeds/buffet-high-speed-plus-1 le /systems/fms/speeds/vmo-mmo
+			</test>
+			<clipto>
+				<min>0</min>
 				<max>100000</max>
 			</clipto>
 		</switch>
