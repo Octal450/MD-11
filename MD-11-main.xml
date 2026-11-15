@@ -1400,6 +1400,13 @@
 	</input>
 	
 	<instrumentation n="0">
+		<acp n="0"> <!-- Both mostly tied together -->
+			<ident type="bool">0</ident>
+			<mic type="int">0</mic>
+		</acp>
+		<acp n="1"> <!-- Ident is separate -->
+			<ident type="bool">0</ident>
+		</acp>
 		<adf n="0">
 			<frequencies n="0">
 				<selected-khz type="double">0</selected-khz>

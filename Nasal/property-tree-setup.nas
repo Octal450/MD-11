@@ -102,6 +102,10 @@ var Gear = {
 };
 
 var Instrumentation = {
+	Acp: {
+		ident: [props.globals.getNode("/instrumentation/acp[0]/ident"), props.globals.getNode("/instrumentation/acp[1]/ident")],
+		mic: [props.globals.getNode("/instrumentation/acp[0]/mic")],
+	},
 	Adf: {
 		Frequencies: {
 			selectedKhz: [props.globals.getNode("/instrumentation/adf[0]/frequencies/selected-khz"), props.globals.getNode("/instrumentation/adf[1]/frequencies/selected-khz")],

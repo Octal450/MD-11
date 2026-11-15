@@ -2165,6 +2165,7 @@
 			<test value="28">
 				/systems/electrical/bus/l-emer-dc ge 24
 			</test>
+			<output>/systems/electrical/outputs/acp[0]</output>
 			<output>/systems/electrical/outputs/comm[0]</output>
 			<output>/systems/electrical/outputs/crp[0]</output>
 			<output>/systems/electrical/outputs/nav[0]</output>
@@ -2176,6 +2177,7 @@
 			<test value="28">
 				/systems/electrical/bus/r-emer-dc ge 24
 			</test>
+			<output>/systems/electrical/outputs/acp[1]</output>
 			<output>/systems/electrical/outputs/comm[1]</output>
 			<output>/systems/electrical/outputs/crp[1]</output>
 			<output>/systems/electrical/outputs/nav[1]</output>

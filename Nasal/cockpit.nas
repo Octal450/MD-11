@@ -32,6 +32,9 @@ var variousReset = func() {
 	pts.Controls.Switches.seatbeltSign.setValue(0);
 	pts.Controls.Switches.wiperL.setValue(0);
 	pts.Controls.Switches.wiperR.setValue(0);
+	pts.Instrumentation.Acp.ident[0].setBoolValue(0);
+	pts.Instrumentation.Acp.mic[0].setValue(0);
+	pts.Instrumentation.Acp.ident[1].setBoolValue(0);
 	pts.Instrumentation.Altimeter.qfe.setBoolValue(0);
 	pts.Instrumentation.Du.duDimmer[0].setValue(1);
 	pts.Instrumentation.Du.duDimmer[1].setValue(1);
