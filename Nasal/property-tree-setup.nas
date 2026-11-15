@@ -103,8 +103,21 @@ var Gear = {
 
 var Instrumentation = {
 	Acp: {
-		ident: [props.globals.getNode("/instrumentation/acp[0]/ident"), props.globals.getNode("/instrumentation/acp[1]/ident")],
+		adf1On: [props.globals.getNode("/instrumentation/acp[0]/adf1-on")],
+		adf2On: [props.globals.getNode("/instrumentation/acp[0]/adf2-on")],
+		cabOn: [props.globals.getNode("/instrumentation/acp[0]/cab-on")],
+		ident: [props.globals.getNode("/instrumentation/acp[0]/ident"), props.globals.getNode("/instrumentation/acp[1]/ident"), props.globals.getNode("/instrumentation/acp[2]/ident")],
+		ils1On: [props.globals.getNode("/instrumentation/acp[0]/ils1-on")],
+		ils2On: [props.globals.getNode("/instrumentation/acp[0]/ils2-on")],
+		intOn: [props.globals.getNode("/instrumentation/acp[0]/int-on")],
 		mic: [props.globals.getNode("/instrumentation/acp[0]/mic")],
+		mkrOn: [props.globals.getNode("/instrumentation/acp[0]/mkr-on")],
+		paOn: [props.globals.getNode("/instrumentation/acp[0]/pa-on")],
+		vhf1On: [props.globals.getNode("/instrumentation/acp[0]/vhf1-on")],
+		vhf2On: [props.globals.getNode("/instrumentation/acp[0]/vhf2-on")],
+		vhf3On: [props.globals.getNode("/instrumentation/acp[0]/vhf3-on")],
+		vor1On: [props.globals.getNode("/instrumentation/acp[0]/vor1-on")],
+		vor2On: [props.globals.getNode("/instrumentation/acp[0]/vor2-on")],
 	},
 	Adf: {
 		Frequencies: {

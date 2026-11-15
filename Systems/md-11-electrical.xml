@@ -2147,6 +2147,7 @@
 			<test value="28">
 				/systems/electrical/bus/dc-2 ge 24
 			</test>
+			<output>/systems/electrical/outputs/acp[2]</output> <!-- Check -->
 			<output>/systems/electrical/outputs/comm[2]</output> <!-- Check -->
 			<output>/systems/electrical/outputs/crp[2]</output> <!-- Check -->
 		</switch>

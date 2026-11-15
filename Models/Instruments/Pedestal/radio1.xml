@@ -204,6 +204,12 @@
 		<action>
 			<button>0</button>
 			<binding>
+				<condition>
+					<greater-than-equals>
+						<property>systems/electrical/outputs/crp[0]</property>
+						<value>24</value>
+					</greater-than-equals>
+				</condition>
 				<command>property-assign</command>
 				<property>instrumentation/crp[0]/mode</property>
 				<value>0</value>
@@ -245,6 +251,12 @@
 		<action>
 			<button>0</button>
 			<binding>
+				<condition>
+					<greater-than-equals>
+						<property>systems/electrical/outputs/crp[0]</property>
+						<value>24</value>
+					</greater-than-equals>
+				</condition>
 				<command>property-assign</command>
 				<property>instrumentation/crp[0]/mode</property>
 				<value>1</value>
@@ -286,6 +298,12 @@
 		<action>
 			<button>0</button>
 			<binding>
+				<condition>
+					<greater-than-equals>
+						<property>systems/electrical/outputs/crp[0]</property>
+						<value>24</value>
+					</greater-than-equals>
+				</condition>
 				<command>property-assign</command>
 				<property>instrumentation/crp[0]/mode</property>
 				<value>2</value>

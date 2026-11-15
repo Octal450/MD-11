@@ -1112,7 +1112,7 @@
 	
 	</channel>
 	
-	<channel name="Radios" execrate="2"> <!-- We work with x1000 so that floating point error does not break the formatting -->
+	<channel name="Communication Radio Panels" execrate="2">
 		
 		<!-- CRP 1 -->
 		<switch name="/instrumentation/crp[0]/active">
