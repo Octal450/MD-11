@@ -1376,6 +1376,42 @@
 	</input>
 	
 	<instrumentation n="0">
+		<acp n="0"> <!-- Both mostly tied together -->
+			<adf1-on type="bool">0</adf1-on>
+			<adf1-vol type="double">0</adf1-vol>
+			<adf2-on type="bool">0</adf2-on>
+			<adf2-vol type="double">0</adf2-vol>
+			<cab-on type="bool">0</cab-on>
+			<cab-vol type="double">0.4</cab-vol>
+			<ident type="bool">0</ident>
+			<int-on type="bool">0</int-on>
+			<int-vol type="double">0.7</int-vol>
+			<ils1-on type="bool">0</ils1-on>
+			<ils1-vol type="double">0</ils1-vol>
+			<ils2-on type="bool">0</ils2-on>
+			<ils2-vol type="double">0</ils2-vol>
+			<mic type="int">0</mic>
+			<mkr-on type="bool">0</mkr-on>
+			<mkr-vol type="double">0.2</mkr-vol>
+			<pa-on type="double">0</pa-on>
+			<pa-vol type="double">0.2</pa-vol>
+			<vhf1-on type="bool">1</vhf1-on>
+			<vhf1-vol type="double">0</vhf1-vol>
+			<vhf2-on type="bool">0</vhf2-on>
+			<vhf2-vol type="double">0</vhf2-vol>
+			<vhf3-on type="bool">0</vhf3-on>
+			<vhf3-vol type="double">0</vhf3-vol>
+			<vor1-on type="bool">0</vor1-on>
+			<vor1-vol type="double">0</vor1-vol>
+			<vor2-on type="bool">0</vor2-on>
+			<vor2-vol type="double">0</vor2-vol>
+		</acp>
+		<acp n="1"> <!-- Ident is separate -->
+			<ident type="bool">0</ident>
+		</acp>
+		<acp n="2"> <!-- Ident is separate -->
+			<ident type="bool">0</ident>
+		</acp>
 		<adf n="0">
 			<frequencies n="0">
 				<selected-khz type="double">0</selected-khz>
@@ -1484,6 +1520,9 @@
 				<true-north type="bool">0</true-north>
 			</mfd>
 		</efis>
+		<marker-beacon n="0">
+			<volume type="double">0</volume>
+		</marker-beacon>
 		<mcdu n="0">
 			<dimmer type="double">1</dimmer>
 		</mcdu>

@@ -668,5 +668,165 @@
 		</actuator>
 	
 	</channel>
+	
+	<channel name="Radio Volume Control" execrate="8">
+		
+		<fcs_function name="/instrumentation/acp[0]/adf1-vol-output">
+			<function>
+				<product>
+					<property>/instrumentation/acp[0]/adf1-on</property>
+					<table>
+						<independentVar lookup="row">/instrumentation/acp[0]/adf1-vol</independentVar>
+						<tableData>
+							0  0.1
+							1  1.0
+						</tableData>
+					</table>
+				</product>
+			</function>
+			<output>/instrumentation/adf[0]/volume-norm</output>
+		</fcs_function>
+		
+		<fcs_function name="/instrumentation/acp[0]/adf2-vol-output">
+			<function>
+				<product>
+					<property>/instrumentation/acp[0]/adf2-on</property>
+					<table>
+						<independentVar lookup="row">/instrumentation/acp[0]/adf2-vol</independentVar>
+						<tableData>
+							0  0.1
+							1  1.0
+						</tableData>
+					</table>
+				</product>
+			</function>
+			<output>/instrumentation/adf[1]/volume-norm</output>
+		</fcs_function>
+		
+		<fcs_function name="/instrumentation/acp[0]/ils-vol-output">
+			<function>
+				<max>
+					<product>
+						<property>/instrumentation/acp[0]/ils1-on</property>
+						<table>
+							<independentVar lookup="row">/instrumentation/acp[0]/ils1-vol</independentVar>
+							<tableData>
+								0  0.1
+								1  1.0
+							</tableData>
+						</table>
+					</product>
+					<product>
+						<property>/instrumentation/acp[0]/ils2-on</property>
+						<table>
+							<independentVar lookup="row">/instrumentation/acp[0]/ils2-vol</independentVar>
+							<tableData>
+								0  0.1
+								1  1.0
+							</tableData>
+						</table>
+					</product>
+				</max>
+			</function>
+			<output>/instrumentation/nav[2]/volume</output>
+		</fcs_function>
+		
+		<fcs_function name="/instrumentation/acp[0]/mkr-vol-output">
+			<function>
+				<product>
+					<property>/instrumentation/acp[0]/mkr-on</property>
+					<table>
+						<independentVar lookup="row">/instrumentation/acp[0]/mkr-vol</independentVar>
+						<tableData>
+							0  0.1
+							1  1.0
+						</tableData>
+					</table>
+				</product>
+			</function>
+			<output>/instrumentation/marker-beacon[0]/volume</output>
+		</fcs_function>
+		
+		<fcs_function name="/instrumentation/acp[0]/vhf1-vol-output">
+			<function>
+				<product>
+					<property>/instrumentation/acp[0]/vhf1-on</property>
+					<table>
+						<independentVar lookup="row">/instrumentation/acp[0]/vhf1-vol</independentVar>
+						<tableData>
+							0  0.1
+							1  1.0
+						</tableData>
+					</table>
+				</product>
+			</function>
+			<output>/instrumentation/comm[0]/volume</output>
+		</fcs_function>
+		
+		<fcs_function name="/instrumentation/acp[0]/vhf2-vol-output">
+			<function>
+				<product>
+					<property>/instrumentation/acp[0]/vhf2-on</property>
+					<table>
+						<independentVar lookup="row">/instrumentation/acp[0]/vhf2-vol</independentVar>
+						<tableData>
+							0  0.1
+							1  1.0
+						</tableData>
+					</table>
+				</product>
+			</function>
+			<output>/instrumentation/comm[1]/volume</output>
+		</fcs_function>
+		
+		<fcs_function name="/instrumentation/acp[0]/vhf3-vol-output">
+			<function>
+				<product>
+					<property>/instrumentation/acp[0]/vhf3-on</property>
+					<table>
+						<independentVar lookup="row">/instrumentation/acp[0]/vhf3-vol</independentVar>
+						<tableData>
+							0  0.1
+							1  1.0
+						</tableData>
+					</table>
+				</product>
+			</function>
+			<output>/instrumentation/comm[2]/volume</output>
+		</fcs_function>
+		
+		<fcs_function name="/instrumentation/acp[0]/vor1-vol-output">
+			<function>
+				<product>
+					<property>/instrumentation/acp[0]/vor1-on</property>
+					<table>
+						<independentVar lookup="row">/instrumentation/acp[0]/vor1-vol</independentVar>
+						<tableData>
+							0  0.1
+							1  1.0
+						</tableData>
+					</table>
+				</product>
+			</function>
+			<output>/instrumentation/nav[0]/volume</output>
+		</fcs_function>
+		
+		<fcs_function name="/instrumentation/acp[0]/vor2-vol-output">
+			<function>
+				<product>
+					<property>/instrumentation/acp[0]/vor2-on</property>
+					<table>
+						<independentVar lookup="row">/instrumentation/acp[0]/vor2-vol</independentVar>
+						<tableData>
+							0  0.1
+							1  1.0
+						</tableData>
+					</table>
+				</product>
+			</function>
+			<output>/instrumentation/nav[1]/volume</output>
+		</fcs_function>
+	
+	</channel>
 
 </system>

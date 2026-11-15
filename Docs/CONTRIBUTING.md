@@ -3,6 +3,7 @@
 These examples will show the guidelines for contributing. Please try to follow this at all times, or we may not merge your contribution.
 
 ## Basic Guidelines:
+- Use of AI/LLMs is strictly not allowed. Use your brain and write your own code!
 - ALWAYS use IntegratedSystems.
 - DO NOT USE setprop/getprop unless its only done once! Use props.nas and Property Tree Setup.
 - Use tabs to indent code, DO NOT USE SPACE.

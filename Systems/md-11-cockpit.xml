@@ -129,6 +129,71 @@
 			<c1>20</c1>
 		</lag_filter>
 		
+		<lag_filter name="/controls/cockpit/acp[0]/adf1-on">
+			<input>/instrumentation/acp[0]/adf1-on</input>
+			<c1>30</c1>
+		</lag_filter>
+		
+		<lag_filter name="/controls/cockpit/acp[0]/adf2-on">
+			<input>/instrumentation/acp[0]/adf2-on</input>
+			<c1>30</c1>
+		</lag_filter>
+		
+		<lag_filter name="/controls/cockpit/acp[0]/cab-on">
+			<input>/instrumentation/acp[0]/cab-on</input>
+			<c1>30</c1>
+		</lag_filter>
+		
+		<lag_filter name="/controls/cockpit/acp[0]/ils1-on">
+			<input>/instrumentation/acp[0]/ils1-on</input>
+			<c1>30</c1>
+		</lag_filter>
+		
+		<lag_filter name="/controls/cockpit/acp[0]/ils2-on">
+			<input>/instrumentation/acp[0]/ils2-on</input>
+			<c1>30</c1>
+		</lag_filter>
+		
+		<lag_filter name="/controls/cockpit/acp[0]/int-on">
+			<input>/instrumentation/acp[0]/int-on</input>
+			<c1>30</c1>
+		</lag_filter>
+		
+		<lag_filter name="/controls/cockpit/acp[0]/mkr-on">
+			<input>/instrumentation/acp[0]/mkr-on</input>
+			<c1>30</c1>
+		</lag_filter>
+		
+		<lag_filter name="/controls/cockpit/acp[0]/pa-on">
+			<input>/instrumentation/acp[0]/pa-on</input>
+			<c1>30</c1>
+		</lag_filter>
+		
+		<lag_filter name="/controls/cockpit/acp[0]/vhf1-on">
+			<input>/instrumentation/acp[0]/vhf1-on</input>
+			<c1>30</c1>
+		</lag_filter>
+		
+		<lag_filter name="/controls/cockpit/acp[0]/vhf2-on">
+			<input>/instrumentation/acp[0]/vhf2-on</input>
+			<c1>30</c1>
+		</lag_filter>
+		
+		<lag_filter name="/controls/cockpit/acp[0]/vhf3-on">
+			<input>/instrumentation/acp[0]/vhf3-on</input>
+			<c1>30</c1>
+		</lag_filter>
+		
+		<lag_filter name="/controls/cockpit/acp[0]/vor1-on">
+			<input>/instrumentation/acp[0]/vor1-on</input>
+			<c1>30</c1>
+		</lag_filter>
+		
+		<lag_filter name="/controls/cockpit/acp[0]/vor2-on">
+			<input>/instrumentation/acp[0]/vor2-on</input>
+			<c1>30</c1>
+		</lag_filter>
+		
 		<lag_filter name="/controls/cockpit/adg-handle">
 			<input>/controls/switches/adg-handle</input>
 			<c1>20</c1>

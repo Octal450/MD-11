@@ -91,7 +91,7 @@
 			<factor-prop>systems/lighting/overhead-integ</factor-prop>
 		</emission>
 	</animation>
-
+	
 	<animation>
 		<type>knob</type>
 		<object-name>ovhdinteg.knob</object-name>
@@ -119,7 +119,7 @@
 			</binding>
 		</action>
 	</animation>
-
+	
 	<animation>
 		<type>knob</type>
 		<object-name>maininteg.knob</object-name>
@@ -147,7 +147,7 @@
 			</binding>
 		</action>
 	</animation>
-
+	
 	<animation>
 		<type>knob</type>
 		<object-name>ovhdflood.knob</object-name>
