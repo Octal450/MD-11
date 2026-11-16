@@ -1508,10 +1508,10 @@
 			</function>
 		</fcs_function>
 		
-		<actuator name="/engines/engine[0]/oil-psi">
+		<lag_filter name="/engines/engine[0]/oil-psi">
 			<input>/systems/fadec/oil-psi-cmd-1</input>
-			<lag>0.5</lag>
-		</actuator>
+			<c1>0.5</c1>
+		</lag_filter>
 		
 		<fcs_function name="/systems/fadec/oil-psi-cmd-2">
 			<function>
@@ -1528,10 +1528,10 @@
 			</function>
 		</fcs_function>
 		
-		<actuator name="/engines/engine[1]/oil-psi">
+		<lag_filter name="/engines/engine[1]/oil-psi">
 			<input>/systems/fadec/oil-psi-cmd-2</input>
-			<lag>0.5</lag>
-		</actuator>
+			<c1>0.5</c1>
+		</lag_filter>
 		
 		<fcs_function name="/systems/fadec/oil-psi-cmd-3">
 			<function>
@@ -1548,10 +1548,10 @@
 			</function>
 		</fcs_function>
 		
-		<actuator name="/engines/engine[2]/oil-psi">
+		<lag_filter name="/engines/engine[2]/oil-psi">
 			<input>/systems/fadec/oil-psi-cmd-3</input>
-			<lag>0.5</lag>
-		</actuator>
+			<c1>0.5</c1>
+		</lag_filter>
 		
 		<switch name="/systems/fadec/oil-temp-rate"> <!-- Sync with panel states -->
 			<default value="0.75"/>
