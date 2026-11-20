@@ -277,7 +277,7 @@ var DUController = {
 				canvas_pfd.xx1.page.hide();
 			}
 		}
-			
+		
 		if (me.PowerSource.lEmerAc >= 112 and pts.Instrumentation.Du.duDimmer[2].getValue() > 0.01) {
 			if (me.CounterDeu1.timeUp < me.elapsedSec) {
 				if (!me.updateEad) {
