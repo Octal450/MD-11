@@ -10,8 +10,8 @@ var xx = nil;
 
 var Value = {
 	barRest: 0,
-	egtScale: 1025,
 	egtRed: 960,
+	egtScale: 1025,
 	egtStart: 750,
 	egtYellow: 925,
 	engType: "GE",
