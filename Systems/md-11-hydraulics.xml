@@ -1171,11 +1171,6 @@
 			<rate_limit sense="decr">/systems/hydraulics/brakes/sys-decr-rate</rate_limit>
 		</actuator>
 		
-		<lag_filter name="/systems/hydraulics/brakes/sys-1-psi-needle">
-			<input>/systems/hydraulics/brakes/sys-1-psi</input>
-			<c1>10</c1>
-		</lag_filter>
-		
 		<fcs_function name="/systems/hydraulics/brakes/sys-2-psi-cmd">
 			<function>
 				<difference>
@@ -1205,11 +1200,6 @@
 			<rate_limit sense="incr">/systems/hydraulics/sys-incr-rate</rate_limit>
 			<rate_limit sense="decr">/systems/hydraulics/brakes/sys-decr-rate</rate_limit>
 		</actuator>
-		
-		<lag_filter name="/systems/hydraulics/brakes/sys-2-psi-needle">
-			<input>/systems/hydraulics/brakes/sys-2-psi</input>
-			<c1>10</c1>
-		</lag_filter>
 	
 	</channel>
 	
