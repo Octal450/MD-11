@@ -1185,6 +1185,16 @@
 			<input>/systems/pressurization/outflow-valve/pos</input>
 			<c1>20</c1>
 		</lag_filter>
+		
+		<lag_filter name="/instrumentation/brakes/sys-1-psi">
+			<input>/systems/hydraulics/brakes/sys-1-psi</input>
+			<c1>10</c1>
+		</lag_filter>
+		
+		<lag_filter name="/instrumentation/brakes/sys-2-psi">
+			<input>/systems/hydraulics/brakes/sys-2-psi</input>
+			<c1>10</c1>
+		</lag_filter>
 	
 	</channel>
 
