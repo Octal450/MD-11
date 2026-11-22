@@ -2824,33 +2824,29 @@
 		
 		<switch name="/systems/fuel/lights/x-feed-1-disag">
 			<default value="0"/>
-			<test logic="AND" value="1">
-				/systems/fuel/x-feed-1-valve ne 0
-				/systems/fuel/x-feed-1-valve ne 1
+			<test value="1">
+				/systems/fuel/x-feed-1-valve ne /controls/fuel/x-feed-1
 			</test>
 		</switch>
 		
 		<switch name="/systems/fuel/lights/x-feed-2-disag">
 			<default value="0"/>
-			<test logic="AND" value="1">
-				/systems/fuel/x-feed-2-valve ne 0
-				/systems/fuel/x-feed-2-valve ne 1
+			<test value="1">
+				/systems/fuel/x-feed-2-valve ne /controls/fuel/x-feed-2
 			</test>
 		</switch>
 		
 		<switch name="/systems/fuel/lights/x-feed-3-disag">
 			<default value="0"/>
-			<test logic="AND" value="1">
-				/systems/fuel/x-feed-3-valve ne 0
-				/systems/fuel/x-feed-3-valve ne 1
+			<test value="1">
+				/systems/fuel/x-feed-3-valve ne /controls/fuel/x-feed-3
 			</test>
 		</switch>
 		
 		<switch name="/systems/fuel/lights/afi-disag">
 			<default value="0"/>
-			<test logic="AND" value="1">
-				/systems/fuel/afi-valve ne 0
-				/systems/fuel/afi-valve ne 1
+			<test value="1">
+				/systems/fuel/afi-valve ne /systems/fuel/fsc/afi-cmd
 			</test>
 		</switch>
 		
