@@ -1384,25 +1384,32 @@
 		</actuator>
 		
 		<!-- Crossfeed Valves -->
+		<switch name="/systems/fuel/valve-rate">
+			<default value="0"/>
+			<test value="0.333"> <!-- 3 seconds -->
+				/systems/electrical/bus/l-emer-ac ge 112
+			</test>
+		</switch>
+		
 		<actuator name="/systems/fuel/x-feed-1-valve">
 			<input>/controls/fuel/x-feed-1</input>
-			<rate_limit>0.333</rate_limit> <!-- 3 seconds -->
+			<rate_limit>/systems/fuel/valve-rate</rate_limit>
 		</actuator>
 		
 		<actuator name="/systems/fuel/x-feed-2-valve">
 			<input>/controls/fuel/x-feed-2</input>
-			<rate_limit>0.333</rate_limit> <!-- 3 seconds -->
+			<rate_limit>/systems/fuel/valve-rate</rate_limit>
 		</actuator>
 		
 		<actuator name="/systems/fuel/x-feed-3-valve">
 			<input>/controls/fuel/x-feed-3</input>
-			<rate_limit>0.333</rate_limit> <!-- 3 seconds -->
+			<rate_limit>/systems/fuel/valve-rate</rate_limit>
 		</actuator>
 		
 		<!-- Auxiliary Fill Isolation Valve -->
 		<actuator name="/systems/fuel/afi-valve">
 			<input>/systems/fuel/fsc/afi-cmd</input>
-			<rate_limit>0.333</rate_limit> <!-- 3 seconds -->
+			<rate_limit>/systems/fuel/valve-rate</rate_limit>
 		</actuator>
 		
 		<!-- Transfer Pumps -->
