@@ -118,7 +118,6 @@
 		<interpolation>
 			<entry><ind>0.0</ind><dep> 0</dep></entry>
 			<entry><ind>0.7</ind><dep>40</dep></entry>
-			<entry><ind>1.0</ind><dep>40</dep></entry>
 		</interpolation>
 		<axis>
 			<x>0</x>
@@ -138,7 +137,6 @@
 		<object-name>Hose</object-name>
 		<property>sim/multiplay/generic/float[13]</property>
 		<interpolation>
-			<entry><ind>0.0</ind><dep>0.0</dep></entry>
 			<entry><ind>0.7</ind><dep>0.0</dep></entry>
 			<entry><ind>1.0</ind><dep>3.5</dep></entry>
 		</interpolation>
